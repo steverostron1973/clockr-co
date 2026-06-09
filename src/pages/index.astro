@@ -8,8 +8,8 @@ import { categories } from '../data/categories';
 	title="Clockr.co — Time is ticking"
 	description="Your time and date friend — countdowns, age calculators, time zones and more."
 	category="holidays"
-	hideLogo
 >
+	<div class="hide-logo">
 	<!-- Hero -->
 	<section class="hero">
 		<div class="vertical-clockr" aria-hidden="true">
@@ -111,6 +111,7 @@ import { categories } from '../data/categories';
 			</div>
 		</div>
 	</section>
+	</div>
 </Layout>
 
 <style>
@@ -487,8 +488,8 @@ import { categories } from '../data/categories';
 </style>
 
 <style is:global>
-	.home-hide-logo {
-		display: none;
+	body:has(.hide-logo) .logo-wrap {
+		visibility: hidden !important;
 	}
 </style>
 

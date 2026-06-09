@@ -1,0 +1,462 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Age Calculator — Clockr.co"
+	description="Find out exactly how old you are in years, months, days, hours, minutes and seconds. Your age calculated precisely."
+>
+	<div class="age-page">
+		<!-- PAGE HEADER -->
+		<div class="age-header">
+			<div class="age-eyebrow">🎂 Age & Birthdays</div>
+			<h1 class="age-title">
+				<span class="age-gradient">How old are</span><br />
+				<span class="age-gradient">you, exactly?</span>
+			</h1>
+			<p class="age-subtitle">
+				Enter your date of birth and discover your exact age — down to the
+				second.
+			</p>
+		</div>
+
+		<!-- INPUT -->
+		<div class="age-input-wrap">
+			<label class="age-label" for="dob-input">Your date of birth</label>
+			<input type="date" id="dob-input" class="age-input" />
+		</div>
+
+		<!-- RESULTS — hidden until date entered -->
+		<div class="age-results" id="age-results" style="display:none">
+			<!-- MAIN AGE DISPLAY -->
+			<div class="age-main-card">
+				<div class="age-main-num" id="age-years">0</div>
+				<div class="age-main-label">years old</div>
+				<div class="age-exact" id="age-exact">0 years, 0 months, 0 days</div>
+			</div>
+
+			<!-- BREAKDOWN GRID -->
+			<div class="age-grid">
+				<div class="age-stat-card">
+					<div class="age-stat-num" id="age-days">0</div>
+					<div class="age-stat-label">Days alive</div>
+				</div>
+				<div class="age-stat-card">
+					<div class="age-stat-num" id="age-weeks">0</div>
+					<div class="age-stat-label">Weeks alive</div>
+				</div>
+				<div class="age-stat-card">
+					<div class="age-stat-num" id="age-hours">0</div>
+					<div class="age-stat-label">Hours alive</div>
+				</div>
+				<div class="age-stat-card">
+					<div class="age-stat-num" id="age-seconds">0</div>
+					<div class="age-stat-label">Seconds alive</div>
+				</div>
+				<div class="age-stat-card">
+					<div class="age-stat-num" id="age-christmases">0</div>
+					<div class="age-stat-label">Christmases experienced</div>
+				</div>
+				<div class="age-stat-card">
+					<div class="age-stat-num" id="age-mondays">0</div>
+					<div class="age-stat-label">Mondays survived</div>
+				</div>
+			</div>
+
+			<!-- NEXT MILESTONE -->
+			<div class="age-milestone-card">
+				<div class="age-milestone-label">⚡ Your next milestone</div>
+				<div class="age-milestone-text" id="age-milestone">Loading...</div>
+			</div>
+
+			<!-- FUN FACT -->
+			<div class="age-fact-card">
+				<div class="age-fact-text" id="age-fact">Loading...</div>
+			</div>
+
+			<!-- SHARE BUTTON -->
+			<button class="age-share" id="age-share-btn">📤 Share my age</button>
+		</div>
+
+		<!-- RELATED TOOLS -->
+		<div class="age-related">
+			<h3 class="age-related-title">You might also like</h3>
+			<div class="age-related-grid">
+				<a href="/birthday-countdown" class="age-related-card"
+					>🎈 Birthday Countdown</a
+				>
+				<a href="/age-on-other-planets" class="age-related-card"
+					>🪐 Age on Other Planets</a
+				>
+				<a href="/how-many-seconds-alive" class="age-related-card"
+					>⚡ 1 Billion Seconds</a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.age-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.age-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.age-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.age-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.age-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.age-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.age-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 48px;
+	}
+
+	.age-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.age-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+	}
+
+	.age-input:focus {
+		border-color: rgba(139, 92, 246, 0.8);
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+	}
+
+	.age-main-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 40px;
+		text-align: center;
+		margin-bottom: 16px;
+		box-shadow: 0 0 40px rgba(139, 92, 246, 0.06);
+	}
+
+	.age-main-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 120px;
+		font-weight: 900;
+		letter-spacing: -6px;
+		line-height: 1;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 8px;
+	}
+
+	.age-main-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 12px;
+	}
+
+	.age-exact {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.age-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		margin-bottom: 16px;
+	}
+
+	.age-stat-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px 16px;
+		text-align: center;
+	}
+
+	.age-stat-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 32px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 6px;
+	}
+
+	.age-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.age-milestone-card {
+		background: rgba(139, 92, 246, 0.06);
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 14px;
+		padding: 20px 24px;
+		margin-bottom: 12px;
+	}
+
+	.age-milestone-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 8px;
+	}
+
+	.age-milestone-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.7);
+		line-height: 1.5;
+	}
+
+	.age-fact-card {
+		background: rgba(236, 72, 153, 0.05);
+		border-left: 3px solid #ec4899;
+		border-radius: 0 12px 12px 0;
+		padding: 16px 20px;
+		margin-bottom: 24px;
+	}
+
+	.age-fact-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.6);
+		line-height: 1.6;
+	}
+
+	.age-share {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		width: 100%;
+		margin-bottom: 60px;
+		transition: opacity 0.2s ease;
+	}
+
+	.age-share:hover {
+		opacity: 0.9;
+	}
+
+	.age-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.age-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.age-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.age-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.age-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+		color: #fff;
+	}
+</style>
+
+<script>
+	const dobInput = document.getElementById('dob-input') as HTMLInputElement;
+	const results = document.getElementById('age-results');
+
+	const funFacts = [
+		"That's longer than it took to build the Great Wall of China — incredible.",
+		"You've experienced more sunrises than there are pages in 14 copies of War and Peace.",
+		"In that time, your heart has beaten approximately {beats} times. Extraordinary.",
+		"You've lived through {weeks} weekends. Hope most of them were good ones.",
+		"That's enough time to walk around the Earth's equator {walks} times at average walking pace.",
+	];
+
+	function formatNumber(n: number) {
+		return n.toLocaleString();
+	}
+
+	function calculateAge() {
+		if (!dobInput || !results) return;
+
+		const dob = new Date(dobInput.value);
+		if (!dobInput.value || isNaN(dob.getTime())) return;
+
+		const now = new Date();
+		const diff = now.getTime() - dob.getTime();
+
+		if (diff < 0) return;
+
+		results.style.display = 'block';
+
+		const totalSeconds = Math.floor(diff / 1000);
+		const totalMinutes = Math.floor(totalSeconds / 60);
+		const totalHours = Math.floor(totalMinutes / 60);
+		const totalDays = Math.floor(totalHours / 24);
+		const totalWeeks = Math.floor(totalDays / 7);
+
+		let years = now.getFullYear() - dob.getFullYear();
+		let months = now.getMonth() - dob.getMonth();
+		let days = now.getDate() - dob.getDate();
+
+		if (days < 0) {
+			months--;
+			days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+		}
+		if (months < 0) {
+			years--;
+			months += 12;
+		}
+
+		const yearsEl = document.getElementById('age-years');
+		const exactEl = document.getElementById('age-exact');
+		const daysEl = document.getElementById('age-days');
+		const weeksEl = document.getElementById('age-weeks');
+		const hoursEl = document.getElementById('age-hours');
+		const secondsEl = document.getElementById('age-seconds');
+		const christmasesEl = document.getElementById('age-christmases');
+		const mondaysEl = document.getElementById('age-mondays');
+		const milestoneEl = document.getElementById('age-milestone');
+		const factEl = document.getElementById('age-fact');
+		const shareBtn = document.getElementById('age-share-btn');
+
+		if (yearsEl) yearsEl.textContent = String(years);
+		if (exactEl)
+			exactEl.textContent = `${years} years, ${months} months, ${days} days`;
+		if (daysEl) daysEl.textContent = formatNumber(totalDays);
+		if (weeksEl) weeksEl.textContent = formatNumber(totalWeeks);
+		if (hoursEl) hoursEl.textContent = formatNumber(totalHours);
+		if (secondsEl) secondsEl.textContent = formatNumber(totalSeconds);
+		if (christmasesEl) christmasesEl.textContent = String(years);
+		if (mondaysEl)
+			mondaysEl.textContent = formatNumber(Math.floor(totalDays / 7));
+
+		const nextMilestone = Math.ceil(totalDays / 1000) * 1000;
+		const daysToMilestone = nextMilestone - totalDays;
+		const milestoneDate = new Date(
+			now.getTime() + daysToMilestone * 24 * 60 * 60 * 1000,
+		);
+		if (milestoneEl)
+			milestoneEl.textContent = `Your ${formatNumber(nextMilestone)}th day alive is in ${daysToMilestone} days — on ${milestoneDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}.`;
+
+		const factIndex = years % funFacts.length;
+		const fact = funFacts[factIndex]
+			.replace('{beats}', formatNumber((totalSeconds * 1.2) | 0))
+			.replace('{weeks}', formatNumber(totalWeeks))
+			.replace('{walks}', (totalDays / 365 * 0.12).toFixed(1));
+		if (factEl) factEl.textContent = '💡 ' + fact;
+
+		if (shareBtn) {
+			shareBtn.onclick = () => {
+				navigator.clipboard.writeText(
+					`I've been alive for ${formatNumber(totalDays)} days, ${formatNumber(totalHours)} hours and ${formatNumber(totalSeconds)} seconds. Find out yours at Clockr.co 🎂`,
+				);
+				shareBtn.textContent = '✅ Copied to clipboard!';
+				setTimeout(() => {
+					shareBtn.textContent = '📤 Share my age';
+				}, 2000);
+			};
+		}
+	}
+
+	dobInput?.addEventListener('change', calculateAge);
+	setInterval(() => {
+		if (dobInput?.value) calculateAge();
+	}, 1000);
+</script>
