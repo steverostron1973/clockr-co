@@ -1,0 +1,192 @@
+---
+
+---
+
+<div class="clock-wrapper">
+	<div class="clock-glow" aria-hidden="true"></div>
+	<svg
+		id="analogue-clock"
+		class="clock-face"
+		viewBox="0 0 300 300"
+		role="img"
+		aria-label="Live analogue clock showing the current time"
+	>
+		<defs>
+			<filter id="clock-shadow" x="-50%" y="-50%" width="200%" height="200%">
+				<feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.7" />
+			</filter>
+			<radialGradient id="face-glow" cx="50%" cy="50%" r="50%">
+				<stop offset="85%" stop-color="#0C0C0C" />
+				<stop offset="100%" stop-color="#141414" />
+			</radialGradient>
+		</defs>
+
+		<circle
+			cx="150"
+			cy="150"
+			r="142"
+			fill="url(#face-glow)"
+			stroke="#FF5C4D"
+			stroke-width="2"
+			filter="url(#clock-shadow)"
+			opacity="1"
+		/>
+		<circle
+			cx="150"
+			cy="150"
+			r="142"
+			fill="none"
+			stroke="#FF5C4D"
+			stroke-width="4"
+			opacity="0.25"
+		/>
+
+		<g id="minute-markers"></g>
+		<g id="hour-numerals"></g>
+
+		<g id="hour-hand" class="clock-hand" style="transform-origin: 150px 150px">
+			<line x1="150" y1="150" x2="150" y2="95" stroke="#ffffff" stroke-width="7" stroke-linecap="round" />
+		</g>
+		<g id="minute-hand" class="clock-hand" style="transform-origin: 150px 150px">
+			<line x1="150" y1="150" x2="150" y2="72" stroke="#ffffff" stroke-width="5" stroke-linecap="round" />
+		</g>
+		<g id="second-hand" class="clock-hand clock-second" style="transform-origin: 150px 150px">
+			<line x1="150" y1="165" x2="150" y2="58" stroke="#FF5C4D" stroke-width="2" stroke-linecap="round" />
+			<circle cx="150" cy="150" r="5" fill="#FF5C4D" />
+		</g>
+		<circle cx="150" cy="150" r="6" fill="#ffffff" />
+	</svg>
+</div>
+
+<style>
+	.clock-wrapper {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 1rem 0 0;
+	}
+
+	@media (min-width: 640px) {
+		.clock-wrapper {
+			margin: 1.25rem 0 0;
+		}
+	}
+
+	.clock-glow {
+		position: absolute;
+		width: min(90vw, 360px);
+		height: min(90vw, 360px);
+		border-radius: 50%;
+		background: radial-gradient(
+			circle,
+			rgba(255, 92, 77, 0.05) 0%,
+			transparent 70%
+		);
+		pointer-events: none;
+	}
+
+	.clock-face {
+		width: min(52vw, 200px);
+		height: min(52vw, 200px);
+		position: relative;
+		z-index: 1;
+	}
+
+	@media (min-width: 640px) {
+		.clock-face {
+			width: 260px;
+			height: 260px;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.clock-face {
+			width: 280px;
+			height: 280px;
+		}
+	}
+
+	.clock-hand {
+		transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	.clock-second {
+		transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+	}
+</style>
+
+<script>
+	function initClock() {
+		const svg = document.getElementById('analogue-clock');
+		if (!svg) return;
+
+		const markersGroup = document.getElementById('minute-markers');
+		const numeralsGroup = document.getElementById('hour-numerals');
+		const hourHand = document.getElementById('hour-hand');
+		const minuteHand = document.getElementById('minute-hand');
+		const secondHand = document.getElementById('second-hand');
+
+		if (!markersGroup || !numeralsGroup || !hourHand || !minuteHand || !secondHand) return;
+
+		const cx = 150;
+		const cy = 150;
+
+		for (let i = 0; i < 60; i++) {
+			const angle = (i * 6 - 90) * (Math.PI / 180);
+			const outerR = 128;
+			const innerR = i % 5 === 0 ? 118 : 122;
+			const x1 = cx + innerR * Math.cos(angle);
+			const y1 = cy + innerR * Math.sin(angle);
+			const x2 = cx + outerR * Math.cos(angle);
+			const y2 = cy + outerR * Math.sin(angle);
+
+			const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+			dot.setAttribute('cx', String(x2));
+			dot.setAttribute('cy', String(y2));
+			dot.setAttribute('r', i % 5 === 0 ? '2.5' : '1.5');
+			dot.setAttribute('fill', '#ffffff');
+			dot.setAttribute('opacity', i % 5 === 0 ? '0.9' : '0.5');
+			markersGroup.appendChild(dot);
+		}
+
+		for (let h = 1; h <= 12; h++) {
+			const angle = (h * 30 - 90) * (Math.PI / 180);
+			const r = 102;
+			const x = cx + r * Math.cos(angle);
+			const y = cy + r * Math.sin(angle);
+
+			const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+			text.setAttribute('x', String(x));
+			text.setAttribute('y', String(y));
+			text.setAttribute('text-anchor', 'middle');
+			text.setAttribute('dominant-baseline', 'central');
+			text.setAttribute('fill', '#ffffff');
+			text.setAttribute('font-family', 'Outfit, sans-serif');
+			text.setAttribute('font-weight', '800');
+			text.setAttribute('font-size', '22');
+			text.textContent = String(h);
+			numeralsGroup.appendChild(text);
+		}
+
+		function updateHands() {
+			const now = new Date();
+			const seconds = now.getSeconds();
+			const minutes = now.getMinutes();
+			const hours = now.getHours() % 12;
+
+			const secondDeg = seconds * 6;
+			const minuteDeg = minutes * 6 + seconds * 0.1;
+			const hourDeg = hours * 30 + minutes * 0.5;
+
+			secondHand.style.transform = `rotate(${secondDeg}deg)`;
+			minuteHand.style.transform = `rotate(${minuteDeg}deg)`;
+			hourHand.style.transform = `rotate(${hourDeg}deg)`;
+		}
+
+		updateHands();
+		setInterval(updateHands, 1000);
+	}
+
+	initClock();
+</script>

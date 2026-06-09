@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ChristmasCountdown from '../components/ChristmasCountdown.astro';
+import AnalogueClock from '../components/AnalogueClock.astro';
 import { categories } from '../data/categories';
 ---
 
@@ -8,60 +8,524 @@ import { categories } from '../data/categories';
 	title="Clockr.co — Time is ticking"
 	description="Your time and date friend — countdowns, age calculators, time zones and more."
 	category="holidays"
+	hideLogo
 >
-	<section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-		<div class="mx-auto max-w-3xl text-center">
-			<h1
-				class="font-display text-4xl font-black leading-tight tracking-tight sm:text-6xl"
-			>
-				Time is <span
-					class="gradient-text"
-					style="--gradient-from: #FF5C4D; --gradient-to: #FF9A3C"
-					>ticking</span
-				>.
-			</h1>
-			<p
-				class="mt-5 text-base leading-relaxed text-text-secondary sm:mt-6 sm:text-lg"
-			>
-				Your time and date friend — countdowns, age calculators, time zones and
-				more.
-			</p>
+	<!-- Hero -->
+	<section class="hero">
+		<div class="vertical-clockr" aria-hidden="true">
+			<span class="vertical-c1">C</span>
+			<span class="vertical-l">L</span>
+			<span class="vertical-o">O</span>
+			<span class="vertical-c2">C</span>
+			<span class="vertical-k">K</span>
+			<span class="vertical-r">R</span>
 		</div>
 
-		<div class="mt-12 sm:mt-16">
-			<ChristmasCountdown />
+		<div class="hero-content">
+			<h1 class="hero-headline">
+				<span class="hero-line">Time is</span>
+				<span class="ticking-gradient">TICKING.</span>
+			</h1>
+
+			<AnalogueClock />
 		</div>
 	</section>
 
-	<section class="mx-auto max-w-6xl px-4 pb-20 sm:px-6 sm:pb-28">
-		<h2
-			class="mb-8 text-center font-display text-2xl font-bold tracking-tight sm:mb-10 sm:text-3xl"
-		>
-			Explore tools
+	<!-- Category Grid -->
+	<section class="categories-section">
+		<h2 class="explore-heading">
+			<span class="explore-gradient">Explore Clock</span><span class="explore-r">r</span>
 		</h2>
 
-		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+		<div class="categories-grid">
 			{
 				categories.map((category) => (
 					<a
 						href={category.href}
-						class="card group flex flex-col gap-4 p-6 transition-transform hover:-translate-y-0.5"
+						class="category-card"
+						style={`--cat-from: ${category.from}; --cat-to: ${category.to}`}
 					>
-						<span
-							class="flex h-12 w-12 items-center justify-center rounded-[var(--radius-button)] text-2xl"
-							style={`background: linear-gradient(135deg, ${category.from}22, ${category.to}22)`}
-						>
-							{category.emoji}
-						</span>
-						<span
-							class="font-display text-lg font-bold leading-snug gradient-text"
-							style={`--gradient-from: ${category.from}; --gradient-to: ${category.to}`}
-						>
-							{category.name}
-						</span>
+						<div class="category-card-inner">
+							<span class="category-emoji">{category.emoji}</span>
+							<span
+								class="category-name gradient-text"
+								style={`--gradient-from: ${category.from}; --gradient-to: ${category.to}`}
+							>
+								{category.name}
+							</span>
+							<p class="category-desc">{category.description}</p>
+						</div>
 					</a>
 				))
 			}
 		</div>
 	</section>
+
+	<section class="xmas-section">
+		<div class="xmas-card">
+			<div class="xmas-top-row">
+				<span style="font-size:22px;animation-delay:0.0s">🎅</span>
+				<span style="font-size:20px;animation-delay:0.2s">❄️</span>
+				<span style="font-size:22px;animation-delay:0.4s">🎄</span>
+				<span style="font-size:20px;animation-delay:0.6s">🦌</span>
+				<span style="font-size:22px;animation-delay:0.8s">⭐</span>
+				<span style="font-size:20px;animation-delay:1.0s">🎁</span>
+				<span style="font-size:22px;animation-delay:1.2s">☃️</span>
+				<span style="font-size:20px;animation-delay:1.4s">🔔</span>
+				<span style="font-size:20px;animation-delay:1.6s">🍬</span>
+				<span style="font-size:22px;animation-delay:1.8s">🎊</span>
+				<span style="font-size:20px;animation-delay:2.0s">🧦</span>
+				<span style="font-size:20px;animation-delay:2.2s">🕯️</span>
+				<span style="font-size:22px;animation-delay:2.4s">🌟</span>
+				<span style="font-size:20px;animation-delay:2.6s">🎿</span>
+				<span style="font-size:22px;animation-delay:2.8s">🤶</span>
+				<span style="font-size:20px;animation-delay:3.0s">❄️</span>
+				<span style="font-size:22px;animation-delay:3.2s">🎁</span>
+				<span style="font-size:20px;animation-delay:3.4s">🦌</span>
+			</div>
+
+			<div class="xmas-centre">
+				<div class="xmas-label">🎄 CHRISTMAS COUNTDOWN</div>
+				<div class="xmas-numbers">
+					<div class="xmas-block">
+						<span class="xmas-num" id="xmas-days">0</span>
+						<span class="xmas-unit">DAYS</span>
+					</div>
+					<div class="xmas-sep">:</div>
+					<div class="xmas-block">
+						<span class="xmas-num" id="xmas-hours">0</span>
+						<span class="xmas-unit">HOURS</span>
+					</div>
+					<div class="xmas-sep">:</div>
+					<div class="xmas-block">
+						<span class="xmas-num" id="xmas-mins">0</span>
+						<span class="xmas-unit">MINS</span>
+					</div>
+					<div class="xmas-sep">:</div>
+					<div class="xmas-block">
+						<span class="xmas-num" id="xmas-secs">0</span>
+						<span class="xmas-unit">SECS</span>
+					</div>
+				</div>
+				<button class="xmas-share" onclick="navigator.clipboard.writeText('🎄 ' + document.getElementById('xmas-days').textContent + ' days until Christmas! Find out more at Clockr.co')">📤 Share this countdown</button>
+			</div>
+		</div>
+	</section>
 </Layout>
+
+<style>
+	.hero {
+		position: relative;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.vertical-clockr {
+		display: none;
+		position: absolute;
+		left: 24px;
+		top: 0;
+		bottom: 0;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+		padding: 20px 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	@media (min-width: 768px) {
+		.vertical-clockr {
+			display: flex;
+		}
+	}
+
+	.vertical-c1,
+	.vertical-l,
+	.vertical-o,
+	.vertical-c2,
+	.vertical-k {
+		color: transparent;
+		-webkit-text-fill-color: transparent;
+		background: none;
+		-webkit-text-stroke: 2px rgba(255, 255, 255, 0.45);
+		filter: none;
+	}
+
+	.vertical-r {
+		color: transparent;
+		-webkit-text-fill-color: transparent;
+		background: none;
+		-webkit-text-stroke: 2px rgba(0, 229, 196, 0.6);
+		filter: none;
+	}
+
+	.vertical-clockr span {
+		font-family: 'Outfit', sans-serif;
+		font-weight: 900;
+		font-size: 100px;
+		line-height: 1;
+		display: block;
+	}
+
+	.hero-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+
+	.hero-headline {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.25rem;
+		margin-bottom: 0;
+	}
+
+	.hero-line {
+		font-family: var(--font-display);
+		font-size: clamp(2rem, 6vw, 3.5rem);
+		font-weight: 700;
+		color: #ffffff;
+		letter-spacing: -0.02em;
+		line-height: 1.1;
+	}
+
+	.ticking-gradient {
+		background: linear-gradient(
+			90deg,
+			#cc1500 0%,
+			#ff4500 40%,
+			#ff8c00 70%,
+			#ffb300 100%
+		);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-family: 'Outfit', sans-serif;
+		font-size: 120px;
+		font-weight: 900;
+		letter-spacing: -6px;
+		line-height: 0.95;
+		display: block;
+	}
+
+	.categories-section {
+		max-width: 80rem;
+		margin: 0 auto;
+		padding: 5rem 1.25rem 7rem;
+	}
+
+	@media (min-width: 640px) {
+		.categories-section {
+			padding: 6rem 2rem 8rem;
+		}
+	}
+
+	.explore-heading {
+		font-size: 72px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		margin-bottom: 48px;
+		line-height: 1;
+	}
+
+	.explore-gradient {
+		background: linear-gradient(135deg, #FF2D1A, #FF9A3C);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.explore-r {
+		color: #00E5C4;
+		font-weight: 900;
+	}
+
+	.categories-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 1rem;
+	}
+
+	@media (min-width: 1024px) {
+		.categories-grid {
+			grid-template-columns: repeat(4, 1fr);
+			gap: 1.25rem;
+		}
+	}
+
+	.category-card {
+		position: relative;
+		border-radius: 14px;
+		padding: 1px;
+		background: linear-gradient(135deg, var(--cat-from), var(--cat-to));
+		text-decoration: none;
+		transition:
+			transform 0.25s ease,
+			box-shadow 0.25s ease;
+	}
+
+	.category-card:hover {
+		transform: translateY(-6px);
+		box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+	}
+
+	.category-card-inner {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		padding: 1.5rem;
+		border-radius: 13px;
+		background-color: #0c0c0c;
+		height: 100%;
+		overflow: hidden;
+		transition: box-shadow 0.25s ease;
+	}
+
+	.category-card-inner::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 50%;
+		background: linear-gradient(
+			to top,
+			color-mix(in srgb, var(--cat-from) 18%, transparent),
+			transparent
+		);
+		pointer-events: none;
+		transition: opacity 0.25s ease;
+		opacity: 0.6;
+	}
+
+	.category-card:hover .category-card-inner::after {
+		opacity: 1;
+	}
+
+	.category-emoji {
+		font-size: 2.5rem;
+		line-height: 1;
+		position: relative;
+		z-index: 1;
+	}
+
+	@media (min-width: 640px) {
+		.category-emoji {
+			font-size: 3rem;
+		}
+	}
+
+	.category-name {
+		font-family: var(--font-display);
+		font-size: 1.125rem;
+		font-weight: 800;
+		line-height: 1.25;
+		position: relative;
+		z-index: 1;
+	}
+
+	@media (min-width: 640px) {
+		.category-name {
+			font-size: 1.25rem;
+		}
+	}
+
+	.category-desc {
+		font-size: 0.8125rem;
+		line-height: 1.5;
+		color: rgba(255, 255, 255, 0.45);
+		position: relative;
+		z-index: 1;
+	}
+
+	@media (min-width: 640px) {
+		.category-desc {
+			font-size: 0.875rem;
+		}
+	}
+
+	.xmas-section {
+		display: flex;
+		justify-content: center;
+		padding: 0 40px 48px;
+	}
+
+	.xmas-card {
+		width: 80%;
+		max-width: 960px;
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 92, 77, 0.25);
+		border-radius: 16px;
+		overflow: hidden;
+		box-shadow: 0 0 30px rgba(255, 92, 77, 0.05);
+	}
+
+	.xmas-top-row {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		padding: 8px 20px;
+		background: rgba(255, 92, 77, 0.04);
+	}
+
+	.xmas-top-row span {
+		display: inline-block;
+		animation: xmas-float 3s ease-in-out infinite;
+	}
+
+	@keyframes xmas-float {
+		0%,
+		100% {
+			transform: translateY(0px) rotate(0deg);
+		}
+		33% {
+			transform: translateY(-8px) rotate(-3deg);
+		}
+		66% {
+			transform: translateY(-4px) rotate(3deg);
+		}
+	}
+
+	.xmas-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 12px 0;
+		gap: 6px;
+		border-top: 1px solid rgba(255, 92, 77, 0.12);
+		background: #080808;
+	}
+
+	.xmas-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 800;
+		letter-spacing: 4px;
+		text-transform: uppercase;
+		color: #ffffff;
+		margin-bottom: 4px;
+	}
+
+	.xmas-numbers {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.xmas-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		min-width: 80px;
+	}
+
+	.xmas-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 52px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		min-width: 80px;
+		text-align: center;
+		display: block;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.xmas-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: 48px;
+		font-weight: 900;
+		color: rgba(255, 92, 77, 0.4);
+		line-height: 1;
+		margin-bottom: 20px;
+		padding: 0 4px;
+	}
+
+	.xmas-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 10px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		color: rgba(255, 255, 255, 0.35);
+		text-transform: uppercase;
+	}
+
+	.xmas-share {
+		background: #ff5c4d;
+		color: #fff;
+		border: none;
+		border-radius: 8px;
+		padding: 6px 18px;
+		font-size: 11px;
+		font-weight: 700;
+		font-family: 'Outfit', sans-serif;
+		cursor: pointer;
+		margin-top: 2px;
+		transition: background 0.2s ease;
+	}
+
+	.xmas-share:hover {
+		background: #ff2d1a;
+	}
+</style>
+
+<style is:global>
+	.home-hide-logo {
+		display: none;
+	}
+</style>
+
+<script>
+	function updateXmasCountdown() {
+		const now = new Date();
+		const year =
+			now.getMonth() === 11 && now.getDate() > 25
+				? now.getFullYear() + 1
+				: now.getFullYear();
+		const christmas = new Date(year, 11, 25, 0, 0, 0);
+		const diff = christmas.getTime() - now.getTime();
+		if (diff <= 0) return;
+
+		const daysEl = document.getElementById('xmas-days');
+		const hoursEl = document.getElementById('xmas-hours');
+		const minsEl = document.getElementById('xmas-mins');
+		const secsEl = document.getElementById('xmas-secs');
+
+		if (daysEl)
+			daysEl.textContent = String(
+				Math.floor(diff / (1000 * 60 * 60 * 24)),
+			);
+		if (hoursEl)
+			hoursEl.textContent = String(
+				Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+			);
+		if (minsEl)
+			minsEl.textContent = String(
+				Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+			);
+		if (secsEl)
+			secsEl.textContent = String(
+				Math.floor((diff % (1000 * 60)) / 1000),
+			);
+	}
+
+	updateXmasCountdown();
+	setInterval(updateXmasCountdown, 1000);
+</script>

@@ -11,6 +11,7 @@ export type CategoryId =
 export interface Category {
 	id: CategoryId;
 	name: string;
+	description: string;
 	emoji: string;
 	from: string;
 	to: string;
@@ -35,6 +36,7 @@ export const categories: Category[] = [
 	{
 		id: 'holidays',
 		name: 'Holiday Countdowns',
+		description: 'Christmas, Halloween, New Year and more',
 		emoji: '🎄',
 		...categoryGradients.holidays,
 		href: '/countdowns',
@@ -42,6 +44,7 @@ export const categories: Category[] = [
 	{
 		id: 'birthdays',
 		name: 'Age & Birthdays',
+		description: 'How old are you, exactly?',
 		emoji: '🎂',
 		...categoryGradients.birthdays,
 		href: '/birthdays',
@@ -49,6 +52,7 @@ export const categories: Category[] = [
 	{
 		id: 'timezones',
 		name: 'Time Zones',
+		description: 'What time is it anywhere in the world',
 		emoji: '🌍',
 		...categoryGradients.timezones,
 		href: '/time-zones',
@@ -56,6 +60,7 @@ export const categories: Category[] = [
 	{
 		id: 'history',
 		name: 'This Day in History',
+		description: 'What happened on this exact date',
 		emoji: '📜',
 		...categoryGradients.history,
 		href: '/history',
@@ -63,13 +68,15 @@ export const categories: Category[] = [
 	{
 		id: 'milestones',
 		name: 'Milestones',
-		emoji: '🏆',
+		description: 'Your 10,000th day and beyond',
+		emoji: '⚡',
 		...categoryGradients.milestones,
 		href: '/milestones',
 	},
 	{
 		id: 'work',
 		name: 'Work & Business',
+		description: 'Hours, deadlines and working days',
 		emoji: '💼',
 		...categoryGradients.work,
 		href: '/work',
@@ -77,6 +84,7 @@ export const categories: Category[] = [
 	{
 		id: 'seasons',
 		name: 'Seasons',
+		description: 'Solstices, equinoxes and season countdowns',
 		emoji: '🍂',
 		...categoryGradients.seasons,
 		href: '/seasons',
@@ -84,7 +92,8 @@ export const categories: Category[] = [
 	{
 		id: 'religious',
 		name: 'Religious Calendars',
-		emoji: '✨',
+		description: 'Ramadan, Diwali, Easter and more',
+		emoji: '🕌',
 		...categoryGradients.religious,
 		href: '/religious',
 	},
