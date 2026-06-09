@@ -1,0 +1,67 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ChristmasCountdown from '../components/ChristmasCountdown.astro';
+import { categories } from '../data/categories';
+---
+
+<Layout
+	title="Clockr.co — Time is ticking"
+	description="Your time and date friend — countdowns, age calculators, time zones and more."
+	category="holidays"
+>
+	<section class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+		<div class="mx-auto max-w-3xl text-center">
+			<h1
+				class="font-display text-4xl font-black leading-tight tracking-tight sm:text-6xl"
+			>
+				Time is <span
+					class="gradient-text"
+					style="--gradient-from: #FF5C4D; --gradient-to: #FF9A3C"
+					>ticking</span
+				>.
+			</h1>
+			<p
+				class="mt-5 text-base leading-relaxed text-text-secondary sm:mt-6 sm:text-lg"
+			>
+				Your time and date friend — countdowns, age calculators, time zones and
+				more.
+			</p>
+		</div>
+
+		<div class="mt-12 sm:mt-16">
+			<ChristmasCountdown />
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-4 pb-20 sm:px-6 sm:pb-28">
+		<h2
+			class="mb-8 text-center font-display text-2xl font-bold tracking-tight sm:mb-10 sm:text-3xl"
+		>
+			Explore tools
+		</h2>
+
+		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+			{
+				categories.map((category) => (
+					<a
+						href={category.href}
+						class="card group flex flex-col gap-4 p-6 transition-transform hover:-translate-y-0.5"
+					>
+						<span
+							class="flex h-12 w-12 items-center justify-center rounded-[var(--radius-button)] text-2xl"
+							style={`background: linear-gradient(135deg, ${category.from}22, ${category.to}22)`}
+						>
+							{category.emoji}
+						</span>
+						<span
+							class="font-display text-lg font-bold leading-snug gradient-text"
+							style={`--gradient-from: ${category.from}; --gradient-to: ${category.to}`}
+						>
+							{category.name}
+						</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+</Layout>

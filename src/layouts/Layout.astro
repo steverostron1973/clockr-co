@@ -1,0 +1,135 @@
+---
+import '../styles/global.css';
+import type { CategoryId } from '../data/categories';
+import { categoryGradients } from '../data/categories';
+
+interface Props {
+	title: string;
+	description: string;
+	category?: CategoryId;
+	ogImage?: string;
+}
+
+const {
+	title,
+	description,
+	category = 'holidays',
+	ogImage = '/og-image.png',
+} = Astro.props;
+
+const siteUrl = Astro.site ?? 'https://clockr.co';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const gradient = categoryGradients[category];
+
+const navLinks = [
+	{ label: 'Tools', href: '/tools' },
+	{ label: 'Countdowns', href: '/countdowns' },
+	{ label: 'History', href: '/history' },
+	{ label: 'More', href: '/more' },
+];
+
+const footerLinks = [
+	{ label: 'About', href: '/about' },
+	{ label: 'Privacy', href: '/privacy' },
+	{ label: 'Contact', href: '/contact' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(ogImage, siteUrl)} />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={new URL(ogImage, siteUrl)} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800;900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<body class="min-h-screen flex flex-col">
+		<header class="w-full border-b border-border">
+			<nav
+				class="mx-auto flex max-w-6xl items-center justify-between px-4 py-5 sm:px-6"
+			>
+				<a
+					href="/"
+					class="font-display text-xl font-bold tracking-tight sm:text-2xl"
+				>
+					Clock<span
+						class="gradient-text"
+						style={`--gradient-from: ${gradient.from}; --gradient-to: ${gradient.to}`}
+						>r</span
+					>
+				</a>
+
+				<ul class="flex items-center gap-4 sm:gap-8">
+					{
+						navLinks.map((link) => (
+							<li>
+								<a
+									href={link.href}
+									class="text-sm font-medium text-text-secondary transition-colors hover:text-text-primary sm:text-base"
+								>
+									{link.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</nav>
+		</header>
+
+		<main class="flex-1 w-full">
+			<slot />
+		</main>
+
+		<footer class="w-full border-t border-border mt-auto">
+			<div
+				class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-4 py-10 text-center sm:px-6"
+			>
+				<p class="font-display text-sm font-bold text-text-secondary">
+					Your time and date friend
+				</p>
+
+				<ul class="flex flex-wrap items-center justify-center gap-6">
+					{
+						footerLinks.map((link) => (
+							<li>
+								<a
+									href={link.href}
+									class="text-sm text-text-secondary transition-colors hover:text-text-primary"
+								>
+									{link.label}
+								</a>
+							</li>
+						))
+					}
+				</ul>
+
+				<p class="text-sm text-text-secondary">
+					&copy; {new Date().getFullYear()} Clockr.co. All rights reserved.
+				</p>
+			</div>
+		</footer>
+	</body>
+</html>
