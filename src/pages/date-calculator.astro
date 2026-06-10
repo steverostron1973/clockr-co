@@ -1,0 +1,593 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Date Calculator — How Many Days Between Dates | Clockr"
+	description="Calculate the exact number of days, weeks, months and years between any two dates. Free online date calculator."
+>
+	<div class="date-page">
+		<!-- PAGE HEADER -->
+		<div class="date-header">
+			<div class="date-eyebrow">📅 Dates & Duration</div>
+			<h1 class="date-title">
+				<span class="date-gradient">Date</span><br />
+				<span class="date-gradient">Calculator</span>
+			</h1>
+			<p class="date-subtitle">
+				Find out exactly how long between any two dates
+			</p>
+		</div>
+
+		<!-- INPUT CARD -->
+		<div class="date-form-card">
+			<div class="date-inputs">
+				<div class="date-input-wrap">
+					<label class="date-label" for="start-date">Start Date</label>
+					<input type="date" id="start-date" class="date-input" />
+				</div>
+				<div class="date-input-wrap">
+					<label class="date-label" for="end-date">End Date</label>
+					<input type="date" id="end-date" class="date-input" />
+				</div>
+			</div>
+			<button type="button" class="date-calculate" id="calculate-btn">
+				Calculate
+			</button>
+		</div>
+
+		<!-- RESULTS -->
+		<div class="date-results" id="date-results" style="display:none">
+			<div class="date-direction-card" id="date-direction">
+				<span class="date-direction-icon" id="direction-icon">⏭️</span>
+				<span class="date-direction-text" id="direction-text"></span>
+			</div>
+
+			<div class="date-main-card">
+				<div class="date-main-num" id="total-days">0</div>
+				<div class="date-main-label">days between dates</div>
+				<div class="date-exact" id="date-exact">0 years, 0 months, 0 days</div>
+			</div>
+
+			<div class="date-grid">
+				<div class="date-stat-card">
+					<div class="date-stat-num" id="total-weeks">0</div>
+					<div class="date-stat-label">Total weeks</div>
+				</div>
+				<div class="date-stat-card">
+					<div class="date-stat-num" id="total-hours">0</div>
+					<div class="date-stat-label">Total hours</div>
+				</div>
+				<div class="date-stat-card">
+					<div class="date-stat-num" id="total-months">0</div>
+					<div class="date-stat-label">Total months</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- COMMON QUESTIONS -->
+		<div class="date-examples">
+			<h3 class="date-examples-title">Common date questions</h3>
+			<div class="date-examples-grid">
+				<button type="button" class="date-example-btn" data-preset="christmas">
+					🎄 Days until Christmas
+				</button>
+				<button type="button" class="date-example-btn" data-preset="new-year">
+					🎆 Days until New Year
+				</button>
+				<button type="button" class="date-example-btn" data-preset="millennium">
+					🌍 Days since the millennium
+				</button>
+				<button type="button" class="date-example-btn" data-preset="halloween">
+					🎃 Days until Halloween
+				</button>
+				<button type="button" class="date-example-btn" data-preset="valentines">
+					💝 Days until Valentine's Day
+				</button>
+				<button type="button" class="date-example-btn" data-preset="moon-landing">
+					🌙 Days since the moon landing
+				</button>
+			</div>
+		</div>
+
+		<!-- RELATED TOOLS -->
+		<div class="date-related">
+			<h3 class="date-related-title">You might also like</h3>
+			<div class="date-related-grid">
+				<a href="/age-calculator" class="date-related-card">🎂 Age Calculator</a>
+				<a href="/birthday-countdown" class="date-related-card"
+					>🎈 Birthday Countdown</a
+				>
+				<a href="/how-many-seconds-alive" class="date-related-card"
+					>⚡ 1 Billion Seconds</a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.date-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.date-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.date-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.date-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.date-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.date-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.date-form-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 32px;
+		margin-bottom: 48px;
+		box-shadow: 0 0 40px rgba(139, 92, 246, 0.06);
+	}
+
+	.date-inputs {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 24px;
+		margin-bottom: 24px;
+	}
+
+	.date-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.date-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.date-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+		width: 100%;
+	}
+
+	.date-input:focus {
+		border-color: rgba(139, 92, 246, 0.8);
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+	}
+
+	.date-calculate {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		width: 100%;
+		transition: opacity 0.2s ease;
+	}
+
+	.date-calculate:hover {
+		opacity: 0.9;
+	}
+
+	.date-direction-card {
+		background: rgba(139, 92, 246, 0.06);
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 14px;
+		padding: 16px 24px;
+		margin-bottom: 16px;
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.date-direction-icon {
+		font-size: 20px;
+		flex-shrink: 0;
+	}
+
+	.date-direction-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.7);
+		line-height: 1.5;
+	}
+
+	.date-main-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 40px;
+		text-align: center;
+		margin-bottom: 16px;
+		box-shadow: 0 0 40px rgba(139, 92, 246, 0.06);
+	}
+
+	.date-main-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 120px;
+		font-weight: 900;
+		letter-spacing: -6px;
+		line-height: 1;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 8px;
+	}
+
+	.date-main-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 12px;
+	}
+
+	.date-exact {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.date-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		margin-bottom: 48px;
+	}
+
+	.date-stat-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px 16px;
+		text-align: center;
+	}
+
+	.date-stat-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 32px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 6px;
+	}
+
+	.date-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.date-examples {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+		margin-bottom: 40px;
+	}
+
+	.date-examples-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.date-examples-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.date-example-btn {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.date-example-btn:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+		color: #fff;
+	}
+
+	.date-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.date-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.date-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.date-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.date-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+		color: #fff;
+	}
+
+	@media (max-width: 600px) {
+		.date-title {
+			font-size: 48px;
+		}
+
+		.date-inputs {
+			grid-template-columns: 1fr;
+		}
+
+		.date-main-num {
+			font-size: 80px;
+		}
+
+		.date-grid,
+		.date-related-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.date-examples-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	const startInput = document.getElementById('start-date') as HTMLInputElement;
+	const endInput = document.getElementById('end-date') as HTMLInputElement;
+	const calculateBtn = document.getElementById('calculate-btn');
+	const results = document.getElementById('date-results');
+
+	function formatNumber(n: number) {
+		return n.toLocaleString();
+	}
+
+	function toDateInputValue(date: Date) {
+		const year = date.getFullYear();
+		const month = String(date.getMonth() + 1).padStart(2, '0');
+		const day = String(date.getDate()).padStart(2, '0');
+		return `${year}-${month}-${day}`;
+	}
+
+	function startOfDay(date: Date) {
+		const d = new Date(date);
+		d.setHours(0, 0, 0, 0);
+		return d;
+	}
+
+	function getDateBreakdown(from: Date, to: Date) {
+		let years = to.getFullYear() - from.getFullYear();
+		let months = to.getMonth() - from.getMonth();
+		let days = to.getDate() - from.getDate();
+
+		if (days < 0) {
+			months--;
+			days += new Date(to.getFullYear(), to.getMonth(), 0).getDate();
+		}
+		if (months < 0) {
+			years--;
+			months += 12;
+		}
+
+		return { years, months, days };
+	}
+
+	function getTotalMonths(from: Date, to: Date) {
+		const { years, months } = getDateBreakdown(from, to);
+		return years * 12 + months;
+	}
+
+	function calculateDateDiff() {
+		if (!startInput || !endInput || !results) return;
+
+		const start = startOfDay(new Date(startInput.value));
+		const end = startOfDay(new Date(endInput.value));
+
+		if (!startInput.value || !endInput.value || isNaN(start.getTime()) || isNaN(end.getTime())) {
+			return;
+		}
+
+		results.style.display = 'block';
+
+		const isFuture = end >= start;
+		const earlier = isFuture ? start : end;
+		const later = isFuture ? end : start;
+
+		const diffMs = later.getTime() - earlier.getTime();
+		const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+		const totalWeeks = Math.floor(totalDays / 7);
+		const totalHours = totalDays * 24;
+		const { years, months, days } = getDateBreakdown(earlier, later);
+		const totalMonths = getTotalMonths(earlier, later);
+
+		const totalDaysEl = document.getElementById('total-days');
+		const exactEl = document.getElementById('date-exact');
+		const weeksEl = document.getElementById('total-weeks');
+		const hoursEl = document.getElementById('total-hours');
+		const monthsEl = document.getElementById('total-months');
+		const directionIconEl = document.getElementById('direction-icon');
+		const directionTextEl = document.getElementById('direction-text');
+
+		if (totalDaysEl) totalDaysEl.textContent = formatNumber(totalDays);
+		if (exactEl)
+			exactEl.textContent = `${years} years, ${months} months, ${days} days`;
+		if (weeksEl) weeksEl.textContent = formatNumber(totalWeeks);
+		if (hoursEl) hoursEl.textContent = formatNumber(totalHours);
+		if (monthsEl) monthsEl.textContent = formatNumber(totalMonths);
+
+		const today = startOfDay(new Date());
+		let directionMessage = '';
+
+		if (start.getTime() === end.getTime()) {
+			if (directionIconEl) directionIconEl.textContent = '📍';
+			directionMessage = 'Both dates are the same — zero days apart.';
+		} else if (isFuture) {
+			if (directionIconEl) directionIconEl.textContent = '⏭️';
+			if (end > today && start <= today) {
+				directionMessage = `Future date gap — ${formatNumber(totalDays)} days until ${end.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}.`;
+			} else {
+				directionMessage = `Future date gap — the end date is ${formatNumber(totalDays)} days after the start date.`;
+			}
+		} else {
+			if (directionIconEl) directionIconEl.textContent = '⏮️';
+			if (end < today && start <= today) {
+				directionMessage = `Past date gap — ${formatNumber(totalDays)} days since ${end.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}.`;
+			} else {
+				directionMessage = `Past date gap — the end date is ${formatNumber(totalDays)} days before the start date.`;
+			}
+		}
+
+		if (directionTextEl) directionTextEl.textContent = directionMessage;
+	}
+
+	function getNextOccurrence(month: number, day: number) {
+		const today = startOfDay(new Date());
+		let target = new Date(today.getFullYear(), month, day);
+		if (target < today) {
+			target = new Date(today.getFullYear() + 1, month, day);
+		}
+		return target;
+	}
+
+	const presets: Record<string, () => { start: Date; end: Date }> = {
+		christmas: () => ({
+			start: startOfDay(new Date()),
+			end: getNextOccurrence(11, 25),
+		}),
+		'new-year': () => ({
+			start: startOfDay(new Date()),
+			end: getNextOccurrence(0, 1),
+		}),
+		millennium: () => ({
+			start: new Date(2000, 0, 1),
+			end: startOfDay(new Date()),
+		}),
+		halloween: () => ({
+			start: startOfDay(new Date()),
+			end: getNextOccurrence(9, 31),
+		}),
+		valentines: () => ({
+			start: startOfDay(new Date()),
+			end: getNextOccurrence(1, 14),
+		}),
+		'moon-landing': () => ({
+			start: new Date(1969, 6, 20),
+			end: startOfDay(new Date()),
+		}),
+	};
+
+	function applyPreset(presetKey: string) {
+		const preset = presets[presetKey];
+		if (!preset || !startInput || !endInput) return;
+
+		const { start, end } = preset();
+		startInput.value = toDateInputValue(start);
+		endInput.value = toDateInputValue(end);
+		calculateDateDiff();
+	}
+
+	calculateBtn?.addEventListener('click', calculateDateDiff);
+
+	document.querySelectorAll('.date-example-btn').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const preset = (btn as HTMLButtonElement).dataset.preset;
+			if (preset) applyPreset(preset);
+		});
+	});
+
+	const today = toDateInputValue(new Date());
+	if (startInput) startInput.value = today;
+</script>
