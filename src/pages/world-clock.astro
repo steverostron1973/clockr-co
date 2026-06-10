@@ -1,0 +1,473 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { searchOnlyCities } from '../data/worldClockSearchCities';
+
+const gridCities = [
+	{ city: 'London', country: 'United Kingdom', timezone: 'Europe/London', flag: '🇬🇧' },
+	{ city: 'New York', country: 'United States', timezone: 'America/New_York', flag: '🇺🇸' },
+	{ city: 'Los Angeles', country: 'United States', timezone: 'America/Los_Angeles', flag: '🇺🇸' },
+	{ city: 'Toronto', country: 'Canada', timezone: 'America/Toronto', flag: '🇨🇦' },
+	{ city: 'São Paulo', country: 'Brazil', timezone: 'America/Sao_Paulo', flag: '🇧🇷' },
+	{ city: 'Paris', country: 'France', timezone: 'Europe/Paris', flag: '🇫🇷' },
+	{ city: 'Berlin', country: 'Germany', timezone: 'Europe/Berlin', flag: '🇩🇪' },
+	{ city: 'Madrid', country: 'Spain', timezone: 'Europe/Madrid', flag: '🇪🇸' },
+	{ city: 'Rome', country: 'Italy', timezone: 'Europe/Rome', flag: '🇮🇹' },
+	{ city: 'Amsterdam', country: 'Netherlands', timezone: 'Europe/Amsterdam', flag: '🇳🇱' },
+	{ city: 'Dubai', country: 'United Arab Emirates', timezone: 'Asia/Dubai', flag: '🇦🇪' },
+	{ city: 'Mumbai', country: 'India', timezone: 'Asia/Kolkata', flag: '🇮🇳' },
+	{ city: 'Singapore', country: 'Singapore', timezone: 'Asia/Singapore', flag: '🇸🇬' },
+	{ city: 'Tokyo', country: 'Japan', timezone: 'Asia/Tokyo', flag: '🇯🇵' },
+	{ city: 'Sydney', country: 'Australia', timezone: 'Australia/Sydney', flag: '🇦🇺' },
+	{ city: 'Auckland', country: 'New Zealand', timezone: 'Pacific/Auckland', flag: '🇳🇿' },
+	{ city: 'Hong Kong', country: 'Hong Kong', timezone: 'Asia/Hong_Kong', flag: '🇭🇰' },
+	{ city: 'Bangkok', country: 'Thailand', timezone: 'Asia/Bangkok', flag: '🇹🇭' },
+	{ city: 'Istanbul', country: 'Turkey', timezone: 'Europe/Istanbul', flag: '🇹🇷' },
+	{ city: 'Cairo', country: 'Egypt', timezone: 'Africa/Cairo', flag: '🇪🇬' },
+	{ city: 'Johannesburg', country: 'South Africa', timezone: 'Africa/Johannesburg', flag: '🇿🇦' },
+	{ city: 'Lagos', country: 'Nigeria', timezone: 'Africa/Lagos', flag: '🇳🇬' },
+	{ city: 'Mexico City', country: 'Mexico', timezone: 'America/Mexico_City', flag: '🇲🇽' },
+	{ city: 'Chicago', country: 'United States', timezone: 'America/Chicago', flag: '🇺🇸' },
+];
+---
+
+<Layout
+	title="World Clock — Current Time in Every City | Clockr"
+	description="Check the current local time in cities around the world. Live updating world clock with 24 major cities."
+>
+	<div class="wc-page">
+		<div class="wc-header">
+			<div class="wc-eyebrow">🌍 Time Zones</div>
+			<h1 class="wc-title">
+				<span class="wc-gradient">World Clock</span>
+			</h1>
+			<p class="wc-subtitle">
+				Current local time in cities around the world
+			</p>
+		</div>
+
+		<div class="wc-search-wrap">
+			<label class="wc-search-label" for="wc-search">Search cities</label>
+			<input
+				type="search"
+				id="wc-search"
+				class="wc-search"
+				placeholder="Search 200+ cities worldwide…"
+				autocomplete="off"
+			/>
+		</div>
+
+		<div class="wc-grid" id="wc-grid">
+			{
+				gridCities.map((c) => (
+					<div
+						class="wc-card"
+						data-city={c.city.toLowerCase()}
+						data-country={c.country.toLowerCase()}
+						data-timezone={c.timezone}
+					>
+						<div class="wc-card-top">
+							<div class="wc-card-location">
+								<div class="wc-city">{c.city}</div>
+								<div class="wc-country">{c.country}</div>
+							</div>
+							<span class="wc-flag" aria-hidden="true">{c.flag}</span>
+						</div>
+						<div class="wc-time" data-time>--:--:--</div>
+						<div class="wc-date" data-date>—</div>
+						<div class="wc-offset" data-offset>—</div>
+					</div>
+				))
+			}
+			{
+				searchOnlyCities.map((c) => (
+					<div
+						class="wc-card"
+						data-search-only
+						hidden
+						data-city={c.city.toLowerCase()}
+						data-country={c.country.toLowerCase()}
+						data-timezone={c.timezone}
+					>
+						<div class="wc-card-top">
+							<div class="wc-card-location">
+								<div class="wc-city">{c.city}</div>
+								<div class="wc-country">{c.country}</div>
+							</div>
+							<span class="wc-flag" aria-hidden="true">{c.flag}</span>
+						</div>
+						<div class="wc-time" data-time>--:--:--</div>
+						<div class="wc-date" data-date>—</div>
+						<div class="wc-offset" data-offset>—</div>
+					</div>
+				))
+			}
+		</div>
+
+		<p class="wc-empty" id="wc-empty" hidden>No cities match your search.</p>
+
+		<div class="wc-related">
+			<h3 class="wc-related-title">You might also like</h3>
+			<div class="wc-related-grid">
+				<a href="/age-calculator" class="wc-related-card">🎂 Age Calculator</a>
+				<a href="/date-calculator" class="wc-related-card">📅 Date Calculator</a>
+				<a href="/" class="wc-related-card">⏱️ Countdowns</a>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.wc-page {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.wc-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.wc-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.wc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.wc-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.wc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.wc-search-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 32px;
+	}
+
+	.wc-search-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.wc-search {
+		width: 100%;
+		max-width: 480px;
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 600;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.wc-search::placeholder {
+		color: rgba(255, 255, 255, 0.25);
+	}
+
+	.wc-search:focus {
+		border-color: rgba(139, 92, 246, 0.8);
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+	}
+
+	.wc-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 12px;
+		margin-bottom: 60px;
+	}
+
+	@media (min-width: 640px) {
+		.wc-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.wc-grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	.wc-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px 20px;
+		transition: border-color 0.2s ease;
+	}
+
+	.wc-card:hover {
+		border-color: rgba(139, 92, 246, 0.35);
+	}
+
+	.wc-card[hidden] {
+		display: none;
+	}
+
+	.wc-card-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 16px;
+		gap: 12px;
+	}
+
+	.wc-card-location {
+		min-width: 0;
+	}
+
+	.wc-city {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		color: #ffffff;
+		letter-spacing: -0.3px;
+		margin-bottom: 2px;
+	}
+
+	.wc-country {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.wc-flag {
+		font-size: 22px;
+		line-height: 1;
+		flex-shrink: 0;
+		opacity: 0.85;
+	}
+
+	.wc-time {
+		font-family: 'Outfit', sans-serif;
+		font-size: 36px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		line-height: 1;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 8px;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.wc-date {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 6px;
+		line-height: 1.4;
+	}
+
+	.wc-offset {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.3);
+	}
+
+	.wc-empty {
+		text-align: center;
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.4);
+		margin: -40px 0 60px;
+	}
+
+	.wc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.wc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.wc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.wc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.wc-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+		color: #fff;
+	}
+
+	@media (max-width: 639px) {
+		.wc-title {
+			font-size: 48px;
+			letter-spacing: -2px;
+		}
+
+		.wc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	const timeFormatterCache = new Map<string, Intl.DateTimeFormat>();
+	const dateFormatterCache = new Map<string, Intl.DateTimeFormat>();
+	const offsetFormatterCache = new Map<string, Intl.DateTimeFormat>();
+
+	function getTimeFormatter(timeZone: string) {
+		if (!timeFormatterCache.has(timeZone)) {
+			timeFormatterCache.set(
+				timeZone,
+				new Intl.DateTimeFormat('en-GB', {
+					timeZone,
+					hour: '2-digit',
+					minute: '2-digit',
+					second: '2-digit',
+					hour12: false,
+				}),
+			);
+		}
+		return timeFormatterCache.get(timeZone)!;
+	}
+
+	function getDateFormatter(timeZone: string) {
+		if (!dateFormatterCache.has(timeZone)) {
+			dateFormatterCache.set(
+				timeZone,
+				new Intl.DateTimeFormat('en-GB', {
+					timeZone,
+					weekday: 'long',
+					day: 'numeric',
+					month: 'long',
+					year: 'numeric',
+				}),
+			);
+		}
+		return dateFormatterCache.get(timeZone)!;
+	}
+
+	function getOffsetFormatter(timeZone: string) {
+		if (!offsetFormatterCache.has(timeZone)) {
+			offsetFormatterCache.set(
+				timeZone,
+				new Intl.DateTimeFormat('en-GB', {
+					timeZone,
+					timeZoneName: 'shortOffset',
+				}),
+			);
+		}
+		return offsetFormatterCache.get(timeZone)!;
+	}
+
+	function formatOffset(timeZone: string, now: Date): string {
+		const parts = getOffsetFormatter(timeZone).formatToParts(now);
+		const raw = parts.find((p) => p.type === 'timeZoneName')?.value ?? '';
+		return raw.replace('GMT', 'UTC');
+	}
+
+	function updateClocks() {
+		const now = new Date();
+		const cards = document.querySelectorAll<HTMLElement>('.wc-card');
+
+		cards.forEach((card) => {
+			const timeZone = card.dataset.timezone;
+			if (!timeZone) return;
+
+			const timeEl = card.querySelector('[data-time]');
+			const dateEl = card.querySelector('[data-date]');
+			const offsetEl = card.querySelector('[data-offset]');
+
+			if (timeEl) timeEl.textContent = getTimeFormatter(timeZone).format(now);
+			if (dateEl) dateEl.textContent = getDateFormatter(timeZone).format(now);
+			if (offsetEl) offsetEl.textContent = formatOffset(timeZone, now);
+		});
+	}
+
+	function filterCities() {
+		const search = document.getElementById('wc-search') as HTMLInputElement;
+		const empty = document.getElementById('wc-empty');
+		const cards = document.querySelectorAll<HTMLElement>('.wc-card');
+		const query = (search?.value ?? '').trim().toLowerCase();
+
+		let visible = 0;
+
+		cards.forEach((card) => {
+			const isSearchOnly = card.hasAttribute('data-search-only');
+			const city = card.dataset.city ?? '';
+			const country = card.dataset.country ?? '';
+			const match = city.includes(query) || country.includes(query);
+
+			if (!query) {
+				card.hidden = isSearchOnly;
+				if (!isSearchOnly) visible++;
+			} else {
+				card.hidden = !match;
+				if (match) visible++;
+			}
+		});
+
+		if (empty) empty.hidden = visible > 0;
+	}
+
+	updateClocks();
+	setInterval(updateClocks, 1000);
+
+	const searchInput = document.getElementById('wc-search');
+	searchInput?.addEventListener('input', filterCities);
+</script>
