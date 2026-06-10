@@ -1,0 +1,725 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { allWorldClockCities } from '../data/worldClockSearchCities';
+
+const cities = [...allWorldClockCities].sort((a, b) =>
+	a.city.localeCompare(b.city),
+);
+
+const presets = [
+	{ from: 'London', to: 'New York', label: 'London ↔ New York' },
+	{ from: 'London', to: 'Dubai', label: 'London ↔ Dubai' },
+	{ from: 'London', to: 'Sydney', label: 'London ↔ Sydney' },
+	{ from: 'New York', to: 'Los Angeles', label: 'New York ↔ Los Angeles' },
+	{ from: 'New York', to: 'Tokyo', label: 'New York ↔ Tokyo' },
+	{ from: 'Dubai', to: 'Mumbai', label: 'Dubai ↔ Mumbai' },
+	{ from: 'Singapore', to: 'London', label: 'Singapore ↔ London' },
+	{ from: 'Paris', to: 'New York', label: 'Paris ↔ New York' },
+];
+---
+
+<Layout
+	title="Time Zone Converter — Convert Time Between Cities | Clockr"
+	description="Convert time between any two cities instantly. Free time zone converter covering 250+ cities worldwide."
+	category="timezones"
+>
+	<div class="tz-page">
+		<div class="tz-header">
+			<div class="tz-eyebrow">🌍 Time Zones</div>
+			<h1 class="tz-title">
+				<span class="tz-gradient">Time Zone</span><br />
+				<span class="tz-gradient">Converter</span>
+			</h1>
+			<p class="tz-subtitle">
+				Convert time between any two cities instantly
+			</p>
+		</div>
+
+		<div class="tz-form-card">
+			<div class="tz-selectors">
+				<div class="tz-select-wrap">
+					<label class="tz-label" for="from-city">From</label>
+					<select id="from-city" class="tz-select">
+						{
+							cities.map((c) => (
+								<option
+									value={c.city}
+									data-timezone={c.timezone}
+									selected={c.city === 'London'}
+								>
+									{c.flag} {c.city}, {c.country}
+								</option>
+							))
+						}
+					</select>
+				</div>
+
+				<button
+					type="button"
+					class="tz-swap"
+					id="swap-btn"
+					aria-label="Swap cities"
+					title="Swap cities"
+				>
+					⇄
+				</button>
+
+				<div class="tz-select-wrap">
+					<label class="tz-label" for="to-city">To</label>
+					<select id="to-city" class="tz-select">
+						{
+							cities.map((c) => (
+								<option
+									value={c.city}
+									data-timezone={c.timezone}
+									selected={c.city === 'New York'}
+								>
+									{c.flag} {c.city}, {c.country}
+								</option>
+							))
+						}
+					</select>
+				</div>
+			</div>
+
+			<div class="tz-datetime">
+				<div class="tz-input-wrap">
+					<label class="tz-label" for="tz-date">Date</label>
+					<input type="date" id="tz-date" class="tz-input" />
+				</div>
+				<div class="tz-input-wrap">
+					<label class="tz-label" for="tz-time">Time</label>
+					<input type="time" id="tz-time" class="tz-input" />
+				</div>
+			</div>
+		</div>
+
+		<div class="tz-result-card">
+			<div class="tz-result-label" id="result-label">In New York</div>
+			<div class="tz-result-time" id="result-time">--:--</div>
+			<div class="tz-result-date" id="result-date">—</div>
+		</div>
+
+		<div class="tz-meta">
+			<div class="tz-meta-row">
+				<span class="tz-meta-label" id="from-offset-label">London</span>
+				<span class="tz-meta-value" id="from-offset">—</span>
+			</div>
+			<div class="tz-meta-row">
+				<span class="tz-meta-label" id="to-offset-label">New York</span>
+				<span class="tz-meta-value" id="to-offset">—</span>
+			</div>
+			<div class="tz-meta-row tz-meta-highlight">
+				<span class="tz-meta-label">Time difference</span>
+				<span class="tz-meta-value" id="time-diff">—</span>
+			</div>
+			<div class="tz-meta-row">
+				<span class="tz-meta-label">Day relationship</span>
+				<span class="tz-meta-value" id="day-relation">—</span>
+			</div>
+		</div>
+
+		<div class="tz-presets">
+			<h3 class="tz-presets-title">Common conversions</h3>
+			<div class="tz-presets-grid">
+				{
+					presets.map((p) => (
+						<button
+							type="button"
+							class="tz-preset-btn"
+							data-from={p.from}
+							data-to={p.to}
+						>
+							{p.label}
+						</button>
+					))
+				}
+			</div>
+		</div>
+
+		<div class="tz-related">
+			<h3 class="tz-related-title">You might also like</h3>
+			<div class="tz-related-grid">
+				<a href="/world-clock" class="tz-related-card">🌍 World Clock</a>
+				<a href="/date-calculator" class="tz-related-card">📅 Date Calculator</a>
+				<a href="/age-calculator" class="tz-related-card">🎂 Age Calculator</a>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.tz-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.tz-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.tz-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.tz-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.tz-gradient {
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tz-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.tz-form-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.2);
+		border-radius: 20px;
+		padding: 32px;
+		margin-bottom: 24px;
+		box-shadow: 0 0 40px rgba(0, 229, 196, 0.06);
+	}
+
+	.tz-selectors {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		gap: 16px;
+		align-items: end;
+		margin-bottom: 24px;
+	}
+
+	.tz-select-wrap,
+	.tz-input-wrap {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.tz-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.tz-select,
+	.tz-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.3);
+		border-radius: 12px;
+		padding: 14px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		color: #ffffff;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+		width: 100%;
+	}
+
+	.tz-select:focus,
+	.tz-input:focus {
+		border-color: rgba(0, 229, 196, 0.8);
+		box-shadow: 0 0 20px rgba(0, 229, 196, 0.15);
+	}
+
+	.tz-select option {
+		background: #0c0c0c;
+		color: #fff;
+	}
+
+	.tz-swap {
+		background: rgba(0, 229, 196, 0.08);
+		border: 1px solid rgba(0, 229, 196, 0.3);
+		border-radius: 12px;
+		width: 48px;
+		height: 48px;
+		font-size: 22px;
+		color: #00e5c4;
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+		flex-shrink: 0;
+		margin-bottom: 2px;
+	}
+
+	.tz-swap:hover {
+		border-color: rgba(0, 229, 196, 0.6);
+		background: rgba(0, 229, 196, 0.12);
+	}
+
+	.tz-datetime {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+
+	.tz-result-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.2);
+		border-radius: 20px;
+		padding: 40px;
+		text-align: center;
+		margin-bottom: 16px;
+		box-shadow: 0 0 40px rgba(0, 229, 196, 0.06);
+	}
+
+	.tz-result-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.4);
+		margin-bottom: 12px;
+	}
+
+	.tz-result-time {
+		font-family: 'Outfit', sans-serif;
+		font-size: 96px;
+		font-weight: 900;
+		letter-spacing: -4px;
+		line-height: 1;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 12px;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.tz-result-date {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.tz-meta {
+		background: rgba(0, 229, 196, 0.04);
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		padding: 20px 24px;
+		margin-bottom: 48px;
+	}
+
+	.tz-meta-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 16px;
+		padding: 10px 0;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+	}
+
+	.tz-meta-row:last-child {
+		border-bottom: none;
+	}
+
+	.tz-meta-highlight .tz-meta-value {
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-weight: 600;
+	}
+
+	.tz-meta-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.tz-meta-value {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.75);
+		text-align: right;
+	}
+
+	.tz-presets {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+		margin-bottom: 40px;
+	}
+
+	.tz-presets-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tz-presets-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.tz-preset-btn {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.tz-preset-btn:hover {
+		border-color: rgba(0, 229, 196, 0.4);
+		color: #fff;
+	}
+
+	.tz-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.tz-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tz-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.tz-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.tz-related-card:hover {
+		border-color: rgba(0, 229, 196, 0.4);
+		color: #fff;
+	}
+
+	@media (max-width: 639px) {
+		.tz-title {
+			font-size: 48px;
+			letter-spacing: -2px;
+		}
+
+		.tz-selectors {
+			grid-template-columns: 1fr;
+			justify-items: center;
+		}
+
+		.tz-swap {
+			transform: rotate(90deg);
+		}
+
+		.tz-datetime {
+			grid-template-columns: 1fr;
+		}
+
+		.tz-result-time {
+			font-size: 64px;
+			letter-spacing: -2px;
+		}
+
+		.tz-presets-grid,
+		.tz-related-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.tz-form-card {
+			padding: 24px 20px;
+		}
+	}
+</style>
+
+<script>
+	const fromSelect = document.getElementById('from-city') as HTMLSelectElement;
+	const toSelect = document.getElementById('to-city') as HTMLSelectElement;
+	const dateInput = document.getElementById('tz-date') as HTMLInputElement;
+	const timeInput = document.getElementById('tz-time') as HTMLInputElement;
+	const swapBtn = document.getElementById('swap-btn');
+
+	const resultLabel = document.getElementById('result-label');
+	const resultTime = document.getElementById('result-time');
+	const resultDate = document.getElementById('result-date');
+	const fromOffsetLabel = document.getElementById('from-offset-label');
+	const toOffsetLabel = document.getElementById('to-offset-label');
+	const fromOffsetEl = document.getElementById('from-offset');
+	const toOffsetEl = document.getElementById('to-offset');
+	const timeDiffEl = document.getElementById('time-diff');
+	const dayRelationEl = document.getElementById('day-relation');
+
+	const timeFormatterCache = new Map<string, Intl.DateTimeFormat>();
+	const dateFormatterCache = new Map<string, Intl.DateTimeFormat>();
+	const offsetFormatterCache = new Map<string, Intl.DateTimeFormat>();
+
+	function getSelectedTimezone(select: HTMLSelectElement): string {
+		return select.selectedOptions[0]?.dataset.timezone ?? 'UTC';
+	}
+
+	function getSelectedCity(select: HTMLSelectElement): string {
+		return select.value;
+	}
+
+	function getTimeFormatter(timeZone: string) {
+		if (!timeFormatterCache.has(timeZone)) {
+			timeFormatterCache.set(
+				timeZone,
+				new Intl.DateTimeFormat('en-GB', {
+					timeZone,
+					hour: '2-digit',
+					minute: '2-digit',
+					hour12: false,
+				}),
+			);
+		}
+		return timeFormatterCache.get(timeZone)!;
+	}
+
+	function getDateFormatter(timeZone: string) {
+		if (!dateFormatterCache.has(timeZone)) {
+			dateFormatterCache.set(
+				timeZone,
+				new Intl.DateTimeFormat('en-GB', {
+					timeZone,
+					weekday: 'long',
+					day: 'numeric',
+					month: 'long',
+					year: 'numeric',
+				}),
+			);
+		}
+		return dateFormatterCache.get(timeZone)!;
+	}
+
+	function getOffsetFormatter(timeZone: string) {
+		if (!offsetFormatterCache.has(timeZone)) {
+			offsetFormatterCache.set(
+				timeZone,
+				new Intl.DateTimeFormat('en-GB', {
+					timeZone,
+					timeZoneName: 'shortOffset',
+				}),
+			);
+		}
+		return offsetFormatterCache.get(timeZone)!;
+	}
+
+	function formatOffset(timeZone: string, date: Date): string {
+		const parts = getOffsetFormatter(timeZone).formatToParts(date);
+		const raw = parts.find((p) => p.type === 'timeZoneName')?.value ?? '';
+		return raw.replace('GMT', 'UTC');
+	}
+
+	function wallClockToUtc(
+		year: number,
+		month: number,
+		day: number,
+		hour: number,
+		minute: number,
+		timeZone: string,
+	): Date {
+		let date = new Date(Date.UTC(year, month - 1, day, hour, minute, 0));
+		const formatter = new Intl.DateTimeFormat('en-US', {
+			timeZone,
+			hourCycle: 'h23',
+			year: 'numeric',
+			month: 'numeric',
+			day: 'numeric',
+			hour: 'numeric',
+			minute: 'numeric',
+			second: 'numeric',
+		});
+
+		for (let i = 0; i < 2; i++) {
+			const parts = formatter.formatToParts(date);
+			const get = (type: string) =>
+				parseInt(parts.find((p) => p.type === type)?.value ?? '0', 10);
+			const tzYear = get('year');
+			const tzMonth = get('month');
+			const tzDay = get('day');
+			const tzHour = get('hour');
+			const tzMinute = get('minute');
+			const desired = Date.UTC(year, month - 1, day, hour, minute);
+			const actual = Date.UTC(tzYear, tzMonth - 1, tzDay, tzHour, tzMinute);
+			date = new Date(date.getTime() + (desired - actual));
+		}
+
+		return date;
+	}
+
+	function getOffsetMinutes(timeZone: string, date: Date): number {
+		const utc = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+		const tz = new Date(date.toLocaleString('en-US', { timeZone }));
+		return (tz.getTime() - utc.getTime()) / 60000;
+	}
+
+	function getDateKey(timeZone: string, date: Date): number {
+		const fmt = new Intl.DateTimeFormat('en-CA', {
+			timeZone,
+			year: 'numeric',
+			month: '2-digit',
+			day: '2-digit',
+		});
+		const [y, m, d] = fmt.format(date).split('-').map(Number);
+		return y * 10000 + m * 100 + d;
+	}
+
+	function formatDuration(totalMinutes: number): string {
+		const hours = Math.floor(totalMinutes / 60);
+		const mins = totalMinutes % 60;
+		const parts: string[] = [];
+		if (hours > 0) parts.push(`${hours} hour${hours === 1 ? '' : 's'}`);
+		if (mins > 0) parts.push(`${mins} minute${mins === 1 ? '' : 's'}`);
+		return parts.join(' ') || '0 hours';
+	}
+
+	function setDefaults() {
+		const now = new Date();
+		const y = now.getFullYear();
+		const m = String(now.getMonth() + 1).padStart(2, '0');
+		const d = String(now.getDate()).padStart(2, '0');
+		const h = String(now.getHours()).padStart(2, '0');
+		const min = String(now.getMinutes()).padStart(2, '0');
+
+		if (dateInput) dateInput.value = `${y}-${m}-${d}`;
+		if (timeInput) timeInput.value = `${h}:${min}`;
+	}
+
+	function selectCity(select: HTMLSelectElement, city: string) {
+		for (const option of select.options) {
+			if (option.value === city) {
+				select.value = city;
+				return;
+			}
+		}
+	}
+
+	function convert() {
+		if (!fromSelect || !toSelect || !dateInput || !timeInput) return;
+		if (!dateInput.value || !timeInput.value) return;
+
+		const fromTz = getSelectedTimezone(fromSelect);
+		const toTz = getSelectedTimezone(toSelect);
+		const fromCity = getSelectedCity(fromSelect);
+		const toCity = getSelectedCity(toSelect);
+
+		const [year, month, day] = dateInput.value.split('-').map(Number);
+		const [hour, minute] = timeInput.value.split(':').map(Number);
+
+		const utcDate = wallClockToUtc(year, month, day, hour, minute, fromTz);
+
+		if (resultLabel) resultLabel.textContent = `In ${toCity}`;
+		if (resultTime)
+			resultTime.textContent = getTimeFormatter(toTz).format(utcDate);
+		if (resultDate)
+			resultDate.textContent = getDateFormatter(toTz).format(utcDate);
+
+		if (fromOffsetLabel) fromOffsetLabel.textContent = fromCity;
+		if (toOffsetLabel) toOffsetLabel.textContent = toCity;
+		if (fromOffsetEl) fromOffsetEl.textContent = formatOffset(fromTz, utcDate);
+		if (toOffsetEl) toOffsetEl.textContent = formatOffset(toTz, utcDate);
+
+		const diffMinutes = getOffsetMinutes(toTz, utcDate) - getOffsetMinutes(fromTz, utcDate);
+		if (timeDiffEl) {
+			if (diffMinutes === 0) {
+				timeDiffEl.textContent = `${toCity} is the same time as ${fromCity}`;
+			} else if (diffMinutes < 0) {
+				timeDiffEl.textContent = `${toCity} is ${formatDuration(Math.abs(diffMinutes))} behind ${fromCity}`;
+			} else {
+				timeDiffEl.textContent = `${toCity} is ${formatDuration(diffMinutes)} ahead of ${fromCity}`;
+			}
+		}
+
+		const fromDay = getDateKey(fromTz, utcDate);
+		const toDay = getDateKey(toTz, utcDate);
+		if (dayRelationEl) {
+			if (toDay > fromDay) {
+				dayRelationEl.textContent = `Next day in ${toCity}`;
+			} else if (toDay < fromDay) {
+				dayRelationEl.textContent = `Previous day in ${toCity}`;
+			} else {
+				dayRelationEl.textContent = `Same day in both cities`;
+			}
+		}
+	}
+
+	setDefaults();
+	convert();
+
+	fromSelect?.addEventListener('change', convert);
+	toSelect?.addEventListener('change', convert);
+	dateInput?.addEventListener('change', convert);
+	dateInput?.addEventListener('input', convert);
+	timeInput?.addEventListener('change', convert);
+	timeInput?.addEventListener('input', convert);
+
+	swapBtn?.addEventListener('click', () => {
+		if (!fromSelect || !toSelect) return;
+		const fromVal = fromSelect.value;
+		const toVal = toSelect.value;
+		fromSelect.value = toVal;
+		toSelect.value = fromVal;
+		convert();
+	});
+
+	document.querySelectorAll('.tz-preset-btn').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const from = (btn as HTMLButtonElement).dataset.from;
+			const to = (btn as HTMLButtonElement).dataset.to;
+			if (from && to && fromSelect && toSelect) {
+				selectCity(fromSelect, from);
+				selectCity(toSelect, to);
+				convert();
+			}
+		});
+	});
+</script>

@@ -1,33 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { searchOnlyCities } from '../data/worldClockSearchCities';
-
-const gridCities = [
-	{ city: 'London', country: 'United Kingdom', timezone: 'Europe/London', flag: '🇬🇧' },
-	{ city: 'New York', country: 'United States', timezone: 'America/New_York', flag: '🇺🇸' },
-	{ city: 'Los Angeles', country: 'United States', timezone: 'America/Los_Angeles', flag: '🇺🇸' },
-	{ city: 'Toronto', country: 'Canada', timezone: 'America/Toronto', flag: '🇨🇦' },
-	{ city: 'São Paulo', country: 'Brazil', timezone: 'America/Sao_Paulo', flag: '🇧🇷' },
-	{ city: 'Paris', country: 'France', timezone: 'Europe/Paris', flag: '🇫🇷' },
-	{ city: 'Berlin', country: 'Germany', timezone: 'Europe/Berlin', flag: '🇩🇪' },
-	{ city: 'Madrid', country: 'Spain', timezone: 'Europe/Madrid', flag: '🇪🇸' },
-	{ city: 'Rome', country: 'Italy', timezone: 'Europe/Rome', flag: '🇮🇹' },
-	{ city: 'Amsterdam', country: 'Netherlands', timezone: 'Europe/Amsterdam', flag: '🇳🇱' },
-	{ city: 'Dubai', country: 'United Arab Emirates', timezone: 'Asia/Dubai', flag: '🇦🇪' },
-	{ city: 'Mumbai', country: 'India', timezone: 'Asia/Kolkata', flag: '🇮🇳' },
-	{ city: 'Singapore', country: 'Singapore', timezone: 'Asia/Singapore', flag: '🇸🇬' },
-	{ city: 'Tokyo', country: 'Japan', timezone: 'Asia/Tokyo', flag: '🇯🇵' },
-	{ city: 'Sydney', country: 'Australia', timezone: 'Australia/Sydney', flag: '🇦🇺' },
-	{ city: 'Auckland', country: 'New Zealand', timezone: 'Pacific/Auckland', flag: '🇳🇿' },
-	{ city: 'Hong Kong', country: 'Hong Kong', timezone: 'Asia/Hong_Kong', flag: '🇭🇰' },
-	{ city: 'Bangkok', country: 'Thailand', timezone: 'Asia/Bangkok', flag: '🇹🇭' },
-	{ city: 'Istanbul', country: 'Turkey', timezone: 'Europe/Istanbul', flag: '🇹🇷' },
-	{ city: 'Cairo', country: 'Egypt', timezone: 'Africa/Cairo', flag: '🇪🇬' },
-	{ city: 'Johannesburg', country: 'South Africa', timezone: 'Africa/Johannesburg', flag: '🇿🇦' },
-	{ city: 'Lagos', country: 'Nigeria', timezone: 'Africa/Lagos', flag: '🇳🇬' },
-	{ city: 'Mexico City', country: 'Mexico', timezone: 'America/Mexico_City', flag: '🇲🇽' },
-	{ city: 'Chicago', country: 'United States', timezone: 'America/Chicago', flag: '🇺🇸' },
-];
+import { gridCities, searchOnlyCities } from '../data/worldClockSearchCities';
 ---
 
 <Layout

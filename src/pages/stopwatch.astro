@@ -1,0 +1,473 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Stopwatch — Free Online Stopwatch | Clockr"
+	description="Free online stopwatch with lap timer. Accurate to the millisecond. Simple, clean stopwatch that works on any device."
+>
+	<div class="sw-page">
+		<!-- PAGE HEADER -->
+		<div class="sw-header">
+			<div class="sw-eyebrow">⏱️ Timers & Stopwatches</div>
+			<h1 class="sw-title">
+				<span class="sw-gradient">Stopwatch</span>
+			</h1>
+			<p class="sw-subtitle">Precise timing down to the millisecond</p>
+		</div>
+
+		<!-- DISPLAY -->
+		<div class="sw-display-card">
+			<div class="sw-display" id="sw-display">00:00:00.000</div>
+		</div>
+
+		<!-- CONTROLS -->
+		<div class="sw-controls">
+			<button type="button" class="sw-control-btn sw-control-primary" id="sw-start-btn"
+				>Start</button
+			>
+			<button type="button" class="sw-control-btn" id="sw-reset-btn">Reset</button>
+			<button type="button" class="sw-control-btn" id="sw-lap-btn" disabled>Lap</button>
+		</div>
+
+		<!-- LAP TIMES -->
+		<div class="sw-laps-section" id="sw-laps-section" style="display:none">
+			<h3 class="sw-laps-title">Lap times</h3>
+			<div class="sw-laps-header">
+				<span>Lap</span>
+				<span>Split</span>
+				<span>Total</span>
+			</div>
+			<ul class="sw-laps-list" id="sw-laps-list"></ul>
+		</div>
+
+		<!-- RELATED TOOLS -->
+		<div class="sw-related">
+			<h3 class="sw-related-title">You might also like</h3>
+			<div class="sw-related-grid">
+				<a href="/countdown-timer" class="sw-related-card">⏱️ Countdown Timer</a>
+				<a href="/age-calculator" class="sw-related-card">🎂 Age Calculator</a>
+				<a href="/world-clock" class="sw-related-card">🌍 World Clock</a>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.sw-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.sw-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.sw-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.sw-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.sw-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sw-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.sw-display-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 48px 40px;
+		text-align: center;
+		margin-bottom: 16px;
+		box-shadow: 0 0 40px rgba(139, 92, 246, 0.06);
+	}
+
+	.sw-display {
+		font-family: 'Outfit', sans-serif;
+		font-size: 72px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.sw-controls {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		margin-bottom: 32px;
+	}
+
+	.sw-control-btn {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.85);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			opacity 0.2s ease;
+	}
+
+	.sw-control-btn:hover:not(:disabled) {
+		border-color: rgba(139, 92, 246, 0.6);
+		background: rgba(139, 92, 246, 0.08);
+	}
+
+	.sw-control-btn:disabled {
+		opacity: 0.35;
+		cursor: not-allowed;
+	}
+
+	.sw-control-primary {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		border: none;
+		color: #fff;
+	}
+
+	.sw-control-primary:hover:not(:disabled) {
+		opacity: 0.9;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		border: none;
+	}
+
+	.sw-laps-section {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 20px 24px;
+		margin-bottom: 48px;
+	}
+
+	.sw-laps-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.sw-laps-header {
+		display: grid;
+		grid-template-columns: 60px 1fr 1fr;
+		gap: 12px;
+		padding: 0 4px 10px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+		margin-bottom: 4px;
+	}
+
+	.sw-laps-header span {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.sw-laps-header span:nth-child(2),
+	.sw-laps-header span:nth-child(3) {
+		text-align: right;
+	}
+
+	.sw-laps-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		max-height: 400px;
+		overflow-y: auto;
+		scrollbar-width: thin;
+		scrollbar-color: rgba(139, 92, 246, 0.3) transparent;
+	}
+
+	.sw-laps-list::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	.sw-laps-list::-webkit-scrollbar-thumb {
+		background: rgba(139, 92, 246, 0.3);
+		border-radius: 3px;
+	}
+
+	.sw-lap-item {
+		display: grid;
+		grid-template-columns: 60px 1fr 1fr;
+		gap: 12px;
+		padding: 12px 4px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+		align-items: center;
+	}
+
+	.sw-lap-item:last-child {
+		border-bottom: none;
+	}
+
+	.sw-lap-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.sw-lap-split {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		text-align: right;
+		font-variant-numeric: tabular-nums;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sw-lap-total {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		text-align: right;
+		font-variant-numeric: tabular-nums;
+		color: rgba(255, 255, 255, 0.55);
+	}
+
+	.sw-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.sw-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sw-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.sw-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.sw-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+		color: #fff;
+	}
+
+	@media (max-width: 600px) {
+		.sw-title {
+			font-size: 48px;
+		}
+
+		.sw-display {
+			font-size: 40px;
+			letter-spacing: -1px;
+		}
+
+		.sw-display-card {
+			padding: 32px 16px;
+		}
+
+		.sw-laps-header,
+		.sw-lap-item {
+			grid-template-columns: 44px 1fr 1fr;
+		}
+	}
+</style>
+
+<script>
+	const MAX_LAPS = 20;
+	const TICK_MS = 10;
+
+	const displayEl = document.getElementById('sw-display');
+	const startBtn = document.getElementById('sw-start-btn');
+	const resetBtn = document.getElementById('sw-reset-btn');
+	const lapBtn = document.getElementById('sw-lap-btn');
+	const lapsSection = document.getElementById('sw-laps-section');
+	const lapsList = document.getElementById('sw-laps-list');
+
+	let running = false;
+	let segmentStart = 0;
+	let elapsedBeforeSegment = 0;
+	let lastLapElapsed = 0;
+	let laps: { number: number; split: number; total: number }[] = [];
+	let tickInterval: ReturnType<typeof setInterval> | null = null;
+
+	function pad(n: number, digits: number): string {
+		return String(n).padStart(digits, '0');
+	}
+
+	function formatTime(ms: number): string {
+		const hours = Math.floor(ms / 3_600_000);
+		const minutes = Math.floor((ms % 3_600_000) / 60_000);
+		const seconds = Math.floor((ms % 60_000) / 1_000);
+		const milliseconds = ms % 1_000;
+		return `${pad(hours, 2)}:${pad(minutes, 2)}:${pad(seconds, 2)}.${pad(milliseconds, 3)}`;
+	}
+
+	function getElapsed(): number {
+		if (running) {
+			return elapsedBeforeSegment + (Date.now() - segmentStart);
+		}
+		return elapsedBeforeSegment;
+	}
+
+	function updateDisplay() {
+		if (displayEl) displayEl.textContent = formatTime(getElapsed());
+	}
+
+	function updateLapButton() {
+		if (lapBtn) lapBtn.disabled = getElapsed() === 0;
+	}
+
+	function renderLaps() {
+		if (!lapsList || !lapsSection) return;
+
+		if (laps.length === 0) {
+			lapsSection.style.display = 'none';
+			lapsList.innerHTML = '';
+			return;
+		}
+
+		lapsSection.style.display = 'block';
+		lapsList.innerHTML = laps
+			.map(
+				(lap) => `
+			<li class="sw-lap-item">
+				<span class="sw-lap-num">#${lap.number}</span>
+				<span class="sw-lap-split">+${formatTime(lap.split)}</span>
+				<span class="sw-lap-total">${formatTime(lap.total)}</span>
+			</li>`,
+			)
+			.join('');
+	}
+
+	function startTicking() {
+		if (tickInterval) return;
+		tickInterval = setInterval(() => {
+			updateDisplay();
+		}, TICK_MS);
+	}
+
+	function stopTicking() {
+		if (tickInterval) {
+			clearInterval(tickInterval);
+			tickInterval = null;
+		}
+	}
+
+	startBtn?.addEventListener('click', () => {
+		if (running) {
+			elapsedBeforeSegment += Date.now() - segmentStart;
+			running = false;
+			stopTicking();
+			updateDisplay();
+			startBtn.textContent = 'Start';
+		} else {
+			segmentStart = Date.now();
+			running = true;
+			startBtn.textContent = 'Pause';
+			startTicking();
+		}
+		updateLapButton();
+	});
+
+	resetBtn?.addEventListener('click', () => {
+		running = false;
+		elapsedBeforeSegment = 0;
+		segmentStart = 0;
+		lastLapElapsed = 0;
+		laps = [];
+		stopTicking();
+		if (startBtn) startBtn.textContent = 'Start';
+		updateDisplay();
+		updateLapButton();
+		renderLaps();
+	});
+
+	lapBtn?.addEventListener('click', () => {
+		const total = getElapsed();
+		if (total === 0) return;
+
+		const split = total - lastLapElapsed;
+		lastLapElapsed = total;
+
+		laps.unshift({
+			number: laps.length + 1,
+			split,
+			total,
+		});
+
+		if (laps.length > MAX_LAPS) {
+			laps = laps.slice(0, MAX_LAPS);
+		}
+
+		laps.forEach((lap, i) => {
+			lap.number = laps.length - i;
+		});
+
+		renderLaps();
+	});
+
+	updateDisplay();
+	updateLapButton();
+</script>
