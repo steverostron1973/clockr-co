@@ -1,0 +1,724 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const leftEmojis = [
+	{ emoji: '🎆', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '🥂', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '🎉', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '⭐', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '✨', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '🎊', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '🌟', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '🎇', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '🎆', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '🥂', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '🎉', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '✨', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+
+const sparkles = [
+	{ top: '6%', left: '4%', size: 4, color: '#FFD700', duration: 1.2, delay: 0 },
+	{ top: '14%', left: '18%', size: 3, color: '#ffffff', duration: 2.4, delay: 0.4 },
+	{ top: '22%', left: '38%', size: 5, color: '#C0C0C0', duration: 1.8, delay: 1.1 },
+	{ top: '10%', left: '55%', size: 4, color: '#FFD700', duration: 2.9, delay: 0.2 },
+	{ top: '8%', left: '72%', size: 3, color: '#ffffff', duration: 1.5, delay: 1.8 },
+	{ top: '16%', left: '88%', size: 6, color: '#C0C0C0', duration: 2.2, delay: 0.9 },
+	{ top: '35%', left: '8%', size: 3, color: '#C0C0C0', duration: 2.7, delay: 1.4 },
+	{ top: '42%', left: '28%', size: 5, color: '#FFD700', duration: 1.3, delay: 2.1 },
+	{ top: '48%', left: '62%', size: 4, color: '#ffffff', duration: 2.0, delay: 0.6 },
+	{ top: '38%', left: '82%', size: 3, color: '#FFD700', duration: 1.9, delay: 1.6 },
+	{ top: '58%', left: '14%', size: 6, color: '#ffffff', duration: 2.5, delay: 0.3 },
+	{ top: '65%', left: '46%', size: 4, color: '#C0C0C0', duration: 1.1, delay: 2.4 },
+	{ top: '72%', left: '68%', size: 3, color: '#FFD700', duration: 2.8, delay: 1.0 },
+	{ top: '55%', left: '91%', size: 5, color: '#C0C0C0', duration: 1.6, delay: 1.9 },
+	{ top: '78%', left: '24%', size: 4, color: '#FFD700', duration: 2.3, delay: 0.8 },
+	{ top: '84%', left: '52%', size: 3, color: '#ffffff', duration: 1.4, delay: 2.6 },
+	{ top: '88%', left: '76%', size: 5, color: '#C0C0C0', duration: 2.1, delay: 0.5 },
+	{ top: '92%', left: '10%', size: 4, color: '#ffffff', duration: 1.7, delay: 2.0 },
+	{ top: '28%', left: '94%', size: 3, color: '#FFD700', duration: 2.6, delay: 1.3 },
+	{ top: '68%', left: '34%', size: 6, color: '#ffffff', duration: 3.0, delay: 1.7 },
+];
+---
+
+<Layout
+	title="Days Until New Year 2027 — New Year Countdown | Clockr"
+	description="How many days until New Year 2027? Live countdown to 1st January 2027 showing exact days, hours, minutes and seconds."
+>
+	<div class="ny-page">
+		<!-- FULL-WIDTH HERO BAND -->
+		<section class="ny-hero" aria-label="New Year countdown">
+			<canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+			<div class="ny-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="ny-float-emoji ny-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="ny-float-emoji ny-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					sparkles.map(({ top, left, size, color, duration, delay }) => (
+						<span
+							class="ny-sparkle"
+							style={`top:${top};left:${left};width:${size}px;height:${size}px;background:${color};--twinkle-duration:${duration}s;--twinkle-delay:${delay}s`}
+						/>
+					))
+				}
+			</div>
+
+			<div class="ny-hero-centre">
+				<h1 class="ny-hero-title">Days Until New Year</h1>
+
+				<div class="ny-countdown" id="ny-countdown">
+					<div class="ny-countdown-block">
+						<span class="ny-countdown-num ny-countdown-num--days" id="hero-days"
+							>0</span
+						>
+						<span class="ny-countdown-unit">Days</span>
+					</div>
+					<span class="ny-countdown-sep">:</span>
+					<div class="ny-countdown-block">
+						<span class="ny-countdown-num ny-countdown-num--time" id="hero-hours"
+							>00</span
+						>
+						<span class="ny-countdown-unit">Hours</span>
+					</div>
+					<span class="ny-countdown-sep">:</span>
+					<div class="ny-countdown-block">
+						<span class="ny-countdown-num ny-countdown-num--time" id="hero-mins"
+							>00</span
+						>
+						<span class="ny-countdown-unit">Minutes</span>
+					</div>
+					<span class="ny-countdown-sep">:</span>
+					<div class="ny-countdown-block">
+						<span class="ny-countdown-num ny-countdown-num--time" id="hero-secs"
+							>00</span
+						>
+						<span class="ny-countdown-unit">Seconds</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="ny-body">
+			<!-- STATS -->
+			<section class="ny-stats-section">
+				<h2 class="ny-stats-heading">New Year by the numbers</h2>
+				<div class="ny-stats-grid">
+					<div class="ny-stat-card">
+						<div class="ny-stat-label">Exact time remaining</div>
+						<div class="ny-stat-value" id="stat-exact">—</div>
+					</div>
+					<div class="ny-stat-card">
+						<div class="ny-stat-label">New Year's day</div>
+						<div class="ny-stat-value" id="stat-weekday">—</div>
+					</div>
+					<div class="ny-stat-card">
+						<div class="ny-stat-label">Weeks until New Year</div>
+						<div class="ny-stat-value" id="stat-weeks">—</div>
+					</div>
+					<div class="ny-stat-card">
+						<div class="ny-stat-label">Hours until New Year</div>
+						<div class="ny-stat-value" id="stat-hours">—</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- SHARE -->
+			<button class="ny-share-btn" id="ny-share-btn">
+				📤 New Year is <span id="share-days">0</span> days away
+			</button>
+
+			<!-- FUN FACTS -->
+			<section class="ny-facts">
+				<h2 class="ny-facts-title">New Year fun facts</h2>
+				<div class="ny-facts-grid">
+					<div class="ny-fact-card">
+						<div class="ny-fact-emoji">📜</div>
+						<h3 class="ny-fact-heading">Oldest recorded celebration</h3>
+						<p class="ny-fact-text">
+							New Year celebrations date back over 4,000 years to ancient
+							Babylon, where the new year began with the first new moon after
+							the spring equinox — a tradition far older than 1 January.
+						</p>
+					</div>
+					<div class="ny-fact-card">
+						<div class="ny-fact-emoji">🪩</div>
+						<h3 class="ny-fact-heading">Times Square ball drop</h3>
+						<p class="ny-fact-text">
+							The first ball drop in Times Square was in 1907. Today's
+							Waterford crystal ball weighs nearly 12,000 pounds, is 12 feet
+							in diameter, and is covered with 2,688 crystal triangles.
+						</p>
+					</div>
+					<div class="ny-fact-card">
+						<div class="ny-fact-emoji">💪</div>
+						<h3 class="ny-fact-heading">Most common resolutions</h3>
+						<p class="ny-fact-text">
+							Exercise, eating healthier, and saving money consistently top
+							global New Year's resolution lists. Studies suggest only about
+							9% of people keep their resolutions all year — but January
+							optimism is undefeated.
+						</p>
+					</div>
+					<div class="ny-fact-card">
+						<div class="ny-fact-emoji">🌍</div>
+						<h3 class="ny-fact-heading">Time zones at midnight</h3>
+						<p class="ny-fact-text">
+							With 24 primary time zones and several half- and quarter-hour
+							offsets, midnight on New Year's Eve rolls across the globe over
+							roughly 26 hours — from Kiribati to American Samoa.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- RELATED TOOLS -->
+			<div class="ny-related">
+				<h3 class="ny-related-title">You might also like</h3>
+				<div class="ny-related-grid">
+					<a href="/countdown-timer" class="ny-related-card">⏱️ Countdown Timer</a>
+					<a href="/days-until-christmas" class="ny-related-card">🎄 Days Until Christmas</a>
+					<a href="/year-progress" class="ny-related-card">📅 Year Progress</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.ny-page {
+		width: 100%;
+	}
+
+	/* ── HERO BAND ── */
+	.ny-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #0d0d1a 0%, #1a1a3d 75%, #080808 100%);
+		border: none;
+		box-shadow: none;
+		outline: none;
+		overflow: hidden;
+		position: relative;
+		min-height: 320px;
+	}
+
+	#fireworks-canvas {
+		position: absolute;
+		inset: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		z-index: 0;
+		pointer-events: none;
+	}
+
+	.ny-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+		z-index: 1;
+	}
+
+	.ny-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: ny-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.ny-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes ny-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.ny-sparkle {
+		position: absolute;
+		border-radius: 50%;
+		pointer-events: none;
+		animation: ny-twinkle var(--twinkle-duration, 2s) ease-in-out infinite;
+		animation-delay: var(--twinkle-delay, 0s);
+	}
+
+	@keyframes ny-twinkle {
+		0%,
+		100% {
+			opacity: 0.1;
+			transform: scale(0.7);
+		}
+		50% {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+
+	.ny-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.ny-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 32px;
+		background: linear-gradient(135deg, #FF5C4D, #FF9A3C);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ny-countdown {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	.ny-countdown-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.ny-countdown-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	.ny-countdown-num--days {
+		color: #FFD700;
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	.ny-countdown-num--time {
+		color: #C0C0C0;
+	}
+
+	.ny-countdown-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	.ny-countdown-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	/* ── BODY ── */
+	.ny-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.ny-stats-section {
+		margin-bottom: 16px;
+	}
+
+	.ny-stats-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		margin-bottom: 20px;
+	}
+
+	.ny-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.ny-stats-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.ny-stat-card {
+		background: linear-gradient(135deg, #FFD700, #FFA500);
+		border: none;
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.ny-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: #1a1a2e;
+		margin-bottom: 10px;
+	}
+
+	.ny-stat-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.4;
+		color: #1a1a2e;
+	}
+
+	.ny-share-btn {
+		display: block;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		max-width: 320px;
+		margin: 0 auto 48px;
+		transition: opacity 0.2s ease;
+	}
+
+	.ny-share-btn:hover {
+		opacity: 0.9;
+	}
+
+	.ny-facts {
+		margin-bottom: 48px;
+	}
+
+	.ny-facts-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		margin-bottom: 20px;
+	}
+
+	.ny-facts-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.ny-facts-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.ny-fact-card {
+		background: linear-gradient(135deg, #FFD700, #FFA500);
+		border: none;
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.ny-fact-emoji {
+		font-size: 28px;
+		margin-bottom: 12px;
+		line-height: 1;
+	}
+
+	.ny-fact-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		color: #1a1a2e;
+		margin-bottom: 8px;
+	}
+
+	.ny-fact-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: #1a1a2e;
+		line-height: 1.6;
+	}
+
+	.ny-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.ny-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.ny-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.ny-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.ny-related-card:hover {
+		border-color: rgba(255, 92, 77, 0.4);
+		color: #fff;
+	}
+</style>
+
+<script>
+	function pad(n: number) {
+		return String(n).padStart(2, '0');
+	}
+
+	function getTargetNewYear(): Date {
+		const now = new Date();
+		let year = now.getFullYear();
+		const newYear = new Date(year, 0, 1, 0, 0, 0, 0);
+		if (now.getTime() >= newYear.getTime()) {
+			year += 1;
+		}
+		return new Date(year, 0, 1, 0, 0, 0, 0);
+	}
+
+	function updateCountdown() {
+		const now = new Date();
+		const newYear = getTargetNewYear();
+		const diff = newYear.getTime() - now.getTime();
+
+		if (diff <= 0) return;
+
+		const totalSeconds = Math.floor(diff / 1000);
+		const days = Math.floor(totalSeconds / 86400);
+		const hours = Math.floor((totalSeconds % 86400) / 3600);
+		const mins = Math.floor((totalSeconds % 3600) / 60);
+		const secs = totalSeconds % 60;
+		const totalHours = Math.floor(totalSeconds / 3600);
+
+		const heroDays = document.getElementById('hero-days');
+		const heroHours = document.getElementById('hero-hours');
+		const heroMins = document.getElementById('hero-mins');
+		const heroSecs = document.getElementById('hero-secs');
+		const statExact = document.getElementById('stat-exact');
+		const statWeekday = document.getElementById('stat-weekday');
+		const statWeeks = document.getElementById('stat-weeks');
+		const statHours = document.getElementById('stat-hours');
+		const shareDays = document.getElementById('share-days');
+
+		if (heroDays) heroDays.textContent = String(days);
+		if (heroHours) heroHours.textContent = pad(hours);
+		if (heroMins) heroMins.textContent = pad(mins);
+		if (heroSecs) heroSecs.textContent = pad(secs);
+
+		const year = newYear.getFullYear();
+		const weekday = newYear.toLocaleDateString('en-GB', { weekday: 'long' });
+		const weeks = Math.floor(days / 7);
+
+		if (statExact)
+			statExact.textContent = `${days} days, ${hours} hours, ${mins} minutes, ${secs} seconds until 1 January ${year}`;
+		if (statWeekday)
+			statWeekday.textContent = `New Year ${year} falls on a ${weekday}`;
+		if (statWeeks)
+			statWeeks.textContent = `${weeks} week${weeks === 1 ? '' : 's'}`;
+		if (statHours)
+			statHours.textContent = `${totalHours.toLocaleString()} hour${totalHours === 1 ? '' : 's'}`;
+		if (shareDays) shareDays.textContent = String(days);
+	}
+
+	const shareBtn = document.getElementById('ny-share-btn');
+	shareBtn?.addEventListener('click', () => {
+		const days = document.getElementById('share-days')?.textContent ?? '0';
+		const newYear = getTargetNewYear();
+		const year = newYear.getFullYear();
+		navigator.clipboard.writeText(
+			`🎆 New Year is ${days} days away! Count down to 1 January ${year} at Clockr.co`,
+		);
+		shareBtn.textContent = '✅ Copied to clipboard!';
+		setTimeout(() => {
+			shareBtn.innerHTML = `📤 New Year is <span id="share-days">${days}</span> days away`;
+		}, 2000);
+	});
+
+	updateCountdown();
+	setInterval(updateCountdown, 1000);
+
+	const FIREWORK_COLORS = ['#FFD700', '#C0C0C0', '#ffffff', '#FF5C4D'];
+	const PARTICLE_COUNT = 14;
+	const PARTICLE_LIFE = 1200;
+	const BURST_INTERVAL = 2500;
+	const GRAVITY = 0.15;
+
+	type FireworkParticle = {
+		x: number;
+		y: number;
+		vx: number;
+		vy: number;
+		color: string;
+		born: number;
+	};
+
+	const particles: FireworkParticle[] = [];
+	let lastBurst = 0;
+	let lastFrame = 0;
+
+	function resizeFireworksCanvas(
+		canvas: HTMLCanvasElement,
+		ctx: CanvasRenderingContext2D,
+	) {
+		const hero = canvas.parentElement;
+		if (!hero) return;
+		const { width, height } = hero.getBoundingClientRect();
+		const dpr = window.devicePixelRatio || 1;
+		canvas.width = Math.floor(width * dpr);
+		canvas.height = Math.floor(height * dpr);
+		ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+	}
+
+	function spawnFireworkBurst(canvas: HTMLCanvasElement, now: number) {
+		const { width, height } = canvas.getBoundingClientRect();
+		const x = Math.random() * width;
+		const y = Math.random() * height;
+
+		for (let i = 0; i < PARTICLE_COUNT; i++) {
+			const angle = (Math.PI * 2 * i) / PARTICLE_COUNT + (Math.random() - 0.5) * 0.25;
+			const speed = 2 + Math.random() * 4;
+			particles.push({
+				x,
+				y,
+				vx: Math.cos(angle) * speed,
+				vy: Math.sin(angle) * speed,
+				color: FIREWORK_COLORS[i % FIREWORK_COLORS.length],
+				born: now,
+			});
+		}
+	}
+
+	function initFireworksCanvas() {
+		const canvas = document.getElementById('fireworks-canvas') as HTMLCanvasElement | null;
+		if (!canvas) return;
+
+		const ctx = canvas.getContext('2d');
+		if (!ctx) return;
+
+		resizeFireworksCanvas(canvas, ctx);
+		window.addEventListener('resize', () => resizeFireworksCanvas(canvas, ctx));
+
+		const start = performance.now();
+		spawnFireworkBurst(canvas, start);
+		lastBurst = start;
+		lastFrame = start;
+
+		function tick(now: number) {
+			const dt = Math.min((now - lastFrame) / 16.67, 2);
+			lastFrame = now;
+
+			if (now - lastBurst >= BURST_INTERVAL) {
+				spawnFireworkBurst(canvas, now);
+				lastBurst = now;
+			}
+
+			const { width, height } = canvas.getBoundingClientRect();
+			ctx.clearRect(0, 0, width, height);
+
+			for (let i = particles.length - 1; i >= 0; i--) {
+				const p = particles[i];
+				const age = now - p.born;
+				if (age >= PARTICLE_LIFE) {
+					particles.splice(i, 1);
+					continue;
+				}
+
+				p.vy += GRAVITY * dt;
+				p.x += p.vx * dt;
+				p.y += p.vy * dt;
+
+				const alpha = 1 - age / PARTICLE_LIFE;
+				ctx.globalAlpha = alpha * 0.85;
+				ctx.fillStyle = p.color;
+				ctx.beginPath();
+				ctx.arc(p.x, p.y, 2.5, 0, Math.PI * 2);
+				ctx.fill();
+			}
+
+			ctx.globalAlpha = 1;
+			requestAnimationFrame(tick);
+		}
+
+		requestAnimationFrame(tick);
+	}
+
+	initFireworksCanvas();
+</script>
