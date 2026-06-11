@@ -1,0 +1,722 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const referenceRows = [
+	{ timestamp: 0, label: 'Unix epoch', date: '1 January 1970, 00:00:00 UTC' },
+	{ timestamp: 946684800, label: 'Y2K', date: '1 January 2000, 00:00:00 UTC' },
+	{
+		timestamp: 1000000000,
+		label: '1 billion seconds',
+		date: '9 September 2001, 01:46:40 UTC',
+	},
+	{
+		timestamp: 2000000000,
+		label: '2 billion seconds',
+		date: '18 May 2033, 03:33:20 UTC',
+	},
+	{
+		timestamp: 2147483647,
+		label: 'Year 2038 problem',
+		date: '19 January 2038, 03:14:07 UTC',
+	},
+];
+---
+
+<Layout
+	title="Unix Timestamp Converter — Epoch Time Converter | Clockr"
+	description="Convert Unix timestamps to human-readable dates and back. Free epoch time converter with live current timestamp."
+>
+	<div class="unix-page">
+		<div class="unix-header">
+			<div class="unix-eyebrow">⏱️ Epoch Time</div>
+			<h1 class="unix-title">
+				<span class="unix-gradient">Unix Timestamp</span><br />
+				<span class="unix-gradient">Converter</span>
+			</h1>
+			<p class="unix-subtitle">
+				Convert between Unix timestamps and human-readable dates instantly
+			</p>
+		</div>
+
+		<div class="unix-cards">
+			<!-- Card A: Timestamp to Date -->
+			<div class="unix-card">
+				<h2 class="unix-card-title">Timestamp to Date</h2>
+				<p class="unix-card-desc">
+					Enter a Unix timestamp — seconds or milliseconds are detected
+					automatically.
+				</p>
+
+				<label class="unix-label" for="ts-input">Unix timestamp</label>
+				<input
+					type="text"
+					id="ts-input"
+					class="unix-input"
+					placeholder="e.g. 1704067200"
+					inputmode="numeric"
+					autocomplete="off"
+					spellcheck="false"
+				/>
+
+				<button type="button" class="unix-action-btn" id="ts-now-btn">
+					Use current timestamp
+				</button>
+
+				<div class="unix-results" id="ts-results" style="display:none">
+					<div class="unix-result-row">
+						<span class="unix-result-label">UTC</span>
+						<span class="unix-result-value" id="ts-utc">—</span>
+					</div>
+					<div class="unix-result-row">
+						<span class="unix-result-label">Local</span>
+						<span class="unix-result-value" id="ts-local">—</span>
+					</div>
+					<div class="unix-result-row">
+						<span class="unix-result-label">ISO 8601</span>
+						<span class="unix-result-value unix-mono" id="ts-iso">—</span>
+					</div>
+					<div class="unix-result-row unix-result-highlight">
+						<span class="unix-result-label">Relative</span>
+						<span class="unix-result-value" id="ts-relative">—</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- Card B: Date to Timestamp -->
+			<div class="unix-card">
+				<h2 class="unix-card-title">Date to Timestamp</h2>
+				<p class="unix-card-desc">
+					Pick a date and time to get the corresponding Unix timestamp.
+				</p>
+
+				<div class="unix-datetime-inputs">
+					<div class="unix-input-wrap">
+						<label class="unix-label" for="date-input">Date</label>
+						<input type="date" id="date-input" class="unix-input" />
+					</div>
+					<div class="unix-input-wrap">
+						<label class="unix-label" for="time-input">Time</label>
+						<input type="time" id="time-input" class="unix-input" step="1" />
+					</div>
+				</div>
+
+				<button type="button" class="unix-action-btn" id="date-now-btn">
+					Use now
+				</button>
+
+				<div class="unix-results" id="date-results" style="display:none">
+					<div class="unix-result-row">
+						<span class="unix-result-label">Seconds</span>
+						<span class="unix-result-value unix-mono" id="date-seconds">—</span>
+					</div>
+					<div class="unix-result-row">
+						<span class="unix-result-label">Milliseconds</span>
+						<span class="unix-result-value unix-mono" id="date-ms">—</span>
+					</div>
+					<div class="unix-result-row">
+						<span class="unix-result-label">ISO 8601</span>
+						<span class="unix-result-value unix-mono" id="date-iso">—</span>
+					</div>
+					<div class="unix-result-row unix-result-highlight">
+						<span class="unix-result-label">UTC</span>
+						<span class="unix-result-value" id="date-utc">—</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Live ticker -->
+		<div class="unix-ticker">
+			<div class="unix-ticker-label">Current Unix Timestamp</div>
+			<div class="unix-ticker-value" id="live-timestamp">0</div>
+		</div>
+
+		<!-- Reference table -->
+		<div class="unix-reference">
+			<h3 class="unix-reference-title">Common Unix timestamps</h3>
+			<div class="unix-table-wrap">
+				<table class="unix-table">
+					<thead>
+						<tr>
+							<th>Timestamp</th>
+							<th>Event</th>
+							<th>Date (UTC)</th>
+						</tr>
+					</thead>
+					<tbody>
+						{
+							referenceRows.map((row) => (
+								<tr>
+									<td>
+										<button
+											type="button"
+											class="unix-table-ts"
+											data-timestamp={row.timestamp}
+										>
+											{row.timestamp.toLocaleString()}
+										</button>
+									</td>
+									<td>{row.label}</td>
+									<td>{row.date}</td>
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="unix-related">
+			<h3 class="unix-related-title">You might also like</h3>
+			<div class="unix-related-grid">
+				<a href="/date-calculator" class="unix-related-card">📅 Date Calculator</a>
+				<a href="/timezone-converter" class="unix-related-card"
+					>🌍 Time Zone Converter</a
+				>
+				<a href="/countdown-timer" class="unix-related-card">⏱️ Countdown Timer</a>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.unix-page {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.unix-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.unix-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.unix-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.unix-gradient {
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.unix-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.unix-cards {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+		margin-bottom: 32px;
+	}
+
+	.unix-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		border-radius: 20px;
+		padding: 32px;
+		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+	}
+
+	.unix-card-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 22px;
+		font-weight: 800;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 8px;
+	}
+
+	.unix-card-desc {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+		line-height: 1.5;
+		margin-bottom: 24px;
+	}
+
+	.unix-label {
+		display: block;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+		margin-bottom: 8px;
+	}
+
+	.unix-input-wrap {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.unix-input {
+		width: 100%;
+		box-sizing: border-box;
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.3);
+		border-radius: 12px;
+		padding: 14px 20px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		color: #ffffff;
+		outline: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.unix-input:focus {
+		border-color: rgba(16, 185, 129, 0.8);
+		box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+	}
+
+	.unix-datetime-inputs {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+		margin-bottom: 0;
+	}
+
+	.unix-action-btn {
+		width: 100%;
+		margin-top: 16px;
+		background: rgba(16, 185, 129, 0.1);
+		border: 1px solid rgba(16, 185, 129, 0.3);
+		border-radius: 12px;
+		padding: 12px 20px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: #10b981;
+		cursor: pointer;
+		transition:
+			background 0.2s ease,
+			border-color 0.2s ease;
+	}
+
+	.unix-action-btn:hover {
+		background: rgba(16, 185, 129, 0.18);
+		border-color: rgba(16, 185, 129, 0.5);
+	}
+
+	.unix-results {
+		margin-top: 24px;
+		padding-top: 24px;
+		border-top: 1px solid rgba(16, 185, 129, 0.15);
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.unix-result-row {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.unix-result-highlight {
+		background: rgba(16, 185, 129, 0.06);
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 10px;
+		padding: 12px 14px;
+	}
+
+	.unix-result-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.unix-result-value {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.8);
+		line-height: 1.4;
+		word-break: break-word;
+	}
+
+	.unix-mono {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: #84cc16;
+	}
+
+	.unix-ticker {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		border-radius: 20px;
+		padding: 40px;
+		text-align: center;
+		margin-bottom: 48px;
+		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+	}
+
+	.unix-ticker-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.4);
+		margin-bottom: 16px;
+	}
+
+	.unix-ticker-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 72px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		font-variant-numeric: tabular-nums;
+		font-feature-settings: 'tnum';
+		display: inline-block;
+		min-width: 13ch;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.unix-reference {
+		margin-bottom: 60px;
+	}
+
+	.unix-reference-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.unix-table-wrap {
+		overflow-x: auto;
+		border-radius: 14px;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+	}
+
+	.unix-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+	}
+
+	.unix-table th {
+		background: rgba(16, 185, 129, 0.08);
+		font-family: 'Outfit', sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+		padding: 14px 20px;
+		text-align: left;
+	}
+
+	.unix-table td {
+		padding: 14px 20px;
+		color: rgba(255, 255, 255, 0.65);
+		border-top: 1px solid rgba(255, 255, 255, 0.05);
+	}
+
+	.unix-table tr:hover td {
+		background: rgba(16, 185, 129, 0.04);
+	}
+
+	.unix-table-ts {
+		background: none;
+		border: none;
+		padding: 0;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: #10b981;
+		cursor: pointer;
+		text-decoration: underline;
+		text-decoration-color: rgba(16, 185, 129, 0.3);
+		text-underline-offset: 3px;
+		transition: color 0.2s ease;
+	}
+
+	.unix-table-ts:hover {
+		color: #84cc16;
+	}
+
+	.unix-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.unix-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.unix-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.unix-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.unix-related-card:hover {
+		border-color: rgba(16, 185, 129, 0.4);
+		color: #fff;
+	}
+
+	@media (max-width: 768px) {
+		.unix-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.unix-cards {
+			grid-template-columns: 1fr;
+		}
+
+		.unix-ticker-value {
+			font-size: 48px;
+		}
+
+		.unix-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	const tsInput = document.getElementById('ts-input') as HTMLInputElement;
+	const tsResults = document.getElementById('ts-results');
+	const tsNowBtn = document.getElementById('ts-now-btn');
+	const dateInput = document.getElementById('date-input') as HTMLInputElement;
+	const timeInput = document.getElementById('time-input') as HTMLInputElement;
+	const dateResults = document.getElementById('date-results');
+	const dateNowBtn = document.getElementById('date-now-btn');
+	const liveTimestamp = document.getElementById('live-timestamp');
+
+	const dateTimeFmt: Intl.DateTimeFormatOptions = {
+		weekday: 'long',
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit',
+		hour12: false,
+	};
+
+	function parseTimestamp(raw: string): Date | null {
+		const cleaned = raw.trim().replace(/,/g, '');
+		if (!cleaned || !/^-?\d+$/.test(cleaned)) return null;
+
+		const num = Number(cleaned);
+		if (!Number.isFinite(num)) return null;
+
+		const abs = Math.abs(num);
+		const ms = abs >= 1e12 || (abs > 1e10 && cleaned.length >= 13) ? num : num * 1000;
+		const date = new Date(ms);
+		return isNaN(date.getTime()) ? null : date;
+	}
+
+	function formatRelative(date: Date): string {
+		const now = Date.now();
+		const diffMs = date.getTime() - now;
+		const absSec = Math.abs(Math.round(diffMs / 1000));
+
+		const units: [Intl.RelativeTimeFormatUnit, number][] = [
+			['year', 31536000],
+			['month', 2592000],
+			['week', 604800],
+			['day', 86400],
+			['hour', 3600],
+			['minute', 60],
+			['second', 1],
+		];
+
+		const rtf = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+
+		for (const [unit, seconds] of units) {
+			if (absSec >= seconds || unit === 'second') {
+				const value = Math.round(diffMs / 1000 / seconds);
+				return rtf.format(value, unit);
+			}
+		}
+
+		return 'now';
+	}
+
+	function convertTimestampToDate() {
+		if (!tsInput || !tsResults) return;
+
+		const date = parseTimestamp(tsInput.value);
+		if (!date) {
+			tsResults.style.display = 'none';
+			return;
+		}
+
+		tsResults.style.display = 'flex';
+
+		const utcEl = document.getElementById('ts-utc');
+		const localEl = document.getElementById('ts-local');
+		const isoEl = document.getElementById('ts-iso');
+		const relativeEl = document.getElementById('ts-relative');
+
+		if (utcEl)
+			utcEl.textContent = date.toLocaleString('en-GB', {
+				...dateTimeFmt,
+				timeZone: 'UTC',
+			}) + ' UTC';
+
+		if (localEl)
+			localEl.textContent =
+				date.toLocaleString('en-GB', dateTimeFmt) +
+				` (${Intl.DateTimeFormat().resolvedOptions().timeZone})`;
+
+		if (isoEl) isoEl.textContent = date.toISOString();
+
+		if (relativeEl) relativeEl.textContent = formatRelative(date);
+	}
+
+	function pad(n: number) {
+		return String(n).padStart(2, '0');
+	}
+
+	function toDateInputValue(d: Date) {
+		return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+	}
+
+	function toTimeInputValue(d: Date) {
+		return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+	}
+
+	function convertDateToTimestamp() {
+		if (!dateInput || !timeInput || !dateResults) return;
+
+		if (!dateInput.value) {
+			dateResults.style.display = 'none';
+			return;
+		}
+
+		const timePart = timeInput.value || '00:00:00';
+		const date = new Date(`${dateInput.value}T${timePart}`);
+
+		if (isNaN(date.getTime())) {
+			dateResults.style.display = 'none';
+			return;
+		}
+
+		dateResults.style.display = 'flex';
+
+		const seconds = Math.floor(date.getTime() / 1000);
+		const ms = date.getTime();
+
+		const secondsEl = document.getElementById('date-seconds');
+		const msEl = document.getElementById('date-ms');
+		const isoEl = document.getElementById('date-iso');
+		const utcEl = document.getElementById('date-utc');
+
+		if (secondsEl) secondsEl.textContent = seconds.toLocaleString();
+		if (msEl) msEl.textContent = ms.toLocaleString();
+		if (isoEl) isoEl.textContent = date.toISOString();
+		if (utcEl)
+			utcEl.textContent = date.toLocaleString('en-GB', {
+				...dateTimeFmt,
+				timeZone: 'UTC',
+			}) + ' UTC';
+	}
+
+	function setNow() {
+		const now = new Date();
+		if (dateInput) dateInput.value = toDateInputValue(now);
+		if (timeInput) timeInput.value = toTimeInputValue(now);
+		convertDateToTimestamp();
+	}
+
+	function updateLiveTicker() {
+		const now = Math.floor(Date.now() / 1000);
+		if (liveTimestamp) liveTimestamp.textContent = now.toLocaleString();
+	}
+
+	tsInput?.addEventListener('input', convertTimestampToDate);
+	dateInput?.addEventListener('change', convertDateToTimestamp);
+	timeInput?.addEventListener('change', convertDateToTimestamp);
+	dateInput?.addEventListener('input', convertDateToTimestamp);
+	timeInput?.addEventListener('input', convertDateToTimestamp);
+
+	tsNowBtn?.addEventListener('click', () => {
+		if (tsInput) {
+			tsInput.value = String(Math.floor(Date.now() / 1000));
+			convertTimestampToDate();
+		}
+	});
+
+	dateNowBtn?.addEventListener('click', setNow);
+
+	document.querySelectorAll('.unix-table-ts').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const ts = btn.getAttribute('data-timestamp');
+			if (ts && tsInput) {
+				tsInput.value = ts;
+				convertTimestampToDate();
+				tsInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			}
+		});
+	});
+
+	updateLiveTicker();
+	setInterval(updateLiveTicker, 1000);
+
+	// Refresh relative time while timestamp input is active
+	setInterval(() => {
+		if (tsInput?.value.trim()) convertTimestampToDate();
+	}, 30000);
+</script>
