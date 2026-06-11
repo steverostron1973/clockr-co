@@ -1,0 +1,915 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const currentYear = new Date().getFullYear();
+---
+
+<Layout
+	title="Business Days Calculator — Working Days Between Dates | Clockr"
+	description="Calculate the number of business days between two dates. Free working days calculator excluding weekends."
+>
+	<div class="bd-page">
+		<!-- PAGE HEADER -->
+		<div class="bd-header">
+			<div class="bd-eyebrow">📊 Working Days</div>
+			<h1 class="bd-title">
+				<span class="bd-gradient">Business Days</span><br />
+				<span class="bd-gradient">Calculator</span>
+			</h1>
+			<p class="bd-subtitle">
+				Calculate working days between dates, excluding weekends
+			</p>
+		</div>
+
+		<!-- MODE TABS -->
+		<div class="bd-tabs" role="tablist">
+			<button
+				type="button"
+				class="bd-tab bd-tab--active"
+				id="tab-between"
+				role="tab"
+				aria-selected="true"
+				data-mode="between"
+			>
+				Days Between Dates
+			</button>
+			<button
+				type="button"
+				class="bd-tab"
+				id="tab-add"
+				role="tab"
+				aria-selected="false"
+				data-mode="add"
+			>
+				Add Business Days
+			</button>
+		</div>
+
+		<!-- TAB A: DAYS BETWEEN DATES -->
+		<div class="bd-panel" id="panel-between" role="tabpanel">
+			<div class="bd-form-card">
+				<div class="bd-inputs">
+					<div class="bd-input-wrap">
+						<label class="bd-label" for="start-date">Start date</label>
+						<input type="date" id="start-date" class="bd-input" />
+					</div>
+					<div class="bd-input-wrap">
+						<label class="bd-label" for="end-date">End date</label>
+						<input type="date" id="end-date" class="bd-input" />
+					</div>
+				</div>
+			</div>
+
+			<div class="bd-results" id="between-results" style="display:none">
+				<div class="bd-main-card">
+					<div class="bd-main-num" id="between-business">0</div>
+					<div class="bd-main-label">business days</div>
+				</div>
+
+				<div class="bd-grid">
+					<div class="bd-stat-card">
+						<div class="bd-stat-num" id="between-calendar">0</div>
+						<div class="bd-stat-label">Calendar days</div>
+					</div>
+					<div class="bd-stat-card">
+						<div class="bd-stat-num" id="between-weekends">0</div>
+						<div class="bd-stat-label">Weekends excluded</div>
+					</div>
+				</div>
+
+				<div class="bd-breakdown">
+					<h3 class="bd-breakdown-title">Breakdown by month</h3>
+					<div class="bd-breakdown-list" id="month-breakdown"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- TAB B: ADD BUSINESS DAYS -->
+		<div class="bd-panel" id="panel-add" role="tabpanel" style="display:none">
+			<div class="bd-form-card">
+				<div class="bd-inputs bd-inputs--add">
+					<div class="bd-input-wrap">
+						<label class="bd-label" for="add-start-date">Start date</label>
+						<input type="date" id="add-start-date" class="bd-input" />
+					</div>
+					<div class="bd-input-wrap">
+						<label class="bd-label" for="add-days">Business days</label>
+						<input
+							type="number"
+							id="add-days"
+							class="bd-input bd-input--number"
+							min="1"
+							value="10"
+						/>
+					</div>
+				</div>
+
+				<label class="bd-toggle">
+					<input type="checkbox" id="subtract-toggle" />
+					<span class="bd-toggle-track">
+						<span class="bd-toggle-thumb"></span>
+					</span>
+					<span class="bd-toggle-label">Subtract instead</span>
+				</label>
+			</div>
+
+			<div class="bd-results" id="add-results" style="display:none">
+				<div class="bd-main-card">
+					<div class="bd-main-num bd-main-num--date" id="add-result-date">
+						—
+					</div>
+					<div class="bd-main-label" id="add-result-dow">—</div>
+				</div>
+
+				<div class="bd-grid">
+					<div class="bd-stat-card">
+						<div class="bd-stat-num" id="add-calendar">0</div>
+						<div class="bd-stat-label">Calendar days</div>
+					</div>
+					<div class="bd-stat-card">
+						<div class="bd-stat-num" id="add-direction">+10</div>
+						<div class="bd-stat-label" id="add-direction-label">Business days added</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- NOTE -->
+		<p class="bd-note">
+			Public holidays are not excluded — dates are based on weekdays only
+			(Monday–Friday)
+		</p>
+
+		<!-- QUICK REFERENCE -->
+		<div class="bd-reference">
+			<h3 class="bd-reference-title">
+				Business days in <span id="ref-year">{currentYear}</span>
+			</h3>
+			<div class="bd-reference-grid" id="year-reference"></div>
+		</div>
+
+		<!-- RELATED TOOLS -->
+		<div class="bd-related">
+			<h3 class="bd-related-title">You might also like</h3>
+			<div class="bd-related-grid">
+				<a href="/date-calculator" class="bd-related-card">📅 Date Calculator</a>
+				<a href="/countdown-timer" class="bd-related-card">⏱️ Countdown Timer</a>
+				<a href="/age-calculator" class="bd-related-card">🎂 Age Calculator</a>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.bd-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.bd-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.bd-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.bd-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.bd-gradient {
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bd-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.bd-tabs {
+		display: flex;
+		gap: 8px;
+		margin-bottom: 32px;
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		border-radius: 14px;
+		padding: 6px;
+	}
+
+	.bd-tab {
+		flex: 1;
+		background: transparent;
+		border: none;
+		border-radius: 10px;
+		padding: 14px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.45);
+		cursor: pointer;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease;
+		line-height: 1.3;
+	}
+
+	.bd-tab:hover {
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	.bd-tab--active {
+		background: rgba(16, 185, 129, 0.15);
+		color: #fff;
+		box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+	}
+
+	.bd-form-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		border-radius: 20px;
+		padding: 32px;
+		margin-bottom: 24px;
+		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+	}
+
+	.bd-inputs {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 24px;
+	}
+
+	.bd-inputs--add {
+		margin-bottom: 24px;
+	}
+
+	.bd-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.bd-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.bd-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+		width: 100%;
+		color-scheme: dark;
+	}
+
+	.bd-input--number {
+		cursor: text;
+		-moz-appearance: textfield;
+	}
+
+	.bd-input--number::-webkit-outer-spin-button,
+	.bd-input--number::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	.bd-input:focus {
+		border-color: rgba(16, 185, 129, 0.8);
+		box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+	}
+
+	.bd-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.bd-toggle input {
+		position: absolute;
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	.bd-toggle-track {
+		position: relative;
+		width: 44px;
+		height: 24px;
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 12px;
+		transition: background 0.2s ease;
+		flex-shrink: 0;
+	}
+
+	.bd-toggle-thumb {
+		position: absolute;
+		top: 3px;
+		left: 3px;
+		width: 18px;
+		height: 18px;
+		background: rgba(255, 255, 255, 0.5);
+		border-radius: 50%;
+		transition:
+			transform 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.bd-toggle input:checked + .bd-toggle-track {
+		background: linear-gradient(135deg, #10b981, #84cc16);
+	}
+
+	.bd-toggle input:checked + .bd-toggle-track .bd-toggle-thumb {
+		transform: translateX(20px);
+		background: #fff;
+	}
+
+	.bd-toggle-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+	}
+
+	.bd-main-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		border-radius: 20px;
+		padding: 40px;
+		text-align: center;
+		margin-bottom: 16px;
+		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+	}
+
+	.bd-main-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 96px;
+		font-weight: 900;
+		letter-spacing: -4px;
+		line-height: 1;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 8px;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.bd-main-num--date {
+		font-size: 36px;
+		letter-spacing: -1px;
+	}
+
+	.bd-main-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.bd-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+		margin-bottom: 16px;
+	}
+
+	.bd-stat-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px 16px;
+		text-align: center;
+	}
+
+	.bd-stat-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 32px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 6px;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.bd-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.bd-breakdown {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+		margin-bottom: 24px;
+	}
+
+	.bd-breakdown-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.bd-breakdown-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.bd-breakdown-row {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 10px 14px;
+		background: rgba(16, 185, 129, 0.04);
+		border-radius: 8px;
+	}
+
+	.bd-breakdown-month {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	.bd-breakdown-count {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.bd-note {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.35);
+		text-align: center;
+		line-height: 1.6;
+		margin-bottom: 48px;
+		padding: 16px 20px;
+		background: rgba(16, 185, 129, 0.04);
+		border: 1px solid rgba(16, 185, 129, 0.1);
+		border-radius: 12px;
+	}
+
+	.bd-reference {
+		margin-bottom: 60px;
+	}
+
+	.bd-reference-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #10B981, #84CC16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+		text-align: center;
+	}
+
+	.bd-reference-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 12px;
+	}
+
+	.bd-ref-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 12px;
+		padding: 20px 12px;
+		text-align: center;
+		transition: border-color 0.2s ease;
+	}
+
+	.bd-ref-card:hover {
+		border-color: rgba(16, 185, 129, 0.35);
+	}
+
+	.bd-ref-month {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		color: #10B981;
+		margin-bottom: 8px;
+	}
+
+	.bd-ref-count {
+		font-family: 'Outfit', sans-serif;
+		font-size: 28px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		color: #84CC16;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.bd-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.bd-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.bd-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.bd-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.bd-related-card:hover {
+		border-color: rgba(16, 185, 129, 0.4);
+		color: #fff;
+	}
+
+	@media (max-width: 640px) {
+		.bd-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.bd-tab {
+			font-size: 12px;
+			padding: 12px 10px;
+		}
+
+		.bd-inputs {
+			grid-template-columns: 1fr;
+		}
+
+		.bd-main-num {
+			font-size: 72px;
+		}
+
+		.bd-main-num--date {
+			font-size: 28px;
+		}
+
+		.bd-reference-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.bd-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	const MONTH_NAMES = [
+		'January',
+		'February',
+		'March',
+		'April',
+		'May',
+		'June',
+		'July',
+		'August',
+		'September',
+		'October',
+		'November',
+		'December',
+	];
+
+	const MONTH_SHORT = [
+		'Jan',
+		'Feb',
+		'Mar',
+		'Apr',
+		'May',
+		'Jun',
+		'Jul',
+		'Aug',
+		'Sep',
+		'Oct',
+		'Nov',
+		'Dec',
+	];
+
+	function parseDateInput(value: string): Date | null {
+		if (!value) return null;
+		const [y, m, d] = value.split('-').map(Number);
+		const date = new Date(y, m - 1, d);
+		return isNaN(date.getTime()) ? null : date;
+	}
+
+	function isWeekend(date: Date): boolean {
+		const day = date.getDay();
+		return day === 0 || day === 6;
+	}
+
+	function formatDateInput(date: Date): string {
+		const y = date.getFullYear();
+		const m = String(date.getMonth() + 1).padStart(2, '0');
+		const d = String(date.getDate()).padStart(2, '0');
+		return `${y}-${m}-${d}`;
+	}
+
+	function countBetween(start: Date, end: Date) {
+		let s = new Date(start);
+		let e = new Date(end);
+		s.setHours(0, 0, 0, 0);
+		e.setHours(0, 0, 0, 0);
+
+		if (s > e) [s, e] = [e, s];
+
+		let businessDays = 0;
+		let weekends = 0;
+		const monthly: Record<string, number> = {};
+		const current = new Date(s);
+
+		while (current <= e) {
+			const key = `${current.getFullYear()}-${current.getMonth()}`;
+			if (isWeekend(current)) {
+				weekends++;
+			} else {
+				businessDays++;
+				monthly[key] = (monthly[key] ?? 0) + 1;
+			}
+			current.setDate(current.getDate() + 1);
+		}
+
+		const calendarDays =
+			Math.round((e.getTime() - s.getTime()) / (24 * 60 * 60 * 1000)) + 1;
+
+		return { businessDays, calendarDays, weekends, monthly, start: s, end: e };
+	}
+
+	function countBusinessDaysInMonth(year: number, month: number): number {
+		const start = new Date(year, month, 1);
+		const end = new Date(year, month + 1, 0);
+		let count = 0;
+		const current = new Date(start);
+		while (current <= end) {
+			if (!isWeekend(current)) count++;
+			current.setDate(current.getDate() + 1);
+		}
+		return count;
+	}
+
+	function addBusinessDays(
+		start: Date,
+		days: number,
+		subtract: boolean,
+	): { result: Date; calendarDays: number } {
+		const d = new Date(start);
+		d.setHours(0, 0, 0, 0);
+		const direction = subtract ? -1 : 1;
+		let remaining = days;
+		let calendarDays = 0;
+
+		while (remaining > 0) {
+			d.setDate(d.getDate() + direction);
+			calendarDays++;
+			if (!isWeekend(d)) remaining--;
+		}
+
+		return { result: d, calendarDays };
+	}
+
+	function formatNumber(n: number): string {
+		return n.toLocaleString();
+	}
+
+	// Tabs
+	const tabBetween = document.getElementById('tab-between');
+	const tabAdd = document.getElementById('tab-add');
+	const panelBetween = document.getElementById('panel-between');
+	const panelAdd = document.getElementById('panel-add');
+
+	function setMode(mode: 'between' | 'add') {
+		tabBetween?.classList.toggle('bd-tab--active', mode === 'between');
+		tabAdd?.classList.toggle('bd-tab--active', mode === 'add');
+		tabBetween?.setAttribute('aria-selected', String(mode === 'between'));
+		tabAdd?.setAttribute('aria-selected', String(mode === 'add'));
+		if (panelBetween)
+			panelBetween.style.display = mode === 'between' ? 'block' : 'none';
+		if (panelAdd) panelAdd.style.display = mode === 'add' ? 'block' : 'none';
+	}
+
+	tabBetween?.addEventListener('click', () => setMode('between'));
+	tabAdd?.addEventListener('click', () => setMode('add'));
+
+	// Tab A: Days Between Dates
+	const startInput = document.getElementById('start-date') as HTMLInputElement;
+	const endInput = document.getElementById('end-date') as HTMLInputElement;
+	const betweenResults = document.getElementById('between-results');
+
+	function calculateBetween() {
+		if (!startInput || !endInput || !betweenResults) return;
+
+		const start = parseDateInput(startInput.value);
+		const end = parseDateInput(endInput.value);
+		if (!start || !end) {
+			betweenResults.style.display = 'none';
+			return;
+		}
+
+		betweenResults.style.display = 'block';
+
+		const result = countBetween(start, end);
+
+		const businessEl = document.getElementById('between-business');
+		const calendarEl = document.getElementById('between-calendar');
+		const weekendsEl = document.getElementById('between-weekends');
+		const breakdownEl = document.getElementById('month-breakdown');
+
+		if (businessEl)
+			businessEl.textContent = formatNumber(result.businessDays);
+		if (calendarEl)
+			calendarEl.textContent = formatNumber(result.calendarDays);
+		if (weekendsEl) weekendsEl.textContent = formatNumber(result.weekends);
+
+		if (breakdownEl) {
+			const keys = Object.keys(result.monthly).sort((a, b) => {
+				const [ay, am] = a.split('-').map(Number);
+				const [by, bm] = b.split('-').map(Number);
+				return ay !== by ? ay - by : am - bm;
+			});
+
+			if (keys.length === 0) {
+				breakdownEl.innerHTML =
+					'<p class="bd-breakdown-month" style="text-align:center">No business days in range</p>';
+			} else {
+				breakdownEl.innerHTML = keys
+					.map((key) => {
+						const [year, month] = key.split('-').map(Number);
+						const count = result.monthly[key];
+						const label =
+							keys.length > 1 && new Set(keys.map((k) => k.split('-')[0])).size > 1
+								? `${MONTH_NAMES[month]} ${year}`
+								: MONTH_NAMES[month];
+						return `<div class="bd-breakdown-row">
+							<span class="bd-breakdown-month">${label}</span>
+							<span class="bd-breakdown-count">${formatNumber(count)} day${count !== 1 ? 's' : ''}</span>
+						</div>`;
+					})
+					.join('');
+			}
+		}
+	}
+
+	// Tab B: Add Business Days
+	const addStartInput = document.getElementById(
+		'add-start-date',
+	) as HTMLInputElement;
+	const addDaysInput = document.getElementById('add-days') as HTMLInputElement;
+	const subtractToggle = document.getElementById(
+		'subtract-toggle',
+	) as HTMLInputElement;
+	const addResults = document.getElementById('add-results');
+
+	function calculateAdd() {
+		if (!addStartInput || !addDaysInput || !addResults) return;
+
+		const start = parseDateInput(addStartInput.value);
+		const days = parseInt(addDaysInput.value, 10);
+		const subtract = subtractToggle?.checked ?? false;
+
+		if (!start || !days || days < 1) {
+			addResults.style.display = 'none';
+			return;
+		}
+
+		addResults.style.display = 'block';
+
+		const { result, calendarDays } = addBusinessDays(start, days, subtract);
+
+		const dateEl = document.getElementById('add-result-date');
+		const dowEl = document.getElementById('add-result-dow');
+		const calendarEl = document.getElementById('add-calendar');
+		const directionEl = document.getElementById('add-direction');
+		const directionLabelEl = document.getElementById('add-direction-label');
+
+		if (dateEl) {
+			dateEl.textContent = result.toLocaleDateString('en-GB', {
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric',
+			});
+		}
+		if (dowEl) dowEl.textContent = result.toLocaleDateString('en-GB', { weekday: 'long' });
+		if (calendarEl) calendarEl.textContent = formatNumber(calendarDays);
+		if (directionEl) {
+			directionEl.textContent = `${subtract ? '−' : '+'}${formatNumber(days)}`;
+		}
+		if (directionLabelEl) {
+			directionLabelEl.textContent = subtract
+				? 'Business days subtracted'
+				: 'Business days added';
+		}
+	}
+
+	// Year reference grid
+	function renderYearReference() {
+		const grid = document.getElementById('year-reference');
+		if (!grid) return;
+
+		const year = new Date().getFullYear();
+		grid.innerHTML = MONTH_SHORT.map((name, i) => {
+			const count = countBusinessDaysInMonth(year, i);
+			return `<div class="bd-ref-card">
+				<div class="bd-ref-month" style="color: #10B981">${name}</div>
+				<div class="bd-ref-count">${count}</div>
+			</div>`;
+		}).join('');
+	}
+
+	// Default values
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+	const nextMonth = new Date(today);
+	nextMonth.setMonth(nextMonth.getMonth() + 1);
+
+	if (startInput) startInput.value = formatDateInput(today);
+	if (endInput) endInput.value = formatDateInput(nextMonth);
+	if (addStartInput) addStartInput.value = formatDateInput(today);
+
+	startInput?.addEventListener('input', calculateBetween);
+	endInput?.addEventListener('input', calculateBetween);
+	addStartInput?.addEventListener('input', calculateAdd);
+	addDaysInput?.addEventListener('input', calculateAdd);
+	subtractToggle?.addEventListener('change', calculateAdd);
+
+	renderYearReference();
+	calculateBetween();
+	calculateAdd();
+</script>
