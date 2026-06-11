@@ -1,0 +1,673 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="What Generation Am I? — Generation Calculator | Clockr"
+	description="Find out which generation you belong to — Baby Boomer, Gen X, Millennial, Gen Z or Gen Alpha. Enter your birth year for instant results."
+>
+	<div class="gen-page">
+		<div class="gen-header">
+			<div class="gen-eyebrow">🌍 Generations</div>
+			<h1 class="gen-title">
+				<span class="gen-gradient">What Generation</span><br />
+				<span class="gen-gradient">Am I?</span>
+			</h1>
+			<p class="gen-subtitle">
+				Find out which generation you belong to and what defines it
+			</p>
+		</div>
+
+		<div class="gen-input-wrap">
+			<label class="gen-label" for="year-input">Your birth year</label>
+			<input
+				type="number"
+				id="year-input"
+				class="gen-input"
+				placeholder="e.g. 1990"
+				min="1901"
+				max="2026"
+				inputmode="numeric"
+			/>
+		</div>
+
+		<div class="gen-results" id="gen-results" style="display:none">
+			<div class="gen-result-card" id="gen-result-card">
+				<div class="gen-result-name" id="gen-name">Millennial</div>
+				<div class="gen-result-range" id="gen-range">Born 1981 – 1996</div>
+				<p class="gen-result-desc" id="gen-desc"></p>
+				<div class="gen-result-age" id="gen-age"></div>
+			</div>
+
+			<div class="gen-timeline-wrap">
+				<div class="gen-timeline-label">Generation timeline</div>
+				<div class="gen-timeline" id="gen-timeline"></div>
+				<div class="gen-timeline-legend" id="gen-legend"></div>
+			</div>
+
+			<button class="gen-share" id="gen-share-btn">📋 Copy & Share</button>
+
+			<div class="gen-facts">
+				<h3 class="gen-facts-title">Generational fun facts</h3>
+				<div class="gen-facts-grid">
+					<div class="gen-fact-card">
+						<div class="gen-fact-icon">👥</div>
+						<div class="gen-fact-heading">Largest by population</div>
+						<p class="gen-fact-text">
+							Millennials overtook Baby Boomers in 2019 to become the largest
+							living generation in the United States — roughly 72 million strong.
+							Globally, Gen Z is now the most populous generation, with over 2
+							billion people worldwide.
+						</p>
+					</div>
+					<div class="gen-fact-card">
+						<div class="gen-fact-icon">🚀</div>
+						<div class="gen-fact-heading">Most entrepreneurial</div>
+						<p class="gen-fact-text">
+							Gen Z leads in entrepreneurial ambition — 62% want to start their
+							own business. Millennials aren't far behind at 50%, while Baby
+							Boomers founded more traditional small businesses per capita during
+							their peak earning years.
+						</p>
+					</div>
+					<div class="gen-fact-card">
+						<div class="gen-fact-icon">📱</div>
+						<div class="gen-fact-heading">Technology adoption</div>
+						<p class="gen-fact-text">
+							Gen Alpha are true digital natives — 65% use tablets before age
+							5. Gen Z spends an average of 7+ hours daily on screens. Millennials
+							adopted smartphones as adults, while Boomers were the slowest
+							adopters but now use social media more than ever.
+						</p>
+					</div>
+					<div class="gen-fact-card">
+						<div class="gen-fact-icon">💼</div>
+						<div class="gen-fact-heading">Workforce composition</div>
+						<p class="gen-fact-text">
+							As of 2026, Millennials and Gen X together make up over 60% of the
+							global workforce. Gen Z is the fastest-growing segment, while Baby
+							Boomers are retiring at a rate of 10,000 per day in the US alone.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="gen-related">
+			<h3 class="gen-related-title">You might also like</h3>
+			<div class="gen-related-grid">
+				<a href="/age-calculator" class="gen-related-card">🎂 Age Calculator</a>
+				<a href="/life-in-numbers" class="gen-related-card">🔢 Life in Numbers</a>
+				<a href="/year-progress" class="gen-related-card">📅 Year Progress</a>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.gen-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.gen-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.gen-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.gen-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.gen-gradient {
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.gen-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.gen-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 48px;
+	}
+
+	.gen-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.gen-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		width: 200px;
+		transition: border-color 0.2s ease;
+		-moz-appearance: textfield;
+	}
+
+	.gen-input::-webkit-outer-spin-button,
+	.gen-input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	.gen-input:focus {
+		border-color: rgba(168, 85, 247, 0.8);
+		box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+	}
+
+	.gen-input::placeholder {
+		color: rgba(255, 255, 255, 0.2);
+		font-weight: 600;
+	}
+
+	.gen-result-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(168, 85, 247, 0.2);
+		border-radius: 20px;
+		padding: 40px;
+		text-align: center;
+		margin-bottom: 24px;
+		box-shadow: 0 0 40px rgba(168, 85, 247, 0.06);
+	}
+
+	.gen-result-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 72px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.gen-result-range {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 20px;
+	}
+
+	.gen-result-desc {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.65);
+		line-height: 1.7;
+		text-align: left;
+		margin-bottom: 20px;
+	}
+
+	.gen-result-age {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.4);
+		padding-top: 16px;
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.gen-timeline-wrap {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 16px;
+		padding: 24px;
+		margin-bottom: 24px;
+	}
+
+	.gen-timeline-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 16px;
+	}
+
+	.gen-timeline {
+		display: flex;
+		height: 40px;
+		border-radius: 8px;
+		overflow: hidden;
+		gap: 2px;
+		margin-bottom: 16px;
+	}
+
+	.gen-timeline-bar {
+		height: 100%;
+		transition: opacity 0.2s ease, transform 0.2s ease;
+		cursor: default;
+		min-width: 2px;
+	}
+
+	.gen-timeline-bar--active {
+		transform: scaleY(1.15);
+		box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+		z-index: 1;
+		position: relative;
+	}
+
+	.gen-timeline-bar--dim {
+		opacity: 0.35;
+	}
+
+	.gen-timeline-legend {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 16px;
+	}
+
+	.gen-legend-item {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.gen-legend-item--active {
+		color: rgba(255, 255, 255, 0.9);
+		font-weight: 600;
+	}
+
+	.gen-legend-swatch {
+		width: 10px;
+		height: 10px;
+		border-radius: 2px;
+		flex-shrink: 0;
+	}
+
+	.gen-share {
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		width: 100%;
+		margin-bottom: 48px;
+		transition: opacity 0.2s ease;
+	}
+
+	.gen-share:hover {
+		opacity: 0.9;
+	}
+
+	.gen-facts {
+		margin-bottom: 60px;
+	}
+
+	.gen-facts-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.gen-facts-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.gen-fact-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 14px;
+		padding: 20px;
+	}
+
+	.gen-fact-icon {
+		font-size: 24px;
+		margin-bottom: 8px;
+	}
+
+	.gen-fact-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 8px;
+	}
+
+	.gen-fact-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.gen-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.gen-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.gen-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.gen-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.gen-related-card:hover {
+		border-color: rgba(168, 85, 247, 0.4);
+		color: #fff;
+	}
+
+	@media (max-width: 600px) {
+		.gen-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.gen-result-name {
+			font-size: 48px;
+		}
+
+		.gen-facts-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.gen-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	const CURRENT_YEAR = 2026;
+	const TIMELINE_START = 1901;
+	const TIMELINE_END = 2025;
+
+	interface Generation {
+		id: string;
+		name: string;
+		shortName: string;
+		start: number;
+		end: number;
+		color: string;
+		description: string;
+	}
+
+	const generations: Generation[] = [
+		{
+			id: 'greatest',
+			name: 'The Greatest Generation',
+			shortName: 'Greatest',
+			start: 1901,
+			end: 1927,
+			color: '#6366f1',
+			description:
+				'Shaped by the Great Depression and World War II, the Greatest Generation displayed extraordinary resilience, sacrifice, and civic duty. They rebuilt nations after global conflict, laid the groundwork for the civil rights movement that would follow, and laid the economic foundations of the modern world. Cultural touchstones include swing music, radio serials, the New Deal, and the golden age of Hollywood — they witnessed the rise of aviation, the atom bomb, and the first moon landing as adults.',
+		},
+		{
+			id: 'silent',
+			name: 'The Silent Generation',
+			shortName: 'Silent',
+			start: 1928,
+			end: 1945,
+			color: '#8b5cf6',
+			description:
+				'Named for their reputation as conformist and civic-minded, the Silent Generation navigated the Cold War, the Korean War, and the early civil rights era. They experienced the birth of television, rock and roll\'s earliest days, and the post-war economic boom. Known for loyalty, hard work, and respect for institutions, they bridged the wartime grit of their elders and the social upheaval their children would bring.',
+		},
+		{
+			id: 'boomers',
+			name: 'Baby Boomers',
+			shortName: 'Boomers',
+			start: 1946,
+			end: 1964,
+			color: '#ec4899',
+			description:
+				'Born in the unprecedented post-WWII population surge, Baby Boomers grew up during the Space Race, the Vietnam War, Watergate, and the cultural revolution of the 1960s and 70s. They witnessed the moon landing, Woodstock, the rise of colour television, and the birth of personal computing. Often associated with optimism, ambition, and reshaping social norms around work, family, and identity.',
+		},
+		{
+			id: 'genx',
+			name: 'Generation X',
+			shortName: 'Gen X',
+			start: 1965,
+			end: 1980,
+			color: '#f59e0b',
+			description:
+				'The latchkey generation grew up during the Cold War, the rise of MTV, arcade games, VHS tapes and the personal computer revolution. Gen X witnessed the fall of the Berlin Wall as teenagers and young adults, lived through the AIDS crisis, and navigated the dot-com boom and bust as young professionals. Independent, sceptical, and adaptable, they\'re often called the forgotten middle child between two much larger generations.',
+		},
+		{
+			id: 'millennials',
+			name: 'Millennials',
+			shortName: 'Millennial',
+			start: 1981,
+			end: 1996,
+			color: '#10b981',
+			description:
+				'Millennials reached adulthood around the turn of the millennium, shaped by 9/11, the Great Recession, and the explosion of the internet and social media. They grew up with dial-up modems, Harry Potter, the iPhone launch, and the rise of streaming culture. Often characterised as experience-driven, socially conscious, and digitally fluent — they redefined workplaces, parenting, and how we connect online.',
+		},
+		{
+			id: 'genz',
+			name: 'Generation Z',
+			shortName: 'Gen Z',
+			start: 1997,
+			end: 2012,
+			color: '#06b6d4',
+			description:
+				'Gen Z grew up as smartphones and social media became mainstream — the oldest remember a world before them, but the youngest never did. True digital natives, they\'ve always had Wi-Fi, streaming, and the world\'s information at their fingertips. They came of age during COVID-19, climate activism, and a reckoning with mental health and identity. TikTok, K-pop, Fortnite, and memes define their cultural landscape. Pragmatic, diverse, and politically engaged, they\'re reshaping education, entertainment, and the future of work.',
+		},
+		{
+			id: 'genalpha',
+			name: 'Generation Alpha',
+			shortName: 'Gen Alpha',
+			start: 2013,
+			end: 2025,
+			color: '#ff5c4d',
+			description:
+				'The first generation born entirely in the 21st century, Gen Alpha is growing up with AI assistants, tablets in classrooms, and voice-controlled everything. Named after the Greek alphabet\'s first letter, they\'re the children of Millennials and older Gen Z. Their world includes YouTube Kids, Minecraft, climate anxiety, and a planet more connected — and more uncertain — than any before.',
+		},
+	];
+
+	const yearInput = document.getElementById('year-input') as HTMLInputElement;
+	const results = document.getElementById('gen-results');
+	const shareBtn = document.getElementById('gen-share-btn');
+
+	let currentGeneration: Generation | null = null;
+
+	function getGeneration(year: number): Generation | null {
+		return generations.find((g) => year >= g.start && year <= g.end) ?? null;
+	}
+
+	function ageRangeIn2026(start: number, end: number): string {
+		const minAge = CURRENT_YEAR - end;
+		const maxAge = CURRENT_YEAR - start;
+		if (minAge < 0) return 'Not yet born in 2026';
+		if (minAge === maxAge) return `Age ${minAge} in 2026`;
+		return `Ages ${minAge}–${maxAge} in 2026`;
+	}
+
+	function buildTimeline(activeId: string) {
+		const timeline = document.getElementById('gen-timeline');
+		const legend = document.getElementById('gen-legend');
+		if (!timeline || !legend) return;
+
+		const totalSpan = TIMELINE_END - TIMELINE_START + 1;
+		timeline.innerHTML = '';
+		legend.innerHTML = '';
+
+		for (const gen of generations) {
+			const span = gen.end - gen.start + 1;
+			const widthPct = (span / totalSpan) * 100;
+
+			const bar = document.createElement('div');
+			bar.className = 'gen-timeline-bar';
+			bar.style.width = `${widthPct}%`;
+			bar.style.background = gen.color;
+			bar.title = `${gen.name} (${gen.start}–${gen.end})`;
+
+			if (gen.id === activeId) {
+				bar.classList.add('gen-timeline-bar--active');
+			} else {
+				bar.classList.add('gen-timeline-bar--dim');
+			}
+
+			timeline.appendChild(bar);
+
+			const item = document.createElement('div');
+			item.className =
+				'gen-legend-item' + (gen.id === activeId ? ' gen-legend-item--active' : '');
+			item.innerHTML = `<span class="gen-legend-swatch" style="background:${gen.color}"></span>${gen.shortName} (${gen.start}–${gen.end})`;
+			legend.appendChild(item);
+		}
+	}
+
+	function updateResult() {
+		if (!yearInput || !results) return;
+
+		const raw = yearInput.value.trim();
+		if (!raw || raw.length < 4) {
+			results.style.display = 'none';
+			return;
+		}
+
+		const year = parseInt(raw, 10);
+		if (isNaN(year) || year < 1000 || year > 9999) {
+			results.style.display = 'none';
+			return;
+		}
+
+		const gen = getGeneration(year);
+		currentGeneration = gen;
+
+		results.style.display = 'block';
+
+		const nameEl = document.getElementById('gen-name');
+		const rangeEl = document.getElementById('gen-range');
+		const descEl = document.getElementById('gen-desc');
+		const ageEl = document.getElementById('gen-age');
+		const cardEl = document.getElementById('gen-result-card');
+
+		if (!gen) {
+			if (nameEl) {
+				nameEl.textContent = year > TIMELINE_END ? 'Too young to tell' : 'Before our timeline';
+				nameEl.style.background = 'none';
+				nameEl.style.webkitTextFillColor = 'rgba(255,255,255,0.5)';
+				nameEl.style.color = 'rgba(255,255,255,0.5)';
+			}
+			if (rangeEl)
+				rangeEl.textContent =
+					year > TIMELINE_END
+						? 'Generation Alpha ends at 2025 — check back soon!'
+						: 'Our generations start from 1901';
+			if (descEl)
+				descEl.textContent =
+					year > TIMELINE_END
+						? 'You may be part of the next generation yet to be named. Generation Alpha currently covers births from 2013 to 2025.'
+						: 'The Greatest Generation begins with those born in 1901. If you were born earlier, you belong to an era before modern generational labels.';
+			if (ageEl) ageEl.textContent = '';
+			buildTimeline('');
+			return;
+		}
+
+		if (nameEl) {
+			nameEl.textContent = gen.name;
+			nameEl.style.background = `linear-gradient(135deg, #a855f7, #ff5c4d)`;
+			nameEl.style.webkitBackgroundClip = 'text';
+			nameEl.style.webkitTextFillColor = 'transparent';
+			nameEl.style.backgroundClip = 'text';
+		}
+		if (rangeEl) rangeEl.textContent = `Born ${gen.start} – ${gen.end}`;
+		if (descEl) descEl.textContent = gen.description;
+		if (ageEl) {
+			const ageText = ageRangeIn2026(gen.start, gen.end);
+			ageEl.textContent =
+				gen.id === 'greatest' ? `${ageText} (few surviving members)` : ageText;
+		}
+		if (cardEl) {
+			cardEl.style.borderColor = `${gen.color}44`;
+			cardEl.style.boxShadow = `0 0 40px ${gen.color}11`;
+		}
+
+		buildTimeline(gen.id);
+	}
+
+	yearInput?.addEventListener('input', updateResult);
+
+	shareBtn?.addEventListener('click', () => {
+		const label = currentGeneration?.shortName ?? 'a mystery generation';
+		const text = `I'm a ${label}! Find out yours at clockr.co/what-generation`;
+		navigator.clipboard.writeText(text);
+		shareBtn.textContent = '✓ Copied!';
+		setTimeout(() => {
+			shareBtn.textContent = '📋 Copy & Share';
+		}, 2000);
+	});
+</script>
