@@ -1,0 +1,558 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const leftEmojis = [
+	{ emoji: '🐣', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '🐰', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '🌸', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '🥚', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '🌷', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '🦋', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '🌼', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '🐥', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '🌱', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '🍫', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '🎀', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '🌈', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title="Days Until Easter 2027 — Easter Countdown | Clockr"
+	description="How many days until Easter 2027? Live countdown to Easter Sunday showing exact days, hours, minutes and seconds."
+>
+	<div class="easter-page">
+		<section class="easter-hero" aria-label="Easter countdown">
+			<div class="easter-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="easter-float-emoji easter-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="easter-float-emoji easter-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="easter-hero-centre">
+				<h1 class="easter-hero-title">Days Until Easter</h1>
+
+				<div class="easter-countdown" id="easter-countdown">
+					<div class="easter-countdown-block">
+						<span class="easter-countdown-num easter-countdown-num--days" id="hero-days"
+							>0</span
+						>
+						<span class="easter-countdown-unit">Days</span>
+					</div>
+					<span class="easter-countdown-sep">:</span>
+					<div class="easter-countdown-block">
+						<span class="easter-countdown-num" id="hero-hours">00</span>
+						<span class="easter-countdown-unit">Hours</span>
+					</div>
+					<span class="easter-countdown-sep">:</span>
+					<div class="easter-countdown-block">
+						<span class="easter-countdown-num" id="hero-mins">00</span>
+						<span class="easter-countdown-unit">Minutes</span>
+					</div>
+					<span class="easter-countdown-sep">:</span>
+					<div class="easter-countdown-block">
+						<span class="easter-countdown-num" id="hero-secs">00</span>
+						<span class="easter-countdown-unit">Seconds</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="easter-body">
+			<section class="easter-stats-section">
+				<h2 class="easter-stats-heading">Easter by the numbers</h2>
+				<div class="easter-stats-grid">
+					<div class="easter-stat-card">
+						<div class="easter-stat-label">Easter Sunday</div>
+						<div class="easter-stat-value" id="stat-date">—</div>
+					</div>
+					<div class="easter-stat-card">
+						<div class="easter-stat-label">Day of the week</div>
+						<div class="easter-stat-value" id="stat-weekday">—</div>
+					</div>
+					<div class="easter-stat-card">
+						<div class="easter-stat-label">Weeks until Easter</div>
+						<div class="easter-stat-value" id="stat-weeks">—</div>
+					</div>
+					<div class="easter-stat-card">
+						<div class="easter-stat-label">Minutes until Easter</div>
+						<div class="easter-stat-value" id="stat-minutes">—</div>
+					</div>
+				</div>
+			</section>
+
+			<button class="easter-share-btn" id="easter-share-btn">📋 Copy &amp; Share</button>
+
+			<section class="easter-facts">
+				<h2 class="easter-facts-title">Easter fun facts</h2>
+				<div class="easter-facts-grid">
+					<div class="easter-fact-card">
+						<div class="easter-fact-emoji">📅</div>
+						<h3 class="easter-fact-heading">How Easter date is calculated</h3>
+						<p class="easter-fact-text">
+							Easter Sunday falls on the first Sunday after the first full moon
+							on or after 21 March. The date shifts each year — anywhere from
+							22 March to 25 April — which is why it never lands on the same
+							calendar day twice in a row.
+						</p>
+					</div>
+					<div class="easter-fact-card">
+						<div class="easter-fact-emoji">🥚</div>
+						<h3 class="easter-fact-heading">Origin of Easter eggs</h3>
+						<p class="easter-fact-text">
+							Eggs were a symbol of new life and rebirth long before
+							Christianity. Early Christians dyed eggs red to represent Christ's
+							blood, and the tradition of decorating eggs for Easter spread
+							across Europe from medieval times.
+						</p>
+					</div>
+					<div class="easter-fact-card">
+						<div class="easter-fact-emoji">🍫</div>
+						<h3 class="easter-fact-heading">Chocolate at Easter</h3>
+						<p class="easter-fact-text">
+							Over 90 million chocolate Easter eggs are sold in the UK each
+							year, and Americans spend roughly $3 billion on Easter candy
+							annually. Chocolate eggs became popular in the 19th century when
+							Fry's of Bristol made the first hollow egg in 1873.
+						</p>
+					</div>
+					<div class="easter-fact-card">
+						<div class="easter-fact-emoji">🐰</div>
+						<h3 class="easter-fact-heading">Origin of the Easter bunny</h3>
+						<p class="easter-fact-text">
+							The Easter bunny arrived in America with German immigrants in the
+							1700s. Their folklore told of an egg-laying hare called
+							"Osterhase" who judged whether children had been good — rewarding
+							them with colourful eggs hidden in gardens.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<div class="easter-related">
+				<h3 class="easter-related-title">You might also like</h3>
+				<div class="easter-related-grid">
+					<a href="/countdown-timer" class="easter-related-card">⏱️ Countdown Timer</a>
+					<a href="/days-until-christmas" class="easter-related-card">🎄 Days Until Christmas</a>
+					<a href="/year-progress" class="easter-related-card">📅 Year Progress</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.easter-page {
+		width: 100%;
+	}
+
+	.easter-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #0a1a0a, #1a2d0a);
+		border-bottom: 1px solid rgba(123, 198, 126, 0.25);
+		overflow: hidden;
+		position: relative;
+		min-height: 320px;
+	}
+
+	.easter-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.easter-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: easter-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.easter-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes easter-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.easter-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.easter-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 32px;
+		background: linear-gradient(135deg, #7bc67e, #f9e04b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.easter-countdown {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	.easter-countdown-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.easter-countdown-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		color: #7bc67e;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	.easter-countdown-num--days {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	.easter-countdown-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	.easter-countdown-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.easter-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.easter-stats-section {
+		margin-bottom: 16px;
+	}
+
+	.easter-stats-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.easter-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.easter-stats-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.easter-stat-card {
+		background: #0d1f0d;
+		border: 1px solid rgba(123, 198, 126, 0.4);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.easter-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 10px;
+	}
+
+	.easter-stat-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.4;
+		color: #7bc67e;
+	}
+
+	.easter-share-btn {
+		display: block;
+		background: linear-gradient(135deg, #7bc67e, #5a9e5c);
+		color: #0a1a0a;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		max-width: 320px;
+		width: 100%;
+		margin: 0 auto 48px;
+		transition: opacity 0.2s ease;
+	}
+
+	.easter-share-btn:hover {
+		opacity: 0.9;
+	}
+
+	.easter-facts {
+		margin-bottom: 48px;
+	}
+
+	.easter-facts-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.easter-facts-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.easter-facts-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.easter-fact-card {
+		background: #0a1a0a;
+		border: 1px solid rgba(123, 198, 126, 0.3);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.easter-fact-emoji {
+		font-size: 28px;
+		margin-bottom: 12px;
+		line-height: 1;
+	}
+
+	.easter-fact-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		color: #7bc67e;
+		margin-bottom: 8px;
+	}
+
+	.easter-fact-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+	}
+
+	.easter-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.easter-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.easter-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.easter-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.easter-related-card:hover {
+		border-color: rgba(123, 198, 126, 0.4);
+		color: #fff;
+	}
+</style>
+
+<script>
+	function pad(n: number) {
+		return String(n).padStart(2, '0');
+	}
+
+	/** Anonymous Gregorian algorithm for Western Easter Sunday */
+	function getEasterDate(year: number): Date {
+		const a = year % 19;
+		const b = Math.floor(year / 100);
+		const c = year % 100;
+		const d = Math.floor(b / 4);
+		const e = b % 4;
+		const f = Math.floor((b + 8) / 25);
+		const g = Math.floor((b - f + 1) / 3);
+		const h = (19 * a + b - d - g + 15) % 30;
+		const i = Math.floor(c / 4);
+		const k = c % 4;
+		const l = (32 + 2 * e + 2 * i - h - k) % 7;
+		const m = Math.floor((a + 11 * h + 22 * l) / 451);
+		const month = Math.floor((h + l - 7 * m + 114) / 31);
+		const day = ((h + l - 7 * m + 114) % 31) + 1;
+		return new Date(year, month - 1, day, 0, 0, 0, 0);
+	}
+
+	function getTargetEaster(): Date {
+		const now = new Date();
+		let year = now.getFullYear();
+		let easter = getEasterDate(year);
+		if (now.getTime() >= easter.getTime()) {
+			year += 1;
+			easter = getEasterDate(year);
+		}
+		return easter;
+	}
+
+	function formatEasterDate(date: Date): string {
+		return date.toLocaleDateString('en-GB', {
+			day: 'numeric',
+			month: 'long',
+			year: 'numeric',
+		});
+	}
+
+	function updateCountdown() {
+		const now = new Date();
+		const easter = getTargetEaster();
+		const diff = easter.getTime() - now.getTime();
+
+		if (diff <= 0) return;
+
+		const totalSeconds = Math.floor(diff / 1000);
+		const days = Math.floor(totalSeconds / 86400);
+		const hours = Math.floor((totalSeconds % 86400) / 3600);
+		const mins = Math.floor((totalSeconds % 3600) / 60);
+		const secs = totalSeconds % 60;
+		const totalMinutes = Math.floor(totalSeconds / 60);
+
+		const heroDays = document.getElementById('hero-days');
+		const heroHours = document.getElementById('hero-hours');
+		const heroMins = document.getElementById('hero-mins');
+		const heroSecs = document.getElementById('hero-secs');
+		const statDate = document.getElementById('stat-date');
+		const statWeekday = document.getElementById('stat-weekday');
+		const statWeeks = document.getElementById('stat-weeks');
+		const statMinutes = document.getElementById('stat-minutes');
+
+		if (heroDays) heroDays.textContent = String(days);
+		if (heroHours) heroHours.textContent = pad(hours);
+		if (heroMins) heroMins.textContent = pad(mins);
+		if (heroSecs) heroSecs.textContent = pad(secs);
+
+		const weekday = easter.toLocaleDateString('en-GB', { weekday: 'long' });
+		const weeks = Math.floor(days / 7);
+
+		if (statDate) statDate.textContent = formatEasterDate(easter);
+		if (statWeekday) statWeekday.textContent = weekday;
+		if (statWeeks)
+			statWeeks.textContent = `${weeks} week${weeks === 1 ? '' : 's'}`;
+		if (statMinutes)
+			statMinutes.textContent = `${totalMinutes.toLocaleString()} minute${totalMinutes === 1 ? '' : 's'}`;
+	}
+
+	const shareBtn = document.getElementById('easter-share-btn');
+	shareBtn?.addEventListener('click', () => {
+		const days = document.getElementById('hero-days')?.textContent ?? '0';
+		navigator.clipboard.writeText(
+			`Easter is ${days} days away — clockr.co/days-until-easter`,
+		);
+		shareBtn.textContent = '✓ Copied!';
+		setTimeout(() => {
+			shareBtn.textContent = '📋 Copy & Share';
+		}, 2000);
+	});
+
+	updateCountdown();
+	setInterval(updateCountdown, 1000);
+</script>
