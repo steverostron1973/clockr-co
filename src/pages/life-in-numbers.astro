@@ -1,0 +1,448 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Your Life in Numbers — Clockr.co"
+	description="Enter your date of birth and discover the incredible scale of your life — days, heartbeats, breaths, Christmases, full moons and more."
+>
+	<div class="lin-page">
+		<div class="lin-header">
+			<div class="lin-eyebrow">🔢 Life in Numbers</div>
+			<h1 class="lin-title">
+				<span class="lin-gradient">Your Life</span><br />
+				<span class="lin-gradient">in Numbers</span>
+			</h1>
+			<p class="lin-subtitle">
+				Enter your date of birth and discover the incredible scale of your life
+			</p>
+		</div>
+
+		<div class="lin-input-wrap">
+			<label class="lin-label" for="dob-input">Your date of birth</label>
+			<input type="date" id="dob-input" class="lin-input" />
+		</div>
+
+		<div class="lin-results" id="lin-results" style="display:none">
+			<div class="lin-grid">
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-days">0</div>
+					<div class="lin-stat-label">Days alive</div>
+				</div>
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-hours">0</div>
+					<div class="lin-stat-label">Hours alive</div>
+				</div>
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-minutes">0</div>
+					<div class="lin-stat-label">Minutes alive</div>
+				</div>
+				<div class="lin-stat-card lin-stat-card--highlight">
+					<div class="lin-stat-num" id="lin-seconds">0</div>
+					<div class="lin-stat-label">Seconds alive</div>
+				</div>
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-weeks">0</div>
+					<div class="lin-stat-label">Weeks alive</div>
+				</div>
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-months">0</div>
+					<div class="lin-stat-label">Months alive</div>
+				</div>
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-heartbeats">0</div>
+					<div class="lin-stat-label">Heartbeats</div>
+				</div>
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-breaths">0</div>
+					<div class="lin-stat-label">Breaths taken</div>
+				</div>
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-sleeps">0</div>
+					<div class="lin-stat-label">Times slept</div>
+				</div>
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-christmases">0</div>
+					<div class="lin-stat-label">Christmases experienced</div>
+				</div>
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-newyears">0</div>
+					<div class="lin-stat-label">New Years celebrated</div>
+				</div>
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-mondays">0</div>
+					<div class="lin-stat-label">Mondays survived</div>
+				</div>
+				<div class="lin-stat-card">
+					<div class="lin-stat-num" id="lin-moons">0</div>
+					<div class="lin-stat-label">Full moons witnessed</div>
+				</div>
+			</div>
+
+			<button class="lin-share" id="lin-share-btn">📤 Share my numbers</button>
+		</div>
+
+		<div class="lin-related">
+			<h3 class="lin-related-title">You might also like</h3>
+			<div class="lin-related-grid">
+				<a href="/age-calculator" class="lin-related-card">🎂 Age Calculator</a>
+				<a href="/how-many-seconds-alive" class="lin-related-card"
+					>⚡ 1 Billion Seconds</a
+				>
+				<a href="/birthday-countdown" class="lin-related-card"
+					>🎈 Birthday Countdown</a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.lin-page {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.lin-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.lin-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.lin-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.lin-gradient {
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.lin-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.lin-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 48px;
+	}
+
+	.lin-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.lin-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+	}
+
+	.lin-input:focus {
+		border-color: rgba(168, 85, 247, 0.8);
+		box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+	}
+
+	.lin-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		margin-bottom: 24px;
+	}
+
+	.lin-stat-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(168, 85, 247, 0.15);
+		border-radius: 14px;
+		padding: 28px 16px;
+		text-align: center;
+		transition: border-color 0.2s ease;
+	}
+
+	.lin-stat-card:hover {
+		border-color: rgba(168, 85, 247, 0.35);
+	}
+
+	.lin-stat-card--highlight {
+		border-color: rgba(255, 92, 77, 0.25);
+		box-shadow: 0 0 30px rgba(168, 85, 247, 0.08);
+	}
+
+	.lin-stat-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 36px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		line-height: 1.1;
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 8px;
+		word-break: break-word;
+	}
+
+	.lin-stat-card--highlight .lin-stat-num {
+		font-size: 42px;
+	}
+
+	.lin-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.lin-share {
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		width: 100%;
+		margin-bottom: 60px;
+		transition: opacity 0.2s ease;
+	}
+
+	.lin-share:hover {
+		opacity: 0.9;
+	}
+
+	.lin-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.lin-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.lin-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.lin-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.lin-related-card:hover {
+		border-color: rgba(168, 85, 247, 0.4);
+		color: #fff;
+	}
+
+	@media (max-width: 640px) {
+		.lin-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.lin-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.lin-stat-num {
+			font-size: 28px;
+		}
+
+		.lin-stat-card--highlight .lin-stat-num {
+			font-size: 32px;
+		}
+
+		.lin-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const dobInput = document.getElementById('dob-input') as HTMLInputElement;
+		const results = document.getElementById('lin-results');
+
+		const SYNODIC_MONTH = 29.53059;
+		const HEARTBEAT_BPM = 70;
+		const BREATHS_PER_MIN = 16;
+
+		function formatNumber(n: number) {
+			return n.toLocaleString();
+		}
+
+		function calendarMonthsBetween(dob: Date, now: Date) {
+			let months =
+				(now.getFullYear() - dob.getFullYear()) * 12 +
+				(now.getMonth() - dob.getMonth());
+			if (now.getDate() < dob.getDate()) months--;
+			return Math.max(0, months);
+		}
+
+		function countOccurrences(
+			dob: Date,
+			now: Date,
+			month: number,
+			day: number,
+		) {
+			let count = 0;
+			for (let y = dob.getFullYear(); y <= now.getFullYear(); y++) {
+				const date = new Date(y, month, day);
+				if (date >= dob && date <= now) count++;
+			}
+			return count;
+		}
+
+		function countMondays(dob: Date, now: Date) {
+			const start = new Date(dob);
+			start.setHours(0, 0, 0, 0);
+			const end = new Date(now);
+			end.setHours(0, 0, 0, 0);
+
+			let count = 0;
+			const cursor = new Date(start);
+			while (cursor <= end) {
+				if (cursor.getDay() === 1) count++;
+				cursor.setDate(cursor.getDate() + 1);
+			}
+			return count;
+		}
+
+		function setText(id: string, value: string) {
+			const el = document.getElementById(id);
+			if (el) el.textContent = value;
+		}
+
+		function calculate() {
+			if (!dobInput || !results) return;
+
+			if (!dobInput.value) {
+				results.style.display = 'none';
+				return;
+			}
+
+			const dob = new Date(dobInput.value + 'T00:00:00');
+			if (isNaN(dob.getTime())) {
+				results.style.display = 'none';
+				return;
+			}
+
+			const now = new Date();
+			const diff = now.getTime() - dob.getTime();
+			if (diff < 0) {
+				results.style.display = 'none';
+				return;
+			}
+
+			results.style.display = 'block';
+
+			const totalSeconds = Math.floor(diff / 1000);
+			const totalMinutes = Math.floor(totalSeconds / 60);
+			const totalHours = Math.floor(totalMinutes / 60);
+			const totalDays = Math.floor(totalHours / 24);
+			const totalWeeks = Math.floor(totalDays / 7);
+
+			const heartbeats = Math.floor((totalMinutes * HEARTBEAT_BPM) | 0);
+			const breaths = Math.floor(totalMinutes * BREATHS_PER_MIN);
+			const nightsSlept = totalDays;
+			const christmases = countOccurrences(dob, now, 11, 25);
+			const newYears = countOccurrences(dob, now, 0, 1);
+			const mondays = countMondays(dob, now);
+			const fullMoons = Math.floor(totalDays / SYNODIC_MONTH);
+
+			setText('lin-days', formatNumber(totalDays));
+			setText('lin-hours', formatNumber(totalHours));
+			setText('lin-minutes', formatNumber(totalMinutes));
+			setText('lin-seconds', formatNumber(totalSeconds));
+			setText('lin-weeks', formatNumber(totalWeeks));
+			setText('lin-months', formatNumber(calendarMonthsBetween(dob, now)));
+			setText('lin-heartbeats', formatNumber(heartbeats));
+			setText('lin-breaths', formatNumber(breaths));
+			setText('lin-sleeps', formatNumber(nightsSlept));
+			setText('lin-christmases', formatNumber(christmases));
+			setText('lin-newyears', formatNumber(newYears));
+			setText('lin-mondays', formatNumber(mondays));
+			setText('lin-moons', formatNumber(fullMoons));
+
+			const shareBtn = document.getElementById('lin-share-btn');
+			if (shareBtn) {
+				shareBtn.onclick = () => {
+					navigator.clipboard.writeText(
+						`I've been alive for ${formatNumber(totalDays)} days, taken ${formatNumber(breaths)} breaths, and survived ${formatNumber(mondays)} Mondays. Discover your life in numbers at Clockr.co 🔢`,
+					);
+					shareBtn.textContent = '✅ Copied to clipboard!';
+					setTimeout(() => {
+						shareBtn.textContent = '📤 Share my numbers';
+					}, 2000);
+				};
+			}
+		}
+
+		if (dobInput) {
+			dobInput.addEventListener('input', calculate);
+			dobInput.addEventListener('change', calculate);
+		}
+
+		setInterval(() => {
+			if (dobInput?.value) calculate();
+		}, 1000);
+	});
+</script>
