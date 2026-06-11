@@ -142,9 +142,7 @@ const sparkles = [
 			</section>
 
 			<!-- SHARE -->
-			<button class="ny-share-btn" id="ny-share-btn">
-				📤 New Year is <span id="share-days">0</span> days away
-			</button>
+			<button class="ny-share-btn" id="ny-share-btn">📋 Copy &amp; Share</button>
 
 			<!-- FUN FACTS -->
 			<section class="ny-facts">
@@ -600,15 +598,15 @@ const sparkles = [
 
 	const shareBtn = document.getElementById('ny-share-btn');
 	shareBtn?.addEventListener('click', () => {
-		const days = document.getElementById('share-days')?.textContent ?? '0';
+		const days = document.getElementById('hero-days')?.textContent ?? '0';
 		const newYear = getTargetNewYear();
 		const year = newYear.getFullYear();
 		navigator.clipboard.writeText(
 			`🎆 New Year is ${days} days away! Count down to 1 January ${year} at Clockr.co`,
 		);
-		shareBtn.textContent = '✅ Copied to clipboard!';
+		shareBtn.textContent = '✓ Copied!';
 		setTimeout(() => {
-			shareBtn.innerHTML = `📤 New Year is <span id="share-days">${days}</span> days away`;
+			shareBtn.textContent = '📋 Copy & Share';
 		}, 2000);
 	});
 

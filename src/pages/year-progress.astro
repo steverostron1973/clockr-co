@@ -98,7 +98,7 @@ const MONTH_NAMES = [
 		</div>
 
 		<!-- SHARE -->
-		<button class="yp-share" id="yp-share-btn">📤 Share year progress</button>
+		<button class="yp-share" id="yp-share-btn">📋 Copy &amp; Share</button>
 
 		<!-- RELATED TOOLS -->
 		<div class="yp-related">
@@ -310,6 +310,7 @@ const MONTH_NAMES = [
 	}
 
 	.yp-share {
+		display: block;
 		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
 		color: #fff;
 		border: none;
@@ -319,8 +320,8 @@ const MONTH_NAMES = [
 		font-size: 16px;
 		font-weight: 700;
 		cursor: pointer;
-		width: 100%;
-		margin-bottom: 60px;
+		max-width: 320px;
+		margin: 0 auto 60px;
 		transition: opacity 0.2s ease;
 	}
 
@@ -523,9 +524,9 @@ const MONTH_NAMES = [
 			navigator.clipboard.writeText(
 				`${YEAR} is ${pct}% complete. ${url}`,
 			);
-			shareBtn.textContent = '✅ Copied to clipboard!';
+			shareBtn.textContent = '✓ Copied!';
 			setTimeout(() => {
-				shareBtn.textContent = '📤 Share year progress';
+				shareBtn.textContent = '📋 Copy & Share';
 			}, 2000);
 		});
 	}
