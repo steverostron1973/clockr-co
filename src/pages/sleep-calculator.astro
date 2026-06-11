@@ -1,0 +1,617 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Sleep Calculator — Best Time to Sleep and Wake Up | Clockr"
+	description="Find the best time to go to sleep or wake up based on sleep cycles. Wake up refreshed every time with our free sleep calculator."
+>
+	<div class="sleep-page">
+		<!-- PAGE HEADER -->
+		<div class="sleep-header">
+			<div class="sleep-eyebrow">😴 Sleep & Rest</div>
+			<h1 class="sleep-title">
+				<span class="sleep-gradient">Sleep Calculator</span>
+			</h1>
+			<p class="sleep-subtitle">
+				Wake up feeling refreshed, not groggy
+			</p>
+		</div>
+
+		<!-- MODE TABS -->
+		<div class="sleep-tabs" role="tablist">
+			<button
+				type="button"
+				class="sleep-tab sleep-tab--active"
+				id="tab-wake"
+				role="tab"
+				aria-selected="true"
+				data-mode="wake"
+			>
+				I want to wake up at...
+			</button>
+			<button
+				type="button"
+				class="sleep-tab"
+				id="tab-sleep"
+				role="tab"
+				aria-selected="false"
+				data-mode="sleep"
+			>
+				I'm going to sleep at...
+			</button>
+		</div>
+
+		<!-- INPUT -->
+		<div class="sleep-input-wrap">
+			<label class="sleep-label" id="time-label" for="time-input"
+				>When do you want to wake up?</label
+			>
+			<input type="time" id="time-input" class="sleep-input" value="07:00" />
+		</div>
+
+		<button type="button" class="sleep-now-btn" id="wake-now-btn">
+			⏰ Wake up NOW
+		</button>
+
+		<!-- RESULTS -->
+		<div class="sleep-results" id="sleep-results">
+			<p class="sleep-results-heading" id="results-heading">
+				Recommended bedtimes
+			</p>
+			<div class="sleep-results-grid" id="results-grid"></div>
+		</div>
+
+		<!-- SLEEP FACTS -->
+		<div class="sleep-facts">
+			<h3 class="sleep-facts-title">Understanding your sleep</h3>
+			<div class="sleep-facts-grid">
+				<div class="sleep-fact-card">
+					<div class="sleep-fact-icon">🔄</div>
+					<h4 class="sleep-fact-heading">Sleep cycles</h4>
+					<p class="sleep-fact-text">
+						Each night you move through 90-minute sleep cycles — from light
+						sleep to deep sleep to REM. Waking between cycles, not in the
+						middle of one, helps you feel alert instead of groggy.
+					</p>
+				</div>
+				<div class="sleep-fact-card">
+					<div class="sleep-fact-icon">😵</div>
+					<h4 class="sleep-fact-heading">Why grogginess happens</h4>
+					<p class="sleep-fact-text">
+						Sleep inertia strikes when you wake during deep sleep. Your brain
+						isn't ready to switch on yet, leaving you foggy and disoriented for
+						up to 30 minutes — or longer if you cut a cycle short.
+					</p>
+				</div>
+				<div class="sleep-fact-card">
+					<div class="sleep-fact-icon">💭</div>
+					<h4 class="sleep-fact-heading">REM sleep</h4>
+					<p class="sleep-fact-text">
+						REM (Rapid Eye Movement) sleep is when most dreaming happens and
+						your brain consolidates memories. Later cycles have longer REM
+						phases, which is why a full night's rest feels so much better.
+					</p>
+				</div>
+				<div class="sleep-fact-card">
+					<div class="sleep-fact-icon">🌙</div>
+					<h4 class="sleep-fact-heading">How much sleep adults need</h4>
+					<p class="sleep-fact-text">
+						Most adults need 7–9 hours of sleep per night. That's roughly 5–6
+						complete cycles. Consistency matters too — going to bed and waking
+						at similar times trains your body clock.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- RELATED TOOLS -->
+		<div class="sleep-related">
+			<h3 class="sleep-related-title">You might also like</h3>
+			<div class="sleep-related-grid">
+				<a href="/countdown-timer" class="sleep-related-card"
+					>⏱️ Countdown Timer</a
+				>
+				<a href="/age-calculator" class="sleep-related-card"
+					>🎂 Age Calculator</a
+				>
+				<a href="/world-clock" class="sleep-related-card">🌍 World Clock</a>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.sleep-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.sleep-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.sleep-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.sleep-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.sleep-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sleep-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.sleep-tabs {
+		display: flex;
+		gap: 8px;
+		margin-bottom: 32px;
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 14px;
+		padding: 6px;
+	}
+
+	.sleep-tab {
+		flex: 1;
+		background: transparent;
+		border: none;
+		border-radius: 10px;
+		padding: 14px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.45);
+		cursor: pointer;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease;
+		line-height: 1.3;
+	}
+
+	.sleep-tab:hover {
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	.sleep-tab--active {
+		background: rgba(139, 92, 246, 0.15);
+		color: #fff;
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+	}
+
+	.sleep-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 20px;
+	}
+
+	.sleep-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.sleep-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+		color-scheme: dark;
+	}
+
+	.sleep-input:focus {
+		border-color: rgba(139, 92, 246, 0.8);
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+	}
+
+	.sleep-now-btn {
+		display: block;
+		width: 100%;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		margin-bottom: 40px;
+		transition: opacity 0.2s ease;
+	}
+
+	.sleep-now-btn:hover {
+		opacity: 0.9;
+	}
+
+	.sleep-results {
+		margin-bottom: 48px;
+	}
+
+	.sleep-results-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.4);
+		text-align: center;
+		margin-bottom: 16px;
+	}
+
+	.sleep-results-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.sleep-result-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 20px 16px;
+		text-align: center;
+		transition: border-color 0.2s ease;
+	}
+
+	.sleep-result-card--best {
+		border-color: rgba(139, 92, 246, 0.5);
+		box-shadow: 0 0 24px rgba(139, 92, 246, 0.12);
+	}
+
+	.sleep-result-time {
+		font-family: 'Outfit', sans-serif;
+		font-size: 28px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 6px;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.sleep-result-cycles {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 10px;
+	}
+
+	.sleep-result-badge {
+		display: inline-block;
+		font-family: 'Outfit', sans-serif;
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		padding: 4px 10px;
+		border-radius: 20px;
+	}
+
+	.sleep-result-badge--not-recommended {
+		background: rgba(239, 68, 68, 0.15);
+		color: #f87171;
+	}
+
+	.sleep-result-badge--minimum {
+		background: rgba(251, 146, 60, 0.15);
+		color: #fb923c;
+	}
+
+	.sleep-result-badge--ok {
+		background: rgba(250, 204, 21, 0.15);
+		color: #facc15;
+	}
+
+	.sleep-result-badge--good {
+		background: rgba(74, 222, 128, 0.15);
+		color: #4ade80;
+	}
+
+	.sleep-result-badge--ideal {
+		background: rgba(52, 211, 153, 0.15);
+		color: #34d399;
+	}
+
+	.sleep-result-badge--best {
+		background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
+		color: #e9d5ff;
+	}
+
+	.sleep-facts {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+		margin-bottom: 48px;
+	}
+
+	.sleep-facts-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+
+	.sleep-facts-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.sleep-fact-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.sleep-fact-icon {
+		font-size: 24px;
+		margin-bottom: 10px;
+	}
+
+	.sleep-fact-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 8px;
+	}
+
+	.sleep-fact-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.sleep-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.sleep-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sleep-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.sleep-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.sleep-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+		color: #fff;
+	}
+
+	@media (max-width: 640px) {
+		.sleep-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.sleep-tab {
+			font-size: 12px;
+			padding: 12px 10px;
+		}
+
+		.sleep-results-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.sleep-facts-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.sleep-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	const CYCLE_MINUTES = 90;
+	const FALL_ASLEEP_MINUTES = 14;
+	const CYCLES = [1, 2, 3, 4, 5, 6];
+
+	const LABELS = [
+		{ text: 'Not recommended', class: 'not-recommended' },
+		{ text: 'Minimum', class: 'minimum' },
+		{ text: 'OK', class: 'ok' },
+		{ text: 'Good', class: 'good' },
+		{ text: 'Ideal', class: 'ideal' },
+		{ text: 'Best', class: 'best' },
+	];
+
+	type Mode = 'wake' | 'sleep';
+
+	let mode: Mode = 'wake';
+
+	const tabWake = document.getElementById('tab-wake');
+	const tabSleep = document.getElementById('tab-sleep');
+	const timeInput = document.getElementById('time-input') as HTMLInputElement;
+	const timeLabel = document.getElementById('time-label');
+	const resultsHeading = document.getElementById('results-heading');
+	const resultsGrid = document.getElementById('results-grid');
+	const wakeNowBtn = document.getElementById('wake-now-btn');
+
+	function parseTime(value: string): { hours: number; minutes: number } | null {
+		const match = value.match(/^(\d{1,2}):(\d{2})$/);
+		if (!match) return null;
+		return { hours: parseInt(match[1], 10), minutes: parseInt(match[2], 10) };
+	}
+
+	function formatTime(date: Date): string {
+		return date.toLocaleTimeString('en-US', {
+			hour: 'numeric',
+			minute: '2-digit',
+			hour12: true,
+		});
+	}
+
+	function formatHours(cycles: number): string {
+		const hours = (cycles * CYCLE_MINUTES) / 60;
+		return hours % 1 === 0 ? `${hours} hours` : `${hours} hours`;
+	}
+
+	function addMinutes(base: Date, minutes: number): Date {
+		return new Date(base.getTime() + minutes * 60 * 1000);
+	}
+
+	function subtractMinutes(base: Date, minutes: number): Date {
+		return new Date(base.getTime() - minutes * 60 * 1000);
+	}
+
+	function timeToDate(hours: number, minutes: number): Date {
+		const now = new Date();
+		return new Date(
+			now.getFullYear(),
+			now.getMonth(),
+			now.getDate(),
+			hours,
+			minutes,
+			0,
+			0,
+		);
+	}
+
+	function setMode(newMode: Mode) {
+		mode = newMode;
+
+		tabWake?.classList.toggle('sleep-tab--active', mode === 'wake');
+		tabSleep?.classList.toggle('sleep-tab--active', mode === 'sleep');
+		tabWake?.setAttribute('aria-selected', String(mode === 'wake'));
+		tabSleep?.setAttribute('aria-selected', String(mode === 'sleep'));
+
+		if (timeLabel) {
+			timeLabel.textContent =
+				mode === 'wake'
+					? 'When do you want to wake up?'
+					: 'When are you going to sleep?';
+		}
+
+		if (resultsHeading) {
+			resultsHeading.textContent =
+				mode === 'wake' ? 'Recommended bedtimes' : 'Recommended wake times';
+		}
+
+		if (timeInput) {
+			timeInput.value = mode === 'wake' ? '07:00' : '23:00';
+		}
+
+		calculate();
+	}
+
+	function calculate() {
+		if (!timeInput || !resultsGrid) return;
+
+		const parsed = parseTime(timeInput.value);
+		if (!parsed) return;
+
+		const baseTime = timeToDate(parsed.hours, parsed.minutes);
+		const results: { time: Date; cycles: number }[] = [];
+
+		for (const cycles of CYCLES) {
+			const totalMinutes = cycles * CYCLE_MINUTES + FALL_ASLEEP_MINUTES;
+			const resultTime =
+				mode === 'wake'
+					? subtractMinutes(baseTime, totalMinutes)
+					: addMinutes(baseTime, totalMinutes);
+			results.push({ time: resultTime, cycles });
+		}
+
+		resultsGrid.innerHTML = results
+			.map(({ time, cycles }, i) => {
+				const label = LABELS[i];
+				const isBest = label.class === 'best';
+				return `
+					<div class="sleep-result-card${isBest ? ' sleep-result-card--best' : ''}">
+						<div class="sleep-result-time">${formatTime(time)}</div>
+						<div class="sleep-result-cycles">${cycles} cycle${cycles > 1 ? 's' : ''} · ${formatHours(cycles)}</div>
+						<span class="sleep-result-badge sleep-result-badge--${label.class}">${label.text}</span>
+					</div>
+				`;
+			})
+			.join('');
+	}
+
+	function wakeUpNow() {
+		setMode('sleep');
+		const now = new Date();
+		const hours = String(now.getHours()).padStart(2, '0');
+		const minutes = String(now.getMinutes()).padStart(2, '0');
+		if (timeInput) timeInput.value = `${hours}:${minutes}`;
+		calculate();
+	}
+
+	tabWake?.addEventListener('click', () => setMode('wake'));
+	tabSleep?.addEventListener('click', () => setMode('sleep'));
+	timeInput?.addEventListener('change', calculate);
+	timeInput?.addEventListener('input', calculate);
+	wakeNowBtn?.addEventListener('click', wakeUpNow);
+
+	calculate();
+</script>
