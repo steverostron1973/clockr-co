@@ -1,0 +1,532 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const leftEmojis = [
+	{ emoji: '💝', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '💕', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '🌹', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '💌', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '💘', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '🫀', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '🍫', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '💋', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '🥂', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '💑', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '🌸', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '💗', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title="Days Until Valentine's Day 2027 — Valentine's Countdown | Clockr"
+	description="How many days until Valentine's Day 2027? Live countdown to 14th February showing exact days, hours, minutes and seconds."
+>
+	<div class="val-page">
+		<section class="val-hero" aria-label="Valentine's Day countdown">
+			<div class="val-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="val-float-emoji val-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="val-float-emoji val-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="val-hero-centre">
+				<h1 class="val-hero-title">Days Until Valentine's Day</h1>
+
+				<div class="val-countdown" id="val-countdown">
+					<div class="val-countdown-block">
+						<span class="val-countdown-num val-countdown-num--days" id="hero-days"
+							>0</span
+						>
+						<span class="val-countdown-unit">Days</span>
+					</div>
+					<span class="val-countdown-sep">:</span>
+					<div class="val-countdown-block">
+						<span class="val-countdown-num" id="hero-hours">00</span>
+						<span class="val-countdown-unit">Hours</span>
+					</div>
+					<span class="val-countdown-sep">:</span>
+					<div class="val-countdown-block">
+						<span class="val-countdown-num" id="hero-mins">00</span>
+						<span class="val-countdown-unit">Minutes</span>
+					</div>
+					<span class="val-countdown-sep">:</span>
+					<div class="val-countdown-block">
+						<span class="val-countdown-num" id="hero-secs">00</span>
+						<span class="val-countdown-unit">Seconds</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<div class="val-body">
+			<section class="val-stats-section">
+				<h2 class="val-stats-heading">Valentine's Day by the numbers</h2>
+				<div class="val-stats-grid">
+					<div class="val-stat-card">
+						<div class="val-stat-label">Minutes until Valentine's Day</div>
+						<div class="val-stat-value" id="stat-exact">—</div>
+					</div>
+					<div class="val-stat-card">
+						<div class="val-stat-label">Valentine's Day</div>
+						<div class="val-stat-value" id="stat-weekday">—</div>
+					</div>
+					<div class="val-stat-card">
+						<div class="val-stat-label">Weeks until Valentine's Day</div>
+						<div class="val-stat-value" id="stat-weeks">—</div>
+					</div>
+					<div class="val-stat-card">
+						<div class="val-stat-label">Hours until Valentine's Day</div>
+						<div class="val-stat-value" id="stat-hours">—</div>
+					</div>
+				</div>
+			</section>
+
+			<button class="val-share-btn" id="val-share-btn">📋 Copy &amp; Share</button>
+
+			<section class="val-facts">
+				<h2 class="val-facts-title">Valentine's Day fun facts</h2>
+				<div class="val-facts-grid">
+					<div class="val-fact-card">
+						<div class="val-fact-emoji">📜</div>
+						<h3 class="val-fact-heading">Origin of Valentine's Day</h3>
+						<p class="val-fact-text">
+							Valentine's Day is named after Saint Valentine, a 3rd-century
+							Roman priest who secretly married couples against Emperor
+							Claudius II's ban on marriage. He was martyred on 14 February —
+							and the day became associated with love.
+						</p>
+					</div>
+					<div class="val-fact-card">
+						<div class="val-fact-emoji">💌</div>
+						<h3 class="val-fact-heading">Cards sent worldwide</h3>
+						<p class="val-fact-text">
+							An estimated 1 billion Valentine's Day cards are exchanged each
+							year worldwide, making it the second-largest card-sending
+							occasion after Christmas. Teachers receive more Valentine's cards
+							than anyone else!
+						</p>
+					</div>
+					<div class="val-fact-card">
+						<div class="val-fact-emoji">🎁</div>
+						<h3 class="val-fact-heading">Most popular gifts</h3>
+						<p class="val-fact-text">
+							Flowers top the list — roses especially — followed by chocolates,
+							jewellery, and romantic dinners. Red roses symbolise deep love,
+							while pink roses express admiration and gratitude.
+						</p>
+					</div>
+					<div class="val-fact-card">
+						<div class="val-fact-emoji">💰</div>
+						<h3 class="val-fact-heading">Global spending</h3>
+						<p class="val-fact-text">
+							Global Valentine's Day spending exceeds $30 billion each year.
+							Americans alone spend around $25 billion, with the average
+							person shelling out roughly $185 on gifts, dining, and
+							experiences.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<div class="val-related">
+				<h3 class="val-related-title">You might also like</h3>
+				<div class="val-related-grid">
+					<a href="/countdown-timer" class="val-related-card">⏱️ Countdown Timer</a>
+					<a href="/days-until-christmas" class="val-related-card">🎄 Days Until Christmas</a>
+					<a href="/year-progress" class="val-related-card">📅 Year Progress</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.val-page {
+		width: 100%;
+	}
+
+	.val-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #2d0a1a, #1a0010);
+		border-bottom: 1px solid rgba(255, 107, 157, 0.25);
+		overflow: hidden;
+		position: relative;
+		min-height: 320px;
+	}
+
+	.val-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.val-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: val-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.val-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes val-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.val-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.val-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 32px;
+		background: linear-gradient(135deg, #ff1744, #ff6b9d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.val-countdown {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	.val-countdown-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.val-countdown-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		color: #ff6b9d;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	.val-countdown-num--days {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	.val-countdown-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	.val-countdown-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.val-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.val-stats-section {
+		margin-bottom: 16px;
+	}
+
+	.val-stats-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.val-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.val-stats-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.val-stat-card {
+		background: #2d0a1a;
+		border: 1px solid rgba(255, 107, 157, 0.4);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.val-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 10px;
+	}
+
+	.val-stat-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.4;
+		color: #ff6b9d;
+	}
+
+	.val-share-btn {
+		display: block;
+		background: linear-gradient(135deg, #ff1744, #ff6b9d);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		max-width: 320px;
+		width: 100%;
+		margin: 0 auto 48px;
+		transition: opacity 0.2s ease;
+	}
+
+	.val-share-btn:hover {
+		opacity: 0.9;
+	}
+
+	.val-facts {
+		margin-bottom: 48px;
+	}
+
+	.val-facts-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.val-facts-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.val-facts-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.val-fact-card {
+		background: #1a0010;
+		border: 1px solid rgba(255, 107, 157, 0.3);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.val-fact-emoji {
+		font-size: 28px;
+		margin-bottom: 12px;
+		line-height: 1;
+	}
+
+	.val-fact-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		color: #ff6b9d;
+		margin-bottom: 8px;
+	}
+
+	.val-fact-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+	}
+
+	.val-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.val-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.val-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.val-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.val-related-card:hover {
+		border-color: rgba(255, 107, 157, 0.4);
+		color: #fff;
+	}
+</style>
+
+<script>
+	function pad(n: number) {
+		return String(n).padStart(2, '0');
+	}
+
+	function getTargetValentines(): Date {
+		const now = new Date();
+		let year = 2027;
+		while (now.getTime() >= new Date(year, 1, 14, 0, 0, 0, 0).getTime()) {
+			year += 1;
+		}
+		return new Date(year, 1, 14, 0, 0, 0, 0);
+	}
+
+	function updateCountdown() {
+		const now = new Date();
+		const valentines = getTargetValentines();
+		const diff = valentines.getTime() - now.getTime();
+
+		if (diff <= 0) return;
+
+		const totalSeconds = Math.floor(diff / 1000);
+		const days = Math.floor(totalSeconds / 86400);
+		const hours = Math.floor((totalSeconds % 86400) / 3600);
+		const mins = Math.floor((totalSeconds % 3600) / 60);
+		const secs = totalSeconds % 60;
+		const totalHours = Math.floor(totalSeconds / 3600);
+		const totalMinutes = Math.floor(totalSeconds / 60);
+
+		const heroDays = document.getElementById('hero-days');
+		const heroHours = document.getElementById('hero-hours');
+		const heroMins = document.getElementById('hero-mins');
+		const heroSecs = document.getElementById('hero-secs');
+		const statExact = document.getElementById('stat-exact');
+		const statWeekday = document.getElementById('stat-weekday');
+		const statWeeks = document.getElementById('stat-weeks');
+		const statHours = document.getElementById('stat-hours');
+
+		if (heroDays) heroDays.textContent = String(days);
+		if (heroHours) heroHours.textContent = pad(hours);
+		if (heroMins) heroMins.textContent = pad(mins);
+		if (heroSecs) heroSecs.textContent = pad(secs);
+
+		const year = valentines.getFullYear();
+		const weekday = valentines.toLocaleDateString('en-GB', { weekday: 'long' });
+		const weeks = Math.floor(days / 7);
+
+		if (statExact)
+			statExact.textContent = `${totalMinutes.toLocaleString()} minute${totalMinutes === 1 ? '' : 's'}`;
+		if (statWeekday)
+			statWeekday.textContent = `Valentine's Day ${year} falls on a ${weekday}`;
+		if (statWeeks)
+			statWeeks.textContent = `${weeks} week${weeks === 1 ? '' : 's'}`;
+		if (statHours)
+			statHours.textContent = `${totalHours.toLocaleString()} hour${totalHours === 1 ? '' : 's'}`;
+	}
+
+	const shareBtn = document.getElementById('val-share-btn');
+	shareBtn?.addEventListener('click', () => {
+		const days = document.getElementById('hero-days')?.textContent ?? '0';
+		navigator.clipboard.writeText(
+			`Valentine's Day is ${days} days away — clockr.co/days-until-valentines`,
+		);
+		shareBtn.textContent = '✓ Copied!';
+		setTimeout(() => {
+			shareBtn.textContent = '📋 Copy & Share';
+		}, 2000);
+	});
+
+	updateCountdown();
+	setInterval(updateCountdown, 1000);
+</script>
