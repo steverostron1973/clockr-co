@@ -1,0 +1,484 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+function isLeapYear(year: number): boolean {
+	return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+}
+
+function getNextLeapYears(count: number): number[] {
+	const now = new Date();
+	const currentYear = now.getFullYear();
+	const years: number[] = [];
+	let year = currentYear;
+
+	if (isLeapYear(currentYear) && now.getMonth() < 2) {
+		years.push(currentYear);
+		year = currentYear + 1;
+	}
+
+	while (years.length < count) {
+		if (isLeapYear(year)) years.push(year);
+		year++;
+	}
+
+	return years;
+}
+
+function getRecentLeapYears(count: number): number[] {
+	const currentYear = new Date().getFullYear();
+	const years: number[] = [];
+	let year = currentYear;
+
+	while (years.length < count) {
+		if (isLeapYear(year)) years.push(year);
+		year--;
+	}
+
+	return years;
+}
+
+const nextLeapYears = getNextLeapYears(8);
+const recentLeapYears = getRecentLeapYears(8);
+---
+
+<Layout
+	title="Leap Year Checker — Is This Year a Leap Year? | Clockr"
+	description="Check if any year is a leap year instantly. Find the next leap year and learn why we have them. Free leap year calculator."
+>
+	<div class="ly-page">
+		<!-- PAGE HEADER -->
+		<div class="ly-header">
+			<div class="ly-eyebrow">📅 Calendar & Dates</div>
+			<h1 class="ly-title">
+				<span class="ly-gradient">Leap Year Checker</span>
+			</h1>
+			<p class="ly-subtitle">
+				Is this year a leap year? Find out instantly
+			</p>
+		</div>
+
+		<!-- INPUT -->
+		<div class="ly-input-wrap">
+			<label class="ly-label" for="year-input">Enter a year</label>
+			<input
+				type="number"
+				id="year-input"
+				class="ly-input"
+				placeholder="e.g. 2024"
+				min="1"
+				max="9999"
+				inputmode="numeric"
+			/>
+		</div>
+
+		<!-- RESULTS -->
+		<div class="ly-results" id="ly-results" style="display:none">
+			<div class="ly-main-card">
+				<div class="ly-verdict" id="ly-verdict">YES</div>
+				<div class="ly-summary" id="ly-summary"></div>
+				<div class="ly-reason" id="ly-reason"></div>
+			</div>
+		</div>
+
+		<!-- NEXT LEAP YEARS -->
+		<div class="ly-section">
+			<h2 class="ly-section-title">Next leap years</h2>
+			<div class="ly-grid">
+				{
+					nextLeapYears.map((year) => (
+						<button
+							type="button"
+							class="ly-year-card"
+							data-year={year}
+						>
+							<span class="ly-year-num">{year}</span>
+						</button>
+					))
+				}
+			</div>
+		</div>
+
+		<!-- RECENT LEAP YEARS -->
+		<div class="ly-section">
+			<h2 class="ly-section-title">Recent leap years</h2>
+			<div class="ly-grid">
+				{
+					recentLeapYears.map((year) => (
+						<button
+							type="button"
+							class="ly-year-card"
+							data-year={year}
+						>
+							<span class="ly-year-num">{year}</span>
+						</button>
+					))
+				}
+			</div>
+		</div>
+
+		<!-- FUN FACTS -->
+		<div class="ly-section">
+			<h2 class="ly-section-title">Leap year fun facts</h2>
+			<div class="ly-facts-grid">
+				<div class="ly-fact-card">
+					<div class="ly-fact-icon">🌍</div>
+					<h3 class="ly-fact-title">What is a leap year?</h3>
+					<p class="ly-fact-text">
+						A leap year has 366 days instead of 365, with an extra day
+						added to February. We need them because Earth's orbit takes
+						roughly 365.25 days — without leap years, our calendar would
+						drift and seasons would slowly shift out of place.
+					</p>
+				</div>
+				<div class="ly-fact-card">
+					<div class="ly-fact-icon">🎂</div>
+					<h3 class="ly-fact-title">Born on February 29th?</h3>
+					<p class="ly-fact-text">
+						The odds of being born on leap day are about 1 in 1,461 —
+						that's the average number of days in four years (3 × 365 + 366).
+						Only around 5 million people worldwide share a true February
+						29th birthday.
+					</p>
+				</div>
+				<div class="ly-fact-card">
+					<div class="ly-fact-icon">⭐</div>
+					<h3 class="ly-fact-title">Famous leap day birthdays</h3>
+					<p class="ly-fact-text">
+						Notable February 29th babies include Pope Paul III (1468),
+						composer Gioachino Rossini, rapper Ja Rule, motivational
+						speaker Tony Robbins, and actor Antonio Sabàto Jr.
+					</p>
+				</div>
+				<div class="ly-fact-card">
+					<div class="ly-fact-icon">📆</div>
+					<h3 class="ly-fact-title">Leap day babies in non-leap years</h3>
+					<p class="ly-fact-text">
+						When there's no February 29th, most leap day babies celebrate
+						on February 28th or March 1st — it's a personal choice. Some
+						legally observe their birthday on the 28th; others wait for
+						March 1st. Either way, they only get a "real" birthday every
+						four years.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.ly-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.ly-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.ly-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.ly-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.ly-gradient {
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ly-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.ly-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 48px;
+	}
+
+	.ly-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.ly-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 48px;
+		font-weight: 900;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		width: 100%;
+		max-width: 320px;
+		letter-spacing: -2px;
+		transition: border-color 0.2s ease;
+		-moz-appearance: textfield;
+	}
+
+	.ly-input::-webkit-outer-spin-button,
+	.ly-input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	.ly-input:focus {
+		border-color: rgba(16, 185, 129, 0.8);
+		box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+	}
+
+	.ly-input::placeholder {
+		color: rgba(255, 255, 255, 0.15);
+		font-weight: 700;
+	}
+
+	.ly-main-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		border-radius: 20px;
+		padding: 40px;
+		text-align: center;
+		margin-bottom: 48px;
+		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+	}
+
+	.ly-verdict {
+		font-family: 'Outfit', sans-serif;
+		font-size: 120px;
+		font-weight: 900;
+		letter-spacing: -6px;
+		line-height: 1;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.ly-summary {
+		font-family: 'Outfit', sans-serif;
+		font-size: 22px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.8);
+		margin-bottom: 12px;
+		line-height: 1.4;
+	}
+
+	.ly-reason {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.45);
+		line-height: 1.6;
+		max-width: 480px;
+		margin: 0 auto;
+	}
+
+	.ly-section {
+		margin-bottom: 48px;
+	}
+
+	.ly-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.ly-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 12px;
+	}
+
+	.ly-year-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 20px 16px;
+		text-align: center;
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.ly-year-card:hover {
+		border-color: rgba(16, 185, 129, 0.5);
+		background: rgba(16, 185, 129, 0.04);
+	}
+
+	.ly-year-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ly-facts-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.ly-fact-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.ly-fact-icon {
+		font-size: 28px;
+		margin-bottom: 12px;
+	}
+
+	.ly-fact-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 8px;
+	}
+
+	.ly-fact-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	@media (max-width: 600px) {
+		.ly-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.ly-input {
+			font-size: 36px;
+		}
+
+		.ly-verdict {
+			font-size: 80px;
+			letter-spacing: -4px;
+		}
+
+		.ly-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.ly-facts-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	function isLeapYear(year: number): boolean {
+		return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+	}
+
+	function getLeapReason(year: number, leap: boolean): string {
+		if (leap) {
+			if (year % 400 === 0) {
+				return `${year} is divisible by 400, so it is a leap year — century years divisible by 400 still get an extra day.`;
+			}
+			return `${year} is divisible by 4 and is not a century year, so it is a leap year.`;
+		}
+		if (year % 100 === 0) {
+			return `${year} is divisible by 100 but not by 400 — century years are not leap years unless divisible by 400.`;
+		}
+		if (year % 4 !== 0) {
+			return `${year} is not divisible by 4, so it is not a leap year.`;
+		}
+		return `${year} does not meet the leap year rules.`;
+	}
+
+	const yearInput = document.getElementById('year-input') as HTMLInputElement;
+	const results = document.getElementById('ly-results');
+	const verdictEl = document.getElementById('ly-verdict');
+	const summaryEl = document.getElementById('ly-summary');
+	const reasonEl = document.getElementById('ly-reason');
+
+	function checkYear() {
+		if (!yearInput || !results) return;
+
+		const raw = yearInput.value.trim();
+		if (!raw || !/^\d{1,4}$/.test(raw)) {
+			results.style.display = 'none';
+			return;
+		}
+
+		const year = parseInt(raw, 10);
+		if (year < 1) {
+			results.style.display = 'none';
+			return;
+		}
+
+		const leap = isLeapYear(year);
+		results.style.display = 'block';
+
+		if (verdictEl) verdictEl.textContent = leap ? 'YES' : 'NO';
+		if (summaryEl) {
+			summaryEl.textContent = leap
+				? `${year} is a leap year — it has 366 days`
+				: `${year} is not a leap year — it has 365 days`;
+		}
+		if (reasonEl) reasonEl.textContent = getLeapReason(year, leap);
+	}
+
+	yearInput?.addEventListener('input', checkYear);
+
+	document.querySelectorAll<HTMLButtonElement>('.ly-year-card').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const year = btn.dataset.year;
+			if (year && yearInput) {
+				yearInput.value = year;
+				checkYear();
+				yearInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			}
+		});
+	});
+
+	// Pre-fill current year on load
+	if (yearInput) {
+		yearInput.value = String(new Date().getFullYear());
+		checkYear();
+	}
+</script>
