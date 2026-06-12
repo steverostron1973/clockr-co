@@ -1,0 +1,469 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const planets = [
+	{
+		name: 'Mercury',
+		emoji: '☿',
+		color: '#9CA3AF',
+		period: 0.241,
+		fact: 'A day on Mercury lasts longer than its entire year.',
+	},
+	{
+		name: 'Venus',
+		emoji: '♀',
+		color: '#F59E0B',
+		period: 0.615,
+		fact: 'The hottest planet in the solar system — hotter than Mercury.',
+	},
+	{
+		name: 'Earth',
+		emoji: '🌍',
+		color: '#10B981',
+		period: 1.0,
+		fact: 'The only planet known to have life (and birthday cake).',
+	},
+	{
+		name: 'Mars',
+		emoji: '♂',
+		color: '#EF4444',
+		period: 1.881,
+		fact: 'Home to Olympus Mons — the tallest volcano in the solar system.',
+	},
+	{
+		name: 'Jupiter',
+		emoji: '🪐',
+		color: '#F97316',
+		period: 11.86,
+		fact: 'You could fit over 1,300 Earths inside Jupiter.',
+	},
+	{
+		name: 'Saturn',
+		emoji: '🪐',
+		color: '#FCD34D',
+		period: 29.46,
+		fact: 'Less dense than water — it would float in a giant bathtub.',
+	},
+	{
+		name: 'Uranus',
+		emoji: '🔵',
+		color: '#06B6D4',
+		period: 84.01,
+		fact: 'Rotates on its side, like a rolling bowling ball through space.',
+	},
+	{
+		name: 'Neptune',
+		emoji: '🔵',
+		color: '#3B82F6',
+		period: 164.8,
+		fact: 'Winds reach 2,100 km/h — the fastest in the solar system.',
+	},
+];
+---
+
+<Layout
+	title="Your Age on Other Planets — Planet Age Calculator | Clockr"
+	description="How old would you be on Mercury, Venus, Mars, Jupiter and beyond? Enter your birthday and discover your age on every planet in the solar system."
+>
+	<div class="planet-page">
+		<div class="planet-header">
+			<div class="planet-eyebrow">🪐 Space & Time</div>
+			<h1 class="planet-title">
+				<span class="planet-gradient">Your Age on</span><br />
+				<span class="planet-gradient">Other Planets</span>
+			</h1>
+			<p class="planet-subtitle">
+				How old would you be if you were born on another planet?
+			</p>
+		</div>
+
+		<div class="planet-input-wrap">
+			<label class="planet-label" for="dob-input">Your date of birth</label>
+			<input type="date" id="dob-input" class="planet-input" />
+		</div>
+
+		<div class="planet-results" id="planet-results" style="display:none">
+			<div class="planet-grid" id="planet-grid">
+				{
+					planets.map((planet) => (
+						<div
+							class="planet-card"
+							data-planet={planet.name.toLowerCase()}
+							style={`--planet-color: ${planet.color}`}
+						>
+							<div class="planet-card-header">
+								<span class="planet-emoji">{planet.emoji}</span>
+								<span class="planet-name">{planet.name}</span>
+							</div>
+							<div class="planet-age" data-age>
+								—
+							</div>
+							<div class="planet-age-label">years old</div>
+							<div class="planet-period">
+								Orbital period: {planet.period} Earth years
+							</div>
+							<p class="planet-fact">{planet.fact}</p>
+						</div>
+					))
+				}
+			</div>
+
+			<div class="planet-summary-card">
+				<p class="planet-summary-text" id="planet-summary">
+					Enter your birthday to see your cosmic age.
+				</p>
+			</div>
+
+			<button class="planet-share" id="planet-share-btn">📋 Copy & Share</button>
+		</div>
+
+		<div class="planet-related">
+			<h3 class="planet-related-title">You might also like</h3>
+			<div class="planet-related-grid">
+				<a href="/age-calculator" class="planet-related-card">🎂 Age Calculator</a>
+				<a href="/life-in-numbers" class="planet-related-card">🔢 Life in Numbers</a>
+				<a href="/what-generation" class="planet-related-card">🌍 What Generation</a>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.planet-page {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.planet-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.planet-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.planet-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.planet-gradient {
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.planet-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.planet-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 48px;
+	}
+
+	.planet-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.planet-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(168, 85, 247, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+	}
+
+	.planet-input:focus {
+		border-color: rgba(168, 85, 247, 0.8);
+		box-shadow: 0 0 20px rgba(168, 85, 247, 0.15);
+	}
+
+	.planet-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+		margin-bottom: 16px;
+	}
+
+	.planet-card {
+		background: #0c0c0c;
+		border: 1px solid color-mix(in srgb, var(--planet-color) 30%, transparent);
+		border-radius: 14px;
+		padding: 24px 20px;
+		text-align: center;
+		transition: border-color 0.2s ease;
+	}
+
+	.planet-card:hover {
+		border-color: color-mix(in srgb, var(--planet-color) 55%, transparent);
+	}
+
+	.planet-card-header {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		margin-bottom: 12px;
+	}
+
+	.planet-emoji {
+		font-size: 24px;
+		line-height: 1;
+	}
+
+	.planet-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		color: var(--planet-color);
+	}
+
+	.planet-age {
+		font-family: 'Outfit', sans-serif;
+		font-size: 40px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		color: var(--planet-color);
+		margin-bottom: 4px;
+	}
+
+	.planet-age-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 12px;
+	}
+
+	.planet-period {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.4);
+		margin-bottom: 10px;
+	}
+
+	.planet-fact {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.5;
+		margin: 0;
+	}
+
+	.planet-summary-card {
+		background: rgba(168, 85, 247, 0.06);
+		border: 1px solid rgba(168, 85, 247, 0.2);
+		border-radius: 14px;
+		padding: 20px 24px;
+		margin-bottom: 16px;
+	}
+
+	.planet-summary-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.7);
+		line-height: 1.6;
+		margin: 0;
+		text-align: center;
+	}
+
+	.planet-share {
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		width: 100%;
+		margin-bottom: 60px;
+		transition: opacity 0.2s ease;
+	}
+
+	.planet-share:hover {
+		opacity: 0.9;
+	}
+
+	.planet-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.planet-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.planet-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.planet-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.planet-related-card:hover {
+		border-color: rgba(168, 85, 247, 0.4);
+		color: #fff;
+	}
+
+	@media (max-width: 600px) {
+		.planet-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.planet-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.planet-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script define:vars={{ planets }}>
+	const dobInput = document.getElementById('dob-input');
+	const results = document.getElementById('planet-results');
+	const summaryEl = document.getElementById('planet-summary');
+	const shareBtn = document.getElementById('planet-share-btn');
+
+	let lastShareData = null;
+
+	function formatPlanetAge(age) {
+		if (age < 0.01) return age.toFixed(3);
+		if (age < 1) return age.toFixed(2);
+		if (age < 10) return age.toFixed(1);
+		return age.toFixed(1);
+	}
+
+	function getEarthYears(dob) {
+		const now = new Date();
+		const diff = now.getTime() - dob.getTime();
+		return diff / (365.25 * 24 * 60 * 60 * 1000);
+	}
+
+	function calculate() {
+		if (!dobInput || !results) return;
+
+		const dob = new Date(dobInput.value);
+		if (!dobInput.value || isNaN(dob.getTime())) return;
+
+		const earthYears = getEarthYears(dob);
+		if (earthYears < 0) return;
+
+		results.style.display = 'block';
+
+		const ages = {};
+
+		for (const planet of planets) {
+			const age = earthYears / planet.period;
+			ages[planet.name.toLowerCase()] = age;
+
+			const card = document.querySelector(
+				`[data-planet="${planet.name.toLowerCase()}"]`,
+			);
+			const ageEl = card?.querySelector('[data-age]');
+			if (ageEl) ageEl.textContent = formatPlanetAge(age);
+		}
+
+		const mercuryBirthdays = Math.floor(earthYears / 0.241);
+		const neptuneAge = ages.neptune;
+
+		if (summaryEl) {
+			const neptunePart =
+				neptuneAge < 1
+					? "On Neptune, you haven't had your first one yet."
+					: `On Neptune, you've only celebrated ${Math.floor(neptuneAge)} birthday${Math.floor(neptuneAge) === 1 ? '' : 's'}.`;
+
+			summaryEl.textContent = `On Mercury you'd have already celebrated ${mercuryBirthdays.toLocaleString()} birthdays. ${neptunePart}`;
+		}
+
+		lastShareData = {
+			mercuryAge: formatPlanetAge(ages.mercury),
+			neptuneBorn: neptuneAge < 1,
+			neptuneAge: formatPlanetAge(neptuneAge),
+		};
+	}
+
+	function setupShare() {
+		if (!shareBtn) return;
+
+		shareBtn.onclick = () => {
+			if (!lastShareData) return;
+
+			const neptuneText = lastShareData.neptuneBorn
+				? "on Neptune I haven't been born yet"
+				: `on Neptune I'm ${lastShareData.neptuneAge} years old`;
+
+			const text = `On Mercury I'm ${lastShareData.mercuryAge} years old, ${neptuneText}! clockr.co/age-on-other-planets`;
+
+			navigator.clipboard.writeText(text);
+			shareBtn.textContent = '✓ Copied!';
+			setTimeout(() => {
+				shareBtn.textContent = '📋 Copy & Share';
+			}, 2000);
+		};
+	}
+
+	dobInput?.addEventListener('input', calculate);
+	dobInput?.addEventListener('change', calculate);
+	setupShare();
+</script>
