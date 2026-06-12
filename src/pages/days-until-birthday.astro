@@ -1,0 +1,887 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Days Until My Birthday — Birthday Countdown | Clockr"
+	description="How many days until your next birthday? Live countdown with days, hours, minutes and seconds — plus your star sign, generation and more."
+	category="birthdays"
+>
+	<div class="bday-page">
+		<div class="bday-header">
+			<div class="bday-eyebrow">🎂 Age & Birthdays</div>
+			<h1 class="bday-title">
+				<span class="bday-gradient">Days Until</span><br />
+				<span class="bday-gradient">My Birthday</span>
+			</h1>
+			<p class="bday-subtitle">How long until your next birthday?</p>
+		</div>
+
+		<div class="bday-input-wrap">
+			<label class="bday-label" for="dob-input">Your date of birth</label>
+			<input type="date" id="dob-input" class="bday-input" />
+		</div>
+
+		<div class="bday-results" id="bday-results" style="display:none">
+			<!-- CELEBRATION (shown on birthday) -->
+			<div class="bday-celebration" id="bday-celebration" style="display:none">
+				<canvas class="bday-confetti-canvas" id="bday-confetti" aria-hidden="true"
+				></canvas>
+				<div class="bday-celebration-inner">
+					<div class="bday-celebration-emoji">🎉</div>
+					<h2 class="bday-celebration-title">Happy Birthday!</h2>
+					<p class="bday-celebration-text" id="bday-celebration-text">
+						You're turning 0 today — have an amazing day!
+					</p>
+				</div>
+			</div>
+
+			<!-- COUNTDOWN (hidden on birthday) -->
+			<div class="bday-countdown-wrap" id="bday-countdown-wrap">
+				<div class="bday-countdown-card">
+					<div class="bday-countdown" id="bday-countdown">
+						<div class="bday-countdown-block">
+							<span class="bday-countdown-num" id="cd-days">0</span>
+							<span class="bday-countdown-unit">Days</span>
+						</div>
+						<span class="bday-countdown-sep">:</span>
+						<div class="bday-countdown-block">
+							<span class="bday-countdown-num" id="cd-hours">00</span>
+							<span class="bday-countdown-unit">Hours</span>
+						</div>
+						<span class="bday-countdown-sep">:</span>
+						<div class="bday-countdown-block">
+							<span class="bday-countdown-num" id="cd-mins">00</span>
+							<span class="bday-countdown-unit">Minutes</span>
+						</div>
+						<span class="bday-countdown-sep">:</span>
+						<div class="bday-countdown-block">
+							<span class="bday-countdown-num" id="cd-secs">00</span>
+							<span class="bday-countdown-unit">Seconds</span>
+						</div>
+					</div>
+
+					<div class="bday-summary">
+						<p class="bday-summary-line" id="bday-weekday-line">
+							Your birthday falls on a <strong id="bday-weekday">Monday</strong> this
+							year
+						</p>
+						<p class="bday-summary-line" id="bday-age-line">
+							You'll be turning <strong id="bday-age-turning">0</strong>
+						</p>
+						<p class="bday-summary-line" id="bday-since-line">
+							<strong id="bday-days-since">0</strong> days since your last birthday
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- STATS GRID -->
+			<div class="bday-grid">
+				<div class="bday-stat-card">
+					<div class="bday-stat-num" id="stat-days">0</div>
+					<div class="bday-stat-label">Days until next birthday</div>
+				</div>
+				<div class="bday-stat-card">
+					<div class="bday-stat-num" id="stat-weeks">0</div>
+					<div class="bday-stat-label">Weeks until next birthday</div>
+				</div>
+				<div class="bday-stat-card">
+					<div class="bday-stat-num" id="stat-hours">0</div>
+					<div class="bday-stat-label">Hours until next birthday</div>
+				</div>
+				<div class="bday-stat-card">
+					<div class="bday-stat-num bday-stat-num--text" id="stat-dow">—</div>
+					<div class="bday-stat-label">Day of the week</div>
+				</div>
+				<div class="bday-stat-card">
+					<div class="bday-stat-num" id="stat-age">0</div>
+					<div class="bday-stat-label">Age you are turning</div>
+				</div>
+				<div class="bday-stat-card">
+					<div class="bday-stat-num" id="stat-since">0</div>
+					<div class="bday-stat-label">Days since last birthday</div>
+				</div>
+			</div>
+
+			<!-- FUN FACTS -->
+			<section class="bday-facts">
+				<h2 class="bday-facts-title">Your birthday in numbers</h2>
+				<div class="bday-facts-grid">
+					<div class="bday-fact-card">
+						<div class="bday-fact-icon">✨</div>
+						<div class="bday-fact-heading">Star sign</div>
+						<div class="bday-fact-value" id="fact-sign">—</div>
+					</div>
+					<div class="bday-fact-card">
+						<div class="bday-fact-icon">🌍</div>
+						<div class="bday-fact-heading">Generation</div>
+						<div class="bday-fact-value" id="fact-gen">—</div>
+					</div>
+					<div class="bday-fact-card">
+						<div class="bday-fact-icon">🌕</div>
+						<div class="bday-fact-heading">Full moons until birthday</div>
+						<div class="bday-fact-value" id="fact-moons">—</div>
+					</div>
+					<div class="bday-fact-card">
+						<div class="bday-fact-icon">📅</div>
+						<div class="bday-fact-heading">Day you were born on</div>
+						<div class="bday-fact-value" id="fact-born-dow">—</div>
+					</div>
+				</div>
+			</section>
+
+			<button class="bday-share" id="bday-share-btn">📋 Copy & Share</button>
+		</div>
+
+		<div class="bday-related">
+			<h3 class="bday-related-title">You might also like</h3>
+			<div class="bday-related-grid">
+				<a href="/age-calculator" class="bday-related-card">🎂 Age Calculator</a>
+				<a href="/what-generation" class="bday-related-card">🌍 What Generation Am I?</a>
+				<a href="/life-in-numbers" class="bday-related-card">🔢 Life in Numbers</a>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.bday-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.bday-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.bday-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.bday-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.bday-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bday-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.bday-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 48px;
+	}
+
+	.bday-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.bday-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+	}
+
+	.bday-input:focus {
+		border-color: rgba(139, 92, 246, 0.8);
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+	}
+
+	.bday-celebration {
+		position: relative;
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 20px;
+		padding: 48px 40px;
+		text-align: center;
+		margin-bottom: 16px;
+		overflow: hidden;
+		box-shadow: 0 0 60px rgba(139, 92, 246, 0.12);
+	}
+
+	.bday-confetti-canvas {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+	}
+
+	.bday-celebration-inner {
+		position: relative;
+		z-index: 1;
+	}
+
+	.bday-celebration-emoji {
+		font-size: 64px;
+		line-height: 1;
+		margin-bottom: 16px;
+		animation: bday-bounce 1s ease-in-out infinite alternate;
+	}
+
+	@keyframes bday-bounce {
+		from {
+			transform: translateY(0) scale(1);
+		}
+		to {
+			transform: translateY(-8px) scale(1.05);
+		}
+	}
+
+	.bday-celebration-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 48px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 12px;
+	}
+
+	.bday-celebration-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 18px;
+		color: rgba(255, 255, 255, 0.7);
+		line-height: 1.5;
+	}
+
+	.bday-countdown-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 40px 24px;
+		text-align: center;
+		margin-bottom: 16px;
+		box-shadow: 0 0 40px rgba(139, 92, 246, 0.06);
+	}
+
+	.bday-countdown {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		gap: 8px;
+		flex-wrap: wrap;
+		margin-bottom: 28px;
+	}
+
+	.bday-countdown-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+		min-width: 72px;
+	}
+
+	.bday-countdown-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 56px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bday-countdown-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.bday-countdown-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: 40px;
+		font-weight: 900;
+		color: rgba(139, 92, 246, 0.4);
+		line-height: 1;
+		padding-bottom: 22px;
+	}
+
+	.bday-summary {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.bday-summary-line {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.5;
+		margin: 0;
+	}
+
+	.bday-summary-line strong {
+		color: rgba(255, 255, 255, 0.85);
+		font-weight: 600;
+	}
+
+	.bday-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		margin-bottom: 32px;
+	}
+
+	.bday-stat-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px 16px;
+		text-align: center;
+	}
+
+	.bday-stat-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 32px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 6px;
+	}
+
+	.bday-stat-num--text {
+		font-size: 22px;
+		letter-spacing: 0;
+	}
+
+	.bday-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.bday-facts {
+		margin-bottom: 24px;
+	}
+
+	.bday-facts-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+		text-align: center;
+	}
+
+	.bday-facts-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.bday-fact-card {
+		background: rgba(139, 92, 246, 0.06);
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 14px;
+		padding: 20px;
+		text-align: center;
+	}
+
+	.bday-fact-icon {
+		font-size: 28px;
+		margin-bottom: 8px;
+		line-height: 1;
+	}
+
+	.bday-fact-heading {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 8px;
+	}
+
+	.bday-fact-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.85);
+		line-height: 1.3;
+	}
+
+	.bday-share {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		width: 100%;
+		margin-bottom: 60px;
+		transition: opacity 0.2s ease;
+	}
+
+	.bday-share:hover {
+		opacity: 0.9;
+	}
+
+	.bday-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.bday-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.bday-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.bday-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.bday-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+		color: #fff;
+	}
+
+	@media (max-width: 600px) {
+		.bday-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.bday-countdown-num {
+			font-size: 40px;
+		}
+
+		.bday-countdown-sep {
+			font-size: 28px;
+			padding-bottom: 16px;
+		}
+
+		.bday-countdown-block {
+			min-width: 56px;
+		}
+
+		.bday-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.bday-facts-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.bday-related-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.bday-celebration-title {
+			font-size: 36px;
+		}
+	}
+</style>
+
+<script>
+	const SYNODIC_MONTH = 29.53059;
+
+	const generations = [
+		{ name: 'The Greatest Generation', start: 1901, end: 1927 },
+		{ name: 'The Silent Generation', start: 1928, end: 1945 },
+		{ name: 'Baby Boomers', start: 1946, end: 1964 },
+		{ name: 'Generation X', start: 1965, end: 1980 },
+		{ name: 'Millennials', start: 1981, end: 1996 },
+		{ name: 'Generation Z', start: 1997, end: 2012 },
+		{ name: 'Generation Alpha', start: 2013, end: 2025 },
+	];
+
+	const zodiacSigns = [
+		{ sign: 'Capricorn', start: [12, 22], end: [1, 19] },
+		{ sign: 'Aquarius', start: [1, 20], end: [2, 18] },
+		{ sign: 'Pisces', start: [2, 19], end: [3, 20] },
+		{ sign: 'Aries', start: [3, 21], end: [4, 19] },
+		{ sign: 'Taurus', start: [4, 20], end: [5, 20] },
+		{ sign: 'Gemini', start: [5, 21], end: [6, 20] },
+		{ sign: 'Cancer', start: [6, 21], end: [7, 22] },
+		{ sign: 'Leo', start: [7, 23], end: [8, 22] },
+		{ sign: 'Virgo', start: [8, 23], end: [9, 22] },
+		{ sign: 'Libra', start: [9, 23], end: [10, 22] },
+		{ sign: 'Scorpio', start: [10, 23], end: [11, 21] },
+		{ sign: 'Sagittarius', start: [11, 22], end: [12, 21] },
+	];
+
+	const dobInput = document.getElementById('dob-input') as HTMLInputElement;
+	const results = document.getElementById('bday-results');
+	const celebration = document.getElementById('bday-celebration');
+	const countdownWrap = document.getElementById('bday-countdown-wrap');
+	const shareBtn = document.getElementById('bday-share-btn');
+
+	let confettiRunning = false;
+	let confettiFrame: number | null = null;
+	let shareDays = 0;
+
+	function pad(n: number) {
+		return String(n).padStart(2, '0');
+	}
+
+	function formatNumber(n: number) {
+		return n.toLocaleString();
+	}
+
+	function isLeapYear(year: number) {
+		return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+	}
+
+	function birthdayInYear(year: number, month: number, day: number): Date {
+		if (month === 1 && day === 29 && !isLeapYear(year)) {
+			return new Date(year, 1, 28, 0, 0, 0, 0);
+		}
+		return new Date(year, month, day, 0, 0, 0, 0);
+	}
+
+	function isBirthdayToday(
+		now: Date,
+		birthMonth: number,
+		birthDay: number,
+	): boolean {
+		const today = birthdayInYear(now.getFullYear(), birthMonth, birthDay);
+		return (
+			now.getFullYear() === today.getFullYear() &&
+			now.getMonth() === today.getMonth() &&
+			now.getDate() === today.getDate()
+		);
+	}
+
+	function getNextBirthday(
+		dob: Date,
+		now: Date,
+	): { next: Date; isToday: boolean } {
+		const month = dob.getMonth();
+		const day = dob.getDate();
+		const year = now.getFullYear();
+
+		if (isBirthdayToday(now, month, day)) {
+			return { next: birthdayInYear(year, month, day), isToday: true };
+		}
+
+		let next = birthdayInYear(year, month, day);
+		if (now.getTime() >= next.getTime()) {
+			next = birthdayInYear(year + 1, month, day);
+		}
+
+		return { next, isToday: false };
+	}
+
+	function getLastBirthday(dob: Date, now: Date): Date {
+		const month = dob.getMonth();
+		const day = dob.getDate();
+		const year = now.getFullYear();
+
+		let last = birthdayInYear(year, month, day);
+		if (now.getTime() < last.getTime()) {
+			last = birthdayInYear(year - 1, month, day);
+		}
+		return last;
+	}
+
+	function getStarSign(month: number, day: number): string {
+		const md = month * 100 + day;
+		for (const { sign, start, end } of zodiacSigns) {
+			const startMd = start[0] * 100 + start[1];
+			const endMd = end[0] * 100 + end[1];
+			if (startMd > endMd) {
+				if (md >= startMd || md <= endMd) return sign;
+			} else if (md >= startMd && md <= endMd) {
+				return sign;
+			}
+		}
+		return 'Unknown';
+	}
+
+	function getGeneration(year: number): string {
+		const gen = generations.find((g) => year >= g.start && year <= g.end);
+		if (gen) return gen.name;
+		if (year < 1901) return 'Before modern generations';
+		return 'Generation Beta (upcoming)';
+	}
+
+	function setText(id: string, value: string) {
+		const el = document.getElementById(id);
+		if (el) el.textContent = value;
+	}
+
+	interface ConfettiPiece {
+		x: number;
+		y: number;
+		size: number;
+		color: string;
+		rotation: number;
+		rotationSpeed: number;
+		speedX: number;
+		speedY: number;
+	}
+
+	let confettiPieces: ConfettiPiece[] = [];
+
+	function startConfetti() {
+		const canvas = document.getElementById(
+			'bday-confetti',
+		) as HTMLCanvasElement;
+		if (!canvas || confettiRunning) return;
+
+		const parent = canvas.parentElement;
+		if (!parent) return;
+
+		canvas.width = parent.offsetWidth;
+		canvas.height = parent.offsetHeight;
+
+		const colors = ['#8B5CF6', '#EC4899', '#F59E0B', '#10B981', '#06B6D4', '#fff'];
+		confettiPieces = Array.from({ length: 120 }, () => ({
+			x: Math.random() * canvas.width,
+			y: Math.random() * canvas.height - canvas.height,
+			size: Math.random() * 8 + 4,
+			color: colors[Math.floor(Math.random() * colors.length)],
+			rotation: Math.random() * 360,
+			rotationSpeed: (Math.random() - 0.5) * 8,
+			speedX: (Math.random() - 0.5) * 3,
+			speedY: Math.random() * 3 + 2,
+		}));
+
+		confettiRunning = true;
+		animateConfetti(canvas);
+	}
+
+	function stopConfetti() {
+		confettiRunning = false;
+		if (confettiFrame !== null) {
+			cancelAnimationFrame(confettiFrame);
+			confettiFrame = null;
+		}
+		confettiPieces = [];
+		const canvas = document.getElementById(
+			'bday-confetti',
+		) as HTMLCanvasElement;
+		if (canvas) {
+			const ctx = canvas.getContext('2d');
+			ctx?.clearRect(0, 0, canvas.width, canvas.height);
+		}
+	}
+
+	function animateConfetti(canvas: HTMLCanvasElement) {
+		if (!confettiRunning) return;
+
+		const ctx = canvas.getContext('2d');
+		if (!ctx) return;
+
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+		for (const p of confettiPieces) {
+			p.x += p.speedX;
+			p.y += p.speedY;
+			p.rotation += p.rotationSpeed;
+
+			if (p.y > canvas.height + 20) {
+				p.y = -20;
+				p.x = Math.random() * canvas.width;
+			}
+
+			ctx.save();
+			ctx.translate(p.x, p.y);
+			ctx.rotate((p.rotation * Math.PI) / 180);
+			ctx.fillStyle = p.color;
+			ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+			ctx.restore();
+		}
+
+		confettiFrame = requestAnimationFrame(() => animateConfetti(canvas));
+	}
+
+	function updateBirthday() {
+		if (!dobInput || !results) return;
+
+		if (!dobInput.value) {
+			results.style.display = 'none';
+			stopConfetti();
+			return;
+		}
+
+		const dob = new Date(dobInput.value + 'T00:00:00');
+		if (isNaN(dob.getTime())) {
+			results.style.display = 'none';
+			stopConfetti();
+			return;
+		}
+
+		const now = new Date();
+		if (dob.getTime() > now.getTime()) {
+			results.style.display = 'none';
+			stopConfetti();
+			return;
+		}
+
+		results.style.display = 'block';
+
+		const birthMonth = dob.getMonth();
+		const birthDay = dob.getDate();
+		const birthYear = dob.getFullYear();
+		const { next, isToday } = getNextBirthday(dob, now);
+		const last = getLastBirthday(dob, now);
+
+		const ageTurning = next.getFullYear() - birthYear;
+		const birthdayThisYear = birthdayInYear(now.getFullYear(), birthMonth, birthDay);
+		const weekday = birthdayThisYear.toLocaleDateString('en-GB', {
+			weekday: 'long',
+		});
+		const bornWeekday = dob.toLocaleDateString('en-GB', { weekday: 'long' });
+		const starSign = getStarSign(birthMonth + 1, birthDay);
+		const generation = getGeneration(birthYear);
+
+		if (isToday) {
+			if (celebration) celebration.style.display = 'block';
+			if (countdownWrap) countdownWrap.style.display = 'none';
+			setText(
+				'bday-celebration-text',
+				`You're turning ${ageTurning} today — have an amazing day!`,
+			);
+			if (!confettiRunning) startConfetti();
+			shareDays = 0;
+		} else {
+			if (celebration) celebration.style.display = 'none';
+			if (countdownWrap) countdownWrap.style.display = 'block';
+			stopConfetti();
+
+			const diff = next.getTime() - now.getTime();
+			const totalSeconds = Math.max(0, Math.floor(diff / 1000));
+			const days = Math.floor(totalSeconds / 86400);
+			const hours = Math.floor((totalSeconds % 86400) / 3600);
+			const mins = Math.floor((totalSeconds % 3600) / 60);
+			const secs = totalSeconds % 60;
+
+			shareDays = days;
+
+			setText('cd-days', String(days));
+			setText('cd-hours', pad(hours));
+			setText('cd-mins', pad(mins));
+			setText('cd-secs', pad(secs));
+			setText('bday-weekday', weekday);
+			setText('bday-age-turning', String(ageTurning));
+		}
+
+		const msSinceLast = now.getTime() - last.getTime();
+		const daysSinceLast = Math.floor(msSinceLast / 86400000);
+
+		if (!isToday) {
+			setText('bday-days-since', String(daysSinceLast));
+		}
+
+		const totalHoursUntil = isToday
+			? 0
+			: Math.floor((next.getTime() - now.getTime()) / 3600000);
+		const weeksUntil = isToday ? 0 : Math.floor(shareDays / 7);
+		const fullMoonsUntil = isToday
+			? 0
+			: Math.floor(shareDays / SYNODIC_MONTH);
+
+		setText('stat-days', isToday ? '0' : String(shareDays));
+		setText('stat-weeks', String(weeksUntil));
+		setText('stat-hours', formatNumber(totalHoursUntil));
+		setText('stat-dow', weekday);
+		setText('stat-age', String(ageTurning));
+		setText('stat-since', String(daysSinceLast));
+
+		setText('fact-sign', starSign);
+		setText('fact-gen', generation);
+		setText(
+			'fact-moons',
+			isToday ? '0' : String(fullMoonsUntil),
+		);
+		setText('fact-born-dow', bornWeekday);
+	}
+
+	dobInput?.addEventListener('input', updateBirthday);
+	dobInput?.addEventListener('change', updateBirthday);
+
+	setInterval(() => {
+		if (dobInput?.value) updateBirthday();
+	}, 1000);
+
+	shareBtn?.addEventListener('click', () => {
+		const text = `My birthday is in ${shareDays} days! clockr.co/days-until-birthday`;
+		navigator.clipboard.writeText(text);
+		shareBtn.textContent = '✓ Copied!';
+		setTimeout(() => {
+			shareBtn.textContent = '📋 Copy & Share';
+		}, 2000);
+	});
+</script>
