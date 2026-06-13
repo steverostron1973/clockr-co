@@ -78,18 +78,182 @@ import Layout from '../layouts/Layout.astro';
 			<button class="age-share" id="age-share-btn">📤 Share my age</button>
 		</div>
 
+		<!-- HOW IT WORKS -->
+		<section class="age-how">
+			<h2 class="age-section-title">How does an age calculator work?</h2>
+			<div class="age-how-card">
+				<p>
+					An age calculator works by comparing your date of birth to today's
+					date. It starts by finding the difference in full years — how many
+					complete birthdays you have celebrated — then calculates any remaining
+					months and days between your last birthday and today. The result is
+					your age expressed as years, months, and days rather than a single
+					number.
+				</p>
+				<p>
+					The exact calculation is more complex than simply subtracting one year
+					from another. Leap years add an extra day every four years, which
+					affects the total number of days you have been alive. Months vary in
+					length — from 28 days in February to 31 in January — so the number of
+					days between two dates depends on which months fall in between. Time
+					zones can also shift the precise moment your age changes, especially
+					if you were born near midnight in a different zone than where you live
+					now.
+				</p>
+				<p>
+					Clockr calculates your age down to the second by measuring the
+					difference in milliseconds between your birth date and the current
+					moment. That total is converted into years, months, days, hours,
+					minutes, and seconds — and the display updates every second so you can
+					watch your age tick upward in real time.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="age-faq">
+			<h2 class="age-section-title">Frequently asked questions</h2>
+			<div class="age-faq-list">
+				<details class="age-faq-item">
+					<summary class="age-faq-question"
+						>How do I calculate my exact age?</summary
+					>
+					<div class="age-faq-answer">
+						<p>
+							Enter your date of birth into Clockr's age calculator above. The
+							tool instantly compares your birth date to the current date and
+							time, breaking your age down into years, months, days, hours,
+							minutes, and seconds. For the most accurate result, use your
+							actual date of birth — the calculator updates every second, so you
+							always see your precise age right now.
+						</p>
+					</div>
+				</details>
+				<details class="age-faq-item">
+					<summary class="age-faq-question"
+						>Why is my age different in different countries?</summary
+					>
+					<div class="age-faq-answer">
+						<p>
+							Different cultures count age differently. In most Western
+							countries, you turn a new age on your birthday — so you become
+							one year older at midnight on that date each year. In some East
+							Asian traditions, people were historically considered one year old
+							at birth and gained a year at the Lunar New Year rather than on
+							their birthday. Legal definitions of adulthood also vary: the age
+							of majority is 18 in most countries but 20 in Japan and 21 in
+							some others. Time zones can also affect the exact moment your age
+							changes if your birth time falls near midnight.
+						</p>
+					</div>
+				</details>
+				<details class="age-faq-item">
+					<summary class="age-faq-question"
+						>What is the most common birthday in the world?</summary
+					>
+					<div class="age-faq-answer">
+						<p>
+							Birth patterns vary by country, but data from the United States
+							and several European nations consistently shows September as the
+							most common birth month. Within that month, 9 September and 10
+							September frequently rank among the most common individual
+							birthdays. Globally, summer and early autumn months tend to see
+							higher birth rates in the Northern Hemisphere, while patterns
+							differ in the Southern Hemisphere. No single day is the most common
+							birthday everywhere in the world.
+						</p>
+					</div>
+				</details>
+				<details class="age-faq-item">
+					<summary class="age-faq-question">How old am I in days?</summary>
+					<div class="age-faq-answer">
+						<p>
+							To find your age in days, count every calendar day from your date
+							of birth to today, including leap days. You can multiply complete
+							years by 365 or 366 and add the days since your last birthday, but
+							the simplest approach is to subtract your birth date from today's
+							date. Clockr does this automatically — enter your date of birth
+							and the "Days alive" figure shows your exact total.
+						</p>
+					</div>
+				</details>
+				<details class="age-faq-item">
+					<summary class="age-faq-question"
+						>What is the youngest age ever recorded for a world record?</summary
+					>
+					<div class="age-faq-answer">
+						<p>
+							Lina Medina of Peru holds the Guinness World Record as the
+							youngest confirmed mother, giving birth at age 5 years and 7
+							months in 1939. For survival records, the youngest premature
+							babies to survive have been born at around 21 to 22 weeks
+							gestation, weighing under one pound. These extraordinary cases
+							represent the extreme lower limits of human development rather
+							than typical childhood milestones.
+						</p>
+					</div>
+				</details>
+				<details class="age-faq-item">
+					<summary class="age-faq-question"
+						>How do leap years affect my age calculation?</summary
+					>
+					<div class="age-faq-answer">
+						<p>
+							Leap years add an extra day on 29 February every four years (with
+							century-year exceptions), giving those years 366 days instead of
+							365. If you were born on 29 February, your official birthday in
+							non-leap years is often celebrated on 28 February or 1 March. For
+							your total age in days, each leap year you have lived through adds
+							one extra day to your count. Clockr accounts for every leap year
+							automatically when calculating your age.
+						</p>
+					</div>
+				</details>
+				<details class="age-faq-item">
+					<summary class="age-faq-question"
+						>What age am I on my half birthday?</summary
+					>
+					<div class="age-faq-answer">
+						<p>
+							Your half birthday falls exactly six months after your actual
+							birthday — or six months before your next one, depending on how
+							you look at it. On that date you are halfway between two birthday
+							ages. For example, if you turned 30 on 15 March, your half
+							birthday is 15 September and you are "30 and a half." It is a fun
+							milestone, though it has no legal significance in most countries.
+						</p>
+					</div>
+				</details>
+				<details class="age-faq-item">
+					<summary class="age-faq-question">How many seconds old am I?</summary>
+					<div class="age-faq-answer">
+						<p>
+							Multiply your total days alive by 86,400 — the number of seconds
+							in a day — then add the seconds elapsed since midnight today. The
+							result is a surprisingly large number. Clockr calculates this live:
+							enter your date of birth above and watch the "Seconds alive"
+							counter tick upward every second.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
 		<!-- RELATED TOOLS -->
 		<div class="age-related">
 			<h3 class="age-related-title">You might also like</h3>
 			<div class="age-related-grid">
-				<a href="/birthday-countdown" class="age-related-card"
-					>🎈 Birthday Countdown</a
+				<a href="/life-in-numbers" class="age-related-card"
+					><span class="age-related-name">Your Life in Numbers</span></a
+				>
+				<a href="/days-until-birthday" class="age-related-card"
+					><span class="age-related-name">Days Until My Birthday</span></a
 				>
 				<a href="/age-on-other-planets" class="age-related-card"
-					>🪐 Age on Other Planets</a
+					><span class="age-related-name">Your Age on Other Planets</span></a
 				>
-				<a href="/how-many-seconds-alive" class="age-related-card"
-					>⚡ 1 Billion Seconds</a
+				<a href="/what-generation" class="age-related-card"
+					><span class="age-related-name">What Generation Am I?</span></a
 				>
 			</div>
 		</div>
@@ -315,6 +479,98 @@ import Layout from '../layouts/Layout.astro';
 		opacity: 0.9;
 	}
 
+	.age-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.age-how {
+		margin-bottom: 48px;
+	}
+
+	.age-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.age-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.age-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.age-faq {
+		margin-bottom: 48px;
+	}
+
+	.age-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.age-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.age-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.age-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.age-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.age-faq-item[open] .age-faq-question::after {
+		content: '−';
+	}
+
+	.age-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.age-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
 	.age-related {
 		border-top: 1px solid rgba(255, 255, 255, 0.06);
 		padding-top: 40px;
@@ -330,7 +586,7 @@ import Layout from '../layouts/Layout.astro';
 
 	.age-related-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 	}
 
@@ -338,21 +594,24 @@ import Layout from '../layouts/Layout.astro';
 		background: #0c0c0c;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		border-radius: 12px;
-		padding: 16px;
+		padding: 20px 16px;
 		text-align: center;
-		font-family: 'Outfit', sans-serif;
-		font-size: 14px;
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.6);
 		text-decoration: none;
-		transition:
-			border-color 0.2s ease,
-			color 0.2s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.age-related-card:hover {
 		border-color: rgba(139, 92, 246, 0.4);
-		color: #fff;
+	}
+
+	.age-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 </style>
 

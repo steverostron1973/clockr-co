@@ -78,12 +78,183 @@ import { gridCities, searchOnlyCities } from '../data/worldClockSearchCities';
 
 		<p class="wc-empty" id="wc-empty" hidden>No cities match your search.</p>
 
+		<!-- HOW IT WORKS -->
+		<section class="wc-how">
+			<h2 class="wc-section-title">How does a world clock work?</h2>
+			<div class="wc-how-card">
+				<p>
+					The world is divided into time zones based on longitude. Each zone is
+					roughly 15 degrees wide, representing one hour of difference from its
+					neighbour. As the Earth rotates, the sun appears to move across the
+					sky at different times in different places — noon in London is still
+					night in New York. Time zones let every region set its clocks to match
+					local solar time.
+				</p>
+				<p>
+					UTC (Coordinated Universal Time) is the global standard that all time
+					zones are offset from. It replaced GMT as the international reference
+					in 1972 and is kept precise using atomic clocks. Every city on a world
+					clock is expressed as UTC plus or minus a number of hours — for
+					example, New York is UTC−5 and Tokyo is UTC+9.
+				</p>
+				<p>
+					Clockr uses the browser's built-in Intl.DateTimeFormat API with IANA
+					timezone identifiers to display accurate local times for every city.
+					Each city card is linked to a named timezone like
+					"America/New_York" or "Asia/Tokyo", and the API handles daylight
+					saving changes, half-hour offsets, and historical adjustments
+					automatically — updating every second without any server round-trip.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="wc-faq">
+			<h2 class="wc-section-title">Frequently asked questions</h2>
+			<div class="wc-faq-list">
+				<details class="wc-faq-item">
+					<summary class="wc-faq-question"
+						>How many time zones are there in the world?</summary
+					>
+					<div class="wc-faq-answer">
+						<p>
+							There are 24 primary longitudinal time zones, one for each hour of
+							the day. In practice, however, there are around 38 different
+							UTC offsets in use worldwide because countries adopt zones that
+							don't align neatly with 15-degree segments. Some nations use
+							half-hour or quarter-hour offsets, and daylight saving time adds
+							further variation throughout the year.
+						</p>
+					</div>
+				</details>
+				<details class="wc-faq-item">
+					<summary class="wc-faq-question"
+						>What is UTC and how does it work?</summary
+					>
+					<div class="wc-faq-answer">
+						<p>
+							UTC (Coordinated Universal Time) is the world's primary time
+							standard. It is based on atomic clocks and is accurate to within
+							a fraction of a second. All time zones are defined as an offset
+							from UTC — for example, UTC+1 is one hour ahead and UTC−8 is eight
+							hours behind. UTC occasionally adds a leap second to stay aligned
+							with Earth's rotation, though leap seconds are being phased out.
+						</p>
+					</div>
+				</details>
+				<details class="wc-faq-item">
+					<summary class="wc-faq-question"
+						>Which country has the most time zones?</summary
+					>
+					<div class="wc-faq-answer">
+						<p>
+							France holds the record with 12 or 13 time zones, depending on how
+							overseas territories are counted — including locations in the
+							Pacific, Indian Ocean, and South America. Russia spans 11 time
+							zones across its vast territory, and the United States covers 11
+							when including territories like Guam and American Samoa.
+						</p>
+					</div>
+				</details>
+				<details class="wc-faq-item">
+					<summary class="wc-faq-question"
+						>What is the International Date Line?</summary
+					>
+					<div class="wc-faq-answer">
+						<p>
+							The International Date Line is an imaginary boundary running
+							roughly along the 180° meridian in the Pacific Ocean. Crossing it
+							eastward moves the calendar back one day; crossing westward moves
+							it forward one day. It exists so that neighbouring regions on
+							opposite sides of the globe don't share the same date while being
+							24 hours apart in local time. The line zigzags around island
+							nations to keep entire countries on the same calendar day.
+						</p>
+					</div>
+				</details>
+				<details class="wc-faq-item">
+					<summary class="wc-faq-question"
+						>Why do some countries have half-hour time zones?</summary
+					>
+					<div class="wc-faq-answer">
+						<p>
+							Half-hour and quarter-hour offsets exist because political and
+							geographic boundaries don't always align with neat 15-degree
+							longitude segments. India uses UTC+5:30 so that the entire
+							country shares one time zone despite spanning nearly 30 degrees of
+							longitude. Nepal uses UTC+5:45, and Australia's Lord Howe Island
+							uses UTC+10:30 in summer and UTC+11 in winter. These offsets
+							reflect practical decisions about national unity and local solar
+							time.
+						</p>
+					</div>
+				</details>
+				<details class="wc-faq-item">
+					<summary class="wc-faq-question"
+						>What is daylight saving time and which countries use it?</summary
+					>
+					<div class="wc-faq-answer">
+						<p>
+							Daylight saving time (DST) shifts clocks forward by one hour in
+							spring and back in autumn to make better use of evening daylight.
+							It is used in parts of North America, Europe, Australia, and a
+							handful of other regions — but not uniformly. Many countries,
+							including Japan, India, and most of Africa, do not observe DST at
+							all. Clockr automatically reflects DST changes through IANA
+							timezone data, so city times stay accurate year-round.
+						</p>
+					</div>
+				</details>
+				<details class="wc-faq-item">
+					<summary class="wc-faq-question"
+						>What is the biggest time difference between two places on Earth?</summary
+					>
+					<div class="wc-faq-answer">
+						<p>
+							The maximum offset between two inhabited places is 26 hours.
+							Howland and Baker Islands in the Pacific (UTC−12) are a full day
+							behind Kiritimati in Kiribati (UTC+14) — so when it is noon on
+							Monday in Kiritimati, it is still 10:00 on Sunday in Howland
+							Island. Even between major cities, the gap can be 20 hours or
+							more, such as between Honolulu and Auckland.
+						</p>
+					</div>
+				</details>
+				<details class="wc-faq-item">
+					<summary class="wc-faq-question"
+						>What time zone is GMT and is it the same as UTC?</summary
+					>
+					<div class="wc-faq-answer">
+						<p>
+							GMT (Greenwich Mean Time) is the time zone centred on the Royal
+							Observatory in Greenwich, London. For almost all practical
+							purposes, GMT and UTC are identical — both are at offset zero.
+							Technically, GMT is based on Earth's rotation while UTC is based on
+							atomic clocks, but the difference is less than a second. In
+							winter, the UK uses GMT; in summer it switches to BST (British
+							Summer Time, UTC+1).
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
 		<div class="wc-related">
 			<h3 class="wc-related-title">You might also like</h3>
 			<div class="wc-related-grid">
-				<a href="/age-calculator" class="wc-related-card">🎂 Age Calculator</a>
-				<a href="/date-calculator" class="wc-related-card">📅 Date Calculator</a>
-				<a href="/" class="wc-related-card">⏱️ Countdowns</a>
+				<a href="/timezone-converter" class="wc-related-card"
+					><span class="wc-related-name">Time Zone Converter</span></a
+				>
+				<a href="/time-difference" class="wc-related-card"
+					><span class="wc-related-name">Time Difference Calculator</span></a
+				>
+				<a href="/countdown-timer" class="wc-related-card"
+					><span class="wc-related-name">Countdown Timer</span></a
+				>
+				<a href="/world-clock" class="wc-related-card"
+					><span class="wc-related-name">World Clock</span></a
+				>
 			</div>
 		</div>
 	</div>
@@ -286,6 +457,98 @@ import { gridCities, searchOnlyCities } from '../data/worldClockSearchCities';
 		margin: -40px 0 60px;
 	}
 
+	.wc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.wc-how {
+		margin-bottom: 48px;
+	}
+
+	.wc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.wc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.wc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.wc-faq {
+		margin-bottom: 48px;
+	}
+
+	.wc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.wc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.wc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.wc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.wc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.wc-faq-item[open] .wc-faq-question::after {
+		content: '−';
+	}
+
+	.wc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.wc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
 	.wc-related {
 		border-top: 1px solid rgba(255, 255, 255, 0.06);
 		padding-top: 40px;
@@ -301,7 +564,7 @@ import { gridCities, searchOnlyCities } from '../data/worldClockSearchCities';
 
 	.wc-related-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 	}
 
@@ -309,21 +572,24 @@ import { gridCities, searchOnlyCities } from '../data/worldClockSearchCities';
 		background: #0c0c0c;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		border-radius: 12px;
-		padding: 16px;
+		padding: 20px 16px;
 		text-align: center;
-		font-family: 'Outfit', sans-serif;
-		font-size: 14px;
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.6);
 		text-decoration: none;
-		transition:
-			border-color 0.2s ease,
-			color 0.2s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.wc-related-card:hover {
-		border-color: rgba(139, 92, 246, 0.4);
-		color: #fff;
+		border-color: rgba(0, 229, 196, 0.4);
+	}
+
+	.wc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	@media (max-width: 639px) {

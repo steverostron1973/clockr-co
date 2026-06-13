@@ -2,6 +2,108 @@
 import Layout from '../layouts/Layout.astro';
 import AnalogueClock from '../components/AnalogueClock.astro';
 import { categories } from '../data/categories';
+import type { CategoryId } from '../data/categories';
+
+const categoryHrefs: Record<CategoryId, string> = {
+	holidays: '/days-until-christmas',
+	birthdays: '/age-calculator',
+	timezones: '/world-clock',
+	history: '/world-clock',
+	milestones: '/life-in-numbers',
+	work: '/business-days',
+	seasons: '/year-progress',
+	religious: '/days-until-easter',
+};
+
+const categoryFloatEmojis: Record<CategoryId, string[]> = {
+	holidays: ['🎄', '🎅', '⭐', '🎁'],
+	birthdays: ['🎂', '🎈', '🎉', '🎁'],
+	timezones: ['🌍', '🕐', '✈️', '🗺️'],
+	history: ['📜', '📅', '🏛️', '⏳'],
+	milestones: ['⚡', '🎯', '💫', '🏆'],
+	work: ['💼', '📊', '📆', '✅'],
+	seasons: ['🍂', '🌸', '☀️', '❄️'],
+	religious: ['🕌', '🕯️', '🙏', '✨'],
+};
+
+const searchTools = [
+	{ name: 'Age Calculator', description: 'How old are you, exactly?', href: '/age-calculator', keywords: ['how old am i', 'age', 'birthday', 'born'], emoji: '🎂', from: '#8B5CF6', to: '#EC4899' },
+	{ name: 'Date Calculator', description: 'Days between any two dates', href: '/date-calculator', keywords: ['days between dates', 'date difference'], emoji: '📅', from: '#10B981', to: '#84CC16' },
+	{ name: 'World Clock', description: 'Current time in 250+ cities', href: '/world-clock', keywords: ['time in city', 'world clock', 'current time'], emoji: '🌍', from: '#00E5C4', to: '#0099FF' },
+	{ name: 'Countdown Timer', description: 'Set a timer for anything', href: '/countdown-timer', keywords: ['timer', 'countdown', 'alarm'], emoji: '⏱️', from: '#FF5C4D', to: '#FF9A3C' },
+	{ name: 'Stopwatch', description: 'Track elapsed time with laps', href: '/stopwatch', keywords: ['stopwatch', 'lap timer', 'elapsed time'], emoji: '⏱️', from: '#FF5C4D', to: '#FF9A3C' },
+	{ name: 'Time Zone Converter', description: 'Convert time between zones', href: '/timezone-converter', keywords: ['time zone', 'convert time', 'utc'], emoji: '🌐', from: '#00E5C4', to: '#0099FF' },
+	{ name: 'Year Progress', description: 'How much of the year is left?', href: '/year-progress', keywords: ['year progress', 'days left in year', '2026'], emoji: '📊', from: '#2D6A4F', to: '#74B49B' },
+	{ name: 'Sleep Calculator', description: 'Find your ideal bedtime', href: '/sleep-calculator', keywords: ['sleep', 'bedtime', 'wake up', 'sleep cycles'], emoji: '😴', from: '#6366F1', to: '#8B5CF6' },
+	{ name: 'Days Until Christmas', description: 'Countdown to 25 December', href: '/days-until-christmas', keywords: ['christmas countdown', 'days until christmas'], emoji: '🎄', from: '#FF5C4D', to: '#FF9A3C' },
+	{ name: 'Days Until New Year', description: 'Countdown to 1 January', href: '/days-until-new-year', keywords: ['new year countdown', 'days until new year'], emoji: '🎆', from: '#C0C0C0', to: '#FFD700' },
+	{ name: 'Days Until Halloween', description: 'Countdown to 31 October', href: '/days-until-halloween', keywords: ['halloween countdown', 'days until halloween'], emoji: '🎃', from: '#FF6B00', to: '#7B2FBE' },
+	{ name: "Days Until Valentine's Day", description: 'Countdown to 14 February', href: '/days-until-valentines', keywords: ['valentines day', 'february 14'], emoji: '💝', from: '#FF1493', to: '#FF6B9D' },
+	{ name: 'Days Until Easter', description: 'Countdown to Easter Sunday', href: '/days-until-easter', keywords: ['easter countdown', 'days until easter'], emoji: '🐣', from: '#A8D8B9', to: '#F9E79F' },
+	{ name: 'Unix Timestamp', description: 'Convert epoch time instantly', href: '/unix-timestamp', keywords: ['unix timestamp', 'epoch time', 'developer'], emoji: '💻', from: '#00E5C4', to: '#0099FF' },
+	{ name: 'Business Days Calculator', description: 'Working days between dates', href: '/business-days', keywords: ['working days', 'business days', 'weekdays'], emoji: '💼', from: '#10B981', to: '#84CC16' },
+	{ name: 'Your Life in Numbers', description: 'Days, hours and seconds alive', href: '/life-in-numbers', keywords: ['life in numbers', 'days alive', 'seconds alive'], emoji: '⚡', from: '#A855F7', to: '#FF5C4D' },
+	{ name: 'What Generation Am I', description: 'Boomer, Millennial or Gen Z?', href: '/what-generation', keywords: ['generation', 'millennial', 'gen z', 'boomer'], emoji: '🧬', from: '#8B5CF6', to: '#EC4899' },
+	{ name: 'Age on Other Planets', description: 'How old are you on Mars?', href: '/age-on-other-planets', keywords: ['age on planets', 'mercury', 'mars age'], emoji: '🪐', from: '#8B5CF6', to: '#FF5C4D' },
+	{ name: 'Days Until Birthday', description: 'Countdown to your next birthday', href: '/days-until-birthday', keywords: ['birthday countdown', 'days until birthday'], emoji: '🎂', from: '#8B5CF6', to: '#EC4899' },
+	{ name: 'Time Difference Calculator', description: 'Time between two cities', href: '/time-difference', keywords: ['time difference', 'time between cities'], emoji: '🕐', from: '#00E5C4', to: '#0099FF' },
+	{ name: 'Leap Year Checker', description: 'Is this year a leap year?', href: '/leap-year', keywords: ['leap year', 'is this a leap year'], emoji: '📆', from: '#2D6A4F', to: '#74B49B' },
+];
+
+function daysUntilChristmas(now = new Date()): number {
+	let year = now.getFullYear();
+	if (now.getMonth() === 11 && now.getDate() > 25) year++;
+	const christmas = new Date(year, 11, 25);
+	return Math.max(0, Math.ceil((christmas.getTime() - now.getTime()) / (1000 * 60 * 60 * 24)));
+}
+
+const featuredTools = [
+	{ emoji: '🎂', name: 'Age Calculator', description: 'How old are you, exactly?', href: '/age-calculator', from: '#8B5CF6', to: '#EC4899' },
+	{ emoji: '🌍', name: 'World Clock', description: 'Current time in 250+ cities', href: '/world-clock', from: '#00E5C4', to: '#0099FF' },
+	{ emoji: '⏱️', name: 'Countdown Timer', description: 'Set a timer for anything', href: '/countdown-timer', from: '#FF5C4D', to: '#FF9A3C' },
+	{ emoji: '🎄', name: 'Days Until Christmas', description: `${daysUntilChristmas()} days and counting`, href: '/days-until-christmas', from: '#FF5C4D', to: '#FF9A3C' },
+	{ emoji: '📅', name: 'Date Calculator', description: 'Days between any two dates', href: '/date-calculator', from: '#10B981', to: '#84CC16' },
+	{ emoji: '🪐', name: 'Age on Other Planets', description: 'How old are you on Mars?', href: '/age-on-other-planets', from: '#8B5CF6', to: '#FF5C4D' },
+];
+
+const tickingLetters = 'TICKING.'.split('');
+
+const searchPlaceholders = [
+	'🔍 Try: How old am I in days?',
+	'🔍 Try: Days until Christmas 2026',
+	'🔍 Try: What time is it in Tokyo right now?',
+	'🔍 Try: Am I a Millennial or Gen Z?',
+	'🔍 Try: How many days until my birthday?',
+	'🔍 Try: Is 2028 a leap year?',
+	'🔍 Try: How old would I be on Mars?',
+	'🔍 Try: How many working days left this month?',
+	'🔍 Try: What time is it in New York?',
+	'🔍 Try: How long until New Year?',
+];
+
+const allTools = [
+	{ emoji: '🎂', name: 'Age Calculator', href: '/age-calculator', from: '#8B5CF6', to: '#EC4899' },
+	{ emoji: '📅', name: 'Date Calculator', href: '/date-calculator', from: '#10B981', to: '#84CC16' },
+	{ emoji: '🌍', name: 'World Clock', href: '/world-clock', from: '#00E5C4', to: '#0099FF' },
+	{ emoji: '⏱️', name: 'Countdown Timer', href: '/countdown-timer', from: '#FF5C4D', to: '#FF9A3C' },
+	{ emoji: '⏱️', name: 'Stopwatch', href: '/stopwatch', from: '#8B5CF6', to: '#EC4899' },
+	{ emoji: '🌐', name: 'Time Zone Converter', href: '/timezone-converter', from: '#00E5C4', to: '#0099FF' },
+	{ emoji: '📊', name: 'Year Progress', href: '/year-progress', from: '#FF5C4D', to: '#FF9A3C' },
+	{ emoji: '😴', name: 'Sleep Calculator', href: '/sleep-calculator', from: '#8B5CF6', to: '#EC4899' },
+	{ emoji: '🎄', name: 'Days Until Christmas', href: '/days-until-christmas', from: '#FF5C4D', to: '#FF9A3C' },
+	{ emoji: '🎆', name: 'Days Until New Year', href: '/days-until-new-year', from: '#FF5C4D', to: '#FF9A3C' },
+	{ emoji: '🎃', name: 'Days Until Halloween', href: '/days-until-halloween', from: '#FF5C4D', to: '#FF9A3C' },
+	{ emoji: '💝', name: "Days Until Valentine's Day", href: '/days-until-valentines', from: '#FF5C4D', to: '#FF9A3C' },
+	{ emoji: '🐣', name: 'Days Until Easter', href: '/days-until-easter', from: '#10B981', to: '#84CC16' },
+	{ emoji: '⚡', name: 'Unix Timestamp', href: '/unix-timestamp', from: '#10B981', to: '#84CC16' },
+	{ emoji: '💼', name: 'Business Days Calculator', href: '/business-days', from: '#10B981', to: '#84CC16' },
+	{ emoji: '🔢', name: 'Your Life in Numbers', href: '/life-in-numbers', from: '#8B5CF6', to: '#FF5C4D' },
+	{ emoji: '👥', name: 'What Generation Am I', href: '/what-generation', from: '#8B5CF6', to: '#FF5C4D' },
+	{ emoji: '🪐', name: 'Age on Other Planets', href: '/age-on-other-planets', from: '#8B5CF6', to: '#FF5C4D' },
+	{ emoji: '🎂', name: 'Days Until Birthday', href: '/days-until-birthday', from: '#8B5CF6', to: '#EC4899' },
+	{ emoji: '🕐', name: 'Time Difference Calculator', href: '/time-difference', from: '#00E5C4', to: '#0099FF' },
+	{ emoji: '🗓️', name: 'Leap Year Checker', href: '/leap-year', from: '#10B981', to: '#84CC16' },
+];
 ---
 
 <Layout
@@ -9,112 +111,261 @@ import { categories } from '../data/categories';
 	description="Your time and date friend — countdowns, age calculators, time zones and more."
 	category="holidays"
 >
-	<div class="hide-logo">
-	<!-- Hero -->
-	<section class="hero">
-		<div class="vertical-clockr" aria-hidden="true">
-			<span class="vertical-c1">C</span>
-			<span class="vertical-l">L</span>
-			<span class="vertical-o">O</span>
-			<span class="vertical-c2">C</span>
-			<span class="vertical-k">K</span>
-			<span class="vertical-r">R</span>
-		</div>
-
-		<div class="hero-content">
-			<h1 class="hero-headline">
-				<span class="hero-line">Time is</span>
-				<span class="ticking-gradient">TICKING.</span>
-			</h1>
-
-			<AnalogueClock />
-		</div>
-	</section>
-
-	<!-- Category Grid -->
-	<section class="categories-section">
-		<h2 class="explore-heading">
-			<span class="explore-gradient">Explore Clock</span><span class="explore-r">r</span>
-		</h2>
-
-		<div class="categories-grid">
-			{
-				categories.map((category) => (
-					<a
-						href={category.href}
-						class="category-card"
-						style={`--cat-from: ${category.from}; --cat-to: ${category.to}`}
-					>
-						<div class="category-card-inner">
-							<span class="category-emoji">{category.emoji}</span>
-							<span
-								class="category-name gradient-text"
-								style={`--gradient-from: ${category.from}; --gradient-to: ${category.to}`}
-							>
-								{category.name}
-							</span>
-							<p class="category-desc">{category.description}</p>
-						</div>
-					</a>
-				))
-			}
-		</div>
-	</section>
-
-	<section class="xmas-section">
-		<div class="xmas-card">
-			<div class="xmas-top-row">
-				<span style="font-size:22px;animation-delay:0.0s">🎅</span>
-				<span style="font-size:20px;animation-delay:0.2s">❄️</span>
-				<span style="font-size:22px;animation-delay:0.4s">🎄</span>
-				<span style="font-size:20px;animation-delay:0.6s">🦌</span>
-				<span style="font-size:22px;animation-delay:0.8s">⭐</span>
-				<span style="font-size:20px;animation-delay:1.0s">🎁</span>
-				<span style="font-size:22px;animation-delay:1.2s">☃️</span>
-				<span style="font-size:20px;animation-delay:1.4s">🔔</span>
-				<span style="font-size:20px;animation-delay:1.6s">🍬</span>
-				<span style="font-size:22px;animation-delay:1.8s">🎊</span>
-				<span style="font-size:20px;animation-delay:2.0s">🧦</span>
-				<span style="font-size:20px;animation-delay:2.2s">🕯️</span>
-				<span style="font-size:22px;animation-delay:2.4s">🌟</span>
-				<span style="font-size:20px;animation-delay:2.6s">🎿</span>
-				<span style="font-size:22px;animation-delay:2.8s">🤶</span>
-				<span style="font-size:20px;animation-delay:3.0s">❄️</span>
-				<span style="font-size:22px;animation-delay:3.2s">🎁</span>
-				<span style="font-size:20px;animation-delay:3.4s">🦌</span>
+	<div class="hide-logo home-page">
+		<!-- Hero -->
+		<section class="hero">
+			<div class="vertical-clockr" aria-hidden="true">
+				<span class="vertical-c1">C</span>
+				<span class="vertical-l">L</span>
+				<span class="vertical-o">O</span>
+				<span class="vertical-c2">C</span>
+				<span class="vertical-k">K</span>
+				<span class="vertical-r">R</span>
 			</div>
 
-			<div class="xmas-centre">
-				<div class="xmas-label">🎄 CHRISTMAS COUNTDOWN</div>
-				<div class="xmas-numbers">
-					<div class="xmas-block">
-						<span class="xmas-num" id="xmas-days">0</span>
-						<span class="xmas-unit">DAYS</span>
+			<div class="hero-content">
+				<p class="hero-line">Time is</p>
+
+				<h1 class="hero-headline">
+					<span class="ticking-gradient" aria-label="TICKING.">
+						{
+							tickingLetters.map((letter, i) => (
+								<span
+									class="ticking-letter"
+									style={`animation-delay: ${i * 0.08}s`}
+								>
+									{letter}
+								</span>
+							))
+						}
+					</span>
+				</h1>
+
+				<div class="hero-clock">
+					<div class="hero-clock-pulse" aria-hidden="true"></div>
+					<AnalogueClock />
+				</div>
+
+				<p class="live-strip" id="live-strip" aria-live="polite">
+					Loading live data…
+				</p>
+
+				<div class="search-wrap">
+					<div class="search-box" id="search-box">
+						<svg
+							class="search-icon"
+							width="20"
+							height="20"
+							viewBox="0 0 24 24"
+							fill="none"
+							aria-hidden="true"
+						>
+							<circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle>
+							<path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+						</svg>
+						<input
+							type="search"
+							id="tool-search"
+							class="search-input"
+							placeholder={searchPlaceholders[0]}
+							autocomplete="off"
+							aria-label="Search tools"
+							data-placeholders={JSON.stringify(searchPlaceholders)}
+						/>
 					</div>
-					<div class="xmas-sep">:</div>
-					<div class="xmas-block">
-						<span class="xmas-num" id="xmas-hours">0</span>
-						<span class="xmas-unit">HOURS</span>
-					</div>
-					<div class="xmas-sep">:</div>
-					<div class="xmas-block">
-						<span class="xmas-num" id="xmas-mins">0</span>
-						<span class="xmas-unit">MINS</span>
-					</div>
-					<div class="xmas-sep">:</div>
-					<div class="xmas-block">
-						<span class="xmas-num" id="xmas-secs">0</span>
-						<span class="xmas-unit">SECS</span>
+					<div class="search-results" id="search-results" hidden></div>
+				</div>
+			</div>
+
+			<a href="#featured-tools" class="scroll-indicator" aria-label="Scroll to tools">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path
+						d="M12 5v14M5 12l7 7 7-7"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"></path>
+				</svg>
+			</a>
+		</section>
+
+		<!-- Featured Tools -->
+		<section class="featured-section" id="featured-tools">
+			<h2 class="section-heading">Most popular tools</h2>
+			<div class="featured-strip">
+				{
+					featuredTools.map((tool) => (
+						<a href={tool.href} class="featured-card">
+							<span class="featured-emoji">{tool.emoji}</span>
+							<span
+								class="featured-name gradient-text"
+								style={`--gradient-from: ${tool.from}; --gradient-to: ${tool.to}`}
+							>
+								{tool.name}
+							</span>
+							<p class="featured-desc">{tool.description}</p>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- Live Moments -->
+		<section class="live-section">
+			<h2 class="section-heading">Right now</h2>
+			<div class="live-grid">
+				<div class="live-card" style="--card-from: #00E5C4; --card-to: #0099FF">
+					<h3 class="live-card-title gradient-text" style="--gradient-from: #00E5C4; --gradient-to: #0099FF">
+						World Clock Snapshot
+					</h3>
+					<div class="world-snapshot" id="world-snapshot"></div>
+				</div>
+				<div class="live-card" style="--card-from: #2D6A4F; --card-to: #74B49B">
+					<h3 class="live-card-title gradient-text" style="--gradient-from: #2D6A4F; --gradient-to: #74B49B">
+						2026 Progress
+					</h3>
+					<div class="progress-live">
+						<div class="progress-pct gradient-text" id="live-progress-pct" style="--gradient-from: #2D6A4F; --gradient-to: #74B49B">0.00%</div>
+						<div class="progress-bar-track">
+							<div class="progress-bar-fill" id="live-progress-bar"></div>
+						</div>
 					</div>
 				</div>
-				<button class="xmas-share" onclick="navigator.clipboard.writeText('🎄 ' + document.getElementById('xmas-days').textContent + ' days until Christmas! Find out more at Clockr.co')">📤 Share this countdown</button>
+				<div class="live-card" style="--card-from: #FF5C4D; --card-to: #FF9A3C">
+					<h3 class="live-card-title gradient-text" style="--gradient-from: #FF5C4D; --gradient-to: #FF9A3C">
+						Next major event
+					</h3>
+					<div class="event-countdown" id="next-event-countdown">—</div>
+				</div>
+				<div class="live-card" style="--card-from: #FFC04D; --card-to: #FF9A3C">
+					<h3 class="live-card-title gradient-text" style="--gradient-from: #FFC04D; --gradient-to: #FF9A3C">
+						Today's date facts
+					</h3>
+					<div class="date-facts" id="date-facts"></div>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
+
+		<!-- Category Grid -->
+		<section class="categories-section">
+			<h2 class="explore-heading">
+				<span class="explore-gradient">Explore Clock</span><span class="explore-r">r</span>
+			</h2>
+
+			<div class="categories-grid">
+				{
+					categories.map((category) => (
+						<a
+							href={categoryHrefs[category.id]}
+							class="category-card"
+							style={`--cat-from: ${category.from}; --cat-to: ${category.to}`}
+						>
+							<div class="category-float-emojis" aria-hidden="true">
+								{categoryFloatEmojis[category.id].map((emoji, i) => (
+									<span style={`--float-i: ${i}`}>{emoji}</span>
+								))}
+							</div>
+							<div class="category-card-inner">
+								<span class="category-emoji">{category.emoji}</span>
+								<span
+									class="category-name gradient-text"
+									style={`--gradient-from: ${category.from}; --gradient-to: ${category.to}`}
+								>
+									{category.name}
+								</span>
+								<p class="category-desc">{category.description}</p>
+							</div>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- Seasonal Countdown Band -->
+		<section class="seasonal-band" id="seasonal-band" aria-label="Next holiday countdown">
+			<div class="halloween-top-emojis" aria-hidden="true">
+				<div style="display:flex;justify-content:space-between;align-items:center;width:100%;padding:8px 12px;box-sizing:border-box;">
+					<span style="font-size:28px;">🎃</span>
+					<span style="font-size:24px;">👻</span>
+					<span style="font-size:32px;">🕷️</span>
+					<span style="font-size:26px;">🦇</span>
+					<span style="font-size:28px;">💀</span>
+					<span style="font-size:24px;">🕸️</span>
+					<span style="font-size:30px;">🌙</span>
+					<span style="font-size:26px;">🔮</span>
+					<span style="font-size:28px;">🪄</span>
+					<span style="font-size:24px;">☠️</span>
+					<span style="font-size:30px;">🕯️</span>
+					<span style="font-size:26px;">🍬</span>
+					<span style="font-size:28px;">🦴</span>
+					<span style="font-size:24px;">🐈‍⬛</span>
+					<span style="font-size:30px;">🎃</span>
+					<span style="font-size:26px;">👻</span>
+					<span style="font-size:28px;">🕷️</span>
+					<span style="font-size:24px;">🦇</span>
+					<span style="font-size:32px;">💀</span>
+					<span style="font-size:26px;">🕸️</span>
+				</div>
+			</div>
+			<div class="seasonal-decor" id="seasonal-decor" aria-hidden="true"></div>
+			<div class="seasonal-centre">
+				<div class="seasonal-label" id="seasonal-label">Loading…</div>
+				<div class="seasonal-numbers" id="seasonal-numbers">
+					<div class="seasonal-block">
+						<span class="seasonal-num" id="seasonal-days">0</span>
+						<span class="seasonal-unit">DAYS</span>
+					</div>
+					<span class="seasonal-sep">:</span>
+					<div class="seasonal-block">
+						<span class="seasonal-num" id="seasonal-hours">00</span>
+						<span class="seasonal-unit">HOURS</span>
+					</div>
+					<span class="seasonal-sep">:</span>
+					<div class="seasonal-block">
+						<span class="seasonal-num" id="seasonal-mins">00</span>
+						<span class="seasonal-unit">MINS</span>
+					</div>
+					<span class="seasonal-sep">:</span>
+					<div class="seasonal-block">
+						<span class="seasonal-num" id="seasonal-secs">00</span>
+						<span class="seasonal-unit">SECS</span>
+					</div>
+				</div>
+				<a class="seasonal-link" id="seasonal-link" href="/days-until-christmas">
+					See full countdown →
+				</a>
+			</div>
+		</section>
+
+		<section class="all-tools-section">
+			<h2 class="all-tools-heading">All tools</h2>
+			<div class="all-tools-pills">
+				{
+					allTools.map((tool) => (
+						<a href={tool.href} class="tool-pill">
+							<span class="tool-pill-text">
+								{tool.emoji} {tool.name}
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
+		<p class="footer-stat">25 tools · 250+ cities · Updated to the second</p>
 	</div>
 </Layout>
 
 <style>
+	:global(html) {
+		scroll-behavior: smooth;
+	}
+
+	.home-page {
+		background: #080808;
+	}
+
+	/* ── Hero ── */
 	.hero {
 		position: relative;
 		min-height: 100vh;
@@ -122,6 +373,8 @@ import { categories } from '../data/categories';
 		align-items: center;
 		justify-content: center;
 		width: 100%;
+		background: #080808;
+		padding: 80px 1.25rem 4rem;
 	}
 
 	.vertical-clockr {
@@ -157,10 +410,10 @@ import { categories } from '../data/categories';
 	}
 
 	.vertical-r {
-		color: transparent;
-		-webkit-text-fill-color: transparent;
+		color: #00e5c4;
+		-webkit-text-fill-color: #00e5c4;
 		background: none;
-		-webkit-text-stroke: 2px rgba(0, 229, 196, 0.6);
+		-webkit-text-stroke: 0;
 		filter: none;
 	}
 
@@ -179,16 +432,9 @@ import { categories } from '../data/categories';
 		justify-content: center;
 		text-align: center;
 		width: 100%;
+		max-width: 720px;
 		padding: 0;
 		margin: 0;
-	}
-
-	.hero-headline {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.25rem;
-		margin-bottom: 0;
 	}
 
 	.hero-line {
@@ -198,41 +444,483 @@ import { categories } from '../data/categories';
 		color: #ffffff;
 		letter-spacing: -0.02em;
 		line-height: 1.1;
+		margin: 0 0 1rem;
+	}
+
+	.hero-clock {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0.5rem 0 1.25rem;
+	}
+
+	.hero-clock-pulse {
+		position: absolute;
+		width: 280px;
+		height: 280px;
+		border-radius: 50%;
+		box-shadow: 0 0 30px rgba(255, 92, 77, 0.4);
+		animation: rim-pulse 2s ease-in-out infinite;
+		pointer-events: none;
+	}
+
+	@keyframes rim-pulse {
+		0%,
+		100% {
+			box-shadow: 0 0 30px rgba(255, 92, 77, 0.4);
+			transform: scale(1);
+		}
+		50% {
+			box-shadow: 0 0 50px rgba(255, 92, 77, 0.65);
+			transform: scale(1.02);
+		}
+	}
+
+	.hero-clock :global(.clock-wrapper) {
+		margin: 0;
+	}
+
+	.hero-clock :global(.clock-glow) {
+		width: 280px;
+		height: 280px;
+	}
+
+	.hero-clock :global(.clock-face) {
+		width: 280px;
+		height: 280px;
+	}
+
+	.hero-clock :global(#hour-numerals text) {
+		fill: #ffffff;
+		font-family: 'Outfit', sans-serif;
+		font-weight: 800;
+		font-size: 24px;
+	}
+
+	.hero-clock :global(#minute-markers circle) {
+		fill: #ffffff;
+	}
+
+	.hero-headline {
+		margin: 0 0 1rem;
 	}
 
 	.ticking-gradient {
-		background: linear-gradient(
-			90deg,
-			#cc1500 0%,
-			#ff4500 40%,
-			#ff8c00 70%,
-			#ffb300 100%
-		);
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
 		font-family: 'Outfit', sans-serif;
-		font-size: 120px;
+		font-size: clamp(4rem, 10vw, 8rem);
 		font-weight: 900;
-		letter-spacing: -6px;
+		letter-spacing: -4px;
 		line-height: 0.95;
+		display: inline-flex;
+	}
+
+	.ticking-letter {
+		display: inline-block;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		opacity: 0;
+		transform: translateY(-40px);
+		animation: letter-drop 0.5s ease forwards;
+	}
+
+	@keyframes letter-drop {
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.live-strip {
+		font-family: 'Inter', sans-serif;
+		font-size: 1.1rem;
+		font-weight: 500;
+		color: rgba(255, 255, 255, 0.85);
+		margin: 0 0 1.75rem;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.strip-dot {
+		color: #ffffff;
+		font-size: 1.4rem;
+		font-weight: 700;
+		margin: 0 0.5rem;
+		opacity: 0.9;
+	}
+
+	.strip-val {
+		font-family: 'Outfit', sans-serif;
+		font-weight: 800;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.strip-val--teal {
+		color: #00e5c4;
+		text-shadow: 0 0 12px rgba(0, 229, 196, 0.4);
+	}
+
+	.strip-val--coral {
+		color: #ff5c4d;
+		text-shadow: 0 0 12px rgba(255, 92, 77, 0.4);
+	}
+
+	.strip-val--amber {
+		color: #ffd700;
+		text-shadow: 0 0 12px rgba(255, 215, 0, 0.35);
+	}
+
+	.search-wrap {
+		width: 100%;
+		max-width: 700px;
+		position: relative;
+	}
+
+	.search-label {
+		display: block;
+		font-family: 'Outfit', sans-serif;
+		font-size: 1.1rem;
+		font-weight: 600;
+		color: #ffffff;
+		margin-bottom: 0.75rem;
+		text-align: center;
+	}
+
+	.search-box {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		border: 2px solid #ff5c4d;
+		border-radius: 14px;
+		padding: 0 1rem;
+		background: #111111;
+		min-height: 56px;
+		animation: search-border 3s ease-in-out infinite;
+		transition: border-color 0.6s ease, box-shadow 0.6s ease;
+	}
+
+	.search-icon {
+		flex-shrink: 0;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	@keyframes search-border {
+		0%,
+		100% {
+			border-color: #ff5c4d;
+			box-shadow: 0 0 16px rgba(255, 92, 77, 0.25);
+		}
+		50% {
+			border-color: #00e5c4;
+			box-shadow: 0 0 16px rgba(0, 229, 196, 0.25);
+		}
+	}
+
+	.search-input {
+		flex: 1;
+		min-height: 52px;
+		padding: 0.75rem 0;
+		font-family: 'Inter', sans-serif;
+		font-size: 1.1rem;
+		color: #ffffff;
+		background: transparent;
+		border: none;
+		outline: none;
+	}
+
+	.search-input::placeholder {
+		font-size: 1.1rem;
+		color: rgba(255, 255, 255, 0.35);
+		transition: opacity 0.3s ease;
+	}
+
+	.search-results {
+		position: absolute;
+		top: calc(100% + 8px);
+		left: 0;
+		right: 0;
+		background: #1a1a1a;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		overflow: hidden;
+		z-index: 20;
+		max-height: 320px;
+		overflow-y: auto;
+	}
+
+	.search-result-card {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 0.875rem 1rem;
+		text-decoration: none;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+		transition: background 0.15s ease;
+	}
+
+	.search-result-card:last-child {
+		border-bottom: none;
+	}
+
+	.search-result-card:hover {
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	.search-result-emoji {
+		font-size: 1.5rem;
+		line-height: 1;
+		flex-shrink: 0;
+	}
+
+	.search-result-text {
+		text-align: left;
+		min-width: 0;
+	}
+
+	.search-result-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 0.9375rem;
+		font-weight: 700;
 		display: block;
 	}
 
+	.search-result-desc {
+		font-family: 'Inter', sans-serif;
+		font-size: 0.75rem;
+		color: rgba(255, 255, 255, 0.45);
+		margin: 0.125rem 0 0;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.scroll-indicator {
+		position: absolute;
+		bottom: 1.5rem;
+		left: 50%;
+		transform: translateX(-50%);
+		color: rgba(255, 255, 255, 0.3);
+		animation: bounce-down 2s ease-in-out infinite;
+		transition: color 0.2s ease;
+	}
+
+	.scroll-indicator:hover {
+		color: rgba(255, 255, 255, 0.6);
+	}
+
+	@keyframes bounce-down {
+		0%,
+		100% {
+			transform: translateX(-50%) translateY(0);
+		}
+		50% {
+			transform: translateX(-50%) translateY(6px);
+		}
+	}
+
+	/* ── Featured Tools ── */
+	.featured-section {
+		max-width: 80rem;
+		margin: 0 auto;
+		padding: 4rem 1.25rem 3rem;
+	}
+
+	.section-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(1.75rem, 4vw, 2.25rem);
+		font-weight: 800;
+		color: #ffffff;
+		margin: 0 0 1.5rem;
+	}
+
+	.featured-strip {
+		display: flex;
+		gap: 1rem;
+		overflow-x: auto;
+		padding-bottom: 0.5rem;
+		scroll-snap-type: x mandatory;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: thin;
+		scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+	}
+
+	.featured-card {
+		flex: 0 0 220px;
+		scroll-snap-align: start;
+		background: #1a1a1a;
+		border-radius: 14px;
+		padding: 1.5rem;
+		text-decoration: none;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		transition: transform 0.25s ease;
+	}
+
+	.featured-card:hover {
+		transform: translateY(-4px);
+	}
+
+	.featured-emoji {
+		font-size: 2.5rem;
+		line-height: 1;
+	}
+
+	.featured-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 1.0625rem;
+		font-weight: 800;
+		line-height: 1.25;
+	}
+
+	.featured-desc {
+		font-family: 'Inter', sans-serif;
+		font-size: 0.8125rem;
+		color: rgba(255, 255, 255, 0.45);
+		margin: 0;
+		line-height: 1.4;
+	}
+
+	/* ── Live Moments ── */
+	.live-section {
+		max-width: 80rem;
+		margin: 0 auto;
+		padding: 2rem 1.25rem 4rem;
+	}
+
+	.live-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+
+	@media (min-width: 768px) {
+		.live-grid {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1.25rem;
+		}
+	}
+
+	.live-card {
+		background: #1a1a1a;
+		border-radius: 14px;
+		padding: 1.5rem;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.live-card-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 1rem;
+		font-weight: 800;
+		margin: 0 0 1rem;
+	}
+
+	.world-snapshot {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.snapshot-row {
+		font-family: 'Outfit', sans-serif;
+		font-size: 1.125rem;
+		font-weight: 700;
+		font-variant-numeric: tabular-nums;
+		line-height: 1.6;
+		background: linear-gradient(135deg, var(--card-from), var(--card-to));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.progress-live {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.progress-pct {
+		font-family: 'Outfit', sans-serif;
+		font-size: 2rem;
+		font-weight: 900;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.progress-bar-track {
+		height: 10px;
+		background: rgba(255, 255, 255, 0.08);
+		border-radius: 999px;
+		overflow: hidden;
+	}
+
+	.progress-bar-fill {
+		height: 100%;
+		border-radius: 999px;
+		background: linear-gradient(90deg, #2d6a4f, #74b49b);
+		width: 0%;
+		transition: width 0.4s ease;
+	}
+
+	.event-countdown {
+		font-family: 'Outfit', sans-serif;
+		font-size: 1.25rem;
+		font-weight: 800;
+		line-height: 1.5;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.event-countdown-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 0.75rem;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.45);
+		text-transform: uppercase;
+		letter-spacing: 1px;
+		margin-bottom: 0.25rem;
+	}
+
+	.date-facts {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		font-family: 'Inter', sans-serif;
+		font-size: 0.875rem;
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	.date-fact-value {
+		font-family: 'Outfit', sans-serif;
+		font-weight: 700;
+		font-size: 1.125rem;
+		background: linear-gradient(135deg, #ffc04d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	/* ── Categories ── */
 	.categories-section {
 		max-width: 80rem;
 		margin: 0 auto;
-		padding: 5rem 1.25rem 7rem;
+		padding: 3rem 1.25rem 5rem;
 	}
 
 	@media (min-width: 640px) {
 		.categories-section {
-			padding: 6rem 2rem 8rem;
+			padding: 4rem 2rem 6rem;
 		}
 	}
 
 	.explore-heading {
-		font-size: 72px;
+		font-size: clamp(2.5rem, 8vw, 72px);
 		font-weight: 900;
 		letter-spacing: -3px;
 		margin-bottom: 48px;
@@ -240,14 +928,14 @@ import { categories } from '../data/categories';
 	}
 
 	.explore-gradient {
-		background: linear-gradient(135deg, #FF2D1A, #FF9A3C);
+		background: linear-gradient(135deg, #ff2d1a, #ff9a3c);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
 	}
 
 	.explore-r {
-		color: #00E5C4;
+		color: #00e5c4;
 		font-weight: 900;
 	}
 
@@ -273,11 +961,53 @@ import { categories } from '../data/categories';
 		transition:
 			transform 0.25s ease,
 			box-shadow 0.25s ease;
+		overflow: hidden;
 	}
 
 	.category-card:hover {
 		transform: translateY(-6px);
 		box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+	}
+
+	.category-float-emojis {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 2;
+		overflow: hidden;
+	}
+
+	.category-float-emojis span {
+		position: absolute;
+		font-size: 1.25rem;
+		opacity: 0;
+		top: 50%;
+		left: -10%;
+		transform: translateY(-50%);
+	}
+
+	.category-card:hover .category-float-emojis span {
+		animation: emoji-drift 1.8s ease-in-out forwards;
+		animation-delay: calc(var(--float-i) * 0.2s);
+	}
+
+	@keyframes emoji-drift {
+		0% {
+			opacity: 0;
+			left: -10%;
+			transform: translateY(-50%) rotate(0deg);
+		}
+		15% {
+			opacity: 0.9;
+		}
+		85% {
+			opacity: 0.9;
+		}
+		100% {
+			opacity: 0;
+			left: 110%;
+			transform: translateY(calc(-50% - 20px)) rotate(15deg);
+		}
 	}
 
 	.category-card-inner {
@@ -356,110 +1086,204 @@ import { categories } from '../data/categories';
 		}
 	}
 
-	.xmas-section {
-		display: flex;
-		justify-content: center;
-		padding: 0 40px 48px;
-	}
-
-	.xmas-card {
-		width: 80%;
-		max-width: 960px;
-		background: #0c0c0c;
-		border: 1px solid rgba(255, 92, 77, 0.25);
-		border-radius: 16px;
+	/* ── Seasonal Band ── */
+	.seasonal-band {
+		position: relative;
+		width: 100%;
+		padding: 48px 24px;
 		overflow: hidden;
-		box-shadow: 0 0 30px rgba(255, 92, 77, 0.05);
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 	}
 
-	.xmas-top-row {
+	.seasonal-band[data-event='christmas'] {
+		background: linear-gradient(135deg, #8b0000, #1a472a);
+	}
+
+	.seasonal-band[data-event='newyear'] {
+		background: linear-gradient(135deg, #0a0a2e, #1a1a3e);
+	}
+
+	.seasonal-band[data-event='halloween'] {
+		background: linear-gradient(135deg, #0d0500, #1a0800);
+		min-height: 220px;
 		display: flex;
-		justify-content: space-around;
+		flex-wrap: wrap;
 		align-items: center;
-		padding: 8px 20px;
-		background: rgba(255, 92, 77, 0.04);
+		justify-content: center;
+		padding: 48px 80px;
 	}
 
-	.xmas-top-row span {
+	.seasonal-band[data-event='halloween'] .seasonal-centre {
+		padding: 44px 48px;
+	}
+
+	.halloween-top-emojis {
+		display: none;
+		width: 100%;
+	}
+
+	.seasonal-band[data-event='halloween'] .halloween-top-emojis {
+		display: block;
+		flex: 0 0 100%;
+		align-self: stretch;
+	}
+
+	.seasonal-band[data-event='valentines'] {
+		background: linear-gradient(135deg, #4a0028, #8b0045);
+	}
+
+	.seasonal-band[data-event='easter'] {
+		background: linear-gradient(135deg, #1a3a2a, #4a6741);
+	}
+
+	.seasonal-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.seasonal-top-row {
+		position: absolute;
+		top: 8px;
+		left: 0;
+		right: 0;
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		padding: 0 8px;
+		box-sizing: border-box;
+		align-items: flex-start;
+	}
+
+	.seasonal-top-row .seasonal-top-emoji {
+		position: static;
+		flex-shrink: 0;
+	}
+
+	.seasonal-float-emoji {
+		position: absolute;
 		display: inline-block;
-		animation: xmas-float 3s ease-in-out infinite;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: seasonal-float 4s ease-in-out infinite;
+		opacity: 0.85;
 	}
 
-	@keyframes xmas-float {
+	@media (max-width: 600px) {
+		.seasonal-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes seasonal-float {
 		0%,
 		100% {
-			transform: translateY(0px) rotate(0deg);
+			transform: translateY(0) rotate(var(--rotation, 0deg));
 		}
 		33% {
-			transform: translateY(-8px) rotate(-3deg);
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
 		}
 		66% {
-			transform: translateY(-4px) rotate(3deg);
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
 		}
 	}
 
-	.xmas-centre {
+	.seasonal-centre {
+		position: relative;
+		z-index: 1;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-		padding: 12px 0;
-		gap: 6px;
-		border-top: 1px solid rgba(255, 92, 77, 0.12);
-		background: #080808;
+		text-align: center;
+		gap: 12px;
+		max-width: 720px;
+		margin: 0 auto;
 	}
 
-	.xmas-label {
+	.seasonal-label {
 		font-family: 'Outfit', sans-serif;
 		font-size: 14px;
 		font-weight: 800;
 		letter-spacing: 4px;
 		text-transform: uppercase;
 		color: #ffffff;
-		margin-bottom: 4px;
 	}
 
-	.xmas-numbers {
+	.seasonal-numbers {
 		display: flex;
 		align-items: center;
+		flex-wrap: wrap;
+		justify-content: center;
 		gap: 4px;
 	}
 
-	.xmas-block {
+	.seasonal-block {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 4px;
-		min-width: 80px;
+		min-width: 64px;
 	}
 
-	.xmas-num {
+	.seasonal-num {
 		font-family: 'Outfit', sans-serif;
-		font-size: 52px;
+		font-size: clamp(36px, 8vw, 52px);
 		font-weight: 900;
 		letter-spacing: -2px;
 		line-height: 1;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	.seasonal-band[data-event='christmas'] .seasonal-num {
 		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
-		min-width: 80px;
-		text-align: center;
-		display: block;
-		font-variant-numeric: tabular-nums;
 	}
 
-	.xmas-sep {
+	.seasonal-band[data-event='newyear'] .seasonal-num {
+		background: linear-gradient(135deg, #c0c0c0, #ffd700);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.seasonal-band[data-event='halloween'] .seasonal-num {
+		background: linear-gradient(135deg, #ff6b00, #7b2fbe);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.seasonal-band[data-event='valentines'] .seasonal-num {
+		background: linear-gradient(135deg, #ff1493, #ff6b9d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.seasonal-band[data-event='easter'] .seasonal-num {
+		background: linear-gradient(135deg, #a8d8b9, #f9e79f);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.seasonal-sep {
 		font-family: 'Outfit', sans-serif;
-		font-size: 48px;
+		font-size: clamp(28px, 6vw, 48px);
 		font-weight: 900;
-		color: rgba(255, 92, 77, 0.4);
+		color: rgba(255, 255, 255, 0.3);
 		line-height: 1;
-		margin-bottom: 20px;
-		padding: 0 4px;
+		margin-bottom: 18px;
+		padding: 0 2px;
 	}
 
-	.xmas-unit {
+	.seasonal-unit {
 		font-family: 'Inter', sans-serif;
 		font-size: 10px;
 		font-weight: 600;
@@ -468,22 +1292,74 @@ import { categories } from '../data/categories';
 		text-transform: uppercase;
 	}
 
-	.xmas-share {
-		background: #ff5c4d;
-		color: #fff;
-		border: none;
-		border-radius: 8px;
-		padding: 6px 18px;
-		font-size: 11px;
-		font-weight: 700;
+	.seasonal-link {
 		font-family: 'Outfit', sans-serif;
-		cursor: pointer;
-		margin-top: 2px;
+		font-size: 0.875rem;
+		font-weight: 700;
+		color: #ffffff;
+		text-decoration: none;
+		opacity: 0.8;
+		transition: opacity 0.2s ease;
+	}
+
+	.seasonal-link:hover {
+		opacity: 1;
+		text-decoration: underline;
+	}
+
+	/* ── All tools ── */
+	.all-tools-section {
+		max-width: 80rem;
+		margin: 0 auto;
+		padding: 2.5rem 1.25rem 1.5rem;
+		border-top: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.all-tools-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: #ffffff;
+		margin: 0 0 1.25rem;
+	}
+
+	.all-tools-pills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.625rem;
+	}
+
+	.tool-pill {
+		display: inline-flex;
+		align-items: center;
+		padding: 8px 16px;
+		background: #1a1a1a;
+		border-radius: 20px;
+		border: 1px solid rgba(255, 154, 60, 0.3);
+		text-decoration: none;
 		transition: background 0.2s ease;
 	}
 
-	.xmas-share:hover {
-		background: #ff2d1a;
+	.tool-pill:hover {
+		background: #252525;
+	}
+
+	.tool-pill-text {
+		font-family: 'Outfit', sans-serif;
+		font-size: 0.875rem;
+		font-weight: 600;
+		color: #ff9a3c;
+		white-space: nowrap;
+	}
+
+	/* ── Footer stat ── */
+	.footer-stat {
+		text-align: center;
+		font-family: 'Inter', sans-serif;
+		font-size: 0.75rem;
+		color: rgba(255, 255, 255, 0.35);
+		padding: 2rem 1.25rem 3rem;
+		margin: 0;
 	}
 </style>
 
@@ -493,40 +1369,480 @@ import { categories } from '../data/categories';
 	}
 </style>
 
-<script>
-	function updateXmasCountdown() {
-		const now = new Date();
-		const year =
-			now.getMonth() === 11 && now.getDate() > 25
-				? now.getFullYear() + 1
-				: now.getFullYear();
-		const christmas = new Date(year, 11, 25, 0, 0, 0);
-		const diff = christmas.getTime() - now.getTime();
-		if (diff <= 0) return;
+<script define:vars={{ searchTools }}>
+	document.addEventListener('DOMContentLoaded', () => {
+		const YEAR = 2026;
+		const LONDON_TZ = 'Europe/London';
 
-		const daysEl = document.getElementById('xmas-days');
-		const hoursEl = document.getElementById('xmas-hours');
-		const minsEl = document.getElementById('xmas-mins');
-		const secsEl = document.getElementById('xmas-secs');
+		function pad(n) {
+			return String(n).padStart(2, '0');
+		}
 
-		if (daysEl)
-			daysEl.textContent = String(
-				Math.floor(diff / (1000 * 60 * 60 * 24)),
-			);
-		if (hoursEl)
-			hoursEl.textContent = String(
-				Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-			);
-		if (minsEl)
-			minsEl.textContent = String(
-				Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-			);
-		if (secsEl)
-			secsEl.textContent = String(
-				Math.floor((diff % (1000 * 60)) / 1000),
-			);
-	}
+		function isLeapYear(year) {
+			return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+		}
 
-	updateXmasCountdown();
-	setInterval(updateXmasCountdown, 1000);
+		function getEasterDate(year) {
+			const a = year % 19;
+			const b = Math.floor(year / 100);
+			const c = year % 100;
+			const d = Math.floor(b / 4);
+			const e = b % 4;
+			const f = Math.floor((b + 8) / 25);
+			const g = Math.floor((b - f + 1) / 3);
+			const h = (19 * a + b - d - g + 15) % 30;
+			const i = Math.floor(c / 4);
+			const k = c % 4;
+			const l = (32 + 2 * e + 2 * i - h - k) % 7;
+			const m = Math.floor((a + 11 * h + 22 * l) / 451);
+			const month = Math.floor((h + l - 7 * m + 114) / 31);
+			const day = ((h + l - 7 * m + 114) % 31) + 1;
+			return new Date(year, month - 1, day, 0, 0, 0, 0);
+		}
+
+		function getNextEventDate(month, day, now) {
+			let year = now.getFullYear();
+			let target = new Date(year, month, day, 0, 0, 0, 0);
+			if (now.getTime() >= target.getTime()) {
+				year += 1;
+				target = new Date(year, month, day, 0, 0, 0, 0);
+			}
+			return target;
+		}
+
+		const eventConfigs = {
+			christmas: {
+				id: 'christmas',
+				name: 'Christmas',
+				label: '🎄 CHRISTMAS COUNTDOWN',
+				href: '/days-until-christmas',
+				getDate: (now) => getNextEventDate(11, 25, now),
+				leftEmojis: [
+					{ emoji: '🎅', size: 36, rotation: -15, top: '12%', side: '3%', delay: 0 },
+					{ emoji: '🎄', size: 28, rotation: 12, top: '40%', side: '6%', delay: 0.5 },
+					{ emoji: '⭐', size: 32, rotation: -8, top: '68%', side: '4%', delay: 1 },
+					{ emoji: '🦌', size: 24, rotation: 15, top: '82%', side: '8%', delay: 1.5 },
+				],
+				rightEmojis: [
+					{ emoji: '🔔', size: 28, rotation: -5, top: '18%', side: '4%', delay: 0.3 },
+					{ emoji: '🎁', size: 34, rotation: 14, top: '45%', side: '7%', delay: 0.8 },
+					{ emoji: '☃️', size: 30, rotation: -10, top: '72%', side: '5%', delay: 1.3 },
+					{ emoji: '❄️', size: 26, rotation: 10, top: '30%', side: '2%', delay: 1.8 },
+				],
+			},
+			newyear: {
+				id: 'newyear',
+				name: 'New Year',
+				label: '🎆 NEW YEAR COUNTDOWN',
+				href: '/days-until-new-year',
+				getDate: (now) => getNextEventDate(0, 1, now),
+				leftEmojis: [
+					{ emoji: '🎆', size: 36, rotation: -15, top: '12%', side: '3%', delay: 0 },
+					{ emoji: '🥂', size: 28, rotation: 12, top: '40%', side: '6%', delay: 0.5 },
+					{ emoji: '🎉', size: 32, rotation: -8, top: '68%', side: '4%', delay: 1 },
+					{ emoji: '✨', size: 24, rotation: 15, top: '82%', side: '8%', delay: 1.5 },
+				],
+				rightEmojis: [
+					{ emoji: '🌟', size: 28, rotation: -5, top: '18%', side: '4%', delay: 0.3 },
+					{ emoji: '🎇', size: 34, rotation: 14, top: '45%', side: '7%', delay: 0.8 },
+					{ emoji: '🎊', size: 30, rotation: -10, top: '72%', side: '5%', delay: 1.3 },
+					{ emoji: '⭐', size: 26, rotation: 10, top: '30%', side: '2%', delay: 1.8 },
+				],
+			},
+			halloween: {
+				id: 'halloween',
+				name: 'Halloween',
+				label: '🎃 HALLOWEEN COUNTDOWN',
+				href: '/days-until-halloween',
+				getDate: (now) => getNextEventDate(9, 31, now),
+			},
+			valentines: {
+				id: 'valentines',
+				name: "Valentine's Day",
+				label: "💝 VALENTINE'S COUNTDOWN",
+				href: '/days-until-valentines',
+				getDate: (now) => getNextEventDate(1, 14, now),
+				leftEmojis: [
+					{ emoji: '💝', size: 36, rotation: -15, top: '12%', side: '3%', delay: 0 },
+					{ emoji: '💕', size: 28, rotation: 12, top: '40%', side: '6%', delay: 0.5 },
+					{ emoji: '🌹', size: 32, rotation: -8, top: '68%', side: '4%', delay: 1 },
+					{ emoji: '💌', size: 24, rotation: 15, top: '82%', side: '8%', delay: 1.5 },
+				],
+				rightEmojis: [
+					{ emoji: '🍫', size: 28, rotation: -5, top: '18%', side: '4%', delay: 0.3 },
+					{ emoji: '💋', size: 34, rotation: 14, top: '45%', side: '7%', delay: 0.8 },
+					{ emoji: '💑', size: 30, rotation: -10, top: '72%', side: '5%', delay: 1.3 },
+					{ emoji: '🌸', size: 26, rotation: 10, top: '30%', side: '2%', delay: 1.8 },
+				],
+			},
+			easter: {
+				id: 'easter',
+				name: 'Easter',
+				label: '🐣 EASTER COUNTDOWN',
+				href: '/days-until-easter',
+				getDate: (now) => {
+					let year = now.getFullYear();
+					let easter = getEasterDate(year);
+					if (now.getTime() >= easter.getTime()) {
+						year += 1;
+						easter = getEasterDate(year);
+					}
+					return easter;
+				},
+				leftEmojis: [
+					{ emoji: '🐣', size: 36, rotation: -15, top: '12%', side: '3%', delay: 0 },
+					{ emoji: '🥚', size: 28, rotation: 12, top: '40%', side: '6%', delay: 0.5 },
+					{ emoji: '🐰', size: 32, rotation: -8, top: '68%', side: '4%', delay: 1 },
+					{ emoji: '🌷', size: 24, rotation: 15, top: '82%', side: '8%', delay: 1.5 },
+				],
+				rightEmojis: [
+					{ emoji: '🌼', size: 28, rotation: -5, top: '18%', side: '4%', delay: 0.3 },
+					{ emoji: '🍫', size: 34, rotation: 14, top: '45%', side: '7%', delay: 0.8 },
+					{ emoji: '🐇', size: 30, rotation: -10, top: '72%', side: '5%', delay: 1.3 },
+					{ emoji: '✝️', size: 26, rotation: 10, top: '30%', side: '2%', delay: 1.8 },
+				],
+			},
+		};
+
+		function getNextMajorEvent(now) {
+			const events = Object.values(eventConfigs).map((config) => ({
+				config,
+				date: config.getDate(now),
+			}));
+			events.sort((a, b) => a.date.getTime() - b.date.getTime());
+			return events[0];
+		}
+
+		function formatLondonTime(now) {
+			return new Intl.DateTimeFormat('en-GB', {
+				timeZone: LONDON_TZ,
+				hour: '2-digit',
+				minute: '2-digit',
+				second: '2-digit',
+				hour12: false,
+			}).format(now);
+		}
+
+		function getDayOfYear(now) {
+			const start = new Date(now.getFullYear(), 0, 0);
+			const diff = now.getTime() - start.getTime();
+			return Math.floor(diff / (1000 * 60 * 60 * 24));
+		}
+
+		function getDaysInYear(year) {
+			return isLeapYear(year) ? 366 : 365;
+		}
+
+		function updateLiveStrip() {
+			const el = document.getElementById('live-strip');
+			if (!el) return;
+			const now = new Date();
+			const londonTime = formatLondonTime(now);
+			const dayOfYear = getDayOfYear(now);
+			const daysInYear = getDaysInYear(now.getFullYear());
+
+			let xmasYear = now.getFullYear();
+			if (now.getMonth() === 11 && now.getDate() > 25) xmasYear++;
+			const xmasDiff = Math.ceil(
+				(new Date(xmasYear, 11, 25).getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+			);
+
+			el.innerHTML = `It is <span class="strip-val strip-val--teal">${londonTime}</span> in London <span class="strip-dot">·</span> Day <span class="strip-val strip-val--coral">${dayOfYear}</span> of ${daysInYear} <span class="strip-dot">·</span> <span class="strip-val strip-val--amber">${Math.max(0, xmasDiff)}</span> days until Christmas`;
+		}
+
+		function updateWorldSnapshot() {
+			const el = document.getElementById('world-snapshot');
+			if (!el) return;
+			const now = new Date();
+			const cities = [
+				{ name: 'London', tz: 'Europe/London' },
+				{ name: 'New York', tz: 'America/New_York' },
+				{ name: 'Tokyo', tz: 'Asia/Tokyo' },
+				{ name: 'Sydney', tz: 'Australia/Sydney' },
+			];
+
+			el.innerHTML = cities
+				.map(({ name, tz }) => {
+					const time = new Intl.DateTimeFormat('en-GB', {
+						timeZone: tz,
+						hour: '2-digit',
+						minute: '2-digit',
+						second: '2-digit',
+						hour12: false,
+					}).format(now);
+					return `<div class="snapshot-row">${name} · ${time}</div>`;
+				})
+				.join('');
+		}
+
+		function updateYearProgress() {
+			const now = new Date();
+			const yearStart = new Date(YEAR, 0, 1);
+			const yearEnd = new Date(YEAR + 1, 0, 1);
+			const total = yearEnd.getTime() - yearStart.getTime();
+			const elapsed = now.getTime() - yearStart.getTime();
+			const pct = Math.min(100, Math.max(0, (elapsed / total) * 100));
+
+			const pctEl = document.getElementById('live-progress-pct');
+			const barEl = document.getElementById('live-progress-bar');
+			if (pctEl) pctEl.textContent = `${pct.toFixed(2)}%`;
+			if (barEl) barEl.style.width = `${pct.toFixed(2)}%`;
+		}
+
+		function updateNextEventCard() {
+			const el = document.getElementById('next-event-countdown');
+			if (!el) return;
+			const now = new Date();
+			const { config, date } = getNextMajorEvent(now);
+			const diff = date.getTime() - now.getTime();
+			if (diff <= 0) {
+				el.textContent = `${config.name} is here!`;
+				return;
+			}
+			const totalSeconds = Math.floor(diff / 1000);
+			const days = Math.floor(totalSeconds / 86400);
+			const hours = Math.floor((totalSeconds % 86400) / 3600);
+			const mins = Math.floor((totalSeconds % 3600) / 60);
+			const secs = totalSeconds % 60;
+			el.innerHTML = `<div class="event-countdown-label">${config.name}</div><span class="event-countdown-values">${days} days · ${pad(hours)} hours · ${pad(mins)} minutes · ${pad(secs)} seconds</span>`;
+		}
+
+		function updateDateFacts() {
+			const el = document.getElementById('date-facts');
+			if (!el) return;
+			const now = new Date();
+			const dayOfYear = getDayOfYear(now);
+			const daysInYear = getDaysInYear(YEAR);
+			const daysLeft = daysInYear - dayOfYear;
+			const dateStr = now.toLocaleDateString('en-GB', {
+				weekday: 'long',
+				day: 'numeric',
+				month: 'long',
+				year: 'numeric',
+			});
+			el.innerHTML = `
+				<div><span class="date-fact-value">${dateStr}</span></div>
+				<div>Day <span class="date-fact-value">${dayOfYear}</span> of ${daysInYear}</div>
+				<div><span class="date-fact-value">${daysLeft}</span> days left in ${YEAR}</div>
+			`;
+		}
+
+		function renderSeasonalDecor(config) {
+			const decor = document.getElementById('seasonal-decor');
+			if (!decor) return;
+			if (config.id === 'halloween') {
+				decor.innerHTML = '';
+				return;
+			}
+			if (config.perimeterEmojis) {
+				let html = '';
+				if (config.topRowEmojis) {
+					html += `<div class="seasonal-top-row">${config.topRowEmojis
+						.map(
+							({ emoji, size, rotation, delay }) =>
+								`<span class="seasonal-float-emoji seasonal-top-emoji" style="font-size:${size}px;--rotation:${rotation}deg;animation-delay:${delay}s">${emoji}</span>`,
+						)
+						.join('')}</div>`;
+				}
+				html += config.perimeterEmojis
+					.map(({ emoji, size, rotation, top, bottom, left, right, delay }) => {
+						const pos = [
+							top ? `top:${top}` : '',
+							bottom ? `bottom:${bottom}` : '',
+							left ? `left:${left}` : '',
+							right ? `right:${right}` : '',
+						]
+							.filter(Boolean)
+							.join(';');
+						return `<span class="seasonal-float-emoji" style="font-size:${size}px;${pos};--rotation:${rotation}deg;animation-delay:${delay}s">${emoji}</span>`;
+					})
+					.join('');
+				decor.innerHTML = html;
+				return;
+			}
+			const emojis = [
+				...config.leftEmojis.map((e) => ({ ...e, sideProp: 'left' })),
+				...config.rightEmojis.map((e) => ({ ...e, sideProp: 'right' })),
+			];
+			decor.innerHTML = emojis
+				.map(
+					({ emoji, size, rotation, top, side, delay, sideProp }) =>
+						`<span class="seasonal-float-emoji" style="font-size:${size}px;top:${top};${sideProp}:${side};--rotation:${rotation}deg;animation-delay:${delay}s">${emoji}</span>`,
+				)
+				.join('');
+		}
+
+		function initHeroClockFace() {
+			const markersGroup = document.getElementById('minute-markers');
+			const numeralsGroup = document.getElementById('hour-numerals');
+			if (!markersGroup || !numeralsGroup || numeralsGroup.childElementCount > 0) return;
+
+			const cx = 150;
+			const cy = 150;
+
+			for (let i = 0; i < 60; i++) {
+				const angle = (i * 6 - 90) * (Math.PI / 180);
+				const outerR = 128;
+				const innerR = i % 5 === 0 ? 118 : 122;
+				const x2 = cx + outerR * Math.cos(angle);
+				const y2 = cy + outerR * Math.sin(angle);
+
+				const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+				dot.setAttribute('cx', String(x2));
+				dot.setAttribute('cy', String(y2));
+				dot.setAttribute('r', i % 5 === 0 ? '3' : '1.5');
+				dot.setAttribute('fill', '#ffffff');
+				dot.setAttribute('opacity', i % 5 === 0 ? '1' : '0.55');
+				markersGroup.appendChild(dot);
+			}
+
+			for (let h = 1; h <= 12; h++) {
+				const angle = (h * 30 - 90) * (Math.PI / 180);
+				const r = 102;
+				const x = cx + r * Math.cos(angle);
+				const y = cy + r * Math.sin(angle);
+
+				const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+				text.setAttribute('x', String(x));
+				text.setAttribute('y', String(y));
+				text.setAttribute('text-anchor', 'middle');
+				text.setAttribute('dominant-baseline', 'central');
+				text.setAttribute('fill', '#ffffff');
+				text.setAttribute('font-family', 'Outfit, sans-serif');
+				text.setAttribute('font-weight', '800');
+				text.setAttribute('font-size', '24');
+				text.textContent = String(h);
+				numeralsGroup.appendChild(text);
+			}
+		}
+
+		function updateSeasonalBand() {
+			const now = new Date();
+			const { config, date } = getNextMajorEvent(now);
+			const diff = date.getTime() - now.getTime();
+
+			const band = document.getElementById('seasonal-band');
+			const label = document.getElementById('seasonal-label');
+			const link = document.getElementById('seasonal-link');
+			const daysEl = document.getElementById('seasonal-days');
+			const hoursEl = document.getElementById('seasonal-hours');
+			const minsEl = document.getElementById('seasonal-mins');
+			const secsEl = document.getElementById('seasonal-secs');
+
+			if (band) {
+				if (band.dataset.event !== config.id) {
+					band.dataset.event = config.id;
+					renderSeasonalDecor(config);
+				}
+			}
+			if (label) label.textContent = config.label;
+			if (link) link.href = config.href;
+
+			if (diff <= 0) return;
+
+			const totalSeconds = Math.floor(diff / 1000);
+			const days = Math.floor(totalSeconds / 86400);
+			const hours = Math.floor((totalSeconds % 86400) / 3600);
+			const mins = Math.floor((totalSeconds % 3600) / 60);
+			const secs = totalSeconds % 60;
+
+			if (daysEl) daysEl.textContent = String(days);
+			if (hoursEl) hoursEl.textContent = pad(hours);
+			if (minsEl) minsEl.textContent = pad(mins);
+			if (secsEl) secsEl.textContent = pad(secs);
+		}
+
+		function updateAllLive() {
+			updateLiveStrip();
+			updateWorldSnapshot();
+			updateYearProgress();
+			updateNextEventCard();
+			updateDateFacts();
+			updateSeasonalBand();
+		}
+
+		initHeroClockFace();
+
+		updateAllLive();
+		setInterval(updateAllLive, 1000);
+
+		// Search
+		const searchInput = document.getElementById('tool-search');
+		const searchResults = document.getElementById('search-results');
+
+		function normalize(str) {
+			return str.toLowerCase().trim();
+		}
+
+		function searchToolsFn(query) {
+			const q = normalize(query);
+			if (!q) return [];
+			return searchTools.filter((tool) => {
+				const haystack = [
+					tool.name,
+					tool.description,
+					...tool.keywords,
+				]
+					.join(' ')
+					.toLowerCase();
+				return haystack.includes(q);
+			});
+		}
+
+		function renderSearchResults(results) {
+			if (!searchResults) return;
+			if (results.length === 0) {
+				searchResults.hidden = true;
+				searchResults.innerHTML = '';
+				return;
+			}
+			searchResults.hidden = false;
+			searchResults.innerHTML = results
+				.map(
+					(tool) => `
+				<a href="${tool.href}" class="search-result-card">
+					<span class="search-result-emoji">${tool.emoji}</span>
+					<div class="search-result-text">
+						<span class="search-result-name gradient-text" style="--gradient-from: ${tool.from}; --gradient-to: ${tool.to}">${tool.name}</span>
+						<p class="search-result-desc">${tool.description}</p>
+					</div>
+				</a>`,
+				)
+				.join('');
+		}
+
+		if (searchInput) {
+			searchInput.addEventListener('input', () => {
+				renderSearchResults(searchToolsFn(searchInput.value));
+			});
+
+			searchInput.addEventListener('focus', () => {
+				if (searchInput.value.trim()) {
+					renderSearchResults(searchToolsFn(searchInput.value));
+				}
+			});
+
+			document.addEventListener('click', (e) => {
+				if (
+					!searchResults?.contains(e.target) &&
+					e.target !== searchInput
+				) {
+					if (searchResults) searchResults.hidden = true;
+				}
+			});
+		}
+
+		// Rotating placeholders
+		if (searchInput) {
+			let placeholderIndex = 0;
+			const placeholders = JSON.parse(
+				searchInput.dataset.placeholders || '[]',
+			);
+			setInterval(() => {
+				if (searchInput.value || document.activeElement === searchInput) return;
+				placeholderIndex = (placeholderIndex + 1) % placeholders.length;
+				searchInput.placeholder = placeholders[placeholderIndex];
+			}, 3000);
+		}
+	});
 </script>

@@ -65,6 +65,161 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</div>
 
+		<!-- HOW IT WORKS -->
+		<section class="date-how">
+			<h2 class="date-section-title">How does a date calculator work?</h2>
+			<div class="date-how-card">
+				<p>
+					A date calculator finds the difference between two dates by counting
+					the total number of days between them. It converts both dates to a
+					common reference point — typically midnight on each day — and measures
+					the span in days. The result is a single number representing how many
+					full calendar days separate the start date from the end date.
+				</p>
+				<p>
+					Months and years make this more complex than simple subtraction.
+					Months have different lengths — February has 28 or 29 days while
+					January has 31 — so the number of days between two dates depends on
+					which months fall in between. Leap years add an extra day every four
+					years, giving those years 366 days instead of 365. A calculator must
+					account for every varying month length and leap day to return an
+					accurate total.
+				</p>
+				<p>
+					Clockr breaks the total down into years, months, weeks, days, and
+					hours for a complete picture. Alongside the raw day count, you see
+					how the gap translates into full years and remaining months and days,
+					plus the equivalent number of weeks and hours. This makes it easy to
+					understand a date span at a glance — whether you need a precise day
+					count or a more intuitive breakdown.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="date-faq">
+			<h2 class="date-section-title">Frequently asked questions</h2>
+			<div class="date-faq-list">
+				<details class="date-faq-item">
+					<summary class="date-faq-question"
+						>How do I calculate the number of days between two dates?</summary
+					>
+					<div class="date-faq-answer">
+						<p>
+							Enter your start date and end date into Clockr's date calculator
+							above and click Calculate. The tool counts every calendar day
+							between the two dates, automatically handling varying month lengths
+							and leap years. The result shows the total days plus a breakdown
+							into years, months, and days for a fuller picture.
+						</p>
+					</div>
+				</details>
+				<details class="date-faq-item">
+					<summary class="date-faq-question"
+						>How many days are in a year?</summary
+					>
+					<div class="date-faq-answer">
+						<p>
+							A standard year has 365 days. A leap year has 366 days, with the
+							extra day falling on 29 February. Leap years occur every four
+							years, except for century years not divisible by 400 — so 2000
+							was a leap year but 1900 was not. Over any four-year period, the
+							average is 365.25 days per year.
+						</p>
+					</div>
+				</details>
+				<details class="date-faq-item">
+					<summary class="date-faq-question"
+						>What is the difference between calendar days and business days?</summary
+					>
+					<div class="date-faq-answer">
+						<p>
+							Calendar days include every day of the week — weekends and
+							holidays included. Business days (or working days) count only
+							weekdays, typically Monday through Friday, and often exclude
+							public holidays. A gap of 14 calendar days is only 10 business
+							days. Clockr's date calculator measures calendar days; for
+							working-day counts, use the Business Days Calculator.
+						</p>
+					</div>
+				</details>
+				<details class="date-faq-item">
+					<summary class="date-faq-question"
+						>How do I add days to a date?</summary
+					>
+					<div class="date-faq-answer">
+						<p>
+							To add days to a date, start with your base date and count forward
+							on a calendar, rolling over at each month boundary. For example,
+							adding 30 days to 15 January gives 14 February in a normal year
+							or 15 February in a leap year. You can also use Clockr in reverse
+							— set your start date and adjust the end date until the day count
+							matches the number you want to add.
+						</p>
+					</div>
+				</details>
+				<details class="date-faq-item">
+					<summary class="date-faq-question"
+						>How many weeks are in a year?</summary
+					>
+					<div class="date-faq-answer">
+						<p>
+							A year contains 52 full weeks plus one or two extra days. In a
+							365-day year, 365 ÷ 7 equals 52 weeks and 1 day; in a leap year,
+							366 ÷ 7 equals 52 weeks and 2 days. That is why a date like your
+							birthday falls on the next weekday each year — or two weekdays
+							later after a leap year.
+						</p>
+					</div>
+				</details>
+				<details class="date-faq-item">
+					<summary class="date-faq-question"
+						>What is the longest possible gap between two dates in history?</summary
+					>
+					<div class="date-faq-answer">
+						<p>
+							In theory, the longest gap is bounded only by how far back and
+							forward you can measure. From the earliest known written records
+							(around 3200 BCE) to centuries into the future, the span runs into
+							millions of days. In everyday use, people measure gaps from
+							historic events — the moon landing, the millennium, ancient
+							civilisations — to today or a future date. Clockr can calculate
+							the days between any two dates your browser supports.
+						</p>
+					</div>
+				</details>
+				<details class="date-faq-item">
+					<summary class="date-faq-question"
+						>How do I calculate how many days until an event?</summary
+					>
+					<div class="date-faq-answer">
+						<p>
+							Set today's date as the start date and your event date as the end
+							date, then click Calculate. The total days result tells you
+							exactly how long until the event. For popular occasions, use the
+							preset buttons in the "Common date questions" section below —
+							they auto-fill dates for Christmas, New Year, Halloween, and more.
+						</p>
+					</div>
+				</details>
+				<details class="date-faq-item">
+					<summary class="date-faq-question"
+						>Why do leap years exist?</summary
+					>
+					<div class="date-faq-answer">
+						<p>
+							Earth takes roughly 365.25 days to orbit the sun, not exactly
+							365. Without leap years, our calendar would drift by about one
+							day every four years, and seasons would gradually shift into the
+							wrong months. Adding 29 February every four years — with
+							century-year exceptions — keeps the calendar aligned with the
+							solar year and the changing seasons.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
 		<!-- COMMON QUESTIONS -->
 		<div class="date-examples">
 			<h3 class="date-examples-title">Common date questions</h3>
@@ -318,6 +473,98 @@ import Layout from '../layouts/Layout.astro';
 		letter-spacing: 1px;
 		text-transform: uppercase;
 		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.date-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.date-how {
+		margin-bottom: 48px;
+	}
+
+	.date-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.date-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.date-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.date-faq {
+		margin-bottom: 48px;
+	}
+
+	.date-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.date-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.date-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.date-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.date-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.date-faq-item[open] .date-faq-question::after {
+		content: '−';
+	}
+
+	.date-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.date-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
 	}
 
 	.date-examples {

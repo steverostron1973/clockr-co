@@ -137,12 +137,179 @@ const presets = [
 			</div>
 		</div>
 
+		<!-- HOW IT WORKS -->
+		<section class="tz-how">
+			<h2 class="tz-section-title">How does a time zone converter work?</h2>
+			<div class="tz-how-card">
+				<p>
+					Time zones work as offsets from UTC (Coordinated Universal Time). Each
+					zone represents a fixed number of hours and minutes ahead of or behind
+					UTC — for example, New York is typically UTC−5 and Tokyo is UTC+9. When
+					you convert a time between two cities, you are essentially shifting the
+					clock by the difference between their two UTC offsets.
+				</p>
+				<p>
+					Daylight saving time complicates conversions. Many countries shift their
+					clocks forward by one hour in spring and back in autumn, meaning the
+					offset between two cities can change twice a year. London and New York
+					might be five hours apart in winter but only four in summer. A reliable
+					converter must know which DST rules apply to each city on the specific
+					date you are converting.
+				</p>
+				<p>
+					Clockr uses IANA timezone identifiers — such as "Europe/London" and
+					"America/New_York" — and the browser's Intl.DateTimeFormat API to
+					handle all daylight saving rules automatically for over 250 cities. The
+					IANA database contains the complete history of timezone changes for
+					every region, so your conversion stays accurate regardless of the date
+					you choose.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="tz-faq">
+			<h2 class="tz-section-title">Frequently asked questions</h2>
+			<div class="tz-faq-list">
+				<details class="tz-faq-item">
+					<summary class="tz-faq-question"
+						>How do I convert time between two countries?</summary
+					>
+					<div class="tz-faq-answer">
+						<p>
+							Select your source city in the "From" dropdown and your destination
+							city in the "To" dropdown, then enter the date and time you want to
+							convert. Clockr instantly shows the equivalent local time in the
+							destination city, along with the UTC offsets and time difference.
+							Use the swap button to reverse the direction, or pick a common
+							conversion from the presets below the converter.
+						</p>
+					</div>
+				</details>
+				<details class="tz-faq-item">
+					<summary class="tz-faq-question"
+						>What is the difference between GMT and UTC?</summary
+					>
+					<div class="tz-faq-answer">
+						<p>
+							GMT (Greenwich Mean Time) and UTC are practically identical for
+							everyday use — both represent offset zero. GMT is based on Earth's
+							rotation and was the original global standard centred on Greenwich,
+							London. UTC is based on atomic clocks and is the modern international
+							standard. The difference between them is less than a second. In
+							winter the UK uses GMT; in summer it switches to BST (UTC+1).
+						</p>
+					</div>
+				</details>
+				<details class="tz-faq-item">
+					<summary class="tz-faq-question"
+						>Which countries do not observe daylight saving time?</summary
+					>
+					<div class="tz-faq-answer">
+						<p>
+							Many countries near the equator do not use DST because daylight
+							hours vary little year-round. Japan, China, India, South Korea, and
+							most of Africa and Southeast Asia do not observe it. In the United
+							States, Arizona (except the Navajo Nation) and Hawaii stay on
+							standard time year-round. Since 2024, Mexico has also stopped
+							observing DST in most regions.
+						</p>
+					</div>
+				</details>
+				<details class="tz-faq-item">
+					<summary class="tz-faq-question"
+						>What is the best time to schedule a meeting between the US and UK?</summary
+					>
+					<div class="tz-faq-answer">
+						<p>
+							The overlap window depends on the season due to DST. When both
+							countries are on daylight saving, the gap is typically four to five
+							hours — meaning 9:00 AM Eastern in the US is 2:00 PM in London.
+							A practical meeting window is 9:00 AM to 12:00 PM Eastern (2:00 PM
+							to 5:00 PM UK time). Use Clockr to check the exact offset for your
+							specific meeting date.
+						</p>
+					</div>
+				</details>
+				<details class="tz-faq-item">
+					<summary class="tz-faq-question"
+						>How many hours ahead is Australia compared to the UK?</summary
+					>
+					<div class="tz-faq-answer">
+						<p>
+							It depends on which Australian city and the time of year. Sydney
+							is typically 10 or 11 hours ahead of London — 11 hours during
+							Northern Hemisphere summer when London is on BST and Sydney is on
+							standard time, or 10 hours when both offsets align differently.
+							Perth is only 7 or 8 hours ahead. Always check the specific cities
+							and date in Clockr, as Australian states observe DST on different
+							schedules.
+						</p>
+					</div>
+				</details>
+				<details class="tz-faq-item">
+					<summary class="tz-faq-question"
+						>What time zone should I use for international business?</summary
+					>
+					<div class="tz-faq-answer">
+						<p>
+							UTC is the standard reference for international business, aviation,
+							and computing — it avoids ambiguity about which country's daylight
+							saving rules apply. Many global companies schedule meetings in UTC
+							or specify times with the UTC offset (e.g. "14:00 UTC"). For
+							day-to-day work, convert to each participant's local time using a
+							timezone converter so nobody joins at the wrong hour.
+						</p>
+					</div>
+				</details>
+				<details class="tz-faq-item">
+					<summary class="tz-faq-question"
+						>Why does India have a half-hour time zone offset?</summary
+					>
+					<div class="tz-faq-answer">
+						<p>
+							India uses a single time zone — IST (UTC+5:30) — across the entire
+							country, despite spanning nearly 30 degrees of longitude. The
+							half-hour offset was chosen in 1906 to place the standard meridian
+							near the centre of the country, roughly between western Gujarat and
+							eastern Assam. A single zone simplifies national scheduling, even
+							though solar noon varies by over an hour from east to west.
+						</p>
+					</div>
+				</details>
+				<details class="tz-faq-item">
+					<summary class="tz-faq-question"
+						>What is the time difference between New York and Los Angeles?</summary
+					>
+					<div class="tz-faq-answer">
+						<p>
+							Los Angeles is three hours behind New York year-round. Both cities
+							observe daylight saving time on the same schedule, so the three-hour
+							gap stays constant — when it is noon in New York, it is 9:00 AM in
+							Los Angeles. Select both cities in Clockr's converter to see the
+							exact time for any date and time you enter.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
 		<div class="tz-related">
 			<h3 class="tz-related-title">You might also like</h3>
 			<div class="tz-related-grid">
-				<a href="/world-clock" class="tz-related-card">🌍 World Clock</a>
-				<a href="/date-calculator" class="tz-related-card">📅 Date Calculator</a>
-				<a href="/age-calculator" class="tz-related-card">🎂 Age Calculator</a>
+				<a href="/world-clock" class="tz-related-card"
+					><span class="tz-related-name">World Clock</span></a
+				>
+				<a href="/time-difference" class="tz-related-card"
+					><span class="tz-related-name">Time Difference Calculator</span></a
+				>
+				<a href="/business-days" class="tz-related-card"
+					><span class="tz-related-name">Business Days Calculator</span></a
+				>
+				<a href="/countdown-timer" class="tz-related-card"
+					><span class="tz-related-name">Countdown Timer</span></a
+				>
 			</div>
 		</div>
 	</div>
@@ -405,6 +572,98 @@ const presets = [
 		color: #fff;
 	}
 
+	.tz-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tz-how {
+		margin-bottom: 48px;
+	}
+
+	.tz-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.tz-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.tz-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.tz-faq {
+		margin-bottom: 48px;
+	}
+
+	.tz-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.tz-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.tz-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tz-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.tz-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tz-faq-item[open] .tz-faq-question::after {
+		content: '−';
+	}
+
+	.tz-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.tz-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
 	.tz-related {
 		border-top: 1px solid rgba(255, 255, 255, 0.06);
 		padding-top: 40px;
@@ -420,7 +679,7 @@ const presets = [
 
 	.tz-related-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 	}
 
@@ -428,21 +687,24 @@ const presets = [
 		background: #0c0c0c;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		border-radius: 12px;
-		padding: 16px;
+		padding: 20px 16px;
 		text-align: center;
-		font-family: 'Outfit', sans-serif;
-		font-size: 14px;
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.6);
 		text-decoration: none;
-		transition:
-			border-color 0.2s ease,
-			color 0.2s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.tz-related-card:hover {
 		border-color: rgba(0, 229, 196, 0.4);
-		color: #fff;
+	}
+
+	.tz-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	@media (max-width: 639px) {

@@ -113,13 +113,179 @@ import Layout from '../layouts/Layout.astro';
 			</div>
 		</div>
 
+		<!-- HOW IT WORKS -->
+		<section class="timer-how">
+			<h2 class="timer-section-title">How does a countdown timer work?</h2>
+			<div class="timer-how-card">
+				<p>
+					A countdown timer works by recording a target duration and continuously
+					subtracting elapsed time from it. When you start a five-minute timer,
+					the tool stores 300 seconds as your target and decrements the display
+					every second until it reaches zero. At that point it typically sounds
+					an alarm or shows a visual alert to let you know time is up.
+				</p>
+				<p>
+					Clockr uses the browser's performance API for accurate millisecond
+					timing rather than relying on setInterval alone, which can drift when
+					the browser is busy or a tab is in the background. By anchoring each
+					tick to a high-resolution timestamp, the timer stays aligned with real
+					elapsed time even if individual interval callbacks fire slightly late.
+				</p>
+				<p>
+					Countdown timers have countless practical uses. In the kitchen they
+					track boiling eggs, baking times, and rest periods between recipe steps.
+					For exercise they structure work and rest intervals in HIIT workouts.
+					Speakers use them to stay within presentation time limits, and students
+					use the Pomodoro technique — typically 25 minutes of focused study
+					followed by a short break — to maintain concentration throughout the
+					day.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="timer-faq">
+			<h2 class="timer-section-title">Frequently asked questions</h2>
+			<div class="timer-faq-list">
+				<details class="timer-faq-item">
+					<summary class="timer-faq-question"
+						>What is the Pomodoro technique and how long should the timer be?</summary
+					>
+					<div class="timer-faq-answer">
+						<p>
+							The Pomodoro technique is a time-management method developed by
+							Francesco Cirillo in the late 1980s. You work in focused
+							25-minute blocks called "pomodoros", separated by 5-minute breaks.
+							After four pomodoros, take a longer break of 15 to 30 minutes. Set
+							Clockr to 25 minutes for each work session and 5 minutes for short
+							breaks — the preset buttons make this quick to start.
+						</p>
+					</div>
+				</details>
+				<details class="timer-faq-item">
+					<summary class="timer-faq-question"
+						>How do I use a timer for exercise intervals?</summary
+					>
+					<div class="timer-faq-answer">
+						<p>
+							For interval training, alternate between work and rest periods
+							using the timer. A common HIIT pattern is 40 seconds of intense
+							exercise followed by 20 seconds of rest, repeated for several
+							rounds. Set the timer to your work duration, start it when you
+							begin, and reset or adjust for the rest period when it sounds. The
+							+1 Min button lets you extend a round without restarting from
+							scratch.
+						</p>
+					</div>
+				</details>
+				<details class="timer-faq-item">
+					<summary class="timer-faq-question"
+						>What is the best timer length for studying?</summary
+					>
+					<div class="timer-faq-answer">
+						<p>
+							Research suggests focused study blocks of 25 to 50 minutes work
+							well for most people, with a 5 to 10 minute break between
+							sessions. The Pomodoro technique uses 25 minutes; some students
+							prefer 45 or 50 minutes for deeper work before a longer break.
+							Experiment to find what keeps you focused without mental fatigue —
+							Clockr's presets from 15 to 45 minutes are a good starting point.
+						</p>
+					</div>
+				</details>
+				<details class="timer-faq-item">
+					<summary class="timer-faq-question"
+						>How accurate is an online countdown timer?</summary
+					>
+					<div class="timer-faq-answer">
+						<p>
+							Online timers are accurate to within a fraction of a second when
+							the browser tab is active. Clockr uses high-resolution timing via
+							the performance API to minimise drift. Accuracy can decrease if the
+							tab is heavily throttled in the background, but for typical use —
+							cooking, studying, exercising — the timer is more than precise
+							enough.
+						</p>
+					</div>
+				</details>
+				<details class="timer-faq-item">
+					<summary class="timer-faq-question"
+						>Can I use a countdown timer without an internet connection?</summary
+					>
+					<div class="timer-faq-answer">
+						<p>
+							Yes. Once the Clockr page has loaded in your browser, the countdown
+							timer runs entirely in JavaScript on your device — no server
+							connection is needed. If you have visited the page before, your
+							browser may have cached it so it works offline. Keep the tab open
+							while the timer is running for the most reliable experience.
+						</p>
+					</div>
+				</details>
+				<details class="timer-faq-item">
+					<summary class="timer-faq-question"
+						>What is an interval timer and how is it different from a countdown timer?</summary
+					>
+					<div class="timer-faq-answer">
+						<p>
+							A countdown timer counts down from a set duration to zero and stops.
+							An interval timer automatically alternates between work and rest
+							periods for multiple rounds — for example, 30 seconds on, 10
+							seconds off, repeated eight times. Clockr is a countdown timer; you
+							can simulate intervals by resetting or adjusting the time between
+							rounds manually.
+						</p>
+					</div>
+				</details>
+				<details class="timer-faq-item">
+					<summary class="timer-faq-question"
+						>How do I time a presentation?</summary
+					>
+					<div class="timer-faq-answer">
+						<p>
+							Set the timer to your allotted speaking time — for example, 10 or
+							20 minutes — and place the browser window where you can glance at
+							it without distracting the audience. Start the timer when you
+							begin speaking. When two to three minutes remain, mentally wrap up
+							your key points. The alarm at zero is your hard stop. Practise with
+							the timer beforehand so you know how much content fits your slot.
+						</p>
+					</div>
+				</details>
+				<details class="timer-faq-item">
+					<summary class="timer-faq-question"
+						>What is the longest countdown timer ever used?</summary
+					>
+					<div class="timer-faq-answer">
+						<p>
+							There is no official record for the longest countdown timer, but
+							extraordinary examples abound. Space agencies use multi-year
+							countdowns for mission launches. The Doomsday Clock, maintained
+							since 1947, metaphorically counts down humanity's proximity to
+							catastrophe. For everyday use, Clockr supports timers up to 99
+							hours — enough for even the most ambitious cooking projects.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
 		<!-- RELATED TOOLS -->
 		<div class="timer-related">
 			<h3 class="timer-related-title">You might also like</h3>
 			<div class="timer-related-grid">
-				<a href="/age-calculator" class="timer-related-card">🎂 Age Calculator</a>
-				<a href="/date-calculator" class="timer-related-card">📅 Date Calculator</a>
-				<a href="/world-clock" class="timer-related-card">🌍 World Clock</a>
+				<a href="/stopwatch" class="timer-related-card"
+					><span class="timer-related-name">Stopwatch</span></a
+				>
+				<a href="/days-until-christmas" class="timer-related-card"
+					><span class="timer-related-name">Days Until Christmas</span></a
+				>
+				<a href="/year-progress" class="timer-related-card"
+					><span class="timer-related-name">Year Progress Bar</span></a
+				>
+				<a href="/days-until-birthday" class="timer-related-card"
+					><span class="timer-related-name">Days Until My Birthday</span></a
+				>
 			</div>
 		</div>
 	</div>
@@ -385,6 +551,98 @@ import Layout from '../layouts/Layout.astro';
 		background: rgba(139, 92, 246, 0.08);
 	}
 
+	.timer-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.timer-how {
+		margin-bottom: 48px;
+	}
+
+	.timer-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.timer-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.timer-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.timer-faq {
+		margin-bottom: 48px;
+	}
+
+	.timer-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.timer-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.timer-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.timer-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.timer-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.timer-faq-item[open] .timer-faq-question::after {
+		content: '−';
+	}
+
+	.timer-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.timer-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
 	.timer-related {
 		border-top: 1px solid rgba(255, 255, 255, 0.06);
 		padding-top: 40px;
@@ -400,7 +658,7 @@ import Layout from '../layouts/Layout.astro';
 
 	.timer-related-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 	}
 
@@ -408,21 +666,24 @@ import Layout from '../layouts/Layout.astro';
 		background: #0c0c0c;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		border-radius: 12px;
-		padding: 16px;
+		padding: 20px 16px;
 		text-align: center;
-		font-family: 'Outfit', sans-serif;
-		font-size: 14px;
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.6);
 		text-decoration: none;
-		transition:
-			border-color 0.2s ease,
-			color 0.2s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.timer-related-card:hover {
-		border-color: rgba(139, 92, 246, 0.4);
-		color: #fff;
+		border-color: rgba(255, 92, 77, 0.4);
+	}
+
+	.timer-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	@media (max-width: 600px) {

@@ -41,13 +41,177 @@ import Layout from '../layouts/Layout.astro';
 			<ul class="sw-laps-list" id="sw-laps-list"></ul>
 		</div>
 
+		<!-- HOW IT WORKS -->
+		<section class="sw-how">
+			<h2 class="sw-section-title">How does an online stopwatch work?</h2>
+			<div class="sw-how-card">
+				<p>
+					An online stopwatch measures elapsed time by recording the moment you
+					press start and continuously calculating the difference from the
+					current time. Each tick updates the display with hours, minutes,
+					seconds, and milliseconds elapsed since that start point. When you
+					pause, the accumulated time is stored so you can resume without losing
+					progress.
+				</p>
+				<p>
+					Lap timing lets you record intermediate marks without stopping the
+					clock. Each time you press Lap, the stopwatch captures the current
+					elapsed time as a total and calculates the split — the time since the
+					previous lap — by subtracting the last lap's total from the current
+					elapsed time. This shows both how long each segment took and your
+					cumulative time from the start.
+				</p>
+				<p>
+					Online stopwatches use performance.now() rather than Date.now() for
+					accuracy. Unlike Date.now(), which reads the system clock and can jump
+					if the clock is adjusted, performance.now() returns a monotonic
+					timestamp that only moves forward. It also offers sub-millisecond
+					precision, making it ideal for timing tasks where every fraction of a
+					second counts.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="sw-faq">
+			<h2 class="sw-section-title">Frequently asked questions</h2>
+			<div class="sw-faq-list">
+				<details class="sw-faq-item">
+					<summary class="sw-faq-question"
+						>How accurate is an online stopwatch?</summary
+					>
+					<div class="sw-faq-answer">
+						<p>
+							Clockr's stopwatch is accurate to the millisecond, updating the
+							display every 10 milliseconds for smooth visual feedback. It uses
+							high-resolution timing APIs that are not affected by system clock
+							adjustments. For everyday timing — workouts, cooking, experiments
+							— an online stopwatch is just as reliable as a physical one.
+						</p>
+					</div>
+				</details>
+				<details class="sw-faq-item">
+					<summary class="sw-faq-question"
+						>What is a lap time and how is it calculated?</summary
+					>
+					<div class="sw-faq-answer">
+						<p>
+							A lap time records how long a single segment took. When you press
+							Lap, Clockr stores the total elapsed time and calculates the split
+							by subtracting the previous lap's total. For example, if your
+							first lap total is 1:30 and your second is 3:00, the second lap
+							split is 1:30. The display shows both the split for each segment
+							and the running total from the start.
+						</p>
+					</div>
+				</details>
+				<details class="sw-faq-item">
+					<summary class="sw-faq-question"
+						>What is the world record for the 100 metre sprint?</summary
+					>
+					<div class="sw-faq-answer">
+						<p>
+							Usain Bolt holds the men's world record at 9.58 seconds, set at the
+							2009 World Championships in Berlin. Florence Griffith-Joyner holds
+							the women's record at 10.49 seconds, set in 1988. These times are
+							measured to a hundredth of a second using electronic timing systems
+							far more precise than any consumer stopwatch.
+						</p>
+					</div>
+				</details>
+				<details class="sw-faq-item">
+					<summary class="sw-faq-question"
+						>How do I time multiple people at once?</summary
+					>
+					<div class="sw-faq-answer">
+						<p>
+							For a single shared start, begin the stopwatch when the race starts
+							and record each finisher's time individually by pressing Lap as
+							they cross the line — each lap captures that runner's finish time
+							as a cumulative total. For independent starts, open separate
+							browser tabs with a stopwatch for each person. Clockr stores up to
+							20 lap times per stopwatch session.
+						</p>
+					</div>
+				</details>
+				<details class="sw-faq-item">
+					<summary class="sw-faq-question"
+						>What is a split time in running?</summary
+					>
+					<div class="sw-faq-answer">
+						<p>
+							A split time is the duration of a specific segment of a run — for
+							example, the time for one lap of a track or one kilometre of a
+							longer race. Splits help runners assess pacing: even splits mean
+							each segment took the same time; negative splits mean you ran the
+							second half faster than the first. Clockr's lap feature shows each
+							split alongside the cumulative total.
+						</p>
+					</div>
+				</details>
+				<details class="sw-faq-item">
+					<summary class="sw-faq-question"
+						>How do professional athletes use stopwatches in training?</summary
+					>
+					<div class="sw-faq-answer">
+						<p>
+							Coaches use stopwatches to time intervals, rest periods, and
+							repetition splits during training sessions. Swimmers time each
+							lap off the wall; sprinters measure acceleration phases and
+							full-effort reps; endurance athletes track kilometre splits to
+							monitor pacing. Consistent split data over weeks reveals whether
+							an athlete is improving or fatiguing during a session.
+						</p>
+					</div>
+				</details>
+				<details class="sw-faq-item">
+					<summary class="sw-faq-question"
+						>What is the difference between a stopwatch and a timer?</summary
+					>
+					<div class="sw-faq-answer">
+						<p>
+							A stopwatch counts up from zero, measuring how much time has
+							elapsed since you started. A timer (or countdown timer) counts down
+							from a preset duration to zero and alerts you when time is up.
+							Use a stopwatch when you don't know how long something will take;
+							use a timer when you need to limit an activity to a set period.
+							Clockr offers both tools.
+						</p>
+					</div>
+				</details>
+				<details class="sw-faq-item">
+					<summary class="sw-faq-question"
+						>How many decimal places does a stopwatch measure to?</summary
+					>
+					<div class="sw-faq-answer">
+						<p>
+							Clockr displays time to three decimal places — milliseconds — in
+							the format HH:MM:SS.mmm. Professional sports timing often uses
+							hundredths of a second (two decimal places), while scientific
+							measurements may need microseconds. For virtually all everyday and
+							fitness uses, millisecond precision is more than sufficient.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
 		<!-- RELATED TOOLS -->
 		<div class="sw-related">
 			<h3 class="sw-related-title">You might also like</h3>
 			<div class="sw-related-grid">
-				<a href="/countdown-timer" class="sw-related-card">⏱️ Countdown Timer</a>
-				<a href="/age-calculator" class="sw-related-card">🎂 Age Calculator</a>
-				<a href="/world-clock" class="sw-related-card">🌍 World Clock</a>
+				<a href="/countdown-timer" class="sw-related-card"
+					><span class="sw-related-name">Countdown Timer</span></a
+				>
+				<a href="/business-days" class="sw-related-card"
+					><span class="sw-related-name">Business Days Calculator</span></a
+				>
+				<a href="/date-calculator" class="sw-related-card"
+					><span class="sw-related-name">Date Calculator</span></a
+				>
+				<a href="/year-progress" class="sw-related-card"
+					><span class="sw-related-name">Year Progress Bar</span></a
+				>
 			</div>
 		</div>
 	</div>
@@ -273,6 +437,98 @@ import Layout from '../layouts/Layout.astro';
 		color: rgba(255, 255, 255, 0.55);
 	}
 
+	.sw-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sw-how {
+		margin-bottom: 48px;
+	}
+
+	.sw-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.sw-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.sw-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.sw-faq {
+		margin-bottom: 48px;
+	}
+
+	.sw-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.sw-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.sw-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sw-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.sw-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sw-faq-item[open] .sw-faq-question::after {
+		content: '−';
+	}
+
+	.sw-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.sw-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
 	.sw-related {
 		border-top: 1px solid rgba(255, 255, 255, 0.06);
 		padding-top: 40px;
@@ -288,7 +544,7 @@ import Layout from '../layouts/Layout.astro';
 
 	.sw-related-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 	}
 
@@ -296,21 +552,24 @@ import Layout from '../layouts/Layout.astro';
 		background: #0c0c0c;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		border-radius: 12px;
-		padding: 16px;
+		padding: 20px 16px;
 		text-align: center;
-		font-family: 'Outfit', sans-serif;
-		font-size: 14px;
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.6);
 		text-decoration: none;
-		transition:
-			border-color 0.2s ease,
-			color 0.2s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.sw-related-card:hover {
 		border-color: rgba(139, 92, 246, 0.4);
-		color: #fff;
+	}
+
+	.sw-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	@media (max-width: 600px) {
