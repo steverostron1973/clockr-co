@@ -1,0 +1,718 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MeetingPlanner from '../components/MeetingPlanner.jsx';
+---
+
+<Layout
+	title="Time Zone Meeting Planner — Find the Best Time to Meet | Clockr"
+	description="Use the Time Zone Meeting Planner to compare working hours across cities. Find the best time to meet with colleagues worldwide."
+	category="timezones"
+>
+	<div class="mp-page">
+		<div class="mp-header">
+			<div class="mp-eyebrow">
+				<span class="mp-eyebrow-square" aria-hidden="true"></span>
+				Time Zones
+			</div>
+			<h1 class="mp-title">
+				<span class="mp-gradient">Time Zone</span><br />
+				<span class="mp-gradient">Meeting Planner</span>
+			</h1>
+			<p class="mp-subtitle">
+				Find the best time to meet across multiple time zones
+			</p>
+		</div>
+
+		<div class="mp-card">
+			<MeetingPlanner client:load />
+		</div>
+
+		<!-- HOW IT WORKS -->
+		<section class="mp-how">
+			<h2 class="mp-section-title">How does the meeting planner work?</h2>
+			<div class="mp-how-card">
+				<p>
+					Scheduling a call across time zones means finding a moment when
+					everyone is awake — and ideally within normal working hours. Clockr's
+					meeting planner shows each participant's local day on a 24-hour
+					timeline, colour-coded so you can spot overlap at a glance.
+				</p>
+				<p>
+					Drag the time slider to explore different meeting times anchored to
+					your own time zone. Each row updates instantly to show what local time
+					it would be for every city you've added. Teal blocks mark core
+					working hours (9 AM to 5 PM), amber covers early morning and early
+					evening, and dark blocks indicate late night.
+				</p>
+				<p>
+					All conversions use IANA timezone identifiers and your browser's
+					Intl API, so daylight saving changes are handled automatically for
+					today's date.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="mp-faq">
+			<h2 class="mp-section-title">Frequently asked questions</h2>
+			<div class="mp-faq-list">
+				<details class="mp-faq-item">
+					<summary class="mp-faq-question"
+						>What is the best time for a meeting between the US and Europe?</summary
+					>
+					<div class="mp-faq-answer">
+						<p>
+							A practical overlap is usually 9:00 AM to 12:00 PM Eastern Time,
+							which falls between 2:00 PM and 5:00 PM in London — squarely
+							within working hours on both sides. Add both cities to the planner
+							and drag the slider to find the exact window for your date.
+						</p>
+					</div>
+				</details>
+				<details class="mp-faq-item">
+					<summary class="mp-faq-question"
+						>How many time zones can I compare at once?</summary
+					>
+					<div class="mp-faq-answer">
+						<p>
+							You can add up to six time zones including your own. Your local
+							time zone is detected automatically and always appears as the
+							first row. Remove any added city with the × button beside its
+							name.
+						</p>
+					</div>
+				</details>
+				<details class="mp-faq-item">
+					<summary class="mp-faq-question"
+						>What do the colours on the timeline mean?</summary
+					>
+					<div class="mp-faq-answer">
+						<p>
+							Teal marks standard working hours (9 AM to 5 PM local time).
+							Amber shows early morning (7 to 9 AM) and early evening (5 to 8
+							PM) — workable but less ideal. Dark grey indicates off-hours,
+							typically late evening through early morning.
+						</p>
+					</div>
+				</details>
+				<details class="mp-faq-item">
+					<summary class="mp-faq-question"
+						>Does the planner account for daylight saving time?</summary
+					>
+					<div class="mp-faq-answer">
+						<p>
+							Yes. Clockr uses IANA timezone data through the browser's
+							Intl.DateTimeFormat API, which applies the correct UTC offset for
+							today's date in each city — including spring and autumn clock
+							changes.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="mp-related">
+			<h3 class="mp-related-title">You might also like</h3>
+			<div class="mp-related-grid">
+				<a href="/world-clock" class="mp-related-card"
+					><span class="mp-related-name">World Clock</span></a
+				>
+				<a href="/timezone-converter" class="mp-related-card"
+					><span class="mp-related-name">Time Zone Converter</span></a
+				>
+				<a href="/time-difference" class="mp-related-card"
+					><span class="mp-related-name">Time Difference Calculator</span></a
+				>
+				<a href="/business-days" class="mp-related-card"
+					><span class="mp-related-name">Business Days Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.mp-page {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.mp-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.mp-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.mp-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.mp-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.mp-gradient {
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.mp-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.mp-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.2);
+		border-radius: 20px;
+		padding: 32px;
+		margin-bottom: 48px;
+		box-shadow: 0 0 40px rgba(0, 229, 196, 0.06);
+	}
+
+	.mp-tool {
+		display: flex;
+		flex-direction: column;
+		gap: 28px;
+	}
+
+	.mp-slider-section {
+		padding-bottom: 8px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.mp-slider-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 12px;
+	}
+
+	.mp-slider-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.5);
+		letter-spacing: 0.5px;
+	}
+
+	.mp-slider-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.mp-slider-track-wrap {
+		position: relative;
+		padding: 28px 0 8px;
+	}
+
+	.mp-slider-ticks {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 20px;
+		pointer-events: none;
+	}
+
+	.mp-slider-tick {
+		position: absolute;
+		transform: translateX(-50%);
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		color: rgba(255, 255, 255, 0.3);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.mp-slider {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 100%;
+		height: 8px;
+		border-radius: 4px;
+		background: linear-gradient(
+			90deg,
+			rgba(255, 255, 255, 0.06) 0%,
+			rgba(0, 229, 196, 0.15) 35%,
+			rgba(0, 153, 255, 0.15) 65%,
+			rgba(255, 255, 255, 0.06) 100%
+		);
+		outline: none;
+		cursor: pointer;
+		position: relative;
+		z-index: 2;
+	}
+
+	.mp-slider::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		border: 2px solid #0c0c0c;
+		box-shadow: 0 0 12px rgba(0, 229, 196, 0.4);
+		cursor: grab;
+	}
+
+	.mp-slider::-moz-range-thumb {
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		border: 2px solid #0c0c0c;
+		box-shadow: 0 0 12px rgba(0, 229, 196, 0.4);
+		cursor: grab;
+	}
+
+	.mp-rows {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		position: relative;
+	}
+
+	.mp-row {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.mp-row-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		gap: 12px;
+	}
+
+	.mp-row-info {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		min-width: 0;
+	}
+
+	.mp-row-badge {
+		font-family: 'Outfit', sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: #00e5c4;
+	}
+
+	.mp-row-city {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.85);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.mp-remove {
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		border-radius: 8px;
+		width: 28px;
+		height: 28px;
+		font-size: 18px;
+		line-height: 1;
+		color: rgba(255, 255, 255, 0.5);
+		cursor: pointer;
+		flex-shrink: 0;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.mp-remove:hover {
+		border-color: rgba(255, 100, 100, 0.5);
+		color: #ff6b6b;
+	}
+
+	.mp-timeline-wrap {
+		position: relative;
+	}
+
+	.mp-timeline {
+		position: relative;
+		display: flex;
+		height: 32px;
+		border-radius: 8px;
+		overflow: hidden;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.mp-hour-block {
+		flex: 1;
+		min-width: 0;
+		border-right: 1px solid rgba(0, 0, 0, 0.2);
+	}
+
+	.mp-hour-block:last-child {
+		border-right: none;
+	}
+
+	.mp-marker {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 2px;
+		background: rgba(255, 255, 255, 0.9);
+		transform: translateX(-50%);
+		pointer-events: none;
+		z-index: 2;
+		box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+	}
+
+	.mp-time-display {
+		margin-top: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.mp-add-wrap {
+		position: relative;
+	}
+
+	.mp-add-btn {
+		background: rgba(0, 229, 196, 0.08);
+		border: 1px dashed rgba(0, 229, 196, 0.35);
+		border-radius: 12px;
+		padding: 14px 20px;
+		width: 100%;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: #00e5c4;
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.mp-add-btn:hover {
+		border-color: rgba(0, 229, 196, 0.6);
+		background: rgba(0, 229, 196, 0.12);
+	}
+
+	.mp-picker {
+		position: absolute;
+		top: calc(100% + 8px);
+		left: 0;
+		right: 0;
+		background: #141414;
+		border: 1px solid rgba(0, 229, 196, 0.25);
+		border-radius: 14px;
+		padding: 12px;
+		z-index: 20;
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+	}
+
+	.mp-picker-search {
+		width: 100%;
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.3);
+		border-radius: 10px;
+		padding: 12px 14px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		color: #fff;
+		outline: none;
+		margin-bottom: 8px;
+	}
+
+	.mp-picker-search:focus {
+		border-color: rgba(0, 229, 196, 0.7);
+	}
+
+	.mp-picker-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		max-height: 240px;
+		overflow-y: auto;
+	}
+
+	.mp-picker-item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		background: none;
+		border: none;
+		border-radius: 8px;
+		padding: 10px 12px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.8);
+		text-align: left;
+		cursor: pointer;
+		transition: background 0.15s ease;
+	}
+
+	.mp-picker-item:hover:not(:disabled) {
+		background: rgba(0, 229, 196, 0.08);
+	}
+
+	.mp-picker-item:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+
+	.mp-picker-added {
+		font-size: 11px;
+		color: rgba(255, 255, 255, 0.35);
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	.mp-picker-empty {
+		padding: 16px;
+		text-align: center;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.mp-legend {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px 24px;
+		padding-top: 8px;
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.mp-legend-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.mp-legend-swatch {
+		width: 14px;
+		height: 14px;
+		border-radius: 3px;
+		flex-shrink: 0;
+	}
+
+	.mp-legend-good {
+		background: rgba(0, 229, 196, 0.2);
+		border: 1px solid rgba(0, 229, 196, 0.3);
+	}
+
+	.mp-legend-okay {
+		background: rgba(251, 191, 36, 0.2);
+		border: 1px solid rgba(251, 191, 36, 0.3);
+	}
+
+	.mp-legend-bad {
+		background: rgba(255, 255, 255, 0.06);
+		border: 1px solid rgba(255, 255, 255, 0.1);
+	}
+
+	.mp-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.mp-how {
+		margin-bottom: 48px;
+	}
+
+	.mp-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.mp-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.mp-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.mp-faq {
+		margin-bottom: 48px;
+	}
+
+	.mp-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.mp-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.mp-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.mp-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.mp-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.mp-faq-item[open] .mp-faq-question::after {
+		content: '−';
+	}
+
+	.mp-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.mp-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.mp-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.mp-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.mp-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.mp-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.mp-related-card:hover {
+		border-color: rgba(0, 229, 196, 0.4);
+	}
+
+	.mp-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 639px) {
+		.mp-title {
+			font-size: 48px;
+			letter-spacing: -2px;
+		}
+
+		.mp-card {
+			padding: 24px 16px;
+		}
+
+		.mp-related-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.mp-legend {
+			flex-direction: column;
+			gap: 10px;
+		}
+
+		.mp-row-city {
+			font-size: 14px;
+			white-space: normal;
+		}
+	}
+</style>

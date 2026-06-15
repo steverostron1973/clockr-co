@@ -1,0 +1,895 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const dayNames = [
+	'Sunday',
+	'Monday',
+	'Tuesday',
+	'Wednesday',
+	'Thursday',
+	'Friday',
+	'Saturday',
+];
+const dayAbbr = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+---
+
+<Layout
+	title="Day of the Week Calculator — What Day Was I Born | Clockr"
+	description="Find out what day of the week any date falls on. Free calculator for birthdays, anniversaries and historical dates."
+>
+	<div class="dow-page">
+		<!-- PAGE HEADER -->
+		<div class="dow-header">
+			<div class="dow-eyebrow">📅 Calendar & Dates</div>
+			<h1 class="dow-title">
+				<span class="dow-gradient">Day of the Week</span><br />
+				<span class="dow-gradient">Calculator</span>
+			</h1>
+			<p class="dow-subtitle">
+				Find out what day of the week any date falls on
+			</p>
+		</div>
+
+		<!-- INPUT -->
+		<div class="dow-input-wrap">
+			<label class="dow-label" for="date-input">Enter a date</label>
+			<input type="date" id="date-input" class="dow-input" />
+		</div>
+
+		<!-- RESULTS -->
+		<div class="dow-results" id="dow-results" style="display:none">
+			<div class="dow-main-card">
+				<div class="dow-day" id="dow-day">Tuesday</div>
+				<div class="dow-date-display" id="dow-date-display"></div>
+				<div class="dow-timeline" id="dow-timeline"></div>
+				<div class="dow-offset" id="dow-offset"></div>
+			</div>
+
+			<div class="dow-stat-card">
+				<div class="dow-stat-num" id="dow-week-num">0</div>
+				<div class="dow-stat-label">Week of the year</div>
+			</div>
+		</div>
+
+		<!-- BORN ON A... -->
+		<div class="dow-born" id="dow-born" style="display:none">
+			<h2 class="dow-section-title" id="dow-born-title">Born on a Tuesday?</h2>
+			<p class="dow-born-fact" id="dow-born-fact"></p>
+			<div class="dow-chart-wrap">
+				<div class="dow-chart" id="dow-chart" aria-label="Weekday distribution chart"></div>
+			</div>
+			<p class="dow-chart-caption">
+				How often this date fell on each weekday over the last 100 years
+			</p>
+		</div>
+
+		<!-- QUICK REFERENCE -->
+		<div class="dow-quick">
+			<h2 class="dow-section-title">What day was/is…</h2>
+			<div class="dow-quick-grid">
+				<button type="button" class="dow-quick-btn" data-preset="today"
+					>Today</button
+				>
+				<button type="button" class="dow-quick-btn" data-preset="tomorrow"
+					>Tomorrow</button
+				>
+				<button type="button" class="dow-quick-btn" data-preset="yesterday"
+					>Yesterday</button
+				>
+				<button type="button" class="dow-quick-btn" data-preset="2000-01-01"
+					>1 January 2000</button
+				>
+				<button type="button" class="dow-quick-btn" data-preset="2030-01-01"
+					>1 January 2030</button
+				>
+				<button type="button" class="dow-quick-btn" data-preset="2026-12-25"
+					>25 December 2026</button
+				>
+			</div>
+		</div>
+
+		<!-- HOW IT WORKS -->
+		<section class="dow-how">
+			<h2 class="dow-section-title">How it works</h2>
+			<div class="dow-how-card">
+				<p>
+					Every date falls on one of seven weekdays in a repeating cycle. The
+					Gregorian calendar advances by one weekday each year, but leap years
+					shift the pattern by an extra day — so the same calendar date lands on
+					a different weekday almost every year.
+				</p>
+				<p>
+					Clockr calculates the day of the week using JavaScript's built-in date
+					library, which accounts for leap years and century-year exceptions back
+					to 1582 when the Gregorian calendar was introduced. Enter any date and
+					the result appears instantly — no lookup tables or mental arithmetic
+					required.
+				</p>
+				<p>
+					The "Born on a…" chart counts how many times your month-and-day
+					combination fell on each weekday over the past century. Because of the
+					leap-year cycle, most dates land on each weekday between 14 and 15
+					times per 100 years — but February 29th is the rare exception, appearing
+					on each weekday only about twice per century.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="dow-faq">
+			<h2 class="dow-section-title">Frequently asked questions</h2>
+			<div class="dow-faq-list">
+				<details class="dow-faq-item">
+					<summary class="dow-faq-question"
+						>What day of the week was I born?</summary
+					>
+					<div class="dow-faq-answer">
+						<p>
+							Enter your date of birth into the calculator above. The tool
+							instantly shows the weekday — Monday, Tuesday, and so on — along
+							with whether that date is in the past, present, or future relative
+							to today. The "Born on a…" section also reveals how often your
+							birthday has fallen on each weekday over the last 100 years.
+						</p>
+					</div>
+				</details>
+				<details class="dow-faq-item">
+					<summary class="dow-faq-question"
+						>How do I find out what day a date falls on?</summary
+					>
+					<div class="dow-faq-answer">
+						<p>
+							Type or pick any date using the date input at the top of this page.
+							As soon as you enter a valid date, Clockr displays the weekday in
+							large text along with the week number of the year. You can also
+							click one of the quick-reference buttons — Today, Tomorrow,
+							Yesterday, or a preset historical date — for an instant answer.
+						</p>
+					</div>
+				</details>
+				<details class="dow-faq-item">
+					<summary class="dow-faq-question"
+						>What day of the week is Christmas 2026?</summary
+					>
+					<div class="dow-faq-answer">
+						<p>
+							Christmas Day 2026 falls on a Friday. Click the "25 December 2026"
+							button in the quick-reference section above to see the result
+							instantly, or enter 2026-12-25 in the date field.
+						</p>
+					</div>
+				</details>
+				<details class="dow-faq-item">
+					<summary class="dow-faq-question"
+						>How many times does a date fall on the same weekday in 100 years?</summary
+					>
+					<div class="dow-faq-answer">
+						<p>
+							Most calendar dates (like 15 March or 4 July) fall on each weekday
+							between 14 and 15 times over any 100-year span, because the
+							400-year Gregorian cycle distributes weekdays almost evenly. The
+							"Born on a…" bar chart on this page shows the exact distribution
+							for your chosen date. February 29th is the outlier — it occurs only
+							about 24 times per century and lands on each weekday roughly twice.
+						</p>
+					</div>
+				</details>
+				<details class="dow-faq-item">
+					<summary class="dow-faq-question"
+						>What is the Doomsday algorithm?</summary
+					>
+					<div class="dow-faq-answer">
+						<p>
+							The Doomsday algorithm is a mental-math technique invented by
+							John Horton Conway for calculating weekdays without a calendar. It
+							works by memorising a few "doomsday" anchor dates that always fall
+							on the same weekday in a given year — such as 4 April, 6 June, and
+							31 December — then counting forward or backward from the nearest
+							anchor. With practice you can determine any date's weekday in
+							seconds, but a calculator is faster for most people.
+						</p>
+					</div>
+				</details>
+				<details class="dow-faq-item">
+					<summary class="dow-faq-question"
+						>Why does the same date fall on different days each year?</summary
+					>
+					<div class="dow-faq-answer">
+						<p>
+							A common year has 365 days, which is 52 weeks plus one extra day.
+							That means every date shifts forward by one weekday the following
+							year. Leap years add a second shift, so dates after February 29
+							jump two weekdays instead of one. Over four years the shifts cancel
+							out for most dates, but the century-year rules create a longer
+							400-year cycle before the pattern fully repeats.
+						</p>
+					</div>
+				</details>
+				<details class="dow-faq-item">
+					<summary class="dow-faq-question"
+						>What day of the week occurs most often on the 13th?</summary
+					>
+					<div class="dow-faq-answer">
+						<p>
+							Friday is the most common weekday for the 13th of any month. In the
+							400-year Gregorian cycle, the 13th falls on a Friday 688 times
+							compared with 685 times for Thursday and Saturday and 684 for the
+							other weekdays. This slight imbalance is what fuels the superstition
+							around Friday the 13th — it genuinely occurs more often than any
+							other weekday–date combination.
+						</p>
+					</div>
+				</details>
+				<details class="dow-faq-item">
+					<summary class="dow-faq-question"
+						>How do I calculate the day of the week for any date in history?</summary
+					>
+					<div class="dow-faq-answer">
+						<p>
+							For dates after 15 October 1582 (when the Gregorian calendar was
+							adopted in much of Europe), enter the date directly into this
+							calculator. For earlier dates you need to account for the Julian
+							calendar and regional adoption dates — Britain, for example, did
+							not switch until 1752. Historical researchers often use specialised
+							tools or the Zeller's congruence formula for pre-Gregorian dates.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="dow-related">
+			<h3 class="dow-related-title">You might also like</h3>
+			<div class="dow-related-grid">
+				<a href="/date-calculator" class="dow-related-card"
+					><span class="dow-related-name">Date Calculator</span></a
+				>
+				<a href="/leap-year" class="dow-related-card"
+					><span class="dow-related-name">Leap Year Checker</span></a
+				>
+				<a href="/days-until-birthday" class="dow-related-card"
+					><span class="dow-related-name">Days Until My Birthday</span></a
+				>
+				<a href="/age-calculator" class="dow-related-card"
+					><span class="dow-related-name">Age Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.dow-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.dow-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.dow-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.dow-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.dow-gradient {
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.dow-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.dow-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 48px;
+	}
+
+	.dow-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.dow-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+		min-width: 280px;
+	}
+
+	.dow-input:focus {
+		border-color: rgba(16, 185, 129, 0.8);
+		box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+	}
+
+	.dow-main-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		border-radius: 20px;
+		padding: 40px;
+		text-align: center;
+		margin-bottom: 16px;
+		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+	}
+
+	.dow-day {
+		font-family: 'Outfit', sans-serif;
+		font-size: 80px;
+		font-weight: 900;
+		letter-spacing: -4px;
+		line-height: 1;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 12px;
+	}
+
+	.dow-date-display {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.dow-timeline {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 8px;
+	}
+
+	.dow-offset {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.45);
+		line-height: 1.5;
+	}
+
+	.dow-stat-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.dow-stat-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 48px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 6px;
+	}
+
+	.dow-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.dow-born {
+		margin-bottom: 48px;
+	}
+
+	.dow-born-fact {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 24px;
+	}
+
+	.dow-chart-wrap {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px 16px 16px;
+	}
+
+	.dow-chart {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 8px;
+		height: 120px;
+	}
+
+	.dow-bar-col {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+		min-width: 0;
+	}
+
+	.dow-bar-count {
+		font-family: 'Outfit', sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.dow-bar {
+		width: 100%;
+		max-width: 36px;
+		border-radius: 4px 4px 0 0;
+		background: linear-gradient(180deg, #84cc16, #10b981);
+		min-height: 4px;
+		transition: height 0.3s ease;
+	}
+
+	.dow-bar--active {
+		background: linear-gradient(180deg, #a3e635, #10b981);
+		box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+	}
+
+	.dow-bar-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 10px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.35);
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	.dow-bar-label--active {
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	.dow-chart-caption {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.3);
+		text-align: center;
+		margin: 12px 0 0;
+	}
+
+	.dow-quick {
+		margin-bottom: 48px;
+	}
+
+	.dow-quick-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.dow-quick-btn {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 12px;
+		padding: 16px 12px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: #fff;
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.dow-quick-btn:hover {
+		border-color: rgba(16, 185, 129, 0.5);
+		background: rgba(16, 185, 129, 0.04);
+	}
+
+	.dow-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.dow-how {
+		margin-bottom: 48px;
+	}
+
+	.dow-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.dow-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.dow-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.dow-faq {
+		margin-bottom: 48px;
+	}
+
+	.dow-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.dow-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.dow-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.dow-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.dow-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.dow-faq-item[open] .dow-faq-question::after {
+		content: '−';
+	}
+
+	.dow-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.dow-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.dow-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.dow-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.dow-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.dow-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.dow-related-card:hover {
+		border-color: rgba(16, 185, 129, 0.4);
+	}
+
+	.dow-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.dow-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.dow-day {
+			font-size: 52px;
+			letter-spacing: -2px;
+		}
+
+		.dow-quick-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.dow-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script define:vars={{ dayNames, dayAbbr }}>
+	const dateInput = document.getElementById('date-input');
+	const results = document.getElementById('dow-results');
+	const bornSection = document.getElementById('dow-born');
+
+	function startOfDay(d) {
+		return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+	}
+
+	function formatDateLong(d) {
+		return d.toLocaleDateString('en-GB', {
+			weekday: 'long',
+			day: 'numeric',
+			month: 'long',
+			year: 'numeric',
+		});
+	}
+
+	function formatDateShort(d) {
+		return d.toLocaleDateString('en-GB', {
+			day: 'numeric',
+			month: 'long',
+		});
+	}
+
+	function getISOWeekNumber(d) {
+		const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+		const dayNum = date.getUTCDay() || 7;
+		date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+		const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+		return Math.ceil(
+			((date.getTime() - yearStart.getTime()) / 86400000 + 1) / 7,
+		);
+	}
+
+	function daysBetween(a, b) {
+		return Math.round((b.getTime() - a.getTime()) / 86400000);
+	}
+
+	function getDayDistribution(month, day) {
+		const counts = [0, 0, 0, 0, 0, 0, 0];
+		const endYear = new Date().getFullYear();
+		const startYear = endYear - 99;
+
+		for (let year = startYear; year <= endYear; year++) {
+			const d = new Date(year, month, day);
+			if (d.getMonth() !== month || d.getDate() !== day) continue;
+			counts[d.getDay()]++;
+		}
+
+		return counts;
+	}
+
+	function toInputValue(d) {
+		const y = d.getFullYear();
+		const m = String(d.getMonth() + 1).padStart(2, '0');
+		const day = String(d.getDate()).padStart(2, '0');
+		return `${y}-${m}-${day}`;
+	}
+
+	function renderChart(counts, activeDayIndex) {
+		const chart = document.getElementById('dow-chart');
+		if (!chart) return;
+
+		const max = Math.max(...counts, 1);
+		chart.innerHTML = '';
+
+		// Monday-first order for display
+		const order = [1, 2, 3, 4, 5, 6, 0];
+
+		for (const dayIndex of order) {
+			const col = document.createElement('div');
+			col.className = 'dow-bar-col';
+
+			const countEl = document.createElement('div');
+			countEl.className = 'dow-bar-count';
+			countEl.textContent = String(counts[dayIndex]);
+
+			const bar = document.createElement('div');
+			bar.className = 'dow-bar';
+			if (dayIndex === activeDayIndex) bar.classList.add('dow-bar--active');
+			bar.style.height = `${Math.max(8, (counts[dayIndex] / max) * 80)}px`;
+
+			const label = document.createElement('div');
+			label.className = 'dow-bar-label';
+			if (dayIndex === activeDayIndex) label.classList.add('dow-bar-label--active');
+			label.textContent = dayAbbr[dayIndex];
+
+			col.append(countEl, bar, label);
+			chart.appendChild(col);
+		}
+	}
+
+	function calculate() {
+		if (!dateInput || !results) return;
+
+		const raw = dateInput.value;
+		if (!raw) {
+			results.style.display = 'none';
+			if (bornSection) bornSection.style.display = 'none';
+			return;
+		}
+
+		const parts = raw.split('-').map(Number);
+		const target = new Date(parts[0], parts[1] - 1, parts[2]);
+		if (isNaN(target.getTime())) return;
+
+		const today = startOfDay(new Date());
+		const targetDay = startOfDay(target);
+		const dayIndex = target.getDay();
+		const dayName = dayNames[dayIndex];
+		const diff = daysBetween(today, targetDay);
+
+		results.style.display = 'block';
+
+		const dayEl = document.getElementById('dow-day');
+		const dateDisplayEl = document.getElementById('dow-date-display');
+		const timelineEl = document.getElementById('dow-timeline');
+		const offsetEl = document.getElementById('dow-offset');
+		const weekEl = document.getElementById('dow-week-num');
+
+		if (dayEl) dayEl.textContent = dayName;
+		if (dateDisplayEl) dateDisplayEl.textContent = formatDateLong(target);
+
+		if (timelineEl && offsetEl) {
+			if (diff === 0) {
+				timelineEl.textContent = 'Present';
+				offsetEl.textContent = 'That date is today';
+			} else if (diff < 0) {
+				const days = Math.abs(diff);
+				timelineEl.textContent = 'Past';
+				offsetEl.textContent =
+					days === 1
+						? 'That was 1 day ago'
+						: `That was ${days.toLocaleString()} days ago`;
+			} else {
+				timelineEl.textContent = 'Future';
+				offsetEl.textContent =
+					diff === 1
+						? 'That is 1 day from now'
+						: `That is ${diff.toLocaleString()} days from now`;
+			}
+		}
+
+		if (weekEl) weekEl.textContent = String(getISOWeekNumber(target));
+
+		// Born on a... section (past dates only)
+		if (bornSection) {
+			if (diff < 0) {
+				bornSection.style.display = 'block';
+
+				const titleEl = document.getElementById('dow-born-title');
+				const factEl = document.getElementById('dow-born-fact');
+				const month = target.getMonth();
+				const day = target.getDate();
+				const counts = getDayDistribution(month, day);
+				const total = counts.reduce((a, b) => a + b, 0);
+				const maxCount = Math.max(...counts);
+				const mostCommonIndex = counts.indexOf(maxCount);
+
+				if (titleEl) {
+					titleEl.textContent = `Born on a ${dayName}?`;
+				}
+
+				if (factEl) {
+					const shortDate = formatDateShort(target);
+					factEl.textContent = `Over the last 100 years, ${shortDate} has fallen on a ${dayName} ${counts[dayIndex]} time${counts[dayIndex] === 1 ? '' : 's'} out of ${total} — most often on a ${dayNames[mostCommonIndex]} (${maxCount} times).`;
+				}
+
+				renderChart(counts, dayIndex);
+			} else {
+				bornSection.style.display = 'none';
+			}
+		}
+	}
+
+	dateInput?.addEventListener('input', calculate);
+	dateInput?.addEventListener('change', calculate);
+
+	document.querySelectorAll('.dow-quick-btn').forEach((btn) => {
+		btn.addEventListener('click', () => {
+			const preset = btn.dataset.preset;
+			if (!preset || !dateInput) return;
+
+			let d;
+			if (preset === 'today') {
+				d = new Date();
+			} else if (preset === 'tomorrow') {
+				d = new Date();
+				d.setDate(d.getDate() + 1);
+			} else if (preset === 'yesterday') {
+				d = new Date();
+				d.setDate(d.getDate() - 1);
+			} else {
+				const [y, m, day] = preset.split('-').map(Number);
+				d = new Date(y, m - 1, day);
+			}
+
+			dateInput.value = toInputValue(d);
+			calculate();
+			results?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		});
+	});
+</script>
