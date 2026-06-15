@@ -29,6 +29,7 @@ const categoryFloatEmojis: Record<CategoryId, string[]> = {
 const searchTools = [
 	{ name: 'Age Calculator', description: 'How old are you, exactly?', href: '/age-calculator', keywords: ['how old am i', 'age', 'birthday', 'born'], emoji: '🎂', from: '#8B5CF6', to: '#EC4899' },
 	{ name: 'Date Calculator', description: 'Days between any two dates', href: '/date-calculator', keywords: ['days between dates', 'date difference'], emoji: '📅', from: '#10B981', to: '#84CC16' },
+	{ name: 'Week Number Calculator', description: 'Find the ISO week number for any date', href: '/week-number-calculator', keywords: ['week number', 'iso week', 'what week is it', 'week of year'], emoji: '📆', from: '#10B981', to: '#84CC16' },
 	{ name: 'World Clock', description: 'Current time in 250+ cities', href: '/world-clock', keywords: ['time in city', 'world clock', 'current time'], emoji: '🌍', from: '#00E5C4', to: '#0099FF' },
 	{ name: 'Countdown Timer', description: 'Set a timer for anything', href: '/countdown-timer', keywords: ['timer', 'countdown', 'alarm'], emoji: '⏱️', from: '#FF5C4D', to: '#FF9A3C' },
 	{ name: 'Stopwatch', description: 'Track elapsed time with laps', href: '/stopwatch', keywords: ['stopwatch', 'lap timer', 'elapsed time'], emoji: '⏱️', from: '#FF5C4D', to: '#FF9A3C' },
@@ -86,6 +87,7 @@ const searchPlaceholders = [
 const allTools = [
 	{ emoji: '🎂', name: 'Age Calculator', href: '/age-calculator', from: '#8B5CF6', to: '#EC4899' },
 	{ emoji: '📅', name: 'Date Calculator', href: '/date-calculator', from: '#10B981', to: '#84CC16' },
+	{ emoji: '📆', name: 'Week Number Calculator', href: '/week-number-calculator', from: '#10B981', to: '#84CC16' },
 	{ emoji: '🌍', name: 'World Clock', href: '/world-clock', from: '#00E5C4', to: '#0099FF' },
 	{ emoji: '⏱️', name: 'Countdown Timer', href: '/countdown-timer', from: '#FF5C4D', to: '#FF9A3C' },
 	{ emoji: '⏱️', name: 'Stopwatch', href: '/stopwatch', from: '#8B5CF6', to: '#EC4899' },
@@ -356,7 +358,7 @@ const allTools = [
 			</div>
 		</section>
 
-		<p class="footer-stat">26 tools · 250+ cities · Updated to the second</p>
+		<p class="footer-stat">27 tools · 250+ cities · Updated to the second</p>
 	</div>
 </Layout>
 
