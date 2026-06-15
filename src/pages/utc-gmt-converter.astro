@@ -1,0 +1,619 @@
+---
+import Layout from '../layouts/Layout.astro';
+import UTCGMTConverter from '../components/UTCGMTConverter.jsx';
+---
+
+<Layout
+	title="UTC/GMT Converter — Convert to and from UTC | Clockr"
+	description="Convert any local time to UTC/GMT or UTC back to your time zone. Free UTC converter with automatic daylight saving adjustment."
+	category="timezones"
+>
+	<div class="ugc-page">
+		<div class="ugc-header">
+			<div class="ugc-eyebrow">
+				<span class="ugc-eyebrow-square" aria-hidden="true"></span>
+				Time Zones
+			</div>
+			<h1 class="ugc-title">
+				<span class="ugc-gradient">UTC/GMT</span><br />
+				<span class="ugc-gradient">Converter</span>
+			</h1>
+			<p class="ugc-subtitle">
+				Convert any time to or from UTC/GMT instantly
+			</p>
+		</div>
+
+		<UTCGMTConverter client:load />
+
+		<!-- HOW IT WORKS -->
+		<section class="ugc-how">
+			<h2 class="ugc-section-title">How it works</h2>
+			<div class="ugc-how-card">
+				<p>
+					UTC (Coordinated Universal Time) is the global reference clock that
+					every time zone is measured against. It replaced GMT as the
+					international standard in 1972 and is kept precise using atomic
+					clocks. Airlines, military operations, scientific research, and
+					computer servers all rely on UTC so that events can be coordinated
+					across borders without ambiguity.
+				</p>
+				<p>
+					UTC and GMT are closely related but not identical in strict terms. UTC
+					is the modern time standard maintained by atomic clocks, while GMT is
+					technically a time zone centred on Greenwich, London. In everyday use
+					the two names are interchangeable — both represent offset zero — but
+					UTC is the correct term for the global reference. This converter
+					displays results as UTC/GMT to reflect that common usage.
+				</p>
+				<p>
+					Daylight saving time shifts local clocks forward or back by an hour in
+					many countries, which changes the offset between a city and UTC
+					throughout the year. London is UTC+0 in winter (GMT) but UTC+1 in
+					summer (BST); New York is UTC−5 in winter and UTC−4 in summer. Clockr
+					uses IANA timezone data through the browser's Intl API, so the
+					correct offset for your chosen date is applied automatically — no
+					manual adjustment needed.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="ugc-faq">
+			<h2 class="ugc-section-title">Frequently asked questions</h2>
+			<div class="ugc-faq-list">
+				<details class="ugc-faq-item">
+					<summary class="ugc-faq-question"
+						>What is UTC and how is it different from GMT?</summary
+					>
+					<div class="ugc-faq-answer">
+						<p>
+							UTC (Coordinated Universal Time) is the world's primary time
+							standard, maintained by atomic clocks and accurate to within a
+							fraction of a second. GMT (Greenwich Mean Time) is a time zone
+							based on the sun's position at the Royal Observatory in Greenwich,
+							London. In practice the two are used interchangeably for offset
+							zero, but UTC is the technically correct term for the global
+							reference.
+						</p>
+					</div>
+				</details>
+				<details class="ugc-faq-item">
+					<summary class="ugc-faq-question"
+						>What is the current UTC offset for London?</summary
+					>
+					<div class="ugc-faq-answer">
+						<p>
+							London is UTC+0 during winter when GMT is in effect, and UTC+1
+							during summer when British Summer Time (BST) is active. The switch
+							happens on the last Sunday in March (clocks forward) and the last
+							Sunday in October (clocks back). Use the converter above with
+							London selected to see the live offset for today's date.
+						</p>
+					</div>
+				</details>
+				<details class="ugc-faq-item">
+					<summary class="ugc-faq-question"
+						>How do I convert UTC to my local time?</summary
+					>
+					<div class="ugc-faq-answer">
+						<p>
+							Enter the UTC time and date in the "UTC to your time" card, then
+							select your city from the time zone dropdown. The converter
+							instantly shows the equivalent local time and date, accounting
+							for daylight saving on that specific day. Your browser's time zone
+							is detected automatically as the default.
+						</p>
+					</div>
+				</details>
+				<details class="ugc-faq-item">
+					<summary class="ugc-faq-question"
+						>Why do clocks change between GMT and BST?</summary
+					>
+					<div class="ugc-faq-answer">
+						<p>
+							The UK observes daylight saving time to make better use of evening
+							daylight during the longer summer days. Clocks spring forward one
+							hour to BST in late March and fall back to GMT in late October.
+							This shifts the offset from UTC+0 to UTC+1 for roughly seven months
+							of the year.
+						</p>
+					</div>
+				</details>
+				<details class="ugc-faq-item">
+					<summary class="ugc-faq-question"
+						>Is UTC the same as Greenwich Mean Time?</summary
+					>
+					<div class="ugc-faq-answer">
+						<p>
+							For most practical purposes, yes — both represent the same offset
+							(zero) and are used interchangeably in aviation, broadcasting,
+							and computing. Strictly speaking, UTC is an atomic time standard
+							while GMT is a solar-based time zone, but the difference is less
+							than a second and irrelevant for everyday conversions.
+						</p>
+					</div>
+				</details>
+				<details class="ugc-faq-item">
+					<summary class="ugc-faq-question"
+						>What time zone do pilots and the military use?</summary
+					>
+					<div class="ugc-faq-answer">
+						<p>
+							Aviation and military operations worldwide use UTC (often called
+							"Zulu time" in aviation). Flight plans, air traffic control
+							clearances, and military orders are all expressed in UTC to avoid
+							confusion across time zones. NATO and many armed forces also use
+							the NATO phonetic alphabet, where Zulu represents UTC.
+						</p>
+					</div>
+				</details>
+				<details class="ugc-faq-item">
+					<summary class="ugc-faq-question"
+						>How is UTC time used in computing and servers?</summary
+					>
+					<div class="ugc-faq-answer">
+						<p>
+							Computer systems store and process timestamps in UTC internally,
+							then convert to local time only when displaying to users. Unix
+							timestamps, database records, log files, and API responses all use
+							UTC to ensure consistency across servers in different regions.
+							Converting UTC to local time is one of the most common tasks in
+							software development.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="ugc-related">
+			<h3 class="ugc-related-title">Related tools</h3>
+			<div class="ugc-related-grid">
+				<a href="/world-clock" class="ugc-related-card"
+					><span class="ugc-related-name">World Clock</span></a
+				>
+				<a href="/timezone-converter" class="ugc-related-card"
+					><span class="ugc-related-name">Time Zone Converter</span></a
+				>
+				<a href="/time-zone-meeting-planner" class="ugc-related-card"
+					><span class="ugc-related-name">Time Zone Meeting Planner</span></a
+				>
+				<a href="/time-difference" class="ugc-related-card"
+					><span class="ugc-related-name">Time Difference Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.ugc-page {
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.ugc-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.ugc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.ugc-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.ugc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.ugc-gradient {
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ugc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.ugc-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 24px;
+		margin-bottom: 48px;
+	}
+
+	.ugc-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.2);
+		border-radius: 20px;
+		padding: 28px;
+		box-shadow: 0 0 40px rgba(0, 229, 196, 0.06);
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.ugc-card-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin: 0;
+	}
+
+	.ugc-time-row {
+		display: flex;
+		align-items: flex-end;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
+
+	.ugc-time-input-wrap {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		flex: 1;
+		min-width: 72px;
+	}
+
+	.ugc-time-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: 32px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.4);
+		padding-bottom: 12px;
+		line-height: 1;
+	}
+
+	.ugc-time-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.3);
+		border-radius: 12px;
+		padding: 14px 12px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 28px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		width: 100%;
+		transition: border-color 0.2s ease;
+		-moz-appearance: textfield;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.ugc-time-input::-webkit-outer-spin-button,
+	.ugc-time-input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	.ugc-time-input:focus {
+		border-color: rgba(0, 229, 196, 0.8);
+		box-shadow: 0 0 20px rgba(0, 229, 196, 0.15);
+	}
+
+	.ugc-period-toggle {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		padding-bottom: 2px;
+	}
+
+	.ugc-period-btn {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.25);
+		border-radius: 8px;
+		padding: 8px 12px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.5);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease,
+			background 0.2s ease;
+		letter-spacing: 0.5px;
+	}
+
+	.ugc-period-btn--active {
+		background: rgba(0, 229, 196, 0.12);
+		border-color: rgba(0, 229, 196, 0.6);
+		color: #00e5c4;
+	}
+
+	.ugc-period-btn:hover:not(.ugc-period-btn--active) {
+		border-color: rgba(0, 229, 196, 0.4);
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.ugc-field {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.ugc-field-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.5);
+		letter-spacing: 0.5px;
+	}
+
+	.ugc-input,
+	.ugc-select {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.3);
+		border-radius: 12px;
+		padding: 14px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		color: #ffffff;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+		width: 100%;
+	}
+
+	.ugc-input:focus,
+	.ugc-select:focus {
+		border-color: rgba(0, 229, 196, 0.8);
+		box-shadow: 0 0 20px rgba(0, 229, 196, 0.15);
+	}
+
+	.ugc-select option {
+		background: #0c0c0c;
+		color: #fff;
+	}
+
+	.ugc-offset {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+		line-height: 1.5;
+		margin: 0;
+		padding: 12px 14px;
+		background: rgba(0, 229, 196, 0.04);
+		border: 1px solid rgba(0, 229, 196, 0.12);
+		border-radius: 10px;
+	}
+
+	.ugc-output {
+		background: rgba(0, 229, 196, 0.04);
+		border: 1px solid rgba(0, 229, 196, 0.25);
+		border-radius: 16px;
+		padding: 28px 20px;
+		text-align: center;
+		margin-top: auto;
+	}
+
+	.ugc-output-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.4);
+		margin-bottom: 10px;
+	}
+
+	.ugc-output-time {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 10px;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.ugc-output-date {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.ugc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.ugc-how {
+		margin-bottom: 48px;
+	}
+
+	.ugc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.ugc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.ugc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.ugc-faq {
+		margin-bottom: 48px;
+	}
+
+	.ugc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.ugc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.ugc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ugc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.ugc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ugc-faq-item[open] .ugc-faq-question::after {
+		content: '−';
+	}
+
+	.ugc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.ugc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.ugc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.ugc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.ugc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.ugc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.ugc-related-card:hover {
+		border-color: rgba(0, 229, 196, 0.4);
+	}
+
+	.ugc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 767px) {
+		.ugc-title {
+			font-size: 48px;
+			letter-spacing: -2px;
+		}
+
+		.ugc-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.ugc-card {
+			padding: 24px 16px;
+		}
+
+		.ugc-output-time {
+			font-size: 48px;
+			letter-spacing: -2px;
+		}
+
+		.ugc-related-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.ugc-time-input {
+			font-size: 24px;
+		}
+	}
+</style>

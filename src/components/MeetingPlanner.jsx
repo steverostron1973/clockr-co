@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { allWorldClockCities } from '../data/worldClockSearchCities';
+import { findCityForTimezone, sortedCities, wallClockToUtc } from '../utils/timezoneHelpers';
 
 const MAX_ZONES = 6;
 const GOOD_COLOR = '#2DD4BF';
@@ -45,17 +45,6 @@ const contrastStyles = `
 	}
 `;
 
-const sortedCities = [...allWorldClockCities].sort((a, b) =>
-	a.city.localeCompare(b.city),
-);
-
-const PREFERRED_CITY_FOR_ZONE = {
-	'Europe/London': 'London, United Kingdom',
-	'America/New_York': 'New York, United States',
-	'America/Los_Angeles': 'Los Angeles, United States',
-	'Australia/Sydney': 'Sydney, Australia',
-};
-
 function getHourQuality(hour) {
 	if (hour >= 9 && hour <= 16) return 'good';
 	if ((hour >= 7 && hour <= 8) || (hour >= 17 && hour <= 19)) return 'okay';
@@ -73,36 +62,6 @@ function roundToNearest30Minutes(date) {
 	const minutes = date.getHours() * 60 + date.getMinutes();
 	const rounded = Math.round(minutes / 30) * 30;
 	return Math.min(rounded, 23 * 60 + 30);
-}
-
-function wallClockToUtc(year, month, day, hour, minute, timeZone) {
-	let date = new Date(Date.UTC(year, month - 1, day, hour, minute, 0));
-	const formatter = new Intl.DateTimeFormat('en-US', {
-		timeZone,
-		hourCycle: 'h23',
-		year: 'numeric',
-		month: 'numeric',
-		day: 'numeric',
-		hour: 'numeric',
-		minute: 'numeric',
-		second: 'numeric',
-	});
-
-	for (let i = 0; i < 2; i++) {
-		const parts = formatter.formatToParts(date);
-		const get = (type) =>
-			parseInt(parts.find((p) => p.type === type)?.value ?? '0', 10);
-		const tzYear = get('year');
-		const tzMonth = get('month');
-		const tzDay = get('day');
-		const tzHour = get('hour');
-		const tzMinute = get('minute');
-		const desired = Date.UTC(year, month - 1, day, hour, minute);
-		const actual = Date.UTC(tzYear, tzMonth - 1, tzDay, tzHour, tzMinute);
-		date = new Date(date.getTime() + (desired - actual));
-	}
-
-	return date;
 }
 
 function getLocalParts(date, timeZone) {
@@ -125,25 +84,6 @@ function getLocalParts(date, timeZone) {
 		day: get('day'),
 		hour: get('hour'),
 		minute: get('minute'),
-	};
-}
-
-function findCityForTimezone(timezone) {
-	const preferred = PREFERRED_CITY_FOR_ZONE[timezone];
-	if (preferred) {
-		const match = sortedCities.find(
-			(c) => `${c.city}, ${c.country}` === preferred,
-		);
-		if (match) return match;
-	}
-	const matches = sortedCities.filter((c) => c.timezone === timezone);
-	if (matches.length > 0) return matches[0];
-	const label = timezone.split('/').pop()?.replace(/_/g, ' ') ?? timezone;
-	return {
-		city: label,
-		country: '',
-		timezone,
-		flag: '🌐',
 	};
 }
 
