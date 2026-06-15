@@ -1,0 +1,1072 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const days = [
+	'Monday',
+	'Tuesday',
+	'Wednesday',
+	'Thursday',
+	'Friday',
+	'Saturday',
+	'Sunday',
+];
+---
+
+<Layout
+	title="Work Hours Calculator — Timesheet & Pay Calculator | Clockr"
+	description="Calculate hours worked, weekly timesheets and estimated pay. Free work hours calculator with break deductions and overtime support."
+	category="work"
+>
+	<div class="whc-page">
+		<!-- PAGE HEADER -->
+		<div class="whc-header">
+			<div class="whc-eyebrow">💼 Work & Business</div>
+			<h1 class="whc-title">
+				<span class="whc-gradient">Work Hours</span><br />
+				<span class="whc-gradient">Calculator</span>
+			</h1>
+			<p class="whc-subtitle">
+				Calculate hours worked between two times, including breaks
+			</p>
+		</div>
+
+		<!-- DAILY CALCULATOR -->
+		<div class="whc-form-card">
+			<h2 class="whc-card-title">Daily hours</h2>
+			<div class="whc-inputs">
+				<div class="whc-input-wrap">
+					<label class="whc-label" for="start-time">Start time</label>
+					<input type="time" id="start-time" class="whc-input" value="09:00" />
+				</div>
+				<div class="whc-input-wrap">
+					<label class="whc-label" for="end-time">End time</label>
+					<input type="time" id="end-time" class="whc-input" value="17:00" />
+				</div>
+				<div class="whc-input-wrap">
+					<label class="whc-label" for="break-mins">Unpaid break (minutes)</label>
+					<input
+						type="number"
+						id="break-mins"
+						class="whc-input whc-input--number"
+						min="0"
+						value="60"
+						placeholder="0"
+					/>
+				</div>
+			</div>
+
+			<div class="whc-results" id="daily-results">
+				<div class="whc-results-grid">
+					<div class="whc-stat-card">
+						<div class="whc-stat-label">Total hours worked</div>
+						<div class="whc-stat-num" id="total-decimal">8.00</div>
+						<div class="whc-stat-sub" id="total-hhmm">8:00</div>
+					</div>
+					<div class="whc-stat-card whc-stat-card--highlight">
+						<div class="whc-stat-label">After break deduction</div>
+						<div class="whc-stat-num" id="net-decimal">7.00</div>
+						<div class="whc-stat-sub" id="net-hhmm">7:00</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- HOURLY RATE -->
+		<div class="whc-rate-card">
+			<div class="whc-rate-wrap">
+				<label class="whc-label" for="hourly-rate">Hourly rate</label>
+				<div class="whc-rate-input-row">
+					<span class="whc-currency">£</span>
+					<input
+						type="number"
+						id="hourly-rate"
+						class="whc-input whc-input--rate"
+						min="0"
+						step="0.01"
+						placeholder="0.00"
+					/>
+				</div>
+			</div>
+			<div class="whc-pay-results" id="pay-results" style="display:none">
+				<div class="whc-pay-grid">
+					<div class="whc-pay-card">
+						<div class="whc-pay-label">Estimated daily pay</div>
+						<div class="whc-pay-num" id="daily-pay">—</div>
+					</div>
+					<div class="whc-pay-card">
+						<div class="whc-pay-label">Estimated weekly pay</div>
+						<div class="whc-pay-num" id="weekly-pay">—</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- WEEKLY TIMESHEET -->
+		<div class="whc-timesheet-section">
+			<h2 class="whc-section-title">Weekly timesheet</h2>
+			<p class="whc-timesheet-sub">
+				Enter start, end and break for each day — hours update automatically
+			</p>
+
+			<div class="whc-table-wrap">
+				<table class="whc-table">
+					<thead>
+						<tr>
+							<th>Day</th>
+							<th>Start</th>
+							<th>End</th>
+							<th>Break (min)</th>
+							<th>Hours</th>
+						</tr>
+					</thead>
+					<tbody>
+						{
+							days.map((day, i) => (
+								<tr data-day={i}>
+									<td class="whc-day-name">{day}</td>
+									<td>
+										<input
+											type="time"
+											class="whc-table-input whc-ts-start"
+											data-day={i}
+										/>
+									</td>
+									<td>
+										<input
+											type="time"
+											class="whc-table-input whc-ts-end"
+											data-day={i}
+										/>
+									</td>
+									<td>
+										<input
+											type="number"
+											class="whc-table-input whc-table-input--break whc-ts-break"
+											data-day={i}
+											min="0"
+											placeholder="0"
+										/>
+									</td>
+									<td class="whc-day-hours" data-day={i}>—</td>
+								</tr>
+							))
+						}
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="4" class="whc-total-label">Weekly total</td>
+							<td class="whc-weekly-total" id="weekly-total">0:00</td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div class="whc-weekly-decimal" id="weekly-decimal">0.00 hours</div>
+		</div>
+
+		<!-- HOW IT WORKS -->
+		<section class="whc-how">
+			<h2 class="whc-section-title">How does a work hours calculator work?</h2>
+			<div class="whc-how-card">
+				<p>
+					A work hours calculator measures the time between a start and end
+					clock-in, then subtracts any unpaid breaks to give you the hours
+					actually worked. Enter your shift start time, finish time, and lunch
+					break duration — the tool instantly shows your total in both decimal
+					format (used by most payroll systems) and HH:MM format (hours and
+					minutes).
+				</p>
+				<p>
+					Decimal hours are how employers and accounting software record time.
+					Seven and a half hours is written as 7.50, not 7:30. To convert
+					minutes to decimal, divide by 60 — so 45 minutes equals 0.75 hours.
+					Clockr handles this conversion automatically so you can copy the
+					figure straight into a timesheet or invoice.
+				</p>
+				<p>
+					The weekly timesheet below lets you log each day separately and see a
+					running total for the week. Add your hourly rate to estimate gross pay
+					for a single shift or the full week. Night shifts that cross midnight
+					are supported — if your end time is earlier than your start time, the
+					calculator assumes you worked into the next day.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="whc-faq">
+			<h2 class="whc-section-title">Frequently asked questions</h2>
+			<div class="whc-faq-list">
+				<details class="whc-faq-item">
+					<summary class="whc-faq-question"
+						>How do I calculate hours worked including a lunch break?</summary
+					>
+					<div class="whc-faq-answer">
+						<p>
+							Subtract your unpaid break from the total shift length. For
+							example, if you work 09:00 to 17:00 that is 8 hours gross. A
+							60-minute unpaid lunch break leaves 7 hours paid. Enter your start
+							time, end time, and break duration in the calculator above — the
+							"After break deduction" figure is your paid hours.
+						</p>
+					</div>
+				</details>
+				<details class="whc-faq-item">
+					<summary class="whc-faq-question"
+						>How many hours is a standard working week?</summary
+					>
+					<div class="whc-faq-answer">
+						<p>
+							In the UK and most of Europe, a full-time standard week is 35 to
+							40 hours, typically spread across five days. In the United States,
+							40 hours per week is the most common full-time benchmark and the
+							threshold at which overtime rules often apply. Part-time contracts
+							vary — use the weekly timesheet above to total your actual hours
+							regardless of your contracted schedule.
+						</p>
+					</div>
+				</details>
+				<details class="whc-faq-item">
+					<summary class="whc-faq-question"
+						>How do I convert minutes to decimal hours for payroll?</summary
+					>
+					<div class="whc-faq-answer">
+						<p>
+							Divide the number of minutes by 60. Fifteen minutes is 0.25 hours,
+							thirty minutes is 0.50, and forty-five minutes is 0.75. Payroll
+							systems almost always use two decimal places — so 7 hours 30
+							minutes becomes 7.50, not 7.3. Clockr displays both formats so you
+							can verify the decimal figure before submitting your timesheet.
+						</p>
+					</div>
+				</details>
+				<details class="whc-faq-item">
+					<summary class="whc-faq-question"
+						>What is overtime and how is it calculated?</summary
+					>
+					<div class="whc-faq-answer">
+						<p>
+							Overtime is time worked beyond your contracted hours, usually paid
+							at a higher rate — commonly 1.5× (time and a half) or 2× (double
+							time) depending on your contract and local law. In the US, non-exempt
+							employees must receive overtime for hours over 40 in a workweek
+							under federal law. In the UK, there is no statutory right to
+							overtime pay, but many contracts specify enhanced rates. Calculate
+							your total weekly hours here first, then apply your employer's
+							overtime rules to any hours above your threshold.
+						</p>
+					</div>
+				</details>
+				<details class="whc-faq-item">
+					<summary class="whc-faq-question"
+						>How do I calculate my weekly pay from an hourly rate?</summary
+					>
+					<div class="whc-faq-answer">
+						<p>
+							Multiply your total hours worked by your hourly rate. If you worked
+							37.5 hours at £12 per hour, your gross weekly pay is £450. Enter
+							your hours in the weekly timesheet and your rate in the hourly rate
+							field above — Clockr multiplies them automatically and shows
+							estimated daily and weekly pay. Remember this is gross pay before
+							tax and deductions.
+						</p>
+					</div>
+				</details>
+				<details class="whc-faq-item">
+					<summary class="whc-faq-question"
+						>What is the difference between gross and net pay?</summary
+					>
+					<div class="whc-faq-answer">
+						<p>
+							Gross pay is your total earnings before any deductions — the figure
+							you get from hours × rate. Net pay is what actually lands in your
+							bank account after income tax, National Insurance, pension
+							contributions, student loan repayments, and other withholdings.
+							This calculator shows estimated gross pay only. Your payslip will
+							show the net amount after your employer applies all deductions.
+						</p>
+					</div>
+				</details>
+				<details class="whc-faq-item">
+					<summary class="whc-faq-question"
+						>How many working hours are in a year?</summary
+					>
+					<div class="whc-faq-answer">
+						<p>
+							A full-time employee working 40 hours per week for 52 weeks would
+							clock 2,080 hours annually. Accounting for roughly 20 to 25 days of
+							annual leave (160 to 200 hours), the typical net working year is
+							around 1,880 to 1,920 hours. In the UK, 37.5 hours per week over
+							46 working weeks (after holiday) gives approximately 1,725 hours per
+							year.
+						</p>
+					</div>
+				</details>
+				<details class="whc-faq-item">
+					<summary class="whc-faq-question"
+						>How do I calculate hours worked across midnight (night shift)?</summary
+					>
+					<div class="whc-faq-answer">
+						<p>
+							When a shift crosses midnight, the end time appears earlier than
+							the start time on a clock — for example, 22:00 to 06:00. Clockr
+							detects this automatically and adds 24 hours to the end time, giving
+							8 hours worked. Enter 22:00 as start and 06:00 as end, subtract
+							your break, and the calculator handles the overnight maths. The
+							same logic applies to each row in the weekly timesheet.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="whc-related">
+			<h3 class="whc-related-title">You might also like</h3>
+			<div class="whc-related-grid">
+				<a href="/business-days" class="whc-related-card"
+					><span class="whc-related-name">Business Days Calculator</span></a
+				>
+				<a href="/time-difference" class="whc-related-card"
+					><span class="whc-related-name">Time Difference Calculator</span></a
+				>
+				<a href="/unix-timestamp" class="whc-related-card"
+					><span class="whc-related-name">Unix Timestamp Converter</span></a
+				>
+				<a href="/year-progress" class="whc-related-card"
+					><span class="whc-related-name">Year Progress Bar</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.whc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.whc-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.whc-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.whc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.whc-gradient {
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.whc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.whc-form-card,
+	.whc-rate-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		border-radius: 20px;
+		padding: 32px;
+		margin-bottom: 24px;
+		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+	}
+
+	.whc-card-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		color: #fff;
+		margin: 0 0 24px;
+		text-align: center;
+	}
+
+	.whc-inputs {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 20px;
+		margin-bottom: 24px;
+	}
+
+	.whc-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.whc-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.whc-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.3);
+		border-radius: 12px;
+		padding: 16px 20px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		transition: border-color 0.2s ease;
+		width: 100%;
+		color-scheme: dark;
+	}
+
+	.whc-input--number {
+		cursor: text;
+		-moz-appearance: textfield;
+	}
+
+	.whc-input--number::-webkit-outer-spin-button,
+	.whc-input--number::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	.whc-input:focus {
+		border-color: rgba(16, 185, 129, 0.8);
+		box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+	}
+
+	.whc-results-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+	}
+
+	.whc-stat-card {
+		background: rgba(16, 185, 129, 0.04);
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px 16px;
+		text-align: center;
+	}
+
+	.whc-stat-card--highlight {
+		background: rgba(16, 185, 129, 0.08);
+		border-color: rgba(16, 185, 129, 0.3);
+		box-shadow: 0 0 24px rgba(16, 185, 129, 0.08);
+	}
+
+	.whc-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 10px;
+	}
+
+	.whc-stat-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 40px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
+		margin-bottom: 6px;
+	}
+
+	.whc-stat-sub {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.45);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.whc-rate-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 0;
+	}
+
+	.whc-rate-input-row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		width: 100%;
+		max-width: 240px;
+	}
+
+	.whc-currency {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.whc-input--rate {
+		flex: 1;
+	}
+
+	.whc-pay-results {
+		margin-top: 24px;
+		padding-top: 24px;
+		border-top: 1px solid rgba(16, 185, 129, 0.15);
+	}
+
+	.whc-pay-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+	}
+
+	.whc-pay-card {
+		background: rgba(16, 185, 129, 0.06);
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		border-radius: 14px;
+		padding: 20px 16px;
+		text-align: center;
+	}
+
+	.whc-pay-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 8px;
+	}
+
+	.whc-pay-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 28px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.whc-timesheet-section {
+		margin-bottom: 48px;
+	}
+
+	.whc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 8px;
+	}
+
+	.whc-timesheet-sub {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+		margin: 0 0 20px;
+		line-height: 1.5;
+	}
+
+	.whc-table-wrap {
+		overflow-x: auto;
+		border-radius: 16px;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		background: #0c0c0c;
+		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+	}
+
+	.whc-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		min-width: 520px;
+	}
+
+	.whc-table th {
+		font-family: 'Outfit', sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.4);
+		padding: 16px 12px;
+		text-align: center;
+		border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+	}
+
+	.whc-table th:first-child {
+		text-align: left;
+		padding-left: 20px;
+	}
+
+	.whc-table td {
+		padding: 10px 8px;
+		text-align: center;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+		vertical-align: middle;
+	}
+
+	.whc-table tbody tr:last-child td {
+		border-bottom: none;
+	}
+
+	.whc-day-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.7);
+		text-align: left !important;
+		padding-left: 20px !important;
+		white-space: nowrap;
+	}
+
+	.whc-table-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.25);
+		border-radius: 8px;
+		padding: 8px 6px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: #fff;
+		text-align: center;
+		outline: none;
+		width: 100%;
+		min-width: 0;
+		color-scheme: dark;
+		transition: border-color 0.2s ease;
+	}
+
+	.whc-table-input--break {
+		max-width: 72px;
+		-moz-appearance: textfield;
+	}
+
+	.whc-table-input--break::-webkit-outer-spin-button,
+	.whc-table-input--break::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	.whc-table-input:focus {
+		border-color: rgba(16, 185, 129, 0.7);
+	}
+
+	.whc-day-hours {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		padding-right: 16px !important;
+	}
+
+	.whc-table tfoot td {
+		border-top: 1px solid rgba(16, 185, 129, 0.25);
+		border-bottom: none;
+		padding: 16px 12px;
+		background: rgba(16, 185, 129, 0.04);
+	}
+
+	.whc-total-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: #fff;
+		text-align: right !important;
+		padding-right: 8px !important;
+	}
+
+	.whc-weekly-total {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 900;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		padding-right: 16px !important;
+	}
+
+	.whc-weekly-decimal {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.4);
+		text-align: right;
+		margin-top: 10px;
+		padding-right: 4px;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.whc-how {
+		margin-bottom: 48px;
+	}
+
+	.whc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.whc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.whc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.whc-faq {
+		margin-bottom: 48px;
+	}
+
+	.whc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.whc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.whc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.whc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.whc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.whc-faq-item[open] .whc-faq-question::after {
+		content: '−';
+	}
+
+	.whc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.whc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.whc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.whc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.whc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.whc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.whc-related-card:hover {
+		border-color: rgba(16, 185, 129, 0.4);
+	}
+
+	.whc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 640px) {
+		.whc-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.whc-inputs {
+			grid-template-columns: 1fr;
+		}
+
+		.whc-results-grid,
+		.whc-pay-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.whc-stat-num {
+			font-size: 32px;
+		}
+
+		.whc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	function parseTime(timeStr: string): number | null {
+		if (!timeStr) return null;
+		const parts = timeStr.split(':');
+		if (parts.length < 2) return null;
+		const h = Number(parts[0]);
+		const m = Number(parts[1]);
+		if (isNaN(h) || isNaN(m)) return null;
+		return h * 60 + m;
+	}
+
+	function calcMinutes(
+		startStr: string,
+		endStr: string,
+		breakMins: number,
+	): { gross: number; net: number } | null {
+		const start = parseTime(startStr);
+		const end = parseTime(endStr);
+		if (start === null || end === null) return null;
+
+		let diff = end - start;
+		if (diff <= 0) diff += 24 * 60;
+
+		const brk = Math.max(0, breakMins || 0);
+		const net = Math.max(0, diff - brk);
+		return { gross: diff, net };
+	}
+
+	function toDecimal(mins: number): string {
+		return (mins / 60).toFixed(2);
+	}
+
+	function toHHMM(mins: number): string {
+		const h = Math.floor(mins / 60);
+		const m = mins % 60;
+		return `${h}:${String(m).padStart(2, '0')}`;
+	}
+
+	function formatCurrency(amount: number): string {
+		return amount.toLocaleString('en-GB', {
+			style: 'currency',
+			currency: 'GBP',
+			minimumFractionDigits: 2,
+			maximumFractionDigits: 2,
+		});
+	}
+
+	const startTime = document.getElementById('start-time') as HTMLInputElement;
+	const endTime = document.getElementById('end-time') as HTMLInputElement;
+	const breakMins = document.getElementById('break-mins') as HTMLInputElement;
+	const hourlyRate = document.getElementById('hourly-rate') as HTMLInputElement;
+
+	const totalDecimal = document.getElementById('total-decimal');
+	const totalHhmm = document.getElementById('total-hhmm');
+	const netDecimal = document.getElementById('net-decimal');
+	const netHhmm = document.getElementById('net-hhmm');
+
+	const payResults = document.getElementById('pay-results');
+	const dailyPay = document.getElementById('daily-pay');
+	const weeklyPay = document.getElementById('weekly-pay');
+	const weeklyTotal = document.getElementById('weekly-total');
+	const weeklyDecimal = document.getElementById('weekly-decimal');
+
+	let dailyNetMins = 0;
+	let weeklyNetMins = 0;
+
+	function updateDaily() {
+		const result = calcMinutes(
+			startTime?.value ?? '',
+			endTime?.value ?? '',
+			Number(breakMins?.value) || 0,
+		);
+
+		if (!result) {
+			dailyNetMins = 0;
+			if (totalDecimal) totalDecimal.textContent = '—';
+			if (totalHhmm) totalHhmm.textContent = '—';
+			if (netDecimal) netDecimal.textContent = '—';
+			if (netHhmm) netHhmm.textContent = '—';
+			updatePay();
+			return;
+		}
+
+		dailyNetMins = result.net;
+		if (totalDecimal) totalDecimal.textContent = toDecimal(result.gross);
+		if (totalHhmm) totalHhmm.textContent = toHHMM(result.gross);
+		if (netDecimal) netDecimal.textContent = toDecimal(result.net);
+		if (netHhmm) netHhmm.textContent = toHHMM(result.net);
+		updatePay();
+	}
+
+	function updateTimesheet() {
+		let weekTotal = 0;
+		const starts = document.querySelectorAll<HTMLInputElement>('.whc-ts-start');
+		const ends = document.querySelectorAll<HTMLInputElement>('.whc-ts-end');
+		const breaks = document.querySelectorAll<HTMLInputElement>('.whc-ts-break');
+
+		starts.forEach((startEl, i) => {
+			const endEl = ends[i];
+			const breakEl = breaks[i];
+			const hoursCell = document.querySelector(
+				`.whc-day-hours[data-day="${i}"]`,
+			);
+
+			if (!startEl.value || !endEl.value) {
+				if (hoursCell) hoursCell.textContent = '—';
+				return;
+			}
+
+			const result = calcMinutes(
+				startEl.value,
+				endEl.value,
+				Number(breakEl?.value) || 0,
+			);
+
+			if (!result) {
+				if (hoursCell) hoursCell.textContent = '—';
+				return;
+			}
+
+			weekTotal += result.net;
+			if (hoursCell) hoursCell.textContent = toHHMM(result.net);
+		});
+
+		weeklyNetMins = weekTotal;
+		if (weeklyTotal) weeklyTotal.textContent = toHHMM(weekTotal);
+		if (weeklyDecimal)
+			weeklyDecimal.textContent = `${toDecimal(weekTotal)} hours`;
+		updatePay();
+	}
+
+	function updatePay() {
+		const rate = Number(hourlyRate?.value);
+		const hasRate = hourlyRate?.value && rate > 0;
+
+		if (!payResults) return;
+
+		if (!hasRate) {
+			payResults.style.display = 'none';
+			return;
+		}
+
+		payResults.style.display = 'block';
+
+		const dayAmount = (dailyNetMins / 60) * rate;
+		const weekAmount = (weeklyNetMins / 60) * rate;
+
+		if (dailyPay) dailyPay.textContent = formatCurrency(dayAmount);
+		if (weeklyPay) weeklyPay.textContent = formatCurrency(weekAmount);
+	}
+
+	function bindInputs() {
+		[startTime, endTime, breakMins, hourlyRate].forEach((el) => {
+			el?.addEventListener('input', () => {
+				updateDaily();
+				if (el === hourlyRate) updatePay();
+			});
+			el?.addEventListener('change', () => {
+				updateDaily();
+				if (el === hourlyRate) updatePay();
+			});
+		});
+
+		document
+			.querySelectorAll<HTMLInputElement>(
+				'.whc-ts-start, .whc-ts-end, .whc-ts-break',
+			)
+			.forEach((el) => {
+				el.addEventListener('input', updateTimesheet);
+				el.addEventListener('change', updateTimesheet);
+			});
+	}
+
+	bindInputs();
+	updateDaily();
+	updateTimesheet();
+</script>
