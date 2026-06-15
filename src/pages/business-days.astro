@@ -148,13 +148,166 @@ const currentYear = new Date().getFullYear();
 			<div class="bd-reference-grid" id="year-reference"></div>
 		</div>
 
+		<!-- HOW IT WORKS -->
+		<section class="bd-how">
+			<h2 class="bd-section-title">How are business days calculated?</h2>
+			<div class="bd-how-card">
+				<p>
+					A business day is any day that is not a Saturday or Sunday — also
+					called a working day or weekday. In most countries, the standard
+					business week runs Monday through Friday, and Clockr's calculator
+					counts only those days when measuring intervals or adding deadlines.
+				</p>
+				<p>
+					Business days matter because contracts, legal deadlines, delivery
+					estimates, notice periods, and financial settlements almost always
+					use them rather than calendar days. A 5 business day deadline could
+					span 7 or more calendar days if it crosses a weekend — which is why
+					knowing the exact count matters for compliance and planning.
+				</p>
+				<p>
+					Clockr's calculator excludes weekends but not public holidays. Bank
+					holidays vary by country, region, and even employer — Christmas Day
+					might be a holiday in the UK but a normal working day elsewhere. Check
+					your local calendar and subtract any public holidays that fall within
+					your date range for the most accurate result.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="bd-faq">
+			<h2 class="bd-section-title">Frequently asked questions</h2>
+			<div class="bd-faq-list">
+				<details class="bd-faq-item">
+					<summary class="bd-faq-question"
+						>How many business days are in a year?</summary
+					>
+					<div class="bd-faq-answer">
+						<p>
+							Most years contain 260 to 262 business days, depending on how
+							weekends fall and whether it is a leap year. A typical year has
+							52 weeks plus one or two extra days — each extra weekday adds one
+							business day, while each extra weekend day adds none. Use the
+							year reference grid above to see the count for each month.
+						</p>
+					</div>
+				</details>
+				<details class="bd-faq-item">
+					<summary class="bd-faq-question"
+						>How many business days are in a month?</summary
+					>
+					<div class="bd-faq-answer">
+						<p>
+							Most months have between 20 and 23 business days. A 31-day month
+							with five full weekends can have as few as 20, while a 31-day month
+							starting on a Friday can have 23. The reference grid on this page
+							shows the exact count for each month of the current year.
+						</p>
+					</div>
+				</details>
+				<details class="bd-faq-item">
+					<summary class="bd-faq-question">What counts as a business day?</summary>
+					<div class="bd-faq-answer">
+						<p>
+							A business day is any weekday — Monday through Friday — that is
+							not a public holiday in your jurisdiction. Clockr counts Monday to
+							Friday only. Saturday and Sunday are always excluded. If your
+							employer or contract uses a different definition, adjust the
+							result manually for any additional non-working days.
+						</p>
+					</div>
+				</details>
+				<details class="bd-faq-item">
+					<summary class="bd-faq-question"
+						>How do I calculate 5 business days from today?</summary
+					>
+					<div class="bd-faq-answer">
+						<p>
+							Switch to the "Add Business Days" tab above, set today's date as
+							the start date, enter 5 in the business days field, and the
+							calculator shows the resulting date instantly — along with how many
+							calendar days that spans. If today is a Friday, five business days
+							lands on the following Friday, skipping the weekend in between.
+						</p>
+					</div>
+				</details>
+				<details class="bd-faq-item">
+					<summary class="bd-faq-question"
+						>Do bank holidays count as business days?</summary
+					>
+					<div class="bd-faq-answer">
+						<p>
+							No — bank holidays and public holidays are not business days in
+							legal and commercial contexts, even when they fall on a weekday.
+							However, Clockr does not automatically exclude them because holiday
+							calendars differ by country and region. Subtract any bank holidays
+							within your range manually for an accurate count.
+						</p>
+					</div>
+				</details>
+				<details class="bd-faq-item">
+					<summary class="bd-faq-question"
+						>What is the difference between a business day and a working day?</summary
+					>
+					<div class="bd-faq-answer">
+						<p>
+							In most contexts the terms are interchangeable — both refer to
+							weekdays when normal commercial activity takes place. Some
+							industries use "working day" more broadly to include days a
+							specific business operates (for example, a restaurant open on
+							Saturday), while "business day" typically means Monday to Friday in
+							banking and legal documents.
+						</p>
+					</div>
+				</details>
+				<details class="bd-faq-item">
+					<summary class="bd-faq-question"
+						>How many business days are there in 2026?</summary
+					>
+					<div class="bd-faq-answer">
+						<p>
+							2026 has 261 business days — weekdays from Monday to Friday,
+							excluding weekends but not public holidays. Because 1 January 2026
+							falls on a Thursday and 31 December on a Thursday, the year
+							includes the maximum number of weekdays a non-leap year can have.
+						</p>
+					</div>
+				</details>
+				<details class="bd-faq-item">
+					<summary class="bd-faq-question"
+						>How do I calculate a contract deadline in business days?</summary
+					>
+					<div class="bd-faq-answer">
+						<p>
+							Identify the start date specified in the contract — often the date
+							of notice or signing — then use the "Add Business Days" tab to add
+							the required number. Check whether the contract counts the start
+							day itself, and subtract any bank holidays in your jurisdiction
+							that fall within the period. When in doubt, consult the contract
+							wording or a legal professional.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
 		<!-- RELATED TOOLS -->
 		<div class="bd-related">
 			<h3 class="bd-related-title">You might also like</h3>
 			<div class="bd-related-grid">
-				<a href="/date-calculator" class="bd-related-card">📅 Date Calculator</a>
-				<a href="/countdown-timer" class="bd-related-card">⏱️ Countdown Timer</a>
-				<a href="/age-calculator" class="bd-related-card">🎂 Age Calculator</a>
+				<a href="/date-calculator" class="bd-related-card"
+					><span class="bd-related-name">Date Calculator</span></a
+				>
+				<a href="/unix-timestamp" class="bd-related-card"
+					><span class="bd-related-name">Unix Timestamp Converter</span></a
+				>
+				<a href="/year-progress" class="bd-related-card"
+					><span class="bd-related-name">Year Progress Bar</span></a
+				>
+				<a href="/leap-year" class="bd-related-card"
+					><span class="bd-related-name">Leap Year Checker</span></a
+				>
 			</div>
 		</div>
 	</div>
@@ -507,7 +660,99 @@ const currentYear = new Date().getFullYear();
 	}
 
 	.bd-reference {
-		margin-bottom: 60px;
+		margin-bottom: 48px;
+	}
+
+	.bd-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.bd-how {
+		margin-bottom: 48px;
+	}
+
+	.bd-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.bd-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.bd-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.bd-faq {
+		margin-bottom: 48px;
+	}
+
+	.bd-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.bd-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.bd-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bd-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.bd-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bd-faq-item[open] .bd-faq-question::after {
+		content: '−';
+	}
+
+	.bd-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.bd-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
 	}
 
 	.bd-reference-title {
@@ -575,7 +820,7 @@ const currentYear = new Date().getFullYear();
 
 	.bd-related-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 	}
 
@@ -583,21 +828,24 @@ const currentYear = new Date().getFullYear();
 		background: #0c0c0c;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		border-radius: 12px;
-		padding: 16px;
+		padding: 20px 16px;
 		text-align: center;
-		font-family: 'Outfit', sans-serif;
-		font-size: 14px;
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.6);
 		text-decoration: none;
-		transition:
-			border-color 0.2s ease,
-			color 0.2s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.bd-related-card:hover {
 		border-color: rgba(16, 185, 129, 0.4);
-		color: #fff;
+	}
+
+	.bd-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	@media (max-width: 640px) {

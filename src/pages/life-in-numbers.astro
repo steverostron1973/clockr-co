@@ -82,15 +82,165 @@ import Layout from '../layouts/Layout.astro';
 			<button class="lin-share" id="lin-share-btn">📤 Share my numbers</button>
 		</div>
 
+		<!-- HOW IT WORKS -->
+		<section class="lin-how">
+			<h2 class="lin-section-title">How are your life numbers calculated?</h2>
+			<div class="lin-how-card">
+				<p>
+					Every stat on this page is calculated from the exact number of
+					milliseconds between your date of birth and the current moment. That
+					precise interval is converted into days, hours, minutes, and seconds —
+					and because the clock keeps ticking, your numbers update in real time
+					every second you keep the page open.
+				</p>
+				<p>
+					Estimates like heartbeats and breaths use widely accepted averages: a
+					resting heart rate of 70 beats per minute and a breathing rate of 16
+					breaths per minute. Each is multiplied by the total number of minutes
+					you have been alive. These are approximations — your actual counts
+					will vary with age, fitness, and activity level.
+				</p>
+				<p>
+					Milestone detection works by calculating the exact date and time you
+					will hit each landmark — 10,000 days, 1 billion seconds, and others —
+					by adding the required amount to your birth date. For example, 1
+					billion seconds is roughly 31 years and 8 months after you were born,
+					and Clockr can pinpoint the precise day and time that milestone
+					arrives.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="lin-faq">
+			<h2 class="lin-section-title">Frequently asked questions</h2>
+			<div class="lin-faq-list">
+				<details class="lin-faq-item">
+					<summary class="lin-faq-question">How many days old am I?</summary>
+					<div class="lin-faq-answer">
+						<p>
+							Enter your date of birth above and the "Days alive" figure shows
+							your exact total, updating every second. A day is counted as each
+							full 24-hour period since midnight on your birth date. For
+							example, if you were born on 1 January 2000, you passed 9,000 days
+							around mid-2024.
+						</p>
+					</div>
+				</details>
+				<details class="lin-faq-item">
+					<summary class="lin-faq-question"
+						>How many seconds are in a year?</summary
+					>
+					<div class="lin-faq-answer">
+						<p>
+							A common year has 31,536,000 seconds (365 × 24 × 60 × 60). A leap
+							year has 31,622,400 seconds — an extra 86,400 for 29 February.
+							Over a lifetime these numbers add up fast: 1 billion seconds is
+							roughly 31 years and 8 months, a milestone many people reach in
+							their early thirties.
+						</p>
+					</div>
+				</details>
+				<details class="lin-faq-item">
+					<summary class="lin-faq-question"
+						>How many heartbeats does a person have in a lifetime?</summary
+					>
+					<div class="lin-faq-answer">
+						<p>
+							At an average resting rate of 70 beats per minute, a person who
+							lives to 80 accumulates roughly 2.9 billion heartbeats. Your
+							actual count depends on fitness, stress, and age — athletes often
+							have lower resting rates, meaning fewer beats over a lifetime but
+							a healthier heart. Enter your date of birth above to see your
+							current total.
+						</p>
+					</div>
+				</details>
+				<details class="lin-faq-item">
+					<summary class="lin-faq-question"
+						>What is the 10000 day milestone?</summary
+					>
+					<div class="lin-faq-answer">
+						<p>
+							10,000 days alive is a popular life milestone — equivalent to about
+							27 years and 4 months. It works out to roughly 1.4 million hours
+							or 86 million minutes on Earth. Many people celebrate their 10,000th
+							day with more enthusiasm than a typical birthday, since it falls on
+							a different calendar date each time.
+						</p>
+					</div>
+				</details>
+				<details class="lin-faq-item">
+					<summary class="lin-faq-question"
+						>When will I turn 1 billion seconds old?</summary
+					>
+					<div class="lin-faq-answer">
+						<p>
+							One billion seconds equals about 31 years, 251 days, 13 hours, and
+							20 minutes after your birth. If you were born in the early 1990s,
+							you have likely already passed this milestone. Add 1,000,000,000
+							seconds to your birth date to find the exact moment — or check the
+							Age Calculator for your next upcoming milestone.
+						</p>
+					</div>
+				</details>
+				<details class="lin-faq-item">
+					<summary class="lin-faq-question"
+						>How many times does the average person breathe in a lifetime?</summary
+					>
+					<div class="lin-faq-answer">
+						<p>
+							At 16 breaths per minute, a person alive for 80 years takes
+							roughly 672 million breaths. Breathing rate varies with activity —
+							you breathe faster during exercise and slower during sleep — so
+							this is an estimate based on a lifetime average. Your live count
+							appears in the results above.
+						</p>
+					</div>
+				</details>
+				<details class="lin-faq-item">
+					<summary class="lin-faq-question"
+						>How many full moons will I see in my lifetime?</summary
+					>
+					<div class="lin-faq-answer">
+						<p>
+							The moon completes a full cycle roughly every 29.53 days. Over 80
+							years that works out to about 990 full moons — nearly a thousand
+							lunar cycles. Clockr estimates your count by dividing your total
+							days alive by the synodic month length of 29.53059 days.
+						</p>
+					</div>
+				</details>
+				<details class="lin-faq-item">
+					<summary class="lin-faq-question"
+						>What is the average human lifespan in days?</summary
+					>
+					<div class="lin-faq-answer">
+						<p>
+							Global life expectancy is roughly 73 years, or about 26,645 days.
+							In high-income countries the average exceeds 80 years — around
+							29,200 days. These are statistical averages; individual lifespans
+							vary enormously based on genetics, health, and circumstances.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
 		<div class="lin-related">
 			<h3 class="lin-related-title">You might also like</h3>
 			<div class="lin-related-grid">
-				<a href="/age-calculator" class="lin-related-card">🎂 Age Calculator</a>
-				<a href="/how-many-seconds-alive" class="lin-related-card"
-					>⚡ 1 Billion Seconds</a
+				<a href="/age-calculator" class="lin-related-card"
+					><span class="lin-related-name">Age Calculator</span></a
 				>
-				<a href="/birthday-countdown" class="lin-related-card"
-					>🎈 Birthday Countdown</a
+				<a href="/age-on-other-planets" class="lin-related-card"
+					><span class="lin-related-name">Age on Other Planets</span></a
+				>
+				<a href="/what-generation" class="lin-related-card"
+					><span class="lin-related-name">What Generation Am I?</span></a
+				>
+				<a href="/days-until-birthday" class="lin-related-card"
+					><span class="lin-related-name">Days Until My Birthday</span></a
 				>
 			</div>
 		</div>
@@ -252,6 +402,98 @@ import Layout from '../layouts/Layout.astro';
 		opacity: 0.9;
 	}
 
+	.lin-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.lin-how {
+		margin-bottom: 48px;
+	}
+
+	.lin-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(168, 85, 247, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.lin-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.lin-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.lin-faq {
+		margin-bottom: 48px;
+	}
+
+	.lin-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.lin-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(168, 85, 247, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.lin-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.lin-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.lin-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.lin-faq-item[open] .lin-faq-question::after {
+		content: '−';
+	}
+
+	.lin-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.lin-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
 	.lin-related {
 		border-top: 1px solid rgba(255, 255, 255, 0.06);
 		padding-top: 40px;
@@ -267,7 +509,7 @@ import Layout from '../layouts/Layout.astro';
 
 	.lin-related-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 	}
 
@@ -275,21 +517,24 @@ import Layout from '../layouts/Layout.astro';
 		background: #0c0c0c;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		border-radius: 12px;
-		padding: 16px;
+		padding: 20px 16px;
 		text-align: center;
-		font-family: 'Outfit', sans-serif;
-		font-size: 14px;
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.6);
 		text-decoration: none;
-		transition:
-			border-color 0.2s ease,
-			color 0.2s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.lin-related-card:hover {
 		border-color: rgba(168, 85, 247, 0.4);
-		color: #fff;
+	}
+
+	.lin-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #a855f7, #ff5c4d);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	@media (max-width: 640px) {

@@ -134,12 +134,161 @@ import Layout from '../layouts/Layout.astro';
 			<button class="bday-share" id="bday-share-btn">📋 Copy & Share</button>
 		</div>
 
+		<!-- HOW IT WORKS -->
+		<section class="bday-how">
+			<h2 class="bday-section-title">How is the birthday countdown calculated?</h2>
+			<div class="bday-how-card">
+				<p>
+					The countdown calculates the exact number of seconds between right now
+					and midnight on your next birthday, updating every second. Clockr
+					automatically checks whether your birthday has already occurred this
+					calendar year — if it has, the timer counts down to the same date next
+					year, including handling 29 February birthdays in non-leap years.
+				</p>
+				<p>
+					Your star sign is determined by the twelve zodiac signs, each covering
+					a specific date range on the calendar. Because signs are tied to day
+					and month only — not the year — your sign stays the same throughout
+					your life. Enter your date of birth above and Clockr matches your
+					birthday against the standard Western zodiac ranges.
+				</p>
+				<p>
+					Your generation is determined by matching your birth year against
+					standard generational definitions — from the Greatest Generation
+					(1901–1927) through to Generation Alpha (2013–2025). These ranges
+					follow the same boundaries used across Clockr's other generational
+					tools, so your result is consistent site-wide.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="bday-faq">
+			<h2 class="bday-section-title">Frequently asked questions</h2>
+			<div class="bday-faq-list">
+				<details class="bday-faq-item">
+					<summary class="bday-faq-question"
+						>How many days until my next birthday?</summary
+					>
+					<div class="bday-faq-answer">
+						<p>
+							Enter your date of birth above and the live countdown shows the
+							exact days, hours, minutes, and seconds remaining until midnight
+							on your next birthday. The number updates every second, so you
+							always see the precise time left — not a rounded estimate.
+						</p>
+					</div>
+				</details>
+				<details class="bday-faq-item">
+					<summary class="bday-faq-question"
+						>What day of the week was I born on?</summary
+					>
+					<div class="bday-faq-answer">
+						<p>
+							Your birth day of the week appears in the "Day you were born on"
+							card once you enter your date of birth. It is calculated from your
+							full birth date — day, month, and year — and never changes. The
+							countdown also shows which day of the week your birthday falls on
+							this year.
+						</p>
+					</div>
+				</details>
+				<details class="bday-faq-item">
+					<summary class="bday-faq-question">What star sign am I?</summary>
+					<div class="bday-faq-answer">
+						<p>
+							Your star sign is shown in the results once you enter your date of
+							birth. The twelve zodiac signs each span a fixed date range — for
+							example, Aries runs from 21 March to 19 April. Your sign depends
+							only on your day and month of birth, not the year you were born.
+						</p>
+					</div>
+				</details>
+				<details class="bday-faq-item">
+					<summary class="bday-faq-question">What generation am I?</summary>
+					<div class="bday-faq-answer">
+						<p>
+							Your generation is displayed in the results based on your birth
+							year. Clockr uses standard ranges: Greatest Generation (1901–1927),
+							Silent Generation (1928–1945), Baby Boomers (1946–1964),
+							Generation X (1965–1980), Millennials (1981–1996), Generation Z
+							(1997–2012), and Generation Alpha (2013–2025).
+						</p>
+					</div>
+				</details>
+				<details class="bday-faq-item">
+					<summary class="bday-faq-question"
+						>How do I calculate how old I will be on my next birthday?</summary
+					>
+					<div class="bday-faq-answer">
+						<p>
+							Subtract your birth year from the year of your next birthday. If
+							your birthday has not yet occurred this year, that is next calendar
+							year minus your birth year. Clockr shows this as "Age you are
+							turning" in the stats grid — for example, someone born in 1990
+							would turn 36 on their birthday in 2026.
+						</p>
+					</div>
+				</details>
+				<details class="bday-faq-item">
+					<summary class="bday-faq-question">What is a golden birthday?</summary>
+					<div class="bday-faq-answer">
+						<p>
+							A golden birthday is when you turn the same age as the day of the
+							month you were born on — for example, turning 15 on the 15th, or
+							25 on the 25th. It can only happen once in a lifetime (unless you
+							were born on the 31st and count leap-year adjustments). Some people
+							also celebrate "double golden" birthdays at multiples like 44 on
+							the 4th.
+						</p>
+					</div>
+				</details>
+				<details class="bday-faq-item">
+					<summary class="bday-faq-question"
+						>What is a half birthday and when is mine?</summary
+					>
+					<div class="bday-faq-answer">
+						<p>
+							Your half birthday falls exactly six months after your actual
+							birthday. If you were born on 15 March, your half birthday is 15
+							September. It is an informal milestone — some schools and families
+							celebrate it for children whose birthdays fall outside the school
+							year.
+						</p>
+					</div>
+				</details>
+				<details class="bday-faq-item">
+					<summary class="bday-faq-question"
+						>Which day of the week has the most birthdays?</summary
+					>
+					<div class="bday-faq-answer">
+						<p>
+							Studies of birth data in the United States consistently show
+							Tuesday as the most common day to be born, followed by Monday.
+							Weekends tend to have fewer births, partly because scheduled
+							C-sections and induced deliveries are more common on weekdays.
+							Globally, patterns vary by country and healthcare system.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
 		<div class="bday-related">
 			<h3 class="bday-related-title">You might also like</h3>
 			<div class="bday-related-grid">
-				<a href="/age-calculator" class="bday-related-card">🎂 Age Calculator</a>
-				<a href="/what-generation" class="bday-related-card">🌍 What Generation Am I?</a>
-				<a href="/life-in-numbers" class="bday-related-card">🔢 Life in Numbers</a>
+				<a href="/age-calculator" class="bday-related-card"
+					><span class="bday-related-name">Age Calculator</span></a
+				>
+				<a href="/life-in-numbers" class="bday-related-card"
+					><span class="bday-related-name">Your Life in Numbers</span></a
+				>
+				<a href="/what-generation" class="bday-related-card"
+					><span class="bday-related-name">What Generation Am I?</span></a
+				>
+				<a href="/days-until-christmas" class="bday-related-card"
+					><span class="bday-related-name">Days Until Christmas</span></a
+				>
 			</div>
 		</div>
 	</div>
@@ -476,6 +625,98 @@ import Layout from '../layouts/Layout.astro';
 		opacity: 0.9;
 	}
 
+	.bday-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.bday-how {
+		margin-bottom: 48px;
+	}
+
+	.bday-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.bday-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.bday-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.bday-faq {
+		margin-bottom: 48px;
+	}
+
+	.bday-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.bday-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.bday-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bday-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.bday-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bday-faq-item[open] .bday-faq-question::after {
+		content: '−';
+	}
+
+	.bday-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.bday-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
 	.bday-related {
 		border-top: 1px solid rgba(255, 255, 255, 0.06);
 		padding-top: 40px;
@@ -491,7 +732,7 @@ import Layout from '../layouts/Layout.astro';
 
 	.bday-related-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 	}
 
@@ -499,21 +740,24 @@ import Layout from '../layouts/Layout.astro';
 		background: #0c0c0c;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		border-radius: 12px;
-		padding: 16px;
+		padding: 20px 16px;
 		text-align: center;
-		font-family: 'Outfit', sans-serif;
-		font-size: 14px;
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.6);
 		text-decoration: none;
-		transition:
-			border-color 0.2s ease,
-			color 0.2s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.bday-related-card:hover {
 		border-color: rgba(139, 92, 246, 0.4);
-		color: #fff;
+	}
+
+	.bday-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	@media (max-width: 600px) {

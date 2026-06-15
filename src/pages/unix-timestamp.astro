@@ -166,14 +166,164 @@ const referenceRows = [
 			</div>
 		</div>
 
+		<!-- HOW IT WORKS -->
+		<section class="unix-how">
+			<h2 class="unix-section-title">What is a Unix timestamp?</h2>
+			<div class="unix-how-card">
+				<p>
+					A Unix timestamp is the number of seconds that have elapsed since
+					00:00:00 UTC on 1 January 1970 — a moment known as the Unix epoch.
+					It is used universally in computing to represent a specific point in
+					time as a single integer, making it the standard way servers,
+					databases, and APIs store and exchange dates.
+				</p>
+				<p>
+					Unix timestamps are useful because they are timezone-independent —
+					the same integer always refers to the same instant worldwide. They
+					always increase monotonically, are trivial to compare and sort, and
+					occupy far less storage than formatted date strings like "2026-03-15
+					14:30:00 UTC".
+				</p>
+				<p>
+					One well-known limitation is the Year 2038 problem. Older 32-bit
+					systems store Unix timestamps as a signed 32-bit integer, which will
+					overflow on 19 January 2038 at 03:14:07 UTC — the largest value a
+					signed 32-bit integer can hold. Most modern systems now use 64-bit
+					integers, which will not overflow for billions of years.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="unix-faq">
+			<h2 class="unix-section-title">Frequently asked questions</h2>
+			<div class="unix-faq-list">
+				<details class="unix-faq-item">
+					<summary class="unix-faq-question">What is a Unix timestamp?</summary>
+					<div class="unix-faq-answer">
+						<p>
+							A Unix timestamp is the count of seconds since the Unix epoch —
+							midnight UTC on 1 January 1970. For example, the timestamp
+							1704067200 represents 1 January 2024 at 00:00:00 UTC. Enter any
+							timestamp in the converter above to see the corresponding date in
+							UTC, your local time zone, and ISO 8601 format.
+						</p>
+					</div>
+				</details>
+				<details class="unix-faq-item">
+					<summary class="unix-faq-question">What is the Unix epoch?</summary>
+					<div class="unix-faq-answer">
+						<p>
+							The Unix epoch is the reference point for all Unix timestamps:
+							00:00:00 Coordinated Universal Time on Thursday, 1 January 1970.
+							It was chosen by early Unix developers as a convenient, fixed
+							starting point. Timestamp 0 represents exactly this moment, and
+							every second since then adds one to the count.
+						</p>
+					</div>
+				</details>
+				<details class="unix-faq-item">
+					<summary class="unix-faq-question"
+						>How do I convert a Unix timestamp to a date?</summary
+					>
+					<div class="unix-faq-answer">
+						<p>
+							Enter the timestamp in the "Timestamp to Date" card above. Clockr
+							automatically detects whether you entered seconds or milliseconds
+							and displays the result in UTC, your local time zone, ISO 8601
+							format, and a human-readable relative time such as "3 days ago."
+							You can also click any value in the reference table to populate
+							the converter instantly.
+						</p>
+					</div>
+				</details>
+				<details class="unix-faq-item">
+					<summary class="unix-faq-question">What is the Year 2038 problem?</summary>
+					<div class="unix-faq-answer">
+						<p>
+							On 19 January 2038 at 03:14:07 UTC, 32-bit signed integers used
+							to store Unix timestamps will roll over from 2,147,483,647 to
+							−2,147,483,648, causing dates to appear as December 1901 on
+							affected systems. This mirrors the Y2K problem but for Unix time.
+							Modern 64-bit systems are not affected — their range extends far
+							beyond any practical date.
+						</p>
+					</div>
+				</details>
+				<details class="unix-faq-item">
+					<summary class="unix-faq-question"
+						>Why do some timestamps use milliseconds instead of seconds?</summary
+					>
+					<div class="unix-faq-answer">
+						<p>
+							JavaScript and many APIs use millisecond timestamps because they
+							need sub-second precision — for example, measuring how long a
+							page load takes or ordering events within the same second. A
+							millisecond timestamp is simply the Unix timestamp multiplied by
+							1,000. Clockr's converter detects which format you enter
+							automatically based on the number of digits.
+						</p>
+					</div>
+				</details>
+				<details class="unix-faq-item">
+					<summary class="unix-faq-question"
+						>What is the difference between Unix time and UTC?</summary
+					>
+					<div class="unix-faq-answer">
+						<p>
+							UTC (Coordinated Universal Time) is a time standard — a way of
+							labelling hours and minutes on the clock. Unix time is a count of
+							seconds from a fixed epoch, always measured in UTC with no
+							daylight saving adjustments. When you convert a Unix timestamp,
+							you can display it in UTC or convert it to any local time zone,
+							but the underlying timestamp itself is always UTC-based.
+						</p>
+					</div>
+				</details>
+				<details class="unix-faq-item">
+					<summary class="unix-faq-question"
+						>How do I get the current Unix timestamp in JavaScript?</summary
+					>
+					<div class="unix-faq-answer">
+						<p>
+							Use <code>Math.floor(Date.now() / 1000)</code> for seconds or
+							<code>Date.now()</code> for milliseconds. The live ticker at the
+							bottom of this page shows the current Unix timestamp updating
+							every second — click "Use current timestamp" in the converter to
+							populate it automatically.
+						</p>
+					</div>
+				</details>
+				<details class="unix-faq-item">
+					<summary class="unix-faq-question">What is an epoch timestamp?</summary>
+					<div class="unix-faq-answer">
+						<p>
+							"Epoch timestamp" is another name for a Unix timestamp — the
+							number of seconds (or milliseconds) since the epoch. Different
+							systems use different epochs (Windows uses 1 January 1601, for
+							example), but in most programming contexts "epoch time" refers
+							specifically to the Unix epoch of 1 January 1970.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
 		<div class="unix-related">
 			<h3 class="unix-related-title">You might also like</h3>
 			<div class="unix-related-grid">
-				<a href="/date-calculator" class="unix-related-card">📅 Date Calculator</a>
-				<a href="/timezone-converter" class="unix-related-card"
-					>🌍 Time Zone Converter</a
+				<a href="/date-calculator" class="unix-related-card"
+					><span class="unix-related-name">Date Calculator</span></a
 				>
-				<a href="/countdown-timer" class="unix-related-card">⏱️ Countdown Timer</a>
+				<a href="/timezone-converter" class="unix-related-card"
+					><span class="unix-related-name">Time Zone Converter</span></a
+				>
+				<a href="/business-days" class="unix-related-card"
+					><span class="unix-related-name">Business Days Calculator</span></a
+				>
+				<a href="/world-clock" class="unix-related-card"
+					><span class="unix-related-name">World Clock</span></a
+				>
 			</div>
 		</div>
 	</div>
@@ -408,7 +558,106 @@ const referenceRows = [
 	}
 
 	.unix-reference {
-		margin-bottom: 60px;
+		margin-bottom: 48px;
+	}
+
+	.unix-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.unix-how {
+		margin-bottom: 48px;
+	}
+
+	.unix-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.unix-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.unix-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.unix-faq {
+		margin-bottom: 48px;
+	}
+
+	.unix-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.unix-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.unix-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.unix-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.unix-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.unix-faq-item[open] .unix-faq-question::after {
+		content: '−';
+	}
+
+	.unix-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.unix-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.unix-faq-answer code {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: #84cc16;
 	}
 
 	.unix-reference-title {
@@ -488,7 +737,7 @@ const referenceRows = [
 
 	.unix-related-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 	}
 
@@ -496,21 +745,24 @@ const referenceRows = [
 		background: #0c0c0c;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		border-radius: 12px;
-		padding: 16px;
+		padding: 20px 16px;
 		text-align: center;
-		font-family: 'Outfit', sans-serif;
-		font-size: 14px;
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.6);
 		text-decoration: none;
-		transition:
-			border-color 0.2s ease,
-			color 0.2s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.unix-related-card:hover {
 		border-color: rgba(16, 185, 129, 0.4);
-		color: #fff;
+	}
+
+	.unix-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	@media (max-width: 768px) {

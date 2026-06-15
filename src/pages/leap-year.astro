@@ -162,6 +162,148 @@ const recentLeapYears = getRecentLeapYears(8);
 				</div>
 			</div>
 		</div>
+
+		<!-- HOW IT WORKS -->
+		<section class="ly-how">
+			<h2 class="ly-section-title">How do you calculate a leap year?</h2>
+			<div class="ly-how-card">
+				<p>
+					A leap year occurs when a year is divisible by 4. That extra day in
+					February corrects for the fact that Earth takes approximately 365.25
+					days to orbit the Sun — without leap years our calendar would drift
+					by about 6 hours every year, and seasons would slowly shift out of
+					place.
+				</p>
+				<p>
+					There is an important exception: century years like 1800, 1900, and
+					2100 are not leap years even though they are divisible by 4, because
+					the solar year is slightly less than 365.25 days. However, years
+					divisible by 400 — such as 1600, 2000, and 2400 — are leap years,
+					restoring the balance over longer cycles.
+				</p>
+				<p>
+					Leap years affect everyday life too. People born on February 29th,
+					known as leaplings or leap day babies, technically only have a
+					birthday every four years. In non-leap years they celebrate on either
+					February 28th or March 1st depending on their country and personal
+					preference.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="ly-faq">
+			<h2 class="ly-section-title">Frequently asked questions</h2>
+			<div class="ly-faq-list">
+				<details class="ly-faq-item">
+					<summary class="ly-faq-question">Is 2026 a leap year?</summary>
+					<div class="ly-faq-answer">
+						<p>
+							No — 2026 is not a leap year. It is not divisible by 4, so
+							February 2026 has 28 days and the year has 365 days in total.
+							Enter 2026 in the checker above to see the full explanation.
+						</p>
+					</div>
+				</details>
+				<details class="ly-faq-item">
+					<summary class="ly-faq-question">Is 2028 a leap year?</summary>
+					<div class="ly-faq-answer">
+						<p>
+							Yes — 2028 is a leap year. It is divisible by 4 and is not a
+							century year, so February 2028 will have 29 days and the year
+							will have 366 days in total.
+						</p>
+					</div>
+				</details>
+				<details class="ly-faq-item">
+					<summary class="ly-faq-question">When is the next leap year?</summary>
+					<div class="ly-faq-answer">
+						<p>
+							The next leap year is 2028. After that comes 2032, then 2036.
+							The "Next leap years" grid above lists the upcoming leap years —
+							click any year to check it instantly in the calculator.
+						</p>
+					</div>
+				</details>
+				<details class="ly-faq-item">
+					<summary class="ly-faq-question">Why do we have leap years?</summary>
+					<div class="ly-faq-answer">
+						<p>
+							Earth takes roughly 365.25 days to orbit the Sun, but our calendar
+							counts only 365 days per year. Without a leap day every four years,
+							we would lose about 6 hours annually — adding up to roughly one
+							extra day every four years. Leap years keep our calendar aligned
+							with the seasons.
+						</p>
+					</div>
+				</details>
+				<details class="ly-faq-item">
+					<summary class="ly-faq-question"
+						>What is a leap day baby called?</summary
+					>
+					<div class="ly-faq-answer">
+						<p>
+							People born on February 29th are called leaplings, leap day babies,
+							or leap year babies. With odds of about 1 in 1,461, only around
+							5 million people worldwide share a true February 29th birthday.
+						</p>
+					</div>
+				</details>
+				<details class="ly-faq-item">
+					<summary class="ly-faq-question">Was 2000 a leap year?</summary>
+					<div class="ly-faq-answer">
+						<p>
+							Yes — 2000 was a leap year. Although it is a century year, 2000 is
+							divisible by 400, which overrides the century rule. February 2000
+							had 29 days.
+						</p>
+					</div>
+				</details>
+				<details class="ly-faq-item">
+					<summary class="ly-faq-question">Why is 1900 not a leap year?</summary>
+					<div class="ly-faq-answer">
+						<p>
+							1900 is divisible by 4 and by 100, but not by 400. The leap year
+							rule excludes century years unless they are also divisible by 400.
+							So 1900 had only 365 days, even though 1896 and 1904 were both
+							leap years.
+						</p>
+					</div>
+				</details>
+				<details class="ly-faq-item">
+					<summary class="ly-faq-question"
+						>How many leap years are there in 100 years?</summary
+					>
+					<div class="ly-faq-answer">
+						<p>
+							Most 100-year periods contain 24 leap years. A century normally
+							has 25 years divisible by 4, but the century year itself is
+							excluded unless divisible by 400 — removing one leap year. Periods
+							that include a year like 2000 can have 25 leap years instead.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="ly-related">
+			<h3 class="ly-related-title">You might also like</h3>
+			<div class="ly-related-grid">
+				<a href="/date-calculator" class="ly-related-card"
+					><span class="ly-related-name">Date Calculator</span></a
+				>
+				<a href="/year-progress" class="ly-related-card"
+					><span class="ly-related-name">Year Progress Bar</span></a
+				>
+				<a href="/business-days" class="ly-related-card"
+					><span class="ly-related-name">Business Days Calculator</span></a
+				>
+				<a href="/days-until-birthday" class="ly-related-card"
+					><span class="ly-related-name">Days Until My Birthday</span></a
+				>
+			</div>
+		</div>
 	</div>
 </Layout>
 
@@ -384,6 +526,133 @@ const recentLeapYears = getRecentLeapYears(8);
 		margin: 0;
 	}
 
+	.ly-how {
+		margin-bottom: 48px;
+	}
+
+	.ly-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.ly-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.ly-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.ly-faq {
+		margin-bottom: 48px;
+	}
+
+	.ly-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.ly-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.ly-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ly-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.ly-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ly-faq-item[open] .ly-faq-question::after {
+		content: '−';
+	}
+
+	.ly-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.ly-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.ly-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.ly-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.ly-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.ly-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.ly-related-card:hover {
+		border-color: rgba(16, 185, 129, 0.4);
+	}
+
+	.ly-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
 	@media (max-width: 600px) {
 		.ly-title {
 			font-size: 44px;
@@ -404,6 +673,10 @@ const recentLeapYears = getRecentLeapYears(8);
 		}
 
 		.ly-facts-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.ly-related-grid {
 			grid-template-columns: 1fr;
 		}
 	}

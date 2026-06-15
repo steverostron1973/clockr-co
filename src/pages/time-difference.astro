@@ -154,14 +154,166 @@ const presets = [
 			</div>
 		</div>
 
+		<!-- HOW IT WORKS -->
+		<section class="td-how">
+			<h2 class="td-section-title">How is the time difference calculated?</h2>
+			<div class="td-how-card">
+				<p>
+					The time difference between two cities is calculated by finding each
+					city's UTC offset — the number of hours and minutes it is ahead of or
+					behind Coordinated Universal Time — and subtracting one from the other.
+					The result tells you exactly how many hours separate the two clocks
+					right now.
+				</p>
+				<p>
+					That difference can change throughout the year. Daylight saving time
+					shifts clocks forward or back in many countries at different dates,
+					meaning the gap between cities like London and New York changes from
+					5 hours in winter to 4 hours in summer. Clockr recalculates
+					automatically whenever DST rules apply.
+				</p>
+				<p>
+					Clockr uses IANA timezone identifiers and the browser's
+					Intl.DateTimeFormat API to handle all daylight saving rules for over
+					250 cities without any manual adjustment. Select any two cities above
+					and the difference, live clocks, and best-time-to-call overlap all
+					update instantly.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="td-faq">
+			<h2 class="td-section-title">Frequently asked questions</h2>
+			<div class="td-faq-list">
+				<details class="td-faq-item">
+					<summary class="td-faq-question"
+						>What is the time difference between London and New York?</summary
+					>
+					<div class="td-faq-answer">
+						<p>
+							London is typically 5 hours ahead of New York in winter (GMT vs
+							EST) and 4 hours ahead in summer (BST vs EDT). The exact
+							difference depends on when each city switches to and from daylight
+							saving time. Select London and New York above to see the live
+							difference right now.
+						</p>
+					</div>
+				</details>
+				<details class="td-faq-item">
+					<summary class="td-faq-question"
+						>What is the time difference between the UK and Australia?</summary
+					>
+					<div class="td-faq-answer">
+						<p>
+							The UK and Australia span multiple time zones, so the difference
+							varies by city. London is typically 9 to 11 hours behind eastern
+							Australian cities like Sydney and Melbourne, depending on daylight
+							saving in both countries. Western Australia (Perth) is around 7 to
+							8 hours ahead of London.
+						</p>
+					</div>
+				</details>
+				<details class="td-faq-item">
+					<summary class="td-faq-question"
+						>What is the time difference between Dubai and the UK?</summary
+					>
+					<div class="td-faq-answer">
+						<p>
+							Dubai (UAE Standard Time) is 4 hours ahead of London during UK
+							winter (GMT) and 3 hours ahead during UK summer (BST). The UAE
+							does not observe daylight saving time, so the gap narrows by one
+							hour when the UK clocks go forward in March.
+						</p>
+					</div>
+				</details>
+				<details class="td-faq-item">
+					<summary class="td-faq-question"
+						>Why does the time difference between cities change in summer?</summary
+					>
+					<div class="td-faq-answer">
+						<p>
+							Daylight saving time moves clocks forward by one hour in spring
+							and back in autumn in many countries — but not all, and not on the
+							same dates. When one city observes DST and another does not, or
+							they switch on different weekends, the gap between them changes.
+							Clockr handles these shifts automatically using IANA timezone data.
+						</p>
+					</div>
+				</details>
+				<details class="td-faq-item">
+					<summary class="td-faq-question"
+						>What is the largest time difference between two places on Earth?</summary
+					>
+					<div class="td-faq-answer">
+						<p>
+							The maximum offset from UTC is ±14 hours, so the largest possible
+							difference between two inhabited places is 26 hours — though in
+							practice the biggest gaps are around 25 hours. For example, Baker
+							Island (UTC−12) and Kiritimati in Kiribati (UTC+14) are on
+							opposite sides of the International Date Line.
+						</p>
+					</div>
+				</details>
+				<details class="td-faq-item">
+					<summary class="td-faq-question"
+						>What is the best time to schedule a meeting between the US and UK?</summary
+					>
+					<div class="td-faq-answer">
+						<p>
+							The overlap window is typically 2:00 PM–5:00 PM GMT (9:00 AM–12:00
+							PM EST) on weekdays — when both London and New York are within
+							standard working hours. Use the "Best time to call" timeline above
+							to see the exact overlap for your chosen cities, which updates in
+							real time.
+						</p>
+					</div>
+				</details>
+				<details class="td-faq-item">
+					<summary class="td-faq-question"
+						>How many hours ahead is Japan compared to the UK?</summary
+					>
+					<div class="td-faq-answer">
+						<p>
+							Japan Standard Time is 9 hours ahead of London during UK winter
+							(GMT) and 8 hours ahead during UK summer (BST). Japan does not
+							observe daylight saving time, so the gap is always either 8 or 9
+							hours depending on the UK's DST schedule.
+						</p>
+					</div>
+				</details>
+				<details class="td-faq-item">
+					<summary class="td-faq-question"
+						>What time zone should I use for international emails?</summary
+					>
+					<div class="td-faq-answer">
+						<p>
+							Always include a time zone when scheduling across borders — UTC
+							(GMT) is the safest neutral reference, or specify the recipient's
+							local time with the city name (e.g. "3:00 PM GMT / 10:00 AM EST").
+							Avoid ambiguous phrases like "tomorrow morning" without a zone.
+							Tools like this calculator help you convert before you send.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
 		<div class="td-related">
 			<h3 class="td-related-title">You might also like</h3>
 			<div class="td-related-grid">
-				<a href="/timezone-converter" class="td-related-card"
-					>🔄 Time Zone Converter</a
+				<a href="/world-clock" class="td-related-card"
+					><span class="td-related-name">World Clock</span></a
 				>
-				<a href="/world-clock" class="td-related-card">🌍 World Clock</a>
-				<a href="/age-calculator" class="td-related-card">🎂 Age Calculator</a>
+				<a href="/timezone-converter" class="td-related-card"
+					><span class="td-related-name">Time Zone Converter</span></a
+				>
+				<a href="/business-days" class="td-related-card"
+					><span class="td-related-name">Business Days Calculator</span></a
+				>
+				<a href="/countdown-timer" class="td-related-card"
+					><span class="td-related-name">Countdown Timer</span></a
+				>
 			</div>
 		</div>
 	</div>
@@ -510,7 +662,99 @@ const presets = [
 	.td-presets {
 		border-top: 1px solid rgba(255, 255, 255, 0.06);
 		padding-top: 40px;
-		margin-bottom: 40px;
+		margin-bottom: 48px;
+	}
+
+	.td-how {
+		margin-bottom: 48px;
+	}
+
+	.td-how .td-section-title {
+		margin-bottom: 16px;
+	}
+
+	.td-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.td-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.td-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.td-faq {
+		margin-bottom: 48px;
+	}
+
+	.td-faq .td-section-title {
+		margin-bottom: 16px;
+	}
+
+	.td-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.td-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.td-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.td-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.td-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.td-faq-item[open] .td-faq-question::after {
+		content: '−';
+	}
+
+	.td-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.td-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
 	}
 
 	.td-presets-title {
@@ -563,7 +807,7 @@ const presets = [
 
 	.td-related-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 	}
 
@@ -571,21 +815,24 @@ const presets = [
 		background: #0c0c0c;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		border-radius: 12px;
-		padding: 16px;
+		padding: 20px 16px;
 		text-align: center;
-		font-family: 'Outfit', sans-serif;
-		font-size: 14px;
-		font-weight: 600;
-		color: rgba(255, 255, 255, 0.6);
 		text-decoration: none;
-		transition:
-			border-color 0.2s ease,
-			color 0.2s ease;
+		transition: border-color 0.2s ease;
 	}
 
 	.td-related-card:hover {
 		border-color: rgba(0, 229, 196, 0.4);
-		color: #fff;
+	}
+
+	.td-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	@media (max-width: 639px) {
