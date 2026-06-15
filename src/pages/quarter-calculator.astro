@@ -1,0 +1,577 @@
+---
+import Layout from '../layouts/Layout.astro';
+import QuarterCalculator from '../components/QuarterCalculator.jsx';
+---
+
+<Layout
+	title="Quarter Calculator — Calendar & Fiscal Quarters | Clockr"
+	description="Find which quarter any date falls in — calendar or UK fiscal year. See the quarter date range, days remaining and days elapsed. Free quarter calculator."
+>
+	<div class="qc-page">
+		<div class="qc-header">
+			<div class="qc-eyebrow">
+				<span class="qc-eyebrow-square" aria-hidden="true"></span>
+				Calendar & Dates
+			</div>
+			<h1 class="qc-title">
+				<span class="qc-gradient">Quarter</span><br />
+				<span class="qc-gradient">Calculator</span>
+			</h1>
+			<p class="qc-subtitle">
+				Find which quarter any date falls in — calendar or fiscal year
+			</p>
+		</div>
+
+		<QuarterCalculator client:load />
+
+		<!-- HOW IT WORKS -->
+		<section class="qc-how">
+			<h2 class="qc-section-title">How it works</h2>
+			<div class="qc-how-card">
+				<p>
+					A calendar year is divided into four quarters of three months each.
+					Q1 runs January through March, Q2 April through June, Q3 July through
+					September, and Q4 October through December. Companies, investors, and
+					analysts use quarterly periods to report earnings, track sales targets,
+					and compare performance year on year — because three-month blocks are
+					long enough to show trends but short enough to act on quickly.
+				</p>
+				<p>
+					Not every organisation follows the calendar year. In the UK, the
+					fiscal (tax) year runs from 1 April to 31 March, so Q1 is April–June,
+					Q2 July–September, Q3 October–December, and Q4 January–March. Switch
+					the toggle above to see fiscal quarters instead. Other countries use
+					different start dates — for example, the US federal government's
+					fiscal year begins on 1 October, while many US companies align with
+					the calendar year.
+				</p>
+				<p>
+					Enter any date and Clockr identifies the correct quarter, labels it
+					with the relevant year, and shows the exact start and end dates of
+					that quarter. The tool also counts how many days have elapsed since the
+					quarter began and how many remain until it ends — useful for deadline
+					planning, budget tracking, and knowing where you stand in the
+					reporting cycle.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="qc-faq">
+			<h2 class="qc-section-title">Frequently asked questions</h2>
+			<div class="qc-faq-list">
+				<details class="qc-faq-item">
+					<summary class="qc-faq-question"
+						>What are the calendar quarters of the year?</summary
+					>
+					<div class="qc-faq-answer">
+						<p>
+							In the standard calendar year, Q1 is January–March, Q2 is
+							April–June, Q3 is July–September, and Q4 is October–December.
+							Each quarter covers exactly three months, though the number of
+							days varies because months have different lengths and Q1 may
+							include 29 February in a leap year.
+						</p>
+					</div>
+				</details>
+				<details class="qc-faq-item">
+					<summary class="qc-faq-question"
+						>What is the UK fiscal year and how does it differ from the calendar
+						year?</summary
+					>
+					<div class="qc-faq-answer">
+						<p>
+							The UK fiscal year for tax and government accounting runs from 1
+							April to 31 March. Its quarters are shifted accordingly: Q1 is
+							April–June, Q2 July–September, Q3 October–December, and Q4
+							January–March. A date in February 2026, for instance, falls in Q4
+							of the fiscal year ending 31 March 2026 — not Q1 of the calendar
+							year.
+						</p>
+					</div>
+				</details>
+				<details class="qc-faq-item">
+					<summary class="qc-faq-question"
+						>What quarter is it right now?</summary
+					>
+					<div class="qc-faq-answer">
+						<p>
+							This page defaults to today's date, so the result updates
+							automatically when you load it. Click the "Today" button in the
+							quick-reference section to reset the date field, or toggle between
+							calendar and fiscal year to see both interpretations.
+						</p>
+					</div>
+				</details>
+				<details class="qc-faq-item">
+					<summary class="qc-faq-question"
+						>When does Q1 start in the UK tax year?</summary
+					>
+					<div class="qc-faq-answer">
+						<p>
+							Q1 of the UK fiscal year begins on 1 April and ends on 30 June.
+							This is the first quarter of the tax year that runs through to 31
+							March of the following calendar year. For example, Q1 of fiscal
+							year 2026 runs from 1 April 2025 to 30 June 2025.
+						</p>
+					</div>
+				</details>
+				<details class="qc-faq-item">
+					<summary class="qc-faq-question"
+						>How many days are in each quarter?</summary
+					>
+					<div class="qc-faq-answer">
+						<p>
+							Calendar Q1 has 90 days in a common year or 91 in a leap year
+							(because of 29 February). Q2 always has 91 days, Q3 has 92, and
+							Q4 has 92. UK fiscal quarters follow the same month groupings, so
+							the day counts are identical — only the quarter labels and year
+							assignments differ.
+						</p>
+					</div>
+				</details>
+				<details class="qc-faq-item">
+					<summary class="qc-faq-question"
+						>Why do businesses report results by quarter?</summary
+					>
+					<div class="qc-faq-answer">
+						<p>
+							Quarterly reporting gives stakeholders regular updates on company
+							performance without the noise of monthly figures or the lag of
+							annual reports. Regulators in many countries require listed
+							companies to publish quarterly earnings. It also helps teams set
+							seasonal targets, compare year-on-year growth, and align budgets
+							with predictable three-month cycles.
+						</p>
+					</div>
+				</details>
+				<details class="qc-faq-item">
+					<summary class="qc-faq-question"
+						>What fiscal year does the US government use?</summary
+					>
+					<div class="qc-faq-answer">
+						<p>
+							The US federal government's fiscal year runs from 1 October to 30
+							September. Federal Q1 is October–December, Q2 January–March, Q3
+							April–June, and Q4 July–September. This differs from both the
+							calendar year and the UK April–March fiscal year. Many private US
+							companies still use calendar-year quarters for their own
+							reporting.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="qc-related">
+			<h3 class="qc-related-title">Related tools</h3>
+			<div class="qc-related-grid">
+				<a href="/week-number-calculator" class="qc-related-card"
+					><span class="qc-related-name">Week Number Calculator</span></a
+				>
+				<a href="/business-days" class="qc-related-card"
+					><span class="qc-related-name">Business Days Calculator</span></a
+				>
+				<a href="/date-calculator" class="qc-related-card"
+					><span class="qc-related-name">Date Calculator</span></a
+				>
+				<a href="/day-of-week" class="qc-related-card"
+					><span class="qc-related-name">Day of the Week Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.qc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.qc-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.qc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.qc-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.qc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.qc-gradient {
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.qc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.qc-mode-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 32px;
+	}
+
+	.qc-mode-toggle {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 8px;
+	}
+
+	.qc-mode-btn {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 12px;
+		padding: 12px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.qc-mode-btn:hover {
+		border-color: rgba(16, 185, 129, 0.4);
+		color: #fff;
+	}
+
+	.qc-mode-btn--active {
+		border-color: rgba(16, 185, 129, 0.6);
+		background: rgba(16, 185, 129, 0.08);
+		color: #fff;
+	}
+
+	.qc-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 48px;
+	}
+
+	.qc-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.qc-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+		min-width: 280px;
+	}
+
+	.qc-input:focus {
+		border-color: rgba(16, 185, 129, 0.8);
+		box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+	}
+
+	.qc-results {
+		margin-bottom: 48px;
+	}
+
+	.qc-main-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		border-radius: 20px;
+		padding: 40px;
+		text-align: center;
+		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+	}
+
+	.qc-quarter-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 56px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.1;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.qc-quarter-range {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 24px;
+		line-height: 1.5;
+	}
+
+	.qc-stats {
+		display: flex;
+		justify-content: center;
+		gap: 48px;
+		flex-wrap: wrap;
+	}
+
+	.qc-stat {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.qc-stat-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 32px;
+		font-weight: 800;
+		color: #fff;
+		line-height: 1;
+	}
+
+	.qc-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.qc-quick {
+		margin-bottom: 48px;
+	}
+
+	.qc-quick-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.qc-quick-btn {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 12px;
+		padding: 16px 12px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: #fff;
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.qc-quick-btn:hover {
+		border-color: rgba(16, 185, 129, 0.5);
+		background: rgba(16, 185, 129, 0.04);
+	}
+
+	.qc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.qc-how {
+		margin-bottom: 48px;
+	}
+
+	.qc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.qc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.qc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.qc-faq {
+		margin-bottom: 48px;
+	}
+
+	.qc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.qc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.qc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.qc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.qc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.qc-faq-item[open] .qc-faq-question::after {
+		content: '−';
+	}
+
+	.qc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.qc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.qc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.qc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.qc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.qc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.qc-related-card:hover {
+		border-color: rgba(16, 185, 129, 0.4);
+	}
+
+	.qc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.qc-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.qc-quarter-title {
+			font-size: 40px;
+			letter-spacing: -2px;
+		}
+
+		.qc-quick-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.qc-related-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.qc-stats {
+			gap: 32px;
+		}
+	}
+</style>
