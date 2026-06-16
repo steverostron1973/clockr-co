@@ -1,0 +1,636 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RetirementCountdownCalculator from '../components/RetirementCountdownCalculator.jsx';
+---
+
+<Layout
+	title="Retirement Countdown Calculator — How Long Until You Retire? | Clockr"
+	description="Calculate how long until you reach your retirement age. Countdown in years, months and days, with UK State Pension age as the default target."
+	category="birthdays"
+>
+	<div class="rcc-page">
+		<div class="rcc-header">
+			<div class="rcc-eyebrow">
+				<span class="rcc-eyebrow-square" aria-hidden="true"></span>
+				AGE & BIRTHDAYS
+			</div>
+			<h1 class="rcc-title">
+				<span class="rcc-gradient">Retirement Countdown</span><br />
+				<span class="rcc-gradient">Calculator</span>
+			</h1>
+			<p class="rcc-subtitle">
+				Find out exactly how long until you retire
+			</p>
+		</div>
+
+		<RetirementCountdownCalculator client:load />
+
+		<section class="rcc-how">
+			<h2 class="rcc-section-title">How it works</h2>
+			<div class="rcc-how-card">
+				<p>
+					The UK State Pension age — the age at which most people can start
+					claiming the State Pension — has changed several times over recent
+					decades. For many years it was 65 for men and 60 for women, before
+					gradually equalising. It is currently 66 and rising to 67 for people
+					born after certain dates. Further increases are planned, with State
+					Pension age set to reach 68 for some cohorts between 2044 and 2046,
+					though government policy can change. Clockr uses 67 as the default
+					target because that is the current State Pension age for many people
+					reaching retirement in the coming years.
+				</p>
+				<p>
+					State Pension age is not the same as when you might personally choose
+					to stop working. Many people retire earlier or later depending on
+					workplace pensions, private savings, health, and personal plans. Some
+					employers offer early retirement options; others continue working past
+					State Pension age. This calculator lets you enter any retirement age
+					so you can model a private pension target, an early retirement goal, or
+					the State Pension age — whichever is most relevant to your planning.
+				</p>
+				<p>
+					Enter your date of birth and a target retirement age, and Clockr
+					calculates the calendar date on which you reach that age, then counts
+					down the remaining years, months, and days from today. A progress bar
+					shows how far through a simplified working life you are, using age 21
+					as an assumed start point. Pension rules and ages can change — always
+					check your exact State Pension age on the official GOV.UK website or
+					with your pension provider before making decisions.
+				</p>
+			</div>
+		</section>
+
+		<section class="rcc-faq">
+			<h2 class="rcc-section-title">Frequently asked questions</h2>
+			<div class="rcc-faq-list">
+				<details class="rcc-faq-item">
+					<summary class="rcc-faq-question"
+						>What is the UK State Pension age?</summary
+					>
+					<div class="rcc-faq-answer">
+						<p>
+							The UK State Pension age is the earliest age at which most people
+							can start receiving the State Pension. It depends on your date of
+							birth and has been rising gradually. For many people currently
+							approaching retirement, it is 66 or 67. You can check your exact
+							State Pension age on the official GOV.UK website using your date of
+							birth.
+						</p>
+					</div>
+				</details>
+
+				<details class="rcc-faq-item">
+					<summary class="rcc-faq-question"
+						>Is the State Pension age changing in the future?</summary
+					>
+					<div class="rcc-faq-answer">
+						<p>
+							Yes. The State Pension age is scheduled to rise further, with 68
+							planned for some birth cohorts between 2044 and 2046. However,
+							government policy on pension ages can change, and past reviews have
+							sometimes delayed or accelerated planned increases. Always check the
+							current official guidance rather than relying on a fixed number.
+						</p>
+					</div>
+				</details>
+
+				<details class="rcc-faq-item">
+					<summary class="rcc-faq-question"
+						>Can I retire before my State Pension age?</summary
+					>
+					<div class="rcc-faq-answer">
+						<p>
+							Many people stop working before reaching State Pension age. Whether
+							that is possible depends on your personal finances, workplace or
+							private pension arrangements, and other savings — not on the State
+							Pension age alone. This calculator can model any target age, so
+							you can see how long until age 60, 65, or any other date you are
+							planning towards.
+						</p>
+					</div>
+				</details>
+
+				<details class="rcc-faq-item">
+					<summary class="rcc-faq-question"
+						>How is my retirement date calculated?</summary
+					>
+					<div class="rcc-faq-answer">
+						<p>
+							Clockr adds your chosen retirement age in full years to your date
+							of birth. For example, if you were born on 14 March 1973 and
+							choose age 67, your retirement date is 14 March 2040. The
+							countdown then measures the years, months, and days from today to
+							that date, accounting for months of different lengths and leap
+							years.
+						</p>
+					</div>
+				</details>
+
+				<details class="rcc-faq-item">
+					<summary class="rcc-faq-question"
+						>What&apos;s the difference between State Pension age and a private
+						pension age?</summary
+					>
+					<div class="rcc-faq-answer">
+						<p>
+							State Pension age is set by the government and determines when you
+							can claim the State Pension. A workplace or private pension may
+							have a different &ldquo;normal retirement age&rdquo; or allow
+							earlier access under specific rules — often from age 55, though
+							rules vary by scheme and are subject to change. The two ages are
+							independent; reaching one does not automatically mean you can access
+							the other.
+						</p>
+					</div>
+				</details>
+
+				<details class="rcc-faq-item">
+					<summary class="rcc-faq-question"
+						>How do I check my exact State Pension age?</summary
+					>
+					<div class="rcc-faq-answer">
+						<p>
+							The most reliable way is to use the State Pension age checker on
+							GOV.UK, which calculates your age based on your date of birth and
+							current legislation. You can also check your State Pension forecast
+							through the same service to see what you may be entitled to and
+							when. Pension providers can give details for workplace and private
+							schemes separately.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="rcc-related">
+			<h3 class="rcc-related-title">Related tools</h3>
+			<div class="rcc-related-grid">
+				<a href="/age-calculator" class="rcc-related-card"
+					><span class="rcc-related-name">Age Calculator</span></a
+				>
+				<a href="/age-difference-calculator" class="rcc-related-card"
+					><span class="rcc-related-name">Age Difference Calculator</span></a
+				>
+				<a href="/days-until-birthday" class="rcc-related-card"
+					><span class="rcc-related-name">Days Until Birthday</span></a
+				>
+				<a href="/life-in-numbers" class="rcc-related-card"
+					><span class="rcc-related-name">Your Life in Numbers</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.rcc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.rcc-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.rcc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.rcc-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: #8b5cf6;
+		box-shadow: 0 0 18px rgba(139, 92, 246, 0.35);
+	}
+
+	.rcc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.rcc-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.rcc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	:global(.rcc-tool) {
+		margin-bottom: 56px;
+	}
+
+	:global(.rcc-card) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 24px;
+		box-shadow: 0 0 40px rgba(139, 92, 246, 0.06);
+		margin-bottom: 24px;
+	}
+
+	:global(.rcc-inputs) {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+	}
+
+	:global(.rcc-input-wrap) {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	:global(.rcc-label) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+		text-align: center;
+	}
+
+	:global(.rcc-input) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	:global(.rcc-input--number) {
+		-moz-appearance: textfield;
+	}
+
+	:global(.rcc-input--number::-webkit-outer-spin-button),
+	:global(.rcc-input--number::-webkit-inner-spin-button) {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	:global(.rcc-input:focus) {
+		border-color: rgba(139, 92, 246, 0.8);
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+	}
+
+	:global(.rcc-note) {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+		margin: 0;
+		text-align: center;
+		background: rgba(236, 72, 153, 0.06);
+		border: 1px solid rgba(236, 72, 153, 0.18);
+		border-radius: 12px;
+		padding: 12px 14px;
+	}
+
+	:global(.rcc-presets) {
+		margin-bottom: 24px;
+	}
+
+	:global(.rcc-presets-title) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.85);
+		text-align: center;
+		margin: 0 0 12px;
+	}
+
+	:global(.rcc-presets-grid) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px;
+	}
+
+	:global(.rcc-preset) {
+		border: 1px solid rgba(139, 92, 246, 0.22);
+		background: rgba(139, 92, 246, 0.06);
+		border-radius: 14px;
+		padding: 14px 12px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.75);
+		cursor: pointer;
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+
+	:global(.rcc-preset:hover) {
+		border-color: rgba(139, 92, 246, 0.45);
+		background: rgba(139, 92, 246, 0.08);
+	}
+
+	:global(.rcc-results) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 32px 24px;
+		box-shadow: 0 0 50px rgba(236, 72, 153, 0.06);
+		text-align: center;
+	}
+
+	:global(.rcc-main) {
+		margin-bottom: 24px;
+	}
+
+	:global(.rcc-main-heading) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 32px;
+		font-weight: 900;
+		letter-spacing: -1.5px;
+		line-height: 1.2;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin: 0;
+	}
+
+	:global(.rcc-countdown) {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		margin-bottom: 20px;
+	}
+
+	:global(.rcc-countdown-item) {
+		background: rgba(139, 92, 246, 0.06);
+		border: 1px solid rgba(139, 92, 246, 0.18);
+		border-radius: 14px;
+		padding: 18px 12px;
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	:global(.rcc-countdown-num) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 36px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	:global(.rcc-countdown-label) {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	:global(.rcc-total-days) {
+		font-family: 'Inter', sans-serif;
+		font-size: 18px;
+		color: rgba(255, 255, 255, 0.55);
+		margin: 0 0 24px;
+	}
+
+	:global(.rcc-progress) {
+		margin-bottom: 20px;
+		text-align: left;
+	}
+
+	:global(.rcc-progress-top) {
+		display: flex;
+		justify-content: space-between;
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 8px;
+	}
+
+	:global(.rcc-progress-track) {
+		height: 10px;
+		background: rgba(255, 255, 255, 0.08);
+		border-radius: 999px;
+		overflow: hidden;
+		margin-bottom: 10px;
+	}
+
+	:global(.rcc-progress-fill) {
+		height: 100%;
+		width: 0%;
+		background: linear-gradient(90deg, #8b5cf6, #ec4899);
+		border-radius: 999px;
+		transition: width 0.4s ease;
+	}
+
+	:global(.rcc-progress-note) {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.45);
+		line-height: 1.6;
+		margin: 0;
+		text-align: center;
+	}
+
+	:global(.rcc-disclaimer) {
+		background: rgba(236, 72, 153, 0.05);
+		border-left: 3px solid #ec4899;
+		border-radius: 0 12px 12px 0;
+		padding: 14px 18px;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.6);
+		line-height: 1.6;
+		text-align: left;
+	}
+
+	.rcc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.rcc-how {
+		margin-bottom: 48px;
+	}
+
+	.rcc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.rcc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.rcc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.rcc-faq {
+		margin-bottom: 48px;
+	}
+
+	.rcc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.rcc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.rcc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.rcc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.rcc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.rcc-faq-item[open] .rcc-faq-question::after {
+		content: '−';
+	}
+
+	.rcc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.rcc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.rcc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.rcc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.rcc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.rcc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.rcc-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+	}
+
+	.rcc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.rcc-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		:global(.rcc-main-heading) {
+			font-size: 26px;
+		}
+
+		:global(.rcc-countdown) {
+			grid-template-columns: 1fr;
+		}
+
+		:global(.rcc-presets-grid) {
+			grid-template-columns: 1fr;
+		}
+
+		.rcc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
