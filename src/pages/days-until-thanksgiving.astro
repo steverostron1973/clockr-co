@@ -1,0 +1,532 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThanksgivingCountdown from '../components/ThanksgivingCountdown.jsx';
+
+const leftEmojis = [
+	{ emoji: '🦃', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '🍂', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '🥧', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '🌽', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '🦃', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '🍂', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '🥧', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '🌽', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '🦃', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '🍂', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '🥧', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '🌽', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title="Thanksgiving Countdown — Days Until Thanksgiving | Clockr"
+	description="How many days until Thanksgiving? Live countdown to the fourth Thursday in November — showing days, hours, minutes and seconds until the next US Thanksgiving."
+	category="holidays"
+>
+	<div class="tg-page">
+		<section class="tg-hero" aria-label="Thanksgiving countdown">
+			<div class="tg-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="tg-float-emoji tg-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="tg-float-emoji tg-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="tg-hero-centre">
+				<div class="tg-eyebrow">
+					<span class="tg-eyebrow-square" aria-hidden="true"></span>
+					HOLIDAY COUNTDOWNS
+				</div>
+				<h1 class="tg-hero-title">Thanksgiving Countdown</h1>
+				<p class="tg-subtitle">Counting down to Thanksgiving</p>
+
+				<ThanksgivingCountdown client:load />
+			</div>
+		</section>
+
+		<div class="tg-body">
+			<section class="tg-how">
+				<h2 class="tg-section-title">How it works</h2>
+				<div class="tg-how-card">
+					<p>
+						Thanksgiving in the United States traces its origins to a harvest
+						feast shared by the Pilgrims of Plymouth Colony and the Wampanoag
+						people in 1621. Over the following centuries, individual states and
+						communities held days of thanksgiving at different times of year.
+						President Abraham Lincoln proclaimed a national Thanksgiving Day in
+						1863, during the Civil War, setting it on the last Thursday of
+						November. President Franklin D. Roosevelt moved the holiday to the
+						fourth Thursday in November in 1939 to extend the Christmas shopping
+						season, and Congress made that date permanent in 1941 — the rule the
+						US still follows today.
+					</p>
+					<p>
+						Unlike holidays fixed to a calendar date, US Thanksgiving always
+						falls on the fourth Thursday in November. That means the date shifts
+						between 22 November and 28 November depending on how the Thursdays
+						line up. This countdown finds the first Thursday of November, adds
+						three weeks to reach the fourth Thursday, and automatically rolls
+						forward to the following year once the current Thanksgiving has
+						passed — so you always see the next upcoming date without refreshing
+						the page.
+					</p>
+					<p>
+						Canada also celebrates Thanksgiving, but on a different date with
+						different roots. Canadian Thanksgiving falls on the second Monday in
+						October and grew from European harvest traditions rather than the
+						Plymouth feast. This page counts down to US Thanksgiving only, which
+						is the date most people search for when looking up "days until
+						Thanksgiving."
+					</p>
+				</div>
+			</section>
+
+			<section class="tg-faq">
+				<h2 class="tg-section-title">Frequently asked questions</h2>
+				<div class="tg-faq-list">
+					<details class="tg-faq-item">
+						<summary class="tg-faq-question">When is Thanksgiving in the US?</summary>
+						<div class="tg-faq-answer">
+							<p>
+								US Thanksgiving is always the fourth Thursday in November. The
+								exact date shifts between 22 November and 28 November each year.
+								Use the live countdown at the top of this page to see the precise
+								date and time remaining until the next US Thanksgiving.
+							</p>
+						</div>
+					</details>
+					<details class="tg-faq-item">
+						<summary class="tg-faq-question">Why is Thanksgiving always on a Thursday?</summary>
+						<div class="tg-faq-answer">
+							<p>
+								Thanksgiving was placed on a Thursday largely by tradition.
+								President Lincoln's 1863 proclamation set it on the last
+								Thursday of November, and many early American thanksgiving
+								observances had already fallen on Thursdays — a day that left
+								Friday free for preparation before a weekend celebration. When
+								FDR fixed the holiday to the fourth Thursday in 1941, the
+								Thursday rule was preserved.
+							</p>
+						</div>
+					</details>
+					<details class="tg-faq-item">
+						<summary class="tg-faq-question">Is Thanksgiving the same date every year?</summary>
+						<div class="tg-faq-answer">
+							<p>
+								No. US Thanksgiving is not tied to a fixed calendar date — it
+								is always the fourth Thursday in November, so the date moves
+								each year. It can fall anywhere from 22 November to 28 November
+								depending on what day of the week 1 November lands on.
+							</p>
+						</div>
+					</details>
+					<details class="tg-faq-item">
+						<summary class="tg-faq-question">How is the date of Thanksgiving calculated?</summary>
+						<div class="tg-faq-answer">
+							<p>
+								Clockr finds the first Thursday of November by checking what day
+								of the week 1 November falls on, then adds 21 days (three weeks)
+								to reach the fourth Thursday. Once that date has passed, the
+								countdown rolls forward to the following year's Thanksgiving
+								automatically.
+							</p>
+						</div>
+					</details>
+					<details class="tg-faq-item">
+						<summary class="tg-faq-question"
+							>Is Thanksgiving celebrated on a different date in Canada?</summary
+						>
+						<div class="tg-faq-answer">
+							<p>
+								Yes. Canada celebrates Thanksgiving on the second Monday in
+								October — roughly six weeks before the US holiday. Canadian
+								Thanksgiving has different historical origins, drawing on
+								European harvest festivals rather than the 1621 Plymouth feast.
+								This countdown focuses on US Thanksgiving, which is the date most
+								commonly searched for internationally.
+							</p>
+						</div>
+					</details>
+					<details class="tg-faq-item">
+						<summary class="tg-faq-question">What is the history of Thanksgiving?</summary>
+						<div class="tg-faq-answer">
+							<p>
+								The best-known origin story is the 1621 harvest feast in Plymouth,
+								Massachusetts, shared by English colonists and the Wampanoag
+								people. Days of thanksgiving were proclaimed sporadically for
+								centuries before Abraham Lincoln established a national holiday
+								in 1863. Franklin D. Roosevelt moved it to the fourth Thursday
+								in November in 1939, and Congress confirmed that rule in 1941.
+								Today it is one of the most widely observed holidays in the
+								United States, marked by family gatherings, parades, and a
+								traditional turkey dinner.
+							</p>
+						</div>
+					</details>
+				</div>
+			</section>
+
+			<div class="tg-related">
+				<h3 class="tg-related-title">Related tools</h3>
+				<div class="tg-related-grid">
+					<a href="/days-until-christmas" class="tg-related-card"
+						><span class="tg-related-name">Days Until Christmas</span></a
+					>
+					<a href="/days-until-halloween" class="tg-related-card"
+						><span class="tg-related-name">Days Until Halloween</span></a
+					>
+					<a href="/days-until-christmas" class="tg-related-card"
+						><span class="tg-related-name">Black Friday Countdown</span></a
+					>
+					<a href="/days-until-new-year" class="tg-related-card"
+						><span class="tg-related-name">Days Until New Year</span></a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.tg-page {
+		width: 100%;
+	}
+
+	.tg-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #1a0808, #2d1508);
+		border-bottom: 1px solid rgba(185, 28, 28, 0.25);
+		overflow: hidden;
+		position: relative;
+		min-height: 320px;
+	}
+
+	.tg-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.tg-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: tg-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.tg-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes tg-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.tg-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.tg-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.tg-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: #b91c1c;
+		box-shadow: 0 0 18px rgba(185, 28, 28, 0.35);
+	}
+
+	.tg-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #b91c1c, #d97706);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tg-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0 0 28px;
+	}
+
+	:global(.tg-countdown-widget) {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	:global(.tg-countdown) {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	:global(.tg-countdown-block) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	:global(.tg-countdown-num) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #b91c1c, #d97706);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	:global(.tg-countdown-num--days) {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	:global(.tg-countdown-sep) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	:global(.tg-countdown-unit) {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	:global(.tg-target-date) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(15px, 2.5vw, 18px);
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.65);
+		margin: 24px 0 0;
+		line-height: 1.5;
+	}
+
+	.tg-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.tg-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tg-how {
+		margin-bottom: 48px;
+	}
+
+	.tg-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(185, 28, 28, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.tg-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.tg-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.tg-faq {
+		margin-bottom: 48px;
+	}
+
+	.tg-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.tg-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(185, 28, 28, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.tg-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #b91c1c, #d97706);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tg-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.tg-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #b91c1c, #d97706);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tg-faq-item[open] .tg-faq-question::after {
+		content: '−';
+	}
+
+	.tg-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.tg-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.tg-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.tg-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tg-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.tg-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.tg-related-card:hover {
+		border-color: rgba(185, 28, 28, 0.4);
+	}
+
+	.tg-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #b91c1c, #d97706);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.tg-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
