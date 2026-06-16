@@ -1,0 +1,573 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AgeDifferenceCalculator from '../components/AgeDifferenceCalculator.jsx';
+---
+
+<Layout
+	title="Age Difference Calculator — Compare Ages Between Two People | Clockr"
+	description="Calculate the age gap between two people in years, months, and days. Compare birth dates, see total days apart, current ages, and star signs."
+	category="birthdays"
+>
+	<div class="agdc-page">
+		<div class="agdc-header">
+			<div class="agdc-eyebrow">
+				<span class="agdc-eyebrow-square" aria-hidden="true"></span>
+				AGE & BIRTHDAYS
+			</div>
+			<h1 class="agdc-title">
+				<span class="agdc-gradient">Age Difference</span><br />
+				<span class="agdc-gradient">Calculator</span>
+			</h1>
+			<p class="agdc-subtitle">
+				Compare the age gap between two people
+			</p>
+		</div>
+
+		<AgeDifferenceCalculator client:load />
+
+		<section class="agdc-how">
+			<h2 class="agdc-section-title">How it works</h2>
+			<div class="agdc-how-card">
+				<p>
+					People calculate age differences for all sorts of reasons — curiosity
+					about a partner or friend, figuring out the gap between siblings,
+					comparing historical figures who lived in different eras, or exploring
+					generational differences between parents and children. Enter two birth
+					dates and Clockr shows exactly how far apart they are in years, months,
+					and days, along with each person&apos;s current age for context.
+				</p>
+				<p>
+					The calculation works through the calendar step by step rather than
+					simply subtracting birth years. Months vary in length — February has
+					28 or 29 days while others have 30 or 31 — and leap years add an extra
+					day every four years. Clockr accounts for all of this when measuring the
+					gap between two dates, giving you a precise breakdown instead of a
+					rough estimate based on year numbers alone.
+				</p>
+				<p>
+					Age gaps are just numbers. Whether the difference is a few months or
+					several decades, this tool is here for curiosity and practical
+					purposes — planning celebrations, settling a friendly debate, or
+					learning something new. It is not meant to judge relationships or
+					people; every age difference is simply a fact on the calendar.
+				</p>
+			</div>
+		</section>
+
+		<section class="agdc-faq">
+			<h2 class="agdc-section-title">Frequently asked questions</h2>
+			<div class="agdc-faq-list">
+				<details class="agdc-faq-item">
+					<summary class="agdc-faq-question"
+						>How do I calculate the age difference between two people?</summary
+					>
+					<div class="agdc-faq-answer">
+						<p>
+							Enter each person&apos;s birth date in the fields above. Clockr
+							instantly compares the two dates and shows the gap in years, months,
+							and days, along with the total number of days between them. You can
+							also add optional names so the result reads naturally — for
+							example, &ldquo;Alex is 5 years, 3 months, 12 days older than
+							Jordan.&rdquo;
+						</p>
+					</div>
+				</details>
+
+				<details class="agdc-faq-item">
+					<summary class="agdc-faq-question"
+						>What is considered a big age gap in a relationship?</summary
+					>
+					<div class="agdc-faq-answer">
+						<p>
+							There is no universal answer — what feels significant varies widely
+							by culture, context, and the individuals involved. Some couples
+							with a decade or more between them never think twice about it;
+							others notice smaller differences. Age gaps are a personal matter,
+							and this calculator simply shows the numbers if you are curious.
+						</p>
+					</div>
+				</details>
+
+				<details class="agdc-faq-item">
+					<summary class="agdc-faq-question"
+						>How do I find out how many years apart my siblings are?</summary
+					>
+					<div class="agdc-faq-answer">
+						<p>
+							Enter each sibling&apos;s birth date as Person 1 and Person 2. The
+							result shows the exact gap in years, months, and days — useful when
+							siblings were born close together and you want more than a rounded
+							year count. Add their names in the optional fields for a
+							personalised result.
+						</p>
+					</div>
+				</details>
+
+				<details class="agdc-faq-item">
+					<summary class="agdc-faq-question"
+						>Can this calculator compare ages of historical figures?</summary
+					>
+					<div class="agdc-faq-answer">
+						<p>
+							Yes. Enter any two birth dates from history — for example, comparing
+							two scientists, artists, or political leaders. The calculator works
+							the same way regardless of era, accounting for leap years across
+							centuries. Note that very old dates may rely on historical calendar
+							conventions that differ from the modern Gregorian calendar.
+						</p>
+					</div>
+				</details>
+
+				<details class="agdc-faq-item">
+					<summary class="agdc-faq-question"
+						>How is age difference calculated in years, months, and days?</summary
+					>
+					<div class="agdc-faq-answer">
+						<p>
+							Clockr starts from the earlier birth date and counts forward through
+							full calendar years, then remaining months, then remaining days.
+							When a day subtraction would go negative, it borrows from the month
+							count using the actual length of the preceding month. This produces
+							a human-readable breakdown that matches how we naturally describe
+							age gaps.
+						</p>
+					</div>
+				</details>
+
+				<details class="agdc-faq-item">
+					<summary class="agdc-faq-question"
+						>Does birth year alone give an accurate age difference?</summary
+					>
+					<div class="agdc-faq-answer">
+						<p>
+							Not always. Two people born in 1990 and 1995 are roughly five years
+							apart, but the exact gap depends on their birth months and days.
+							Someone born in December 1990 and March 1995 is about four years and
+							three months apart, not a full five years. This calculator uses
+							complete birth dates for an accurate result.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="agdc-related">
+			<h3 class="agdc-related-title">Related tools</h3>
+			<div class="agdc-related-grid">
+				<a href="/age-calculator" class="agdc-related-card"
+					><span class="agdc-related-name">Age Calculator</span></a
+				>
+				<a href="/anniversary-calculator" class="agdc-related-card"
+					><span class="agdc-related-name">Anniversary Calculator</span></a
+				>
+				<a href="/days-until-birthday" class="agdc-related-card"
+					><span class="agdc-related-name">Days Until Birthday</span></a
+				>
+				<a href="/life-in-numbers" class="agdc-related-card"
+					><span class="agdc-related-name">Your Life in Numbers</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.agdc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.agdc-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.agdc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.agdc-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: #8b5cf6;
+		box-shadow: 0 0 18px rgba(139, 92, 246, 0.35);
+	}
+
+	.agdc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.agdc-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.agdc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	:global(.agdc-tool) {
+		margin-bottom: 56px;
+	}
+
+	:global(.agdc-card) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 24px;
+		box-shadow: 0 0 40px rgba(139, 92, 246, 0.06);
+		margin-bottom: 24px;
+	}
+
+	:global(.agdc-dates-row) {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 24px;
+	}
+
+	:global(.agdc-person) {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+	}
+
+	:global(.agdc-input-wrap) {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	:global(.agdc-label) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+		text-align: center;
+	}
+
+	:global(.agdc-input) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	:global(.agdc-input--text) {
+		font-size: 18px;
+		font-weight: 600;
+	}
+
+	:global(.agdc-input::placeholder) {
+		color: rgba(255, 255, 255, 0.25);
+		font-weight: 500;
+	}
+
+	:global(.agdc-input:focus) {
+		border-color: rgba(139, 92, 246, 0.8);
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+	}
+
+	:global(.agdc-presets) {
+		margin-bottom: 24px;
+	}
+
+	:global(.agdc-presets-title) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.85);
+		text-align: center;
+		margin: 0 0 12px;
+	}
+
+	:global(.agdc-presets-grid) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px;
+	}
+
+	:global(.agdc-preset) {
+		border: 1px solid rgba(139, 92, 246, 0.22);
+		background: rgba(139, 92, 246, 0.06);
+		border-radius: 14px;
+		padding: 14px 12px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.75);
+		cursor: pointer;
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+
+	:global(.agdc-preset:hover) {
+		border-color: rgba(139, 92, 246, 0.45);
+		background: rgba(139, 92, 246, 0.08);
+	}
+
+	:global(.agdc-results) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 32px 24px;
+		box-shadow: 0 0 50px rgba(236, 72, 153, 0.06);
+		text-align: center;
+	}
+
+	:global(.agdc-main) {
+		margin-bottom: 24px;
+	}
+
+	:global(.agdc-main-heading) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 36px;
+		font-weight: 900;
+		letter-spacing: -1.5px;
+		line-height: 1.15;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin: 0 0 12px;
+	}
+
+	:global(.agdc-total-days) {
+		font-family: 'Inter', sans-serif;
+		font-size: 18px;
+		color: rgba(255, 255, 255, 0.55);
+		margin: 0;
+	}
+
+	:global(.agdc-ages) {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+		margin-bottom: 16px;
+	}
+
+	:global(.agdc-age-card) {
+		background: rgba(139, 92, 246, 0.06);
+		border: 1px solid rgba(139, 92, 246, 0.18);
+		border-radius: 14px;
+		padding: 16px 14px;
+	}
+
+	:global(.agdc-age-text) {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.5;
+		margin: 0;
+	}
+
+	:global(.agdc-age-text strong) {
+		color: rgba(255, 255, 255, 0.85);
+		font-weight: 600;
+	}
+
+	:global(.agdc-zodiac) {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.65);
+		line-height: 1.6;
+		margin: 0;
+		background: rgba(236, 72, 153, 0.06);
+		border: 1px solid rgba(236, 72, 153, 0.18);
+		border-radius: 12px;
+		padding: 12px 14px;
+	}
+
+	.agdc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.agdc-how {
+		margin-bottom: 48px;
+	}
+
+	.agdc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.agdc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.agdc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.agdc-faq {
+		margin-bottom: 48px;
+	}
+
+	.agdc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.agdc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.agdc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.agdc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.agdc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.agdc-faq-item[open] .agdc-faq-question::after {
+		content: '−';
+	}
+
+	.agdc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.agdc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.agdc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.agdc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.agdc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.agdc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.agdc-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+	}
+
+	.agdc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.agdc-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		:global(.agdc-dates-row) {
+			grid-template-columns: 1fr;
+		}
+
+		:global(.agdc-main-heading) {
+			font-size: 28px;
+		}
+
+		:global(.agdc-presets-grid) {
+			grid-template-columns: 1fr;
+		}
+
+		:global(.agdc-ages) {
+			grid-template-columns: 1fr;
+		}
+
+		.agdc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
