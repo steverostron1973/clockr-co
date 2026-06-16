@@ -20,9 +20,18 @@ const siteUrl = Astro.site ?? 'https://clockr.co';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 
 const navLinks = [
-	{ label: 'Countdowns', href: '/countdowns' },
 	{ label: 'History', href: '/history' },
 	{ label: 'More', href: '/more' },
+];
+
+const countdownDropdownLinks = [
+	{ label: 'Days Until Christmas', href: '/days-until-christmas' },
+	{ label: 'Days Until New Year', href: '/days-until-new-year' },
+	{ label: 'Days Until Halloween', href: '/days-until-halloween' },
+	{ label: "Days Until Valentine's Day", href: '/days-until-valentines' },
+	{ label: 'Days Until Easter', href: '/days-until-easter' },
+	{ label: "Mother's Day Countdown", href: '/days-until-mothers-day' },
+	{ label: 'Days Until Bonfire Night', href: '/days-until-bonfire-night' },
 ];
 
 const toolsDropdownLinks = [
@@ -93,6 +102,20 @@ const footerLinks = [
 							<div class="tools-menu" role="menu" aria-label="Tools">
 								{
 									toolsDropdownLinks.map((link) => (
+										<a role="menuitem" href={link.href} class="tools-menu-link">
+											{link.label}
+										</a>
+									))
+								}
+							</div>
+						</details>
+					</li>
+					<li class="tools-dropdown">
+						<details>
+							<summary>Countdowns</summary>
+							<div class="tools-menu" role="menu" aria-label="Countdowns">
+								{
+									countdownDropdownLinks.map((link) => (
 										<a role="menuitem" href={link.href} class="tools-menu-link">
 											{link.label}
 										</a>

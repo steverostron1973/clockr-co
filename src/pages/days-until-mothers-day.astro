@@ -1,0 +1,791 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MothersDayCountdown from '../components/MothersDayCountdown.jsx';
+
+const leftEmojis = [
+	{ emoji: '💐', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '🌷', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '❤️', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '🌸', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '💐', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '🌷', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '❤️', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '🌸', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '💐', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '🌷', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '❤️', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '🌸', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title="Mother's Day Countdown — Days Until Mother's Day | Clockr"
+	description="How many days until Mother's Day? Live countdown with UK and US dates — Mothering Sunday and the second Sunday in May — showing days, hours, minutes and seconds."
+	category="holidays"
+>
+	<div class="md-page">
+		<section class="md-hero" aria-label="Mother's Day countdown">
+			<div class="md-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="md-float-emoji md-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="md-float-emoji md-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="md-hero-centre">
+				<div class="md-eyebrow">
+					<span class="md-eyebrow-square" aria-hidden="true"></span>
+					HOLIDAY COUNTDOWNS
+				</div>
+				<h1 class="md-hero-title">Mother's Day Countdown</h1>
+				<p class="md-subtitle">Counting down to Mother's Day</p>
+
+				<MothersDayCountdown client:load />
+			</div>
+		</section>
+
+		<div class="md-body">
+			<section class="md-stats-section">
+				<h2 class="md-stats-heading">Mother's Day by the numbers</h2>
+				<div class="md-stats-grid">
+					<div class="md-stat-card">
+						<div class="md-stat-label">Exact time remaining</div>
+						<div class="md-stat-value" id="stat-exact">—</div>
+					</div>
+					<div class="md-stat-card">
+						<div class="md-stat-label">Mother's Day</div>
+						<div class="md-stat-value" id="stat-weekday">—</div>
+					</div>
+					<div class="md-stat-card">
+						<div class="md-stat-label">Weeks until Mother's Day</div>
+						<div class="md-stat-value" id="stat-weeks">—</div>
+					</div>
+					<div class="md-stat-card">
+						<div class="md-stat-label">Minutes until Mother's Day</div>
+						<div class="md-stat-value" id="stat-minutes">—</div>
+					</div>
+				</div>
+			</section>
+
+			<button class="md-share-btn" id="md-share-btn">📋 Copy &amp; Share</button>
+
+			<section class="md-facts">
+				<h2 class="md-facts-title">Mother's Day fun facts</h2>
+				<div class="md-facts-grid">
+					<div class="md-fact-card">
+						<div class="md-fact-emoji">🇬🇧</div>
+						<h3 class="md-fact-heading">UK Mothering Sunday</h3>
+						<p class="md-fact-text">
+							In the UK, Mother's Day is properly called Mothering Sunday — the
+							fourth Sunday of Lent. It dates back to medieval times when people
+							returned to their "mother church" for a special service, and
+							eventually became a day to honour mothers with flowers and simnel
+							cake.
+						</p>
+					</div>
+					<div class="md-fact-card">
+						<div class="md-fact-emoji">🇺🇸</div>
+						<h3 class="md-fact-heading">US Mother's Day tradition</h3>
+						<p class="md-fact-text">
+							American Mother's Day falls on the second Sunday in May every year,
+							a tradition established by Anna Jarvis in 1908 and made a national
+							holiday in 1914. Today it is celebrated on the same date across
+							most of the Americas, Australia, and much of Europe.
+						</p>
+					</div>
+					<div class="md-fact-card">
+						<div class="md-fact-emoji">💐</div>
+						<h3 class="md-fact-heading">Flowers on Mother's Day</h3>
+						<p class="md-fact-text">
+							Carnations are the traditional Mother's Day flower — white for
+							mothers who have passed away, coloured for living mothers. Anna
+							Jarvis chose white carnations at the first official Mother's Day
+							service in 1908. Today, florists sell more bouquets on Mother's
+							Day than almost any other day of the year.
+						</p>
+					</div>
+					<div class="md-fact-card">
+						<div class="md-fact-emoji">🌍</div>
+						<h3 class="md-fact-heading">Celebrated worldwide</h3>
+						<p class="md-fact-text">
+							Over 50 countries mark a Mother's Day or equivalent celebration,
+							though dates vary enormously. Thailand honours mothers in August
+							on the Queen Mother's birthday, while many Arab nations celebrate
+							on 21 March — the first day of spring. The UK and US remain among
+							the most widely recognised dates.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="md-how">
+				<h2 class="md-section-title">How it works</h2>
+				<div class="md-how-card">
+					<p>
+						Mother's Day falls on different dates in different countries because
+						the traditions grew independently. In the UK, Mothering Sunday is
+						tied to the Christian calendar — it is the fourth Sunday of Lent,
+						exactly three weeks before Easter Sunday. Because Easter moves every
+						year, UK Mother's Day shifts between early March and mid-April. In the
+						US, Mother's Day is always the second Sunday in May, a fixed pattern
+						established by Anna Jarvis between 1908 and 1914 and adopted by
+						Congress as a national holiday in 1914.
+					</p>
+					<p>
+						The modern US holiday was founded by Anna Jarvis of West Virginia,
+						who campaigned for a day to honour the sacrifices mothers make for
+						their children. The UK's Mothering Sunday has far older roots — a
+						16th-century tradition of visiting one's "mother church" during Lent
+						that gradually became a secular occasion for honouring mothers with
+						gifts, flowers, and family meals.
+					</p>
+					<p>
+						This countdown calculates the UK date dynamically each year using the
+						same Gregorian Easter algorithm used on our Easter countdown page.
+						Mothering Sunday is set as the Sunday three weeks before Easter
+						Sunday. Once that date has passed, the timer automatically rolls
+						forward to the following year. Switch between UK and US at the top
+						of the page to see the correct countdown for your region.
+					</p>
+				</div>
+			</section>
+
+			<section class="md-faq">
+				<h2 class="md-section-title">Frequently asked questions</h2>
+				<div class="md-faq-list">
+					<details class="md-faq-item">
+						<summary class="md-faq-question">When is Mother's Day in the UK?</summary>
+						<div class="md-faq-answer">
+							<p>
+								In the UK, Mother's Day — properly called Mothering Sunday — falls
+								on the fourth Sunday of Lent, three weeks before Easter Sunday.
+								Because Easter moves each year, the date shifts between early
+								March and mid-April. Use the UK toggle at the top of this page to
+								see the exact date and live countdown for the next Mothering
+								Sunday.
+							</p>
+						</div>
+					</details>
+					<details class="md-faq-item">
+						<summary class="md-faq-question">When is Mother's Day in the US?</summary>
+						<div class="md-faq-answer">
+							<p>
+								In the United States, Mother's Day is always the second Sunday in
+								May. For 2027 that is Sunday 9 May. The date is fixed relative to
+								the calendar month rather than a moveable feast, so it always falls
+								between 8 May and 14 May depending on how the Sundays line up.
+							</p>
+						</div>
+					</details>
+					<details class="md-faq-item">
+						<summary class="md-faq-question"
+							>Why is Mother's Day on a different date in the UK and US?</summary
+						>
+						<div class="md-faq-answer">
+							<p>
+								The two countries developed separate traditions. UK Mothering
+								Sunday grew from a medieval church custom linked to Lent and
+								Easter, while the US holiday was deliberately created in the
+								early 20th century on a fixed Sunday in May. They share a name
+								and similar customs — flowers, cards, family meals — but their
+								calendar rules have never been aligned.
+							</p>
+						</div>
+					</details>
+					<details class="md-faq-item">
+						<summary class="md-faq-question">Is Mother's Day always on a Sunday?</summary>
+						<div class="md-faq-answer">
+							<p>
+								Yes — in both the UK and US, Mother's Day always falls on a
+								Sunday. The UK date is a Sunday by definition (Mothering Sunday),
+								and the US date is specified as the second Sunday in May. Most
+								other countries that follow the US pattern also celebrate on a
+								Sunday, though a handful of nations use a fixed calendar date
+								instead.
+							</p>
+						</div>
+					</details>
+					<details class="md-faq-item">
+						<summary class="md-faq-question"
+							>How is the UK Mother's Day date calculated each year?</summary
+						>
+						<div class="md-faq-answer">
+							<p>
+								Clockr first calculates Easter Sunday using the anonymous
+								Gregorian algorithm, then subtracts 21 days (three weeks) to find
+								Mothering Sunday. Because Easter can fall anywhere from 22 March
+								to 25 April, UK Mother's Day can land anywhere from late February
+								to early April — though it most commonly falls in March.
+							</p>
+						</div>
+					</details>
+					<details class="md-faq-item">
+						<summary class="md-faq-question">What is the history of Mother's Day?</summary>
+						<div class="md-faq-answer">
+							<p>
+								The UK's Mothering Sunday dates to the 16th century, when
+								servants were given the day off to visit their "mother church"
+								and see their families. The modern US holiday began in 1908 when
+								Anna Jarvis held a memorial service for her mother in West
+								Virginia. Her campaign gained national momentum, and President
+								Woodrow Wilson officially recognised Mother's Day in 1914 — the
+								second Sunday in May, ever since.
+							</p>
+						</div>
+					</details>
+				</div>
+			</section>
+
+			<div class="md-related">
+				<h3 class="md-related-title">Related tools</h3>
+				<div class="md-related-grid">
+					<a href="/days-until-christmas" class="md-related-card"
+						><span class="md-related-name">Days Until Christmas</span></a
+					>
+					<a href="/days-until-easter" class="md-related-card"
+						><span class="md-related-name">Days Until Easter</span></a
+					>
+					<a href="/days-until-bonfire-night" class="md-related-card"
+						><span class="md-related-name">Days Until Bonfire Night</span></a
+					>
+					<a href="/anniversary-calculator" class="md-related-card"
+						><span class="md-related-name">Anniversary Calculator</span></a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.md-page {
+		width: 100%;
+	}
+
+	.md-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #1a0a1f, #2d0a2d);
+		border-bottom: 1px solid rgba(236, 72, 153, 0.25);
+		overflow: hidden;
+		position: relative;
+		min-height: 320px;
+	}
+
+	.md-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.md-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: md-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.md-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes md-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.md-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.md-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.md-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: #ec4899;
+		box-shadow: 0 0 18px rgba(236, 72, 153, 0.35);
+	}
+
+	.md-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #ec4899, #a855f7);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.md-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0 0 28px;
+	}
+
+	/* React countdown widget */
+	:global(.md-countdown-widget) {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	:global(.md-region-wrap) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 28px;
+	}
+
+	:global(.md-region-label) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	:global(.md-region-toggle) {
+		display: flex;
+		gap: 8px;
+	}
+
+	:global(.md-region-btn) {
+		background: rgba(0, 0, 0, 0.35);
+		border: 1px solid rgba(236, 72, 153, 0.25);
+		border-radius: 12px;
+		padding: 10px 28px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.55);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			color 0.2s ease;
+	}
+
+	:global(.md-region-btn:hover) {
+		border-color: rgba(236, 72, 153, 0.5);
+		color: #fff;
+	}
+
+	:global(.md-region-btn--active) {
+		border-color: rgba(236, 72, 153, 0.7);
+		background: rgba(236, 72, 153, 0.15);
+		color: #fff;
+	}
+
+	:global(.md-countdown) {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	:global(.md-countdown-block) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	:global(.md-countdown-num) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #ec4899, #a855f7);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	:global(.md-countdown-num--days) {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	:global(.md-countdown-sep) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	:global(.md-countdown-unit) {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	:global(.md-target-date) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(15px, 2.5vw, 18px);
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.65);
+		margin: 24px 0 0;
+		line-height: 1.5;
+	}
+
+	.md-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.md-stats-section {
+		margin-bottom: 16px;
+	}
+
+	.md-stats-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.md-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.md-stats-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.md-stat-card {
+		background: #2d0a2d;
+		border: 1px solid rgba(236, 72, 153, 0.4);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.md-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 10px;
+	}
+
+	.md-stat-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.4;
+		color: #ec4899;
+	}
+
+	.md-share-btn {
+		display: block;
+		background: linear-gradient(135deg, #ec4899, #a855f7);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		max-width: 320px;
+		width: 100%;
+		margin: 0 auto 48px;
+		transition: opacity 0.2s ease;
+	}
+
+	.md-share-btn:hover {
+		opacity: 0.9;
+	}
+
+	.md-facts {
+		margin-bottom: 48px;
+	}
+
+	.md-facts-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.md-facts-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.md-facts-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.md-fact-card {
+		background: #1a0a1f;
+		border: 1px solid rgba(236, 72, 153, 0.3);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.md-fact-emoji {
+		font-size: 28px;
+		margin-bottom: 12px;
+		line-height: 1;
+	}
+
+	.md-fact-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		color: #ec4899;
+		margin-bottom: 8px;
+	}
+
+	.md-fact-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+	}
+
+	.md-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.md-how {
+		margin-bottom: 48px;
+	}
+
+	.md-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(236, 72, 153, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.md-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.md-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.md-faq {
+		margin-bottom: 48px;
+	}
+
+	.md-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.md-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(236, 72, 153, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.md-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #ec4899, #a855f7);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.md-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.md-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #ec4899, #a855f7);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.md-faq-item[open] .md-faq-question::after {
+		content: '−';
+	}
+
+	.md-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.md-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.md-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.md-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.md-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.md-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.md-related-card:hover {
+		border-color: rgba(236, 72, 153, 0.4);
+	}
+
+	.md-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #ec4899, #a855f7);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.md-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+
+<script>
+	const shareBtn = document.getElementById('md-share-btn');
+	shareBtn?.addEventListener('click', () => {
+		const days = shareBtn.dataset.days ?? '0';
+		const region = shareBtn.dataset.region ?? 'UK';
+		const year = shareBtn.dataset.year ?? '';
+		const label = region === 'UK' ? 'Mothering Sunday' : "Mother's Day";
+		navigator.clipboard.writeText(
+			`💐 ${label} is ${days} days away! Count down to ${year} at clockr.co/days-until-mothers-day`,
+		);
+		shareBtn.textContent = '✓ Copied!';
+		setTimeout(() => {
+			shareBtn.textContent = '📋 Copy & Share';
+		}, 2000);
+	});
+</script>

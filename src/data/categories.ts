@@ -36,7 +36,7 @@ export const categories: Category[] = [
 	{
 		id: 'holidays',
 		name: 'Holiday Countdowns',
-		description: 'Christmas, Halloween, New Year and more',
+		description: "Christmas, Mother's Day, Halloween, New Year and more",
 		emoji: '🎄',
 		...categoryGradients.holidays,
 		href: '/countdowns',
