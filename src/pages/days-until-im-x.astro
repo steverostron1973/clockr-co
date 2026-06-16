@@ -1,0 +1,590 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DaysUntilImX from '../components/DaysUntilImX.jsx';
+---
+
+<Layout
+	title="How Many Days Until I'm X — Age Milestone Countdown | Clockr"
+	description="Find out exactly when you'll reach any age. Countdown to 18, 21, 30, 40, 50, 65 or any target age in years, months and days."
+	category="birthdays"
+>
+	<div class="duix-page">
+		<div class="duix-header">
+			<div class="duix-eyebrow">
+				<span class="duix-eyebrow-square" aria-hidden="true"></span>
+				AGE & BIRTHDAYS
+			</div>
+			<h1 class="duix-title">
+				<span class="duix-gradient">How Many Days Until I'm...</span>
+			</h1>
+			<p class="duix-subtitle">
+				Find out exactly when you'll reach any age
+			</p>
+		</div>
+
+		<DaysUntilImX client:load />
+
+		<section class="duix-how">
+			<h2 class="duix-section-title">How it works</h2>
+			<div class="duix-how-card">
+				<p>
+					People look up future age milestones for all sorts of reasons. Legal
+					thresholds like turning 18 or 21 matter for voting, driving, and
+					drinking in different countries. Round-number birthdays — 30, 40, 50,
+					65 — prompt reflection and celebration. Others simply want to plan a
+					party, book time off work, or satisfy curiosity about when a specific
+					age arrives on the calendar.
+				</p>
+				<p>
+					Enter your birth date and a target age, and Clockr calculates the
+					exact calendar date on which you reach that age. For whole-number
+					ages, the tool adds that many years to your date of birth — so someone
+					born on 14 March 2000 turns 30 on 14 March 2030. The countdown from
+					today is broken into years, months, and days, accounting for months of
+					different lengths and leap years. You can also enter fractional ages
+					like 21.5 for a half-birthday, which adds six months after the full
+					years.
+				</p>
+				<p>
+					Milestone birthdays hold a special place in many cultures. Eighteen
+					marks adulthood in the UK; twenty-one is a classic coming-of-age in the
+					US; thirty, forty, and fifty are decades people often celebrate with
+					parties or trips; and sixty-five has long been associated with
+					retirement. Round numbers feel significant because they give us a clear
+					marker on life's timeline — even though every birthday is, strictly
+					speaking, just one more day.
+				</p>
+			</div>
+		</section>
+
+		<section class="duix-faq">
+			<h2 class="duix-section-title">Frequently asked questions</h2>
+			<div class="duix-faq-list">
+				<details class="duix-faq-item">
+					<summary class="duix-faq-question"
+						>How do I find out what date I'll turn a certain age?</summary
+					>
+					<div class="duix-faq-answer">
+						<p>
+							Enter your date of birth and the age you want to reach. Clockr
+							adds that many years to your birth date and shows the exact
+							calendar date, plus a countdown in years, months, and days from
+							today. For example, if you were born on 5 June 1995 and enter
+							30, the result is 5 June 2025.
+						</p>
+					</div>
+				</details>
+
+				<details class="duix-faq-item">
+					<summary class="duix-faq-question"
+						>What date will I turn 18, 21, or 30?</summary
+					>
+					<div class="duix-faq-answer">
+						<p>
+							It depends on your birth date. Someone born on 1 January 2008
+							turns 18 on 1 January 2026; someone born on 15 August 2005 turns
+							21 on 15 August 2026. Use the quick-link buttons for 18, 21,
+							30, 40, 50, or 65 to populate the target age instantly, or type
+							any age you like.
+						</p>
+					</div>
+				</details>
+
+				<details class="duix-faq-item">
+					<summary class="duix-faq-question"
+						>Can I find out when I'll be a specific age in the past?</summary
+					>
+					<div class="duix-faq-answer">
+						<p>
+							Yes. If the target age has already passed, Clockr shows when you
+							turned that age and how many days ago it was, rather than a
+							negative countdown. For example, if you are 35 and enter 30, you
+							will see the date you turned 30 and the number of days since
+							then.
+						</p>
+					</div>
+				</details>
+
+				<details class="duix-faq-item">
+					<summary class="duix-faq-question"
+						>What day of the week will my birthday fall on in the future?</summary
+					>
+					<div class="duix-faq-answer">
+						<p>
+							Clockr displays the day of the week for your milestone date
+							below the countdown. Because your birthday falls on the same
+							calendar date each year, the weekday shifts by one or two days
+							annually (and by two days across a leap year boundary), cycling
+							through all seven days over time.
+						</p>
+					</div>
+				</details>
+
+				<details class="duix-faq-item">
+					<summary class="duix-faq-question"
+						>How accurate is this calculation?</summary
+					>
+					<div class="duix-faq-answer">
+						<p>
+							For whole-number ages, Clockr adds years directly to your birth
+							date — the same method used for legal age in most countries. The
+							countdown uses calendar arithmetic that respects varying month
+							lengths and leap years. It counts full calendar days from today to
+							the milestone date, so the result matches standard date-difference
+							calculations.
+						</p>
+					</div>
+				</details>
+
+				<details class="duix-faq-item">
+					<summary class="duix-faq-question"
+						>Can I calculate half-birthdays or fractional ages?</summary
+					>
+					<div class="duix-faq-answer">
+						<p>
+							Yes. Enter a decimal age like 21.5 and Clockr treats the
+							fractional part as additional months — 0.5 equals six months after
+							the full years. This is useful for half-birthday celebrations or
+							any milestone that falls between two birthdays. Whole numbers
+							remain the primary use case and are what most legal age thresholds
+							rely on.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="duix-related">
+			<h3 class="duix-related-title">Related tools</h3>
+			<div class="duix-related-grid">
+				<a href="/age-calculator" class="duix-related-card"
+					><span class="duix-related-name">Age Calculator</span></a
+				>
+				<a href="/days-until-birthday" class="duix-related-card"
+					><span class="duix-related-name">Days Until Birthday</span></a
+				>
+				<a href="/retirement-countdown-calculator" class="duix-related-card"
+					><span class="duix-related-name">Retirement Countdown Calculator</span
+					></a
+				>
+				<a href="/life-in-numbers" class="duix-related-card"
+					><span class="duix-related-name">Your Life in Numbers</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.duix-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.duix-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.duix-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.duix-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: #8b5cf6;
+		box-shadow: 0 0 18px rgba(139, 92, 246, 0.35);
+	}
+
+	.duix-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.duix-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.duix-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	:global(.duix-tool) {
+		margin-bottom: 56px;
+	}
+
+	:global(.duix-card) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 24px;
+		box-shadow: 0 0 40px rgba(139, 92, 246, 0.06);
+		margin-bottom: 24px;
+	}
+
+	:global(.duix-inputs) {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+	}
+
+	:global(.duix-input-wrap) {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	:global(.duix-label) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+		text-align: center;
+	}
+
+	:global(.duix-input) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	:global(.duix-input::placeholder) {
+		color: rgba(255, 255, 255, 0.25);
+		font-weight: 500;
+	}
+
+	:global(.duix-input--number) {
+		-moz-appearance: textfield;
+	}
+
+	:global(.duix-input--number::-webkit-outer-spin-button),
+	:global(.duix-input--number::-webkit-inner-spin-button) {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	:global(.duix-input:focus) {
+		border-color: rgba(139, 92, 246, 0.8);
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+	}
+
+	:global(.duix-presets) {
+		margin-bottom: 24px;
+	}
+
+	:global(.duix-presets-title) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.85);
+		text-align: center;
+		margin: 0 0 12px;
+	}
+
+	:global(.duix-presets-grid) {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+	}
+
+	:global(.duix-preset) {
+		border: 1px solid rgba(139, 92, 246, 0.22);
+		background: rgba(139, 92, 246, 0.06);
+		border-radius: 14px;
+		padding: 14px 12px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.75);
+		cursor: pointer;
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+
+	:global(.duix-preset:hover) {
+		border-color: rgba(139, 92, 246, 0.45);
+		background: rgba(139, 92, 246, 0.08);
+	}
+
+	:global(.duix-results) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 32px 24px;
+		box-shadow: 0 0 50px rgba(236, 72, 153, 0.06);
+		text-align: center;
+	}
+
+	:global(.duix-main) {
+		margin-bottom: 24px;
+	}
+
+	:global(.duix-main-heading) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 32px;
+		font-weight: 900;
+		letter-spacing: -1.5px;
+		line-height: 1.2;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin: 0;
+	}
+
+	:global(.duix-countdown) {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		margin-bottom: 20px;
+	}
+
+	:global(.duix-countdown-item) {
+		background: rgba(139, 92, 246, 0.06);
+		border: 1px solid rgba(139, 92, 246, 0.18);
+		border-radius: 14px;
+		padding: 18px 12px;
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	:global(.duix-countdown-num) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 36px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	:global(.duix-countdown-label) {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	:global(.duix-total-days) {
+		font-family: 'Inter', sans-serif;
+		font-size: 18px;
+		color: rgba(255, 255, 255, 0.55);
+		margin: 0 0 12px;
+	}
+
+	:global(.duix-weekday) {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		margin: 0;
+	}
+
+	:global(.duix-past-note) {
+		background: rgba(236, 72, 153, 0.05);
+		border-left: 3px solid #ec4899;
+		border-radius: 0 12px 12px 0;
+		padding: 14px 18px;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.6);
+		line-height: 1.6;
+		text-align: left;
+		margin: 16px 0 0;
+	}
+
+	.duix-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.duix-how {
+		margin-bottom: 48px;
+	}
+
+	.duix-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.duix-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.duix-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.duix-faq {
+		margin-bottom: 48px;
+	}
+
+	.duix-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.duix-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.duix-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.duix-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.duix-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.duix-faq-item[open] .duix-faq-question::after {
+		content: '−';
+	}
+
+	.duix-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.duix-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.duix-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.duix-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.duix-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.duix-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.duix-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+	}
+
+	.duix-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.duix-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		:global(.duix-main-heading) {
+			font-size: 26px;
+		}
+
+		:global(.duix-countdown) {
+			grid-template-columns: 1fr;
+		}
+
+		:global(.duix-presets-grid) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.duix-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

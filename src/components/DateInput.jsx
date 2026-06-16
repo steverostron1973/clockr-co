@@ -29,6 +29,27 @@ export function dateToDisplay(d) {
 	return `${day}/${month}/${year}`;
 }
 
+function digitCount(masked) {
+	return masked.replace(/\D/g, '').length;
+}
+
+function placeCaretForDigits(input, digitTotal) {
+	let pos;
+	if (digitTotal <= 2) {
+		pos = digitTotal;
+	} else if (digitTotal <= 4) {
+		pos = 3 + (digitTotal - 2);
+	} else {
+		pos = 6 + (digitTotal - 4);
+	}
+	requestAnimationFrame(() => input.setSelectionRange(pos, pos));
+}
+
+function selectSegment(input, start) {
+	const end = start === 6 ? 10 : start + 2;
+	requestAnimationFrame(() => input.setSelectionRange(start, end));
+}
+
 export default function DateInput({
 	id,
 	label,
@@ -46,10 +67,7 @@ export default function DateInput({
 		setDisplay(value ?? '');
 	}, [value]);
 
-	function handleChange(e) {
-		const masked = formatDateMask(e.target.value);
-		setDisplay(masked);
-
+	function notifyChange(masked) {
 		if (masked.length === 10) {
 			const parsed = parseDDMMYYYY(masked);
 			if (parsed && (!maxDate || parsed.getTime() <= maxDate.getTime())) {
@@ -62,6 +80,23 @@ export default function DateInput({
 			onChange?.(null, '');
 		} else {
 			onChange?.(null, masked);
+		}
+	}
+
+	function handleChange(e) {
+		const input = e.target;
+		const prevDigits = digitCount(display);
+		const masked = formatDateMask(input.value);
+		const newDigits = digitCount(masked);
+		setDisplay(masked);
+		notifyChange(masked);
+
+		if (newDigits === 2 && prevDigits < 2) {
+			selectSegment(input, 3);
+		} else if (newDigits === 4 && prevDigits < 4) {
+			selectSegment(input, 6);
+		} else {
+			placeCaretForDigits(input, newDigits);
 		}
 	}
 
@@ -79,6 +114,9 @@ export default function DateInput({
 				className={inputClassName}
 				value={display}
 				onChange={handleChange}
+				onFocus={(e) => {
+					e.target.setSelectionRange(0, 0);
+				}}
 				placeholder={placeholder}
 				autoComplete="off"
 				maxLength={10}
