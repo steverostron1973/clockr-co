@@ -1,0 +1,623 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PregnancyDueDateCalculator from '../components/PregnancyDueDateCalculator.jsx';
+---
+
+<Layout
+	title="Pregnancy Due Date Calculator — Estimate Your Due Date | Clockr"
+	description="Estimate your pregnancy due date from your last period, conception date, or IVF transfer date. Track weeks and days pregnant, trimester, days remaining, and progress."
+	category="birthdays"
+>
+	<div class="pdd-page">
+		<div class="pdd-header">
+			<div class="pdd-eyebrow">
+				<span class="pdd-eyebrow-square" aria-hidden="true"></span>
+				AGE & BIRTHDAYS
+			</div>
+			<h1 class="pdd-title">
+				<span class="pdd-gradient">Pregnancy Due Date</span><br />
+				<span class="pdd-gradient">Calculator</span>
+			</h1>
+			<p class="pdd-subtitle">
+				Estimate your due date and track your pregnancy week by week
+			</p>
+		</div>
+
+		<PregnancyDueDateCalculator client:load />
+
+		<section class="pdd-how">
+			<h2 class="pdd-section-title">How it works</h2>
+			<div class="pdd-how-card">
+				<p>
+					Most due dates are calculated using a simple guideline called
+					Naegele&rsquo;s rule: add 40 weeks (280 days) to the first day of your
+					last menstrual period. It&rsquo;s a helpful way to estimate timing, but
+					it&rsquo;s not a prediction — bodies and babies have their own schedules,
+					and your care team may refine dates based on scans and your individual
+					circumstances.
+				</p>
+				<p>
+					If you know a conception date, the estimate shifts slightly because
+					pregnancy is typically dated as 38 weeks (266 days) from conception. For
+					IVF, using the transfer date can be even clearer because the embryo age
+					is known — this calculator uses a common estimate for a 5-day blastocyst
+					transfer, but clinics may use different conventions depending on the
+					transfer day and protocol.
+				</p>
+				<p>
+					Even with the best information, a due date is best thought of as a
+					landmark on the calendar, not a deadline. Only a small percentage of
+					babies arrive exactly on their estimated date, and that&rsquo;s completely
+					normal. Use this as a friendly guide for planning — and lean on your
+					midwife or doctor for the most accurate dates and care.
+				</p>
+			</div>
+		</section>
+
+		<section class="pdd-faq">
+			<h2 class="pdd-section-title">Frequently asked questions</h2>
+			<div class="pdd-faq-list">
+				<details class="pdd-faq-item">
+					<summary class="pdd-faq-question">How accurate is a due date calculator?</summary>
+					<div class="pdd-faq-answer">
+						<p>
+							Due date calculators give a helpful estimate, but they can&rsquo;t predict
+							the exact day your baby will arrive. Only around 5% of babies are born
+							on their exact due date, and many arrive a little earlier or later.
+							Your midwife or doctor may refine timing based on scans and your
+							individual circumstances.
+						</p>
+					</div>
+				</details>
+
+				<details class="pdd-faq-item">
+					<summary class="pdd-faq-question">How is my due date calculated from my last period?</summary>
+					<div class="pdd-faq-answer">
+						<p>
+							The most common method adds 40 weeks (280 days) to the first day of your
+							last menstrual period. This is often called Naegele&rsquo;s rule. It&rsquo;s
+							widely used because many people know their period date even if they
+							don&rsquo;t know the exact day of conception.
+						</p>
+					</div>
+				</details>
+
+				<details class="pdd-faq-item">
+					<summary class="pdd-faq-question">What's the difference between calculating from LMP, conception, or IVF transfer?</summary>
+					<div class="pdd-faq-answer">
+						<p>
+							LMP uses an average cycle and adds 40 weeks, while conception-based
+							estimates add 38 weeks from conception. IVF transfer can be clearer
+							because the embryo age is known, but clinics may use slightly different
+							conventions depending on the transfer day. If you&rsquo;re unsure, use the
+							date your clinic provides as your reference.
+						</p>
+					</div>
+				</details>
+
+				<details class="pdd-faq-item">
+					<summary class="pdd-faq-question">How many weeks pregnant am I?</summary>
+					<div class="pdd-faq-answer">
+						<p>
+							This calculator shows your current pregnancy week and day (for example,
+							14 weeks and 3 days). Pregnancy is usually counted from the first day of
+							your last period, so if you use conception or IVF dates, the tool
+							converts them into an LMP-equivalent starting point to keep the week
+							count consistent.
+						</p>
+					</div>
+				</details>
+
+				<details class="pdd-faq-item">
+					<summary class="pdd-faq-question">What trimester am I in?</summary>
+					<div class="pdd-faq-answer">
+						<p>
+							Trimester timing can vary slightly by country and clinic, but a common
+							approach is: 1st trimester up to 12 weeks, 2nd trimester from 13 to 26
+							weeks, and 3rd trimester from 27 weeks to birth. Your care team may
+							describe these ranges a little differently, and that&rsquo;s normal.
+						</p>
+					</div>
+				</details>
+
+				<details class="pdd-faq-item">
+					<summary class="pdd-faq-question">Can my due date change as my pregnancy progresses?</summary>
+					<div class="pdd-faq-answer">
+						<p>
+							Yes — it can. Early ultrasound measurements sometimes suggest a slightly
+							different due date than an LMP-based estimate, especially if cycles are
+							irregular. If your care team updates your due date, it&rsquo;s best to
+							follow their guidance for appointments and planning.
+						</p>
+					</div>
+				</details>
+
+				<details class="pdd-faq-item">
+					<summary class="pdd-faq-question">When should I see a doctor or midwife to confirm my due date?</summary>
+					<div class="pdd-faq-answer">
+						<p>
+							If you think you might be pregnant, it&rsquo;s a good idea to book in with
+							a midwife or doctor as soon as you feel ready. They can confirm
+							pregnancy, talk you through next steps, and arrange dating scans when
+							appropriate. If you have any worrying symptoms or feel unwell, seek
+							medical advice promptly.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="pdd-related">
+			<h3 class="pdd-related-title">Related tools</h3>
+			<div class="pdd-related-grid">
+				<a href="/age-calculator" class="pdd-related-card"
+					><span class="pdd-related-name">Age Calculator</span></a
+				>
+				<a href="/days-until-birthday" class="pdd-related-card"
+					><span class="pdd-related-name">Days Until Birthday</span></a
+				>
+				<a href="/life-in-numbers" class="pdd-related-card"
+					><span class="pdd-related-name">Your Life in Numbers</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.pdd-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.pdd-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.pdd-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.pdd-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: #8b5cf6;
+		box-shadow: 0 0 18px rgba(139, 92, 246, 0.35);
+	}
+
+	.pdd-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.pdd-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pdd-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	/* React tool styles */
+	:global(.pddc-tool) {
+		margin-bottom: 56px;
+	}
+
+	:global(.pddc-card) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 24px;
+		box-shadow: 0 0 40px rgba(139, 92, 246, 0.06);
+	}
+
+	:global(.pddc-card-header) {
+		text-align: center;
+		margin-bottom: 18px;
+	}
+
+	:global(.pddc-card-title) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 800;
+		color: rgba(255, 255, 255, 0.9);
+		margin-bottom: 6px;
+	}
+
+	:global(.pddc-card-subtitle) {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.5;
+	}
+
+	:global(.pddc-methods) {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 10px;
+		margin-bottom: 18px;
+	}
+
+	:global(.pddc-method) {
+		border: 1px solid rgba(139, 92, 246, 0.22);
+		background: rgba(139, 92, 246, 0.06);
+		border-radius: 14px;
+		padding: 14px 14px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.75);
+		cursor: pointer;
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+
+	:global(.pddc-method:hover) {
+		border-color: rgba(139, 92, 246, 0.45);
+		background: rgba(139, 92, 246, 0.08);
+	}
+
+	:global(.pddc-method.is-active) {
+		border-color: rgba(236, 72, 153, 0.55);
+		background: rgba(236, 72, 153, 0.08);
+		color: rgba(255, 255, 255, 0.9);
+	}
+
+	:global(.pddc-input-row) {
+		display: flex;
+		justify-content: center;
+	}
+
+	:global(.pddc-input-wrap) {
+		width: 100%;
+		max-width: 520px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	:global(.pddc-label) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+		text-align: center;
+	}
+
+	:global(.pddc-input) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	:global(.pddc-input:focus) {
+		border-color: rgba(139, 92, 246, 0.8);
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+	}
+
+	:global(.pddc-note) {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+		margin: 0;
+		text-align: center;
+		background: rgba(236, 72, 153, 0.06);
+		border: 1px solid rgba(236, 72, 153, 0.18);
+		border-radius: 12px;
+		padding: 12px 14px;
+	}
+
+	:global(.pddc-results) {
+		margin-top: 14px;
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 28px 24px;
+		box-shadow: 0 0 50px rgba(236, 72, 153, 0.06);
+	}
+
+	:global(.pddc-main) {
+		text-align: center;
+		margin-bottom: 18px;
+	}
+
+	:global(.pddc-main-kicker) {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.45);
+		margin-bottom: 10px;
+	}
+
+	:global(.pddc-main-date) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 44px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 10px;
+	}
+
+	:global(.pddc-main-sub) {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.6);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	:global(.pddc-main-sub strong) {
+		color: rgba(255, 255, 255, 0.85);
+		font-weight: 600;
+	}
+
+	:global(.pddc-stats) {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		margin-bottom: 18px;
+	}
+
+	:global(.pddc-stat) {
+		background: rgba(139, 92, 246, 0.06);
+		border: 1px solid rgba(139, 92, 246, 0.18);
+		border-radius: 14px;
+		padding: 16px 14px;
+		text-align: center;
+	}
+
+	:global(.pddc-stat-num) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 900;
+		letter-spacing: -0.5px;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 6px;
+	}
+
+	:global(.pddc-stat-label) {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	:global(.pddc-progress) {
+		margin-bottom: 14px;
+	}
+
+	:global(.pddc-progress-top) {
+		display: flex;
+		justify-content: space-between;
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 8px;
+	}
+
+	:global(.pddc-progress-track) {
+		height: 10px;
+		background: rgba(255, 255, 255, 0.08);
+		border-radius: 999px;
+		overflow: hidden;
+	}
+
+	:global(.pddc-progress-fill) {
+		height: 100%;
+		width: 0%;
+		background: linear-gradient(90deg, #8b5cf6, #ec4899);
+		border-radius: 999px;
+		transition: width 0.4s ease;
+	}
+
+	:global(.pddc-disclaimer) {
+		background: rgba(236, 72, 153, 0.05);
+		border-left: 3px solid #ec4899;
+		border-radius: 0 12px 12px 0;
+		padding: 14px 18px;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.6);
+		line-height: 1.6;
+	}
+
+	.pdd-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.pdd-how {
+		margin-bottom: 48px;
+	}
+
+	.pdd-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.pdd-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.pdd-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.pdd-faq {
+		margin-bottom: 48px;
+	}
+
+	.pdd-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.pdd-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.pdd-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pdd-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.pdd-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pdd-faq-item[open] .pdd-faq-question::after {
+		content: '−';
+	}
+
+	.pdd-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.pdd-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.pdd-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.pdd-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.pdd-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.pdd-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.pdd-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+	}
+
+	.pdd-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.pdd-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		:global(.pddc-main-date) {
+			font-size: 34px;
+		}
+
+		:global(.pddc-stats) {
+			grid-template-columns: 1fr;
+		}
+
+		.pdd-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
+

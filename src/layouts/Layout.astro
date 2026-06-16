@@ -20,10 +20,18 @@ const siteUrl = Astro.site ?? 'https://clockr.co';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 
 const navLinks = [
-	{ label: 'Tools', href: '/tools' },
 	{ label: 'Countdowns', href: '/countdowns' },
 	{ label: 'History', href: '/history' },
 	{ label: 'More', href: '/more' },
+];
+
+const toolsDropdownLinks = [
+	{ label: 'All tools', href: '/#featured-tools' },
+	{ label: 'Age Calculator', href: '/age-calculator' },
+	{ label: 'Days Until Birthday', href: '/days-until-birthday' },
+	{ label: 'Pregnancy Due Date Calculator', href: '/pregnancy-due-date-calculator' },
+	{ label: 'Your Life in Numbers', href: '/life-in-numbers' },
+	{ label: 'What Generation Am I', href: '/what-generation' },
 ];
 
 const footerLinks = [
@@ -74,6 +82,20 @@ const footerLinks = [
 				</div>
 
 				<ul class="nav-links">
+					<li class="tools-dropdown">
+						<details>
+							<summary>Tools</summary>
+							<div class="tools-menu" role="menu" aria-label="Tools">
+								{
+									toolsDropdownLinks.map((link) => (
+										<a role="menuitem" href={link.href} class="tools-menu-link">
+											{link.label}
+										</a>
+									))
+								}
+							</div>
+						</details>
+					</li>
 					{
 						navLinks.map((link) => (
 							<li>
@@ -169,6 +191,70 @@ const footerLinks = [
 
 	.nav-links a:hover {
 		color: #FF5C4D;
+	}
+
+	.tools-dropdown details {
+		position: relative;
+	}
+
+	.tools-dropdown summary {
+		list-style: none;
+		cursor: pointer;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.85);
+		letter-spacing: 0.3px;
+		transition: color 0.2s ease;
+	}
+
+	.tools-dropdown summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.tools-dropdown summary:hover {
+		color: #FF5C4D;
+	}
+
+	.tools-dropdown summary::after {
+		content: '▾';
+		margin-left: 8px;
+		font-size: 12px;
+		opacity: 0.7;
+	}
+
+	.tools-menu {
+		position: absolute;
+		top: calc(100% + 12px);
+		left: 50%;
+		transform: translateX(-50%);
+		min-width: 260px;
+		background: #111111;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 12px;
+		padding: 10px;
+		box-shadow: 0 24px 48px rgba(0, 0, 0, 0.55);
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		z-index: 50;
+	}
+
+	.tools-menu-link {
+		display: block;
+		padding: 10px 12px;
+		border-radius: 10px;
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.8);
+		text-decoration: none;
+		transition: background 0.15s ease, color 0.15s ease;
+	}
+
+	.tools-menu-link:hover {
+		background: rgba(255, 92, 77, 0.12);
+		color: rgba(255, 255, 255, 0.95);
 	}
 
 	nav {
