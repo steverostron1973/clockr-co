@@ -1,0 +1,531 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FathersDayCountdown from '../components/FathersDayCountdown.jsx';
+
+const leftEmojis = [
+	{ emoji: '👔', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '🛠️', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '⚽', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '🍺', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '👔', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '🛠️', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '⚽', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '🍺', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '👔', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '🛠️', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '⚽', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '🍺', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title="Father's Day Countdown — Days Until Father's Day | Clockr"
+	description="How many days until Father's Day? Live countdown to the third Sunday in June — showing days, hours, minutes and seconds until the next Father's Day in the UK, US and worldwide."
+	category="holidays"
+>
+	<div class="fd-page">
+		<section class="fd-hero" aria-label="Father's Day countdown">
+			<div class="fd-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="fd-float-emoji fd-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="fd-float-emoji fd-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="fd-hero-centre">
+				<div class="fd-eyebrow">
+					<span class="fd-eyebrow-square" aria-hidden="true"></span>
+					HOLIDAY COUNTDOWNS
+				</div>
+				<h1 class="fd-hero-title">Father's Day Countdown</h1>
+				<p class="fd-subtitle">Counting down to Father's Day</p>
+
+				<FathersDayCountdown client:load />
+			</div>
+		</section>
+
+		<div class="fd-body">
+			<section class="fd-how">
+				<h2 class="fd-section-title">How it works</h2>
+				<div class="fd-how-card">
+					<p>
+						Father's Day began in Spokane, Washington, when Sonora Smart Dodd
+						campaigned for a day to honour fathers after hearing a Mother's Day
+						sermon in 1909. Her own father, William Jackson Smart, had raised six
+						children as a single parent after his wife died in childbirth. The
+						first Father's Day celebration took place on 19 June 1910 in Spokane,
+						and the idea spread across the United States over the following
+						decades. President Richard Nixon signed a proclamation in 1972 making
+						Father's Day a permanent federal holiday, celebrated on the third
+						Sunday in June.
+					</p>
+					<p>
+						The UK, United States, Canada, India, Japan, Mexico, and dozens of
+						other countries all observe Father's Day on the third Sunday in June.
+						Unlike Mother's Day — where the UK celebrates Mothering Sunday on a
+						Lent-linked date while the US uses the second Sunday in May — Father's
+						Day follows a single, consistent rule almost everywhere. That shared
+						calendar makes it easy to plan cards, gifts, and family gatherings
+						across borders without checking regional differences.
+					</p>
+					<p>
+						Some countries do mark Father's Day on other dates. Catholic nations
+						in Europe, including Italy, Spain, and Portugal, traditionally honour
+						fathers on 19 March — the feast day of St Joseph. Australia and New
+						Zealand celebrate on the first Sunday in September, while Thailand
+						holds its Father's Day on the King's birthday in December. This
+						countdown uses the third-Sunday-of-June rule and automatically rolls
+						forward to the following year once the current Father's Day has passed.
+					</p>
+				</div>
+			</section>
+
+			<section class="fd-faq">
+				<h2 class="fd-section-title">Frequently asked questions</h2>
+				<div class="fd-faq-list">
+					<details class="fd-faq-item">
+						<summary class="fd-faq-question">When is Father's Day in the UK?</summary>
+						<div class="fd-faq-answer">
+							<p>
+								In the UK, Father's Day falls on the third Sunday in June every
+								year. The exact date shifts between 15 June and 21 June depending
+								on how the calendar lines up. Use the live countdown at the top of
+								this page to see the precise date and time remaining until the
+								next UK Father's Day.
+							</p>
+						</div>
+					</details>
+					<details class="fd-faq-item">
+						<summary class="fd-faq-question">When is Father's Day in the US?</summary>
+						<div class="fd-faq-answer">
+							<p>
+								In the United States, Father's Day is always the third Sunday in
+								June — the same rule as the UK. It has been a federal holiday
+								since 1972, when President Nixon signed the permanent
+								proclamation. The date always falls between 15 June and 21 June.
+							</p>
+						</div>
+					</details>
+					<details class="fd-faq-item">
+						<summary class="fd-faq-question"
+							>Is Father's Day on the same date in the UK and US?</summary
+						>
+						<div class="fd-faq-answer">
+							<p>
+								Yes. Both the UK and US celebrate Father's Day on the third
+								Sunday in June, so the date is identical every year. This is
+								unlike Mother's Day, where the UK observes Mothering Sunday on a
+								different calendar rule from the US second-Sunday-in-May
+								tradition.
+							</p>
+						</div>
+					</details>
+					<details class="fd-faq-item">
+						<summary class="fd-faq-question">What is the history of Father's Day?</summary>
+						<div class="fd-faq-answer">
+							<p>
+								Father's Day was founded by Sonora Smart Dodd of Spokane,
+								Washington, who was inspired by the growing Mother's Day movement.
+								After her mother died, her father William raised six children alone.
+								Dodd proposed a Father's Day in 1909, and the first celebration
+								was held on 19 June 1910. Congress and presidents issued
+								proclamations over the years, and Richard Nixon made it a
+								permanent US federal holiday in 1972, fixed to the third Sunday
+								in June.
+							</p>
+						</div>
+					</details>
+					<details class="fd-faq-item">
+						<summary class="fd-faq-question"
+							>Do other countries celebrate Father's Day on a different date?</summary
+						>
+						<div class="fd-faq-answer">
+							<p>
+								Yes. While most countries follow the third Sunday in June, several
+								nations use their own dates. Italy, Spain, and Portugal
+								traditionally celebrate on 19 March (St Joseph's Day). Australia
+								and New Zealand observe the first Sunday in September. Thailand
+								celebrates on the birthday of the late King Bhumibol in December.
+								Always check locally if you are planning something abroad.
+							</p>
+						</div>
+					</details>
+					<details class="fd-faq-item">
+						<summary class="fd-faq-question">Is Father's Day a public holiday?</summary>
+						<div class="fd-faq-answer">
+							<p>
+								Father's Day is a recognised holiday in the United States and many
+								other countries, but it is not a public holiday in the UK or US —
+								schools, shops, and offices remain open as usual. It is a day for
+								family gatherings, cards, and gifts rather than a day off work,
+								unlike bank holidays or federal days of closure.
+							</p>
+						</div>
+					</details>
+				</div>
+			</section>
+
+			<div class="fd-related">
+				<h3 class="fd-related-title">Related tools</h3>
+				<div class="fd-related-grid">
+					<a href="/days-until-mothers-day" class="fd-related-card"
+						><span class="fd-related-name">Mother's Day Countdown</span></a
+					>
+					<a href="/days-until-christmas" class="fd-related-card"
+						><span class="fd-related-name">Days Until Christmas</span></a
+					>
+					<a href="/days-until-easter" class="fd-related-card"
+						><span class="fd-related-name">Days Until Easter</span></a
+					>
+					<a href="/anniversary-calculator" class="fd-related-card"
+						><span class="fd-related-name">Anniversary Calculator</span></a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.fd-page {
+		width: 100%;
+	}
+
+	.fd-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #0a1628, #0f1f3d);
+		border-bottom: 1px solid rgba(59, 130, 246, 0.25);
+		overflow: hidden;
+		position: relative;
+		min-height: 320px;
+	}
+
+	.fd-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.fd-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: fd-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.fd-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes fd-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.fd-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.fd-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.fd-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: #3b82f6;
+		box-shadow: 0 0 18px rgba(59, 130, 246, 0.35);
+	}
+
+	.fd-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.fd-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0 0 28px;
+	}
+
+	:global(.fd-countdown-widget) {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	:global(.fd-countdown) {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	:global(.fd-countdown-block) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	:global(.fd-countdown-num) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	:global(.fd-countdown-num--days) {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	:global(.fd-countdown-sep) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	:global(.fd-countdown-unit) {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	:global(.fd-target-date) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(15px, 2.5vw, 18px);
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.65);
+		margin: 24px 0 0;
+		line-height: 1.5;
+	}
+
+	.fd-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.fd-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.fd-how {
+		margin-bottom: 48px;
+	}
+
+	.fd-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(59, 130, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.fd-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.fd-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.fd-faq {
+		margin-bottom: 48px;
+	}
+
+	.fd-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.fd-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(59, 130, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.fd-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.fd-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.fd-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.fd-faq-item[open] .fd-faq-question::after {
+		content: '−';
+	}
+
+	.fd-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.fd-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.fd-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.fd-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.fd-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.fd-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.fd-related-card:hover {
+		border-color: rgba(59, 130, 246, 0.4);
+	}
+
+	.fd-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.fd-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
