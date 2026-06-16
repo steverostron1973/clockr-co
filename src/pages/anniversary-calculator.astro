@@ -1,0 +1,561 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AnniversaryCalculator from '../components/AnniversaryCalculator.jsx';
+---
+
+<Layout
+	title="Anniversary Calculator — How Long Have You Been Together? | Clockr"
+	description="Calculate how long you've been together, married, or celebrating. See years, months, days elapsed, total days, and countdown to your next anniversary."
+	category="birthdays"
+>
+	<div class="anc-page">
+		<div class="anc-header">
+			<div class="anc-eyebrow">
+				<span class="anc-eyebrow-square" aria-hidden="true"></span>
+				AGE & BIRTHDAYS
+			</div>
+			<h1 class="anc-title">
+				<span class="anc-gradient">Anniversary</span><br />
+				<span class="anc-gradient">Calculator</span>
+			</h1>
+			<p class="anc-subtitle">
+				Find out how long you've been together, married, or celebrating
+			</p>
+		</div>
+
+		<AnniversaryCalculator client:load />
+
+		<section class="anc-how">
+			<h2 class="anc-section-title">How it works</h2>
+			<div class="anc-how-card">
+				<p>
+					Clockr calculates the time between your anniversary date and today by
+					working through the calendar year by year, month by month, and day by
+					day. Rather than assuming every month has 30 days, the tool accounts
+					for months of different lengths — from 28 or 29 days in February to
+					31 days in January — and includes leap years, where an extra day is
+					added every four years. The result is a precise breakdown of years,
+					months, and days, plus a total day count.
+				</p>
+				<p>
+					Certain anniversary years carry special meaning in the traditional
+					wedding gift list. Paper marks the 1st anniversary, wood the 5th, tin
+					or aluminium the 10th, silver the 25th, and gold the 50th. These
+					milestones — 1, 5, 10, 25, and 50 years — are widely celebrated
+					because they mark meaningful chapters in a relationship. Clockr
+					highlights when your next anniversary falls on one of these notable
+					years.
+				</p>
+				<p>
+					The next anniversary countdown finds the upcoming occurrence of your
+					anniversary date on the calendar. If that date has already passed this
+					year, the tool looks ahead to the same day next year — including
+					handling 29 February anniversaries in non-leap years. The number of
+					days shown is the count from today to that next anniversary date.
+				</p>
+			</div>
+		</section>
+
+		<section class="anc-faq">
+			<h2 class="anc-section-title">Frequently asked questions</h2>
+			<div class="anc-faq-list">
+				<details class="anc-faq-item">
+					<summary class="anc-faq-question"
+						>How do I calculate how long we've been together?</summary
+					>
+					<div class="anc-faq-answer">
+						<p>
+							Enter the date your relationship began, your wedding day, or any
+							other anniversary you want to track in the date field above. Clockr
+							instantly shows how many years, months, and days have passed since
+							that date, along with the total number of days. You can also add an
+							optional label — such as "Wedding" or "First date" — to personalise
+							the result.
+						</p>
+					</div>
+				</details>
+
+				<details class="anc-faq-item">
+					<summary class="anc-faq-question"
+						>What is the traditional gift for each wedding anniversary year?</summary
+					>
+					<div class="anc-faq-answer">
+						<p>
+							The traditional wedding anniversary gift list assigns a material to
+							each year. Common milestones include paper (1st), cotton (2nd),
+							leather (3rd), wood (5th), tin or aluminium (10th), crystal (15th),
+							china (20th), silver (25th), pearl (30th), ruby (40th), gold (50th),
+							and diamond (60th). Modern lists sometimes suggest different gifts,
+							but the traditional themes remain popular for cards, parties, and
+							keepsakes.
+						</p>
+					</div>
+				</details>
+
+				<details class="anc-faq-item">
+					<summary class="anc-faq-question"
+						>How many days have we been married?</summary
+					>
+					<div class="anc-faq-answer">
+						<p>
+							Enter your wedding date and Clockr displays the total number of days
+							since that date beneath the years, months, and days breakdown. The
+							count includes every calendar day from your wedding day to today,
+							accounting for leap years and months of varying length.
+						</p>
+					</div>
+				</details>
+
+				<details class="anc-faq-item">
+					<summary class="anc-faq-question">When is our next anniversary?</summary>
+					<div class="anc-faq-answer">
+						<p>
+							Once you enter your anniversary date, the results show how many days
+							until your next anniversary and the exact date it falls on. If your
+							anniversary has already passed this calendar year, the tool counts
+							down to the same date next year. For future dates, it shows the
+							countdown until that first anniversary arrives.
+						</p>
+					</div>
+				</details>
+
+				<details class="anc-faq-item">
+					<summary class="anc-faq-question"
+						>What is considered a milestone anniversary?</summary
+					>
+					<div class="anc-faq-answer">
+						<p>
+							Milestone anniversaries are typically the 1st, 5th, 10th, 25th, and
+							50th years, though many couples also celebrate the 15th, 20th, and
+							other round numbers. These years are associated with traditional gift
+							themes — paper, wood, tin, silver, and gold — and are often marked
+							with parties, trips, or special gifts. Clockr highlights when your
+							upcoming anniversary is one of these notable years.
+						</p>
+					</div>
+				</details>
+
+				<details class="anc-faq-item">
+					<summary class="anc-faq-question"
+						>Can I use this for any type of anniversary, not just weddings?</summary
+					>
+					<div class="anc-faq-answer">
+						<p>
+							Yes. Enter any meaningful date — a first date, engagement, civil
+							partnership, work anniversary, or friendship milestone — and use the
+							optional label field to describe what you are celebrating. The
+							calculator works the same way regardless of the occasion.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="anc-related">
+			<h3 class="anc-related-title">Related tools</h3>
+			<div class="anc-related-grid">
+				<a href="/age-calculator" class="anc-related-card"
+					><span class="anc-related-name">Age Calculator</span></a
+				>
+				<a href="/days-until-birthday" class="anc-related-card"
+					><span class="anc-related-name">Days Until Birthday</span></a
+				>
+				<a href="/pregnancy-due-date-calculator" class="anc-related-card"
+					><span class="anc-related-name">Pregnancy Due Date Calculator</span></a
+				>
+				<a href="/life-in-numbers" class="anc-related-card"
+					><span class="anc-related-name">Your Life in Numbers</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.anc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.anc-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.anc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.anc-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: #8b5cf6;
+		box-shadow: 0 0 18px rgba(139, 92, 246, 0.35);
+	}
+
+	.anc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.anc-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.anc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	:global(.anc-tool) {
+		margin-bottom: 56px;
+	}
+
+	:global(.anc-card) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 24px;
+		box-shadow: 0 0 40px rgba(139, 92, 246, 0.06);
+		margin-bottom: 24px;
+	}
+
+	:global(.anc-inputs) {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+	}
+
+	:global(.anc-input-wrap) {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	:global(.anc-label) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+		text-align: center;
+	}
+
+	:global(.anc-input) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	:global(.anc-input--text) {
+		font-size: 18px;
+		font-weight: 600;
+	}
+
+	:global(.anc-input::placeholder) {
+		color: rgba(255, 255, 255, 0.25);
+		font-weight: 500;
+	}
+
+	:global(.anc-input:focus) {
+		border-color: rgba(139, 92, 246, 0.8);
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+	}
+
+	:global(.anc-presets) {
+		margin-bottom: 24px;
+	}
+
+	:global(.anc-presets-title) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.85);
+		text-align: center;
+		margin: 0 0 12px;
+	}
+
+	:global(.anc-presets-grid) {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px;
+	}
+
+	:global(.anc-preset) {
+		border: 1px solid rgba(139, 92, 246, 0.22);
+		background: rgba(139, 92, 246, 0.06);
+		border-radius: 14px;
+		padding: 14px 12px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.75);
+		cursor: pointer;
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+
+	:global(.anc-preset:hover) {
+		border-color: rgba(139, 92, 246, 0.45);
+		background: rgba(139, 92, 246, 0.08);
+	}
+
+	:global(.anc-results) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 32px 24px;
+		box-shadow: 0 0 50px rgba(236, 72, 153, 0.06);
+		text-align: center;
+	}
+
+	:global(.anc-main) {
+		margin-bottom: 24px;
+	}
+
+	:global(.anc-main-heading) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 36px;
+		font-weight: 900;
+		letter-spacing: -1.5px;
+		line-height: 1.15;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin: 0 0 12px;
+	}
+
+	:global(.anc-total-days) {
+		font-family: 'Inter', sans-serif;
+		font-size: 18px;
+		color: rgba(255, 255, 255, 0.55);
+		margin: 0;
+	}
+
+	:global(.anc-next) {
+		background: rgba(139, 92, 246, 0.06);
+		border: 1px solid rgba(139, 92, 246, 0.18);
+		border-radius: 14px;
+		padding: 20px 18px;
+		margin-bottom: 16px;
+	}
+
+	:global(.anc-next-line) {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+		margin: 0 0 6px;
+	}
+
+	:global(.anc-next-line strong) {
+		color: rgba(255, 255, 255, 0.85);
+		font-weight: 600;
+	}
+
+	:global(.anc-next-date) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 800;
+		color: rgba(255, 255, 255, 0.9);
+		margin: 0;
+	}
+
+	:global(.anc-milestone) {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.65);
+		line-height: 1.6;
+		margin: 0;
+		background: rgba(236, 72, 153, 0.06);
+		border: 1px solid rgba(236, 72, 153, 0.18);
+		border-radius: 12px;
+		padding: 12px 14px;
+	}
+
+	.anc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.anc-how {
+		margin-bottom: 48px;
+	}
+
+	.anc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.anc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.anc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.anc-faq {
+		margin-bottom: 48px;
+	}
+
+	.anc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.anc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.anc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.anc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.anc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.anc-faq-item[open] .anc-faq-question::after {
+		content: '−';
+	}
+
+	.anc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.anc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.anc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.anc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.anc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.anc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.anc-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+	}
+
+	.anc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.anc-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		:global(.anc-main-heading) {
+			font-size: 28px;
+		}
+
+		:global(.anc-presets-grid) {
+			grid-template-columns: 1fr;
+		}
+
+		.anc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
