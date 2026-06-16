@@ -1,0 +1,581 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RandomDateGenerator from '../components/RandomDateGenerator.jsx';
+---
+
+<Layout
+	title="Random Date Generator — Pick a Date in Any Range | Clockr"
+	description="Generate a random date within any range. See the day of the week, ISO week number and how many days ago or from now. Free random date picker."
+>
+	<div class="rdg-page">
+		<div class="rdg-header">
+			<div class="rdg-eyebrow">
+				<span class="rdg-eyebrow-square" aria-hidden="true"></span>
+				Calendar & Dates
+			</div>
+			<h1 class="rdg-title">
+				<span class="rdg-gradient">Random Date</span><br />
+				<span class="rdg-gradient">Generator</span>
+			</h1>
+			<p class="rdg-subtitle">
+				Generate random dates within any range
+			</p>
+		</div>
+
+		<RandomDateGenerator client:load />
+
+		<!-- HOW IT WORKS -->
+		<section class="rdg-how">
+			<h2 class="rdg-section-title">How it works</h2>
+			<div class="rdg-how-card">
+				<p>
+					A random date generator picks a single calendar date from within a
+					range you define. Developers use it to create test data with realistic
+					birthdays, order dates, or expiry timestamps. Teachers and quiz
+					makers use it for history games and timeline challenges. Anyone
+					planning a surprise event, a randomised daily challenge, or a fair way
+					to settle a tie can let the tool choose the date instead of arguing
+					over the calendar.
+				</p>
+				<p>
+					When you click Generate, Clockr counts the number of days between
+					your From and To dates (inclusive), picks a random whole number in
+					that range, and adds it to the start date. Every day in the range
+					has an equal chance of being selected — a uniform distribution across
+					the full span. The result is not weighted toward recent years or
+					popular months; a date in 2003 is as likely as one in 2024 when both
+					fall inside your chosen boundaries.
+				</p>
+				<p>
+					You can set any range from year 1 to year 9999 using the date
+					inputs. Very wide ranges — for example, the entire Common Era — are
+					supported, but because most of that span lies in the distant past,
+					the majority of results will naturally fall in earlier centuries
+					simply because there are more days there. Narrow the range when you
+					need dates from a specific era, decade, or project window.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="rdg-faq">
+			<h2 class="rdg-section-title">Frequently asked questions</h2>
+			<div class="rdg-faq-list">
+				<details class="rdg-faq-item">
+					<summary class="rdg-faq-question"
+						>How does the random date generator work?</summary
+					>
+					<div class="rdg-faq-answer">
+						<p>
+							Set a start date (From) and end date (To), then click Generate.
+							Clockr calculates how many days lie between them, selects a
+							random offset, and returns the matching calendar date. The result
+							includes the full date with weekday, the ISO week number, and how
+							many days ago or from now that date falls relative to today.
+						</p>
+					</div>
+				</details>
+				<details class="rdg-faq-item">
+					<summary class="rdg-faq-question"
+						>Can I generate a random date from a specific range?</summary
+					>
+					<div class="rdg-faq-answer">
+						<p>
+							Yes. Change the From and To fields to any valid dates — for
+							example, 1 January 1990 to 31 December 1999 for a random date in
+							the 1990s, or last Monday to next Friday for a short window. The
+							generator only returns dates that fall on or between your chosen
+							boundaries, inclusive of both endpoints.
+						</p>
+					</div>
+				</details>
+				<details class="rdg-faq-item">
+					<summary class="rdg-faq-question"
+						>Is the random date generator truly random?</summary
+					>
+					<div class="rdg-faq-answer">
+						<p>
+							Clockr uses your browser's built-in pseudorandom number generator
+							(Math.random) to pick the day offset. Each day in the range has
+							an equal probability. This is suitable for games, testing, and
+							casual decision-making. For cryptographic or high-stakes
+							applications that require unpredictable entropy, use a dedicated
+							cryptographic random source instead.
+						</p>
+					</div>
+				</details>
+				<details class="rdg-faq-item">
+					<summary class="rdg-faq-question"
+						>What can I use a random date generator for?</summary
+					>
+					<div class="rdg-faq-answer">
+						<p>
+							Common uses include generating sample dates for software testing,
+							picking a random historical date for a quiz, choosing a surprise
+							anniversary or meet-up day, creating writing prompts tied to a
+							specific era, and settling friendly bets or raffles where a fair
+							random date is needed. Teachers, developers, and event planners
+							all use it for quick, unbiased date selection.
+						</p>
+					</div>
+				</details>
+				<details class="rdg-faq-item">
+					<summary class="rdg-faq-question"
+						>Can I generate multiple random dates at once?</summary
+					>
+					<div class="rdg-faq-answer">
+						<p>
+							This tool generates one random date per click. To get several
+							dates, click Generate repeatedly — each result is independent of
+							the last. The same date can appear more than once across multiple
+							clicks, just as a dice roll can repeat. If you need a list of
+							unique dates without duplicates, generate several times and
+							discard any repeats manually.
+						</p>
+					</div>
+				</details>
+				<details class="rdg-faq-item">
+					<summary class="rdg-faq-question"
+						>How do I find out what day of the week a random date falls on?</summary
+					>
+					<div class="rdg-faq-answer">
+						<p>
+							The result shows the weekday twice: in the main date line (for
+							example, "Tuesday, 14 March 2017") and as a separate "Day of the
+							week" field below. You can also use Clockr's Day of the Week
+							Calculator to look up any specific date in more detail, including
+							a weekday distribution chart for birthdays.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="rdg-related">
+			<h3 class="rdg-related-title">Related tools</h3>
+			<div class="rdg-related-grid">
+				<a href="/day-of-week" class="rdg-related-card"
+					><span class="rdg-related-name"
+						>Day of the Week Calculator</span
+					></a
+				>
+				<a href="/week-number-calculator" class="rdg-related-card"
+					><span class="rdg-related-name">Week Number Calculator</span></a
+				>
+				<a href="/date-calculator" class="rdg-related-card"
+					><span class="rdg-related-name">Date Calculator</span></a
+				>
+				<a href="/quarter-calculator" class="rdg-related-card"
+					><span class="rdg-related-name">Quarter Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.rdg-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.rdg-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.rdg-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.rdg-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.rdg-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.rdg-gradient {
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.rdg-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.rdg-range-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 20px;
+		padding: 32px;
+		margin-bottom: 48px;
+	}
+
+	.rdg-range-inputs {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 24px;
+		margin-bottom: 24px;
+	}
+
+	.rdg-input-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.rdg-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+	}
+
+	.rdg-input {
+		background: #080808;
+		border: 1px solid rgba(16, 185, 129, 0.3);
+		border-radius: 12px;
+		padding: 16px 20px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		cursor: pointer;
+		transition: border-color 0.2s ease;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.rdg-input:focus {
+		border-color: rgba(16, 185, 129, 0.8);
+		box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+	}
+
+	.rdg-error {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: #f87171;
+		text-align: center;
+		margin: 0 0 16px;
+		line-height: 1.5;
+	}
+
+	.rdg-generate {
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 20px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		cursor: pointer;
+		width: 100%;
+		transition:
+			opacity 0.2s ease,
+			transform 0.15s ease;
+	}
+
+	.rdg-generate:hover:not(:disabled) {
+		opacity: 0.92;
+	}
+
+	.rdg-generate:disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+
+	.rdg-results {
+		margin-bottom: 48px;
+	}
+
+	.rdg-result-header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 16px;
+	}
+
+	.rdg-main-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.2);
+		border-radius: 20px;
+		padding: 40px;
+		text-align: center;
+		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.rdg-main-card--animate {
+		animation: rdg-fade-in 0.35s ease;
+	}
+
+	@keyframes rdg-fade-in {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.rdg-date-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 36px;
+		font-weight: 800;
+		letter-spacing: -1px;
+		line-height: 1.2;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 32px;
+	}
+
+	.rdg-stats {
+		display: flex;
+		justify-content: center;
+		gap: 48px;
+		flex-wrap: wrap;
+	}
+
+	.rdg-stat {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		max-width: 200px;
+	}
+
+	.rdg-stat-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 22px;
+		font-weight: 700;
+		color: #fff;
+		line-height: 1.2;
+		text-align: center;
+	}
+
+	.rdg-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+		text-align: center;
+	}
+
+	.rdg-copy {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.3);
+		border-radius: 10px;
+		padding: 10px 20px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.85);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.rdg-copy:hover {
+		border-color: rgba(16, 185, 129, 0.6);
+		background: rgba(16, 185, 129, 0.06);
+	}
+
+	.rdg-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.rdg-how {
+		margin-bottom: 48px;
+	}
+
+	.rdg-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.rdg-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.rdg-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.rdg-faq {
+		margin-bottom: 48px;
+	}
+
+	.rdg-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.rdg-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(16, 185, 129, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.rdg-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.rdg-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.rdg-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.rdg-faq-item[open] .rdg-faq-question::after {
+		content: '−';
+	}
+
+	.rdg-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.rdg-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.rdg-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.rdg-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.rdg-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.rdg-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.rdg-related-card:hover {
+		border-color: rgba(16, 185, 129, 0.4);
+	}
+
+	.rdg-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #10b981, #84cc16);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.rdg-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.rdg-range-inputs {
+			grid-template-columns: 1fr;
+		}
+
+		.rdg-date-title {
+			font-size: 28px;
+		}
+
+		.rdg-stats {
+			gap: 24px;
+		}
+
+		.rdg-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
