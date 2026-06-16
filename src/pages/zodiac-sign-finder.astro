@@ -1,0 +1,665 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ZodiacSignFinder from '../components/ZodiacSignFinder.jsx';
+---
+
+<Layout
+	title="Zodiac Sign Finder — What's Your Star Sign? | Clockr"
+	description="Find your Western zodiac sign, element, ruling planet, key traits, and birthstone instantly from your birth date."
+	category="birthdays"
+>
+	<div class="zsf-page">
+		<div class="zsf-header">
+			<div class="zsf-eyebrow">
+				<span class="zsf-eyebrow-square" aria-hidden="true"></span>
+				AGE & BIRTHDAYS
+			</div>
+			<h1 class="zsf-title">
+				<span class="zsf-gradient">Zodiac Sign Finder</span>
+			</h1>
+			<p class="zsf-subtitle">
+				Find your star sign and birthstone instantly
+			</p>
+		</div>
+
+		<ZodiacSignFinder client:load />
+
+		<section class="zsf-how">
+			<h2 class="zsf-section-title">How it works</h2>
+			<div class="zsf-how-card">
+				<p>
+					Western (tropical) zodiac signs divide the year into twelve segments
+					based on the sun&apos;s apparent path through the sky. Each sign
+					corresponds to a date range on the calendar — for example, Cancer runs
+					from roughly 21 June to 22 July. Enter your birth date and Clockr
+					matches it to the sign whose range includes that day, using the
+					traditional date boundaries used in most horoscope charts.
+				</p>
+				<p>
+					Astrology is a cultural tradition enjoyed by millions worldwide, but
+					it is not supported by scientific evidence. Zodiac signs, elements,
+					and planetary rulerships are symbolic rather than factual — think of
+					this tool as a fun way to explore a familiar system, not a guide to
+					your personality or future.
+				</p>
+				<p>
+					If you were born within a day or two of a sign boundary, you may hear
+					people call you a &ldquo;cusp&rdquo; birth — born close to where one
+					sign ends and the next begins. Exact cusp dates can shift slightly
+					from year to year because the sun&apos;s position at a given calendar
+					date varies by a day or so. Clockr uses the standard fixed date ranges;
+					for precise astronomical positions, a professional ephemeris would be
+					needed.
+				</p>
+			</div>
+		</section>
+
+		<section class="zsf-faq">
+			<h2 class="zsf-section-title">Frequently asked questions</h2>
+			<div class="zsf-faq-list">
+				<details class="zsf-faq-item">
+					<summary class="zsf-faq-question"
+						>What is my zodiac sign based on my birth date?</summary
+					>
+					<div class="zsf-faq-answer">
+						<p>
+							Your zodiac sign is determined by where the sun appeared to sit in
+							the sky on the day you were born. Each of the twelve signs covers
+							a specific range of calendar dates — Aries from late March to
+							mid-April, Taurus from mid-April to mid-May, and so on. Enter your
+							birth date above and Clockr instantly shows which sign&apos;s range
+							includes your birthday.
+						</p>
+					</div>
+				</details>
+
+				<details class="zsf-faq-item">
+					<summary class="zsf-faq-question"
+						>What are the dates for each zodiac sign?</summary
+					>
+					<div class="zsf-faq-answer">
+						<p>
+							The twelve signs and their typical date ranges are: Capricorn (22
+							Dec – 19 Jan), Aquarius (20 Jan – 18 Feb), Pisces (19 Feb – 20
+							Mar), Aries (21 Mar – 19 Apr), Taurus (20 Apr – 20 May), Gemini
+							(21 May – 20 Jun), Cancer (21 Jun – 22 Jul), Leo (23 Jul – 22
+							Aug), Virgo (23 Aug – 22 Sep), Libra (23 Sep – 22 Oct), Scorpio
+							(23 Oct – 21 Nov), and Sagittarius (22 Nov – 21 Dec). Browse the
+							reference grid on this page for a quick overview.
+						</p>
+					</div>
+				</details>
+
+				<details class="zsf-faq-item">
+					<summary class="zsf-faq-question"
+						>What does it mean to be born on a cusp?</summary
+					>
+					<div class="zsf-faq-answer">
+						<p>
+							A cusp birth falls within a day or two of when one zodiac sign
+							ends and the next begins — for example, 22 July sits near the
+							Cancer–Leo boundary. Some astrologers believe cusp births blend
+							traits from both neighbouring signs, though mainstream tropical
+							astrology assigns a single sign based on which date range your
+							birthday falls in. Clockr flags dates near a boundary so you can
+							explore both signs if you wish.
+						</p>
+					</div>
+				</details>
+
+				<details class="zsf-faq-item">
+					<summary class="zsf-faq-question"
+						>What is my birthstone based on my zodiac sign?</summary
+					>
+					<div class="zsf-faq-answer">
+						<p>
+							Birthstones are traditionally linked to your birth month rather
+							than your zodiac sign directly. January is garnet, February
+							amethyst, March aquamarine, April diamond, May emerald, June pearl,
+							July ruby, August peridot, September sapphire, October opal,
+							November topaz, and December turquoise. Clockr shows your
+							birthstone based on the month you were born, alongside your star
+							sign.
+						</p>
+					</div>
+				</details>
+
+				<details class="zsf-faq-item">
+					<summary class="zsf-faq-question"
+						>What are the four zodiac elements?</summary
+					>
+					<div class="zsf-faq-answer">
+						<p>
+							The twelve signs are grouped into four elements: Fire (Aries, Leo,
+							Sagittarius), Earth (Taurus, Virgo, Capricorn), Air (Gemini,
+							Libra, Aquarius), and Water (Cancer, Scorpio, Pisces). In
+							astrological tradition, each element is associated with a broad
+							style of temperament — Fire with passion and action, Earth with
+							practicality, Air with intellect and communication, and Water with
+							emotion and intuition.
+						</p>
+					</div>
+				</details>
+
+				<details class="zsf-faq-item">
+					<summary class="zsf-faq-question"
+						>Is astrology scientifically proven?</summary
+					>
+					<div class="zsf-faq-answer">
+						<p>
+							No. Controlled scientific studies have not found evidence that
+							zodiac signs predict personality, compatibility, or life events
+							beyond chance. Astrology remains a cultural and symbolic tradition
+							rather than an empirically validated system. Many people enjoy it
+							as entertainment or personal reflection — Clockr presents your sign
+							in that spirit.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="zsf-related">
+			<h3 class="zsf-related-title">Related tools</h3>
+			<div class="zsf-related-grid">
+				<a href="/age-calculator" class="zsf-related-card"
+					><span class="zsf-related-name">Age Calculator</span></a
+				>
+				<a href="/days-until-birthday" class="zsf-related-card"
+					><span class="zsf-related-name">Days Until Birthday</span></a
+				>
+				<a href="/life-in-numbers" class="zsf-related-card"
+					><span class="zsf-related-name">Your Life in Numbers</span></a
+				>
+				<a href="/anniversary-calculator" class="zsf-related-card"
+					><span class="zsf-related-name">Anniversary Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.zsf-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.zsf-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.zsf-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.zsf-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: #8b5cf6;
+		box-shadow: 0 0 18px rgba(139, 92, 246, 0.35);
+	}
+
+	.zsf-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.zsf-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.zsf-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	:global(.zsf-tool) {
+		margin-bottom: 56px;
+	}
+
+	:global(.zsf-card) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 24px;
+		box-shadow: 0 0 40px rgba(139, 92, 246, 0.06);
+		margin-bottom: 24px;
+	}
+
+	:global(.zsf-input-wrap) {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	:global(.zsf-label) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+		text-align: center;
+	}
+
+	:global(.zsf-input) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	:global(.zsf-input::placeholder) {
+		color: rgba(255, 255, 255, 0.25);
+		font-weight: 500;
+	}
+
+	:global(.zsf-input:focus) {
+		border-color: rgba(139, 92, 246, 0.8);
+		box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+	}
+
+	:global(.zsf-results) {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 20px;
+		padding: 32px 24px;
+		box-shadow: 0 0 50px rgba(236, 72, 153, 0.06);
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	:global(.zsf-sign-heading) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 48px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.1;
+		margin: 0 0 8px;
+	}
+
+	:global(.zsf-sign-symbol) {
+		font-family: 'Segoe UI Symbol', 'Apple Symbols', sans-serif;
+		font-size: 48px;
+		line-height: 1;
+		color: rgba(255, 255, 255, 0.95);
+	}
+
+	:global(.zsf-sign-name) {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	:global(.zsf-date-range) {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		margin: 0 0 24px;
+	}
+
+	:global(.zsf-details) {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		text-align: left;
+		margin-bottom: 20px;
+	}
+
+	:global(.zsf-detail-row) {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		background: rgba(139, 92, 246, 0.06);
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 12px;
+		padding: 14px 16px;
+	}
+
+	:global(.zsf-detail-label) {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	:global(.zsf-detail-value) {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.75);
+		line-height: 1.5;
+	}
+
+	:global(.zsf-color-list) {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	:global(.zsf-color-item) {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	:global(.zsf-color-swatch) {
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		flex-shrink: 0;
+	}
+
+	:global(.zsf-compat-chips) {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	:global(.zsf-compat-chip) {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.8);
+		background: rgba(139, 92, 246, 0.1);
+		border: 1px solid rgba(139, 92, 246, 0.25);
+		border-radius: 999px;
+		padding: 6px 12px;
+	}
+
+	:global(.zsf-vibe-card) {
+		text-align: left;
+		background: rgba(139, 92, 246, 0.04);
+		border: 1px solid transparent;
+		border-radius: 14px;
+		padding: 18px 16px;
+		margin-bottom: 20px;
+		background-clip: padding-box;
+		box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.2),
+			0 0 24px rgba(236, 72, 153, 0.06);
+		position: relative;
+	}
+
+	:global(.zsf-vibe-card::before) {
+		content: '';
+		position: absolute;
+		inset: -1px;
+		border-radius: 14px;
+		padding: 1px;
+		background: linear-gradient(135deg, rgba(139, 92, 246, 0.45), rgba(236, 72, 153, 0.35));
+		-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+		-webkit-mask-composite: xor;
+		mask-composite: exclude;
+		pointer-events: none;
+	}
+
+	:global(.zsf-vibe-text) {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.7);
+		line-height: 1.7;
+		margin: 8px 0 0;
+	}
+
+	:global(.zsf-cusp-note) {
+		background: rgba(236, 72, 153, 0.05);
+		border-left: 3px solid #ec4899;
+		border-radius: 0 12px 12px 0;
+		padding: 14px 18px;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.6);
+		line-height: 1.6;
+		text-align: left;
+		margin: 0;
+	}
+
+	:global(.zsf-grid-section) {
+		margin-bottom: 8px;
+	}
+
+	:global(.zsf-grid-title) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.85);
+		text-align: center;
+		margin: 0 0 12px;
+	}
+
+	:global(.zsf-grid) {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+	}
+
+	:global(.zsf-grid-item) {
+		border: 1px solid rgba(139, 92, 246, 0.22);
+		background: rgba(139, 92, 246, 0.06);
+		border-radius: 14px;
+		padding: 14px 10px;
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		transition: border-color 0.2s ease, background 0.2s ease;
+	}
+
+	:global(.zsf-grid-item:hover) {
+		border-color: rgba(139, 92, 246, 0.45);
+		background: rgba(139, 92, 246, 0.08);
+	}
+
+	:global(.zsf-grid-symbol) {
+		font-size: 28px;
+		line-height: 1;
+	}
+
+	:global(.zsf-grid-name) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.85);
+	}
+
+	:global(.zsf-grid-range) {
+		font-family: 'Inter', sans-serif;
+		font-size: 10px;
+		color: rgba(255, 255, 255, 0.4);
+		line-height: 1.3;
+		text-align: center;
+	}
+
+	.zsf-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.zsf-how {
+		margin-bottom: 48px;
+	}
+
+	.zsf-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.zsf-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.zsf-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.zsf-faq {
+		margin-bottom: 48px;
+	}
+
+	.zsf-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.zsf-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.zsf-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.zsf-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.zsf-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.zsf-faq-item[open] .zsf-faq-question::after {
+		content: '−';
+	}
+
+	.zsf-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.zsf-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.zsf-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.zsf-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.zsf-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.zsf-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.zsf-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.4);
+	}
+
+	.zsf-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.zsf-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		:global(.zsf-sign-heading) {
+			font-size: 36px;
+		}
+
+		:global(.zsf-grid) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.zsf-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
