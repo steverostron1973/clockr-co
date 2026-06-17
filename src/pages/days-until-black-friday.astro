@@ -1,0 +1,534 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BlackFridayCountdown from '../components/BlackFridayCountdown.jsx';
+
+const leftEmojis = [
+	{ emoji: '🛍️', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '💳', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '🏷️', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '📦', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '🛍️', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '💳', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '🏷️', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '📦', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '🛍️', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '💳', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '🏷️', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '📦', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title="Black Friday Countdown — Days Until Black Friday | Clockr"
+	description="How many days until Black Friday? Live countdown to the day after US Thanksgiving — showing days, hours, minutes and seconds until the next Black Friday, plus Cyber Monday."
+	category="holidays"
+>
+	<div class="bf-page">
+		<section class="bf-hero" aria-label="Black Friday countdown">
+			<div class="bf-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="bf-float-emoji bf-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="bf-float-emoji bf-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="bf-hero-centre">
+				<div class="bf-eyebrow">
+					<span class="bf-eyebrow-square" aria-hidden="true"></span>
+					HOLIDAY COUNTDOWNS
+				</div>
+				<h1 class="bf-hero-title">Black Friday Countdown</h1>
+				<p class="bf-subtitle">Counting down to the biggest shopping day of the year</p>
+
+				<BlackFridayCountdown client:load />
+			</div>
+		</section>
+
+		<div class="bf-body">
+			<section class="bf-how">
+				<h2 class="bf-section-title">How it works</h2>
+				<div class="bf-how-card">
+					<p>
+						Black Friday is the unofficial start of the US holiday shopping
+						season. The name gained traction in Philadelphia during the 1960s,
+						when police used it to describe the heavy traffic and crowds that
+						flooded the city the day after Thanksgiving. Retailers later reframed
+						the term to mean the day their books moved from "in the red" to "in
+						the black." Today it is one of the busiest shopping days of the year,
+						with major retailers opening early and offering deep discounts on
+						everything from electronics to clothing.
+					</p>
+					<p>
+						Unlike holidays tied to a fixed calendar date, Black Friday always
+						falls on the day after US Thanksgiving — the fourth Friday in
+						November. That means the date shifts between 23 November and 29
+						November depending on how the Thursdays line up. This countdown uses
+						the same Thanksgiving date logic as our Thanksgiving Countdown page:
+						it finds the fourth Thursday in November, adds one day for Black
+						Friday, and automatically rolls forward to the following year once
+						the current Black Friday has passed.
+					</p>
+					<p>
+						Cyber Monday — the Monday after Black Friday — has become almost as
+						important for online shoppers. Coined by the National Retail
+						Federation in 2005, it captures the surge in e-commerce deals that
+						follow the in-store rush. Because the two dates are so closely linked,
+						this page shows both the Black Friday countdown and the Cyber Monday
+						date beneath it, so you can plan your whole deal-hunting weekend at
+						a glance.
+					</p>
+				</div>
+			</section>
+
+			<section class="bf-faq">
+				<h2 class="bf-section-title">Frequently asked questions</h2>
+				<div class="bf-faq-list">
+					<details class="bf-faq-item">
+						<summary class="bf-faq-question">When is Black Friday?</summary>
+						<div class="bf-faq-answer">
+							<p>
+								Black Friday is always the day after US Thanksgiving — the fourth
+								Friday in November. The exact date shifts between 23 November and
+								29 November each year. Use the live countdown at the top of this
+								page to see the precise date and time remaining until the next
+								Black Friday.
+							</p>
+						</div>
+					</details>
+					<details class="bf-faq-item">
+						<summary class="bf-faq-question">How is the date of Black Friday calculated?</summary>
+						<div class="bf-faq-answer">
+							<p>
+								Clockr finds US Thanksgiving by locating the fourth Thursday in
+								November — the same method used on our Thanksgiving Countdown page
+								— then adds one day to reach Black Friday. Once that date has
+								passed, the countdown rolls forward to the following year's Black
+								Friday automatically.
+							</p>
+						</div>
+					</details>
+					<details class="bf-faq-item">
+						<summary class="bf-faq-question">When is Cyber Monday?</summary>
+						<div class="bf-faq-answer">
+							<p>
+								Cyber Monday is the Monday after Black Friday — four days after
+								US Thanksgiving. It always falls on the Monday of the same week
+								as Black Friday. The secondary date line below the countdown on
+								this page shows the exact Cyber Monday date for the upcoming
+								season.
+							</p>
+						</div>
+					</details>
+					<details class="bf-faq-item">
+						<summary class="bf-faq-question">Is Black Friday always the day after Thanksgiving?</summary>
+						<div class="bf-faq-answer">
+							<p>
+								Yes. In the United States, Black Friday is always the Friday
+								immediately following Thanksgiving. Because Thanksgiving is the
+								fourth Thursday in November, Black Friday is always the fourth
+								Friday in November — never earlier than 23 November and never
+								later than 29 November.
+							</p>
+						</div>
+					</details>
+					<details class="bf-faq-item">
+						<summary class="bf-faq-question">Why is it called Black Friday?</summary>
+						<div class="bf-faq-answer">
+							<p>
+								The most widely cited origin is Philadelphia in the 1960s, where
+								police and bus drivers used "Black Friday" to describe post-
+								Thanksgiving congestion. Retailers later adopted a friendlier
+								explanation: the day when store profits moved from red (losses)
+								to black (profits). Both stories reflect how central the day has
+								become to American retail culture.
+							</p>
+						</div>
+					</details>
+					<details class="bf-faq-item">
+						<summary class="bf-faq-question">How many days until Black Friday?</summary>
+						<div class="bf-faq-answer">
+							<p>
+								The live countdown at the top of this page updates every second
+								with the exact number of days, hours, minutes, and seconds until
+								the next Black Friday. No refresh needed — it automatically
+								advances to the following year once the current Black Friday has
+								passed.
+							</p>
+						</div>
+					</details>
+				</div>
+			</section>
+
+			<div class="bf-related">
+				<h3 class="bf-related-title">Related tools</h3>
+				<div class="bf-related-grid">
+					<a href="/days-until-thanksgiving" class="bf-related-card"
+						><span class="bf-related-name">Thanksgiving Countdown</span></a
+					>
+					<a href="/days-until-christmas" class="bf-related-card"
+						><span class="bf-related-name">Days Until Christmas</span></a
+					>
+					<a href="/days-until-new-year" class="bf-related-card"
+						><span class="bf-related-name">Days Until New Year</span></a
+					>
+					<a href="/days-until-halloween" class="bf-related-card"
+						><span class="bf-related-name">Days Until Halloween</span></a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.bf-page {
+		width: 100%;
+	}
+
+	.bf-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #0a0a0b, #18181b);
+		border-bottom: 1px solid rgba(234, 179, 8, 0.25);
+		overflow: hidden;
+		position: relative;
+		min-height: 320px;
+	}
+
+	.bf-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.bf-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: bf-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.bf-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes bf-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.bf-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.bf-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.bf-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: linear-gradient(135deg, #18181b, #eab308);
+		box-shadow: 0 0 18px rgba(234, 179, 8, 0.35);
+	}
+
+	.bf-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #18181b, #eab308);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bf-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0 0 28px;
+	}
+
+	:global(.bf-countdown-widget) {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	:global(.bf-countdown) {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	:global(.bf-countdown-block) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	:global(.bf-countdown-num) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #18181b, #eab308);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	:global(.bf-countdown-num--days) {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	:global(.bf-countdown-sep) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	:global(.bf-countdown-unit) {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	:global(.bf-target-date) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(15px, 2.5vw, 18px);
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.65);
+		margin: 24px 0 0;
+		line-height: 1.5;
+	}
+
+	:global(.bf-secondary-date) {
+		font-family: 'Inter', sans-serif;
+		font-size: clamp(13px, 2vw, 15px);
+		font-weight: 500;
+		color: rgba(255, 255, 255, 0.4);
+		margin: 8px 0 0;
+		line-height: 1.5;
+	}
+
+	.bf-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.bf-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.bf-how {
+		margin-bottom: 48px;
+	}
+
+	.bf-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(234, 179, 8, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.bf-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.bf-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.bf-faq {
+		margin-bottom: 48px;
+	}
+
+	.bf-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.bf-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(234, 179, 8, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.bf-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #18181b, #eab308);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bf-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.bf-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #18181b, #eab308);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bf-faq-item[open] .bf-faq-question::after {
+		content: '−';
+	}
+
+	.bf-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.bf-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.bf-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.bf-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.bf-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.bf-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.bf-related-card:hover {
+		border-color: rgba(234, 179, 8, 0.4);
+	}
+
+	.bf-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #18181b, #eab308);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.bf-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
