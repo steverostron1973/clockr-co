@@ -1,0 +1,518 @@
+---
+import Layout from '../layouts/Layout.astro';
+import StPatricksDayCountdown from '../components/StPatricksDayCountdown.jsx';
+
+const leftEmojis = [
+	{ emoji: '☘️', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '🍀', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '🎩', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '🌈', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '☘️', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '🍀', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '🎩', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '🌈', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '☘️', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '🍀', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '🎩', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '🌈', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title="St Patrick's Day Countdown — Days Until St Patrick's Day | Clockr"
+	description="How many days until St Patrick's Day? Live countdown to 17 March — showing days, hours, minutes and seconds until the next St Patrick's Day."
+	category="holidays"
+>
+	<div class="spd-page">
+		<section class="spd-hero" aria-label="St Patrick's Day countdown">
+			<div class="spd-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="spd-float-emoji spd-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="spd-float-emoji spd-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="spd-hero-centre">
+				<div class="spd-eyebrow">
+					<span class="spd-eyebrow-square" aria-hidden="true"></span>
+					HOLIDAY COUNTDOWNS
+				</div>
+				<h1 class="spd-hero-title">St Patrick's Day Countdown</h1>
+				<p class="spd-subtitle">Counting down to St Patrick's Day</p>
+
+				<StPatricksDayCountdown client:load />
+			</div>
+		</section>
+
+		<div class="spd-body">
+			<section class="spd-how">
+				<h2 class="spd-section-title">How it works</h2>
+				<div class="spd-how-card">
+					<p>
+						St Patrick's Day began as a religious feast day honouring Saint
+						Patrick, the patron saint of Ireland, who is credited with bringing
+						Christianity to the island in the fifth century. The day was
+						observed by the Catholic Church for centuries before becoming a
+						public holiday in Ireland in 1903. Traditionally it was a quiet day
+						of church services and family gatherings, with Lenten fasting
+						suspended so people could celebrate with a meal and a drink.
+					</p>
+					<p>
+						Over time, St Patrick's Day grew into a major secular celebration
+						around the world — especially in the United States, the United
+						Kingdom, Canada, and Australia, where large Irish diaspora
+						communities turned the feast day into a festival of parades, green
+						clothing, music, and pub gatherings. Cities like New York, Chicago,
+						Boston, and Dublin now host some of the largest St Patrick's Day
+						parades on the planet, drawing millions of revellers each year.
+					</p>
+					<p>
+						Unlike Easter, Thanksgiving, or Mother's Day, the date of St
+						Patrick's Day never changes. It is always 17 March — a fixed
+						calendar date rather than a lunar cycle or weekday rule. That makes
+						the countdown straightforward: Clockr targets midnight on 17 March of
+						the current year, and if that date has already passed, it
+						automatically rolls forward to 17 March of the following year.
+					</p>
+				</div>
+			</section>
+
+			<section class="spd-faq">
+				<h2 class="spd-section-title">Frequently asked questions</h2>
+				<div class="spd-faq-list">
+					<details class="spd-faq-item">
+						<summary class="spd-faq-question">When is St Patrick's Day?</summary>
+						<div class="spd-faq-answer">
+							<p>
+								St Patrick's Day is always on 17 March. It does not move from year
+								to year like Easter or Thanksgiving. The live countdown at the top
+								of this page shows the exact date and time remaining until the
+								next 17 March.
+							</p>
+						</div>
+					</details>
+					<details class="spd-faq-item">
+						<summary class="spd-faq-question">Why is St Patrick's Day celebrated?</summary>
+						<div class="spd-faq-answer">
+							<p>
+								St Patrick's Day honours Saint Patrick, Ireland's patron saint,
+								who is believed to have introduced Christianity to Ireland in the
+								fifth century. What began as a religious feast day has evolved
+								into a broader celebration of Irish culture and heritage,
+								recognised by people of Irish descent and many others worldwide.
+							</p>
+						</div>
+					</details>
+					<details class="spd-faq-item">
+						<summary class="spd-faq-question">Is St Patrick's Day a public holiday in Ireland?</summary>
+						<div class="spd-faq-answer">
+							<p>
+								Yes. St Patrick's Day has been a public holiday in the Republic
+								of Ireland since 1903. Banks, schools, and many businesses close
+								for the day. Northern Ireland also recognises the date, though it
+								is not a full public holiday there in the same way.
+							</p>
+						</div>
+					</details>
+					<details class="spd-faq-item">
+						<summary class="spd-faq-question">Why do people wear green on St Patrick's Day?</summary>
+						<div class="spd-faq-answer">
+							<p>
+								Green is strongly associated with Ireland — often called the
+								Emerald Isle — and with Irish nationalism and identity. Wearing
+								green on St Patrick's Day is a visible way to show Irish pride.
+								The shamrock, which Saint Patrick is said to have used to explain
+								the Holy Trinity, is another enduring green symbol of the day.
+							</p>
+						</div>
+					</details>
+					<details class="spd-faq-item">
+						<summary class="spd-faq-question">Is St Patrick's Day celebrated outside Ireland?</summary>
+						<div class="spd-faq-answer">
+							<p>
+								Absolutely. St Patrick's Day is celebrated in countries around
+								the world, particularly where Irish communities settled in large
+								numbers — the United States, the United Kingdom, Canada,
+								Australia, and New Zealand among them. Major cities host parades,
+								festivals, and events that draw huge crowds each 17 March.
+							</p>
+						</div>
+					</details>
+					<details class="spd-faq-item">
+						<summary class="spd-faq-question">Does the date of St Patrick's Day ever change?</summary>
+						<div class="spd-faq-answer">
+							<p>
+								No. St Patrick's Day is always 17 March. Unlike movable holidays
+								such as Easter (tied to the lunar calendar) or Thanksgiving
+								(tied to a weekday), it follows a fixed date on the Gregorian
+								calendar every single year.
+							</p>
+						</div>
+					</details>
+				</div>
+			</section>
+
+			<div class="spd-related">
+				<h3 class="spd-related-title">Related tools</h3>
+				<div class="spd-related-grid">
+					<a href="/days-until-easter" class="spd-related-card"
+						><span class="spd-related-name">Days Until Easter</span></a
+					>
+					<a href="/days-until-christmas" class="spd-related-card"
+						><span class="spd-related-name">Days Until Christmas</span></a
+					>
+					<a href="/days-until-halloween" class="spd-related-card"
+						><span class="spd-related-name">Days Until Halloween</span></a
+					>
+					<a href="/anniversary-calculator" class="spd-related-card"
+						><span class="spd-related-name">Anniversary Calculator</span></a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.spd-page {
+		width: 100%;
+	}
+
+	.spd-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #0a0a0b, #18181b);
+		border-bottom: 1px solid rgba(21, 128, 61, 0.35);
+		overflow: hidden;
+		position: relative;
+		min-height: 320px;
+	}
+
+	.spd-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.spd-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: spd-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.spd-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes spd-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.spd-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.spd-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.spd-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: linear-gradient(135deg, #15803d, #eab308);
+		box-shadow: 0 0 18px rgba(21, 128, 61, 0.45);
+	}
+
+	.spd-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #15803d, #eab308);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.spd-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0 0 28px;
+	}
+
+	:global(.spd-countdown-widget) {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	:global(.spd-countdown) {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	:global(.spd-countdown-block) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	:global(.spd-countdown-num) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #15803d, #eab308);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	:global(.spd-countdown-num--days) {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	:global(.spd-countdown-sep) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	:global(.spd-countdown-unit) {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	:global(.spd-target-date) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(15px, 2.5vw, 18px);
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.65);
+		margin: 24px 0 0;
+		line-height: 1.5;
+	}
+
+	.spd-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.spd-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.spd-how {
+		margin-bottom: 48px;
+	}
+
+	.spd-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(21, 128, 61, 0.2);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.spd-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.spd-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.spd-faq {
+		margin-bottom: 48px;
+	}
+
+	.spd-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.spd-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(21, 128, 61, 0.2);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.spd-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #15803d, #eab308);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.spd-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.spd-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #15803d, #eab308);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.spd-faq-item[open] .spd-faq-question::after {
+		content: '−';
+	}
+
+	.spd-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.spd-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.spd-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.spd-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.spd-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.spd-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.spd-related-card:hover {
+		border-color: rgba(21, 128, 61, 0.45);
+	}
+
+	.spd-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #15803d, #eab308);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.spd-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
