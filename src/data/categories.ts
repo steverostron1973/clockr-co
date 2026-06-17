@@ -27,10 +27,38 @@ export const categoryGradients: Record<
 	timezones: { from: '#00E5C4', to: '#0099FF' },
 	history: { from: '#FFC04D', to: '#FF9A3C' },
 	milestones: { from: '#A855F7', to: '#FF5C4D' },
-	work: { from: '#10B981', to: '#84CC16' },
+	work: { from: '#475569', to: '#3B82F6' },
 	religious: { from: '#E8937A', to: '#C9956C' },
 	seasons: { from: '#2D6A4F', to: '#74B49B' },
 };
+
+/** Full CSS gradient string — same 135deg pattern used on tool pages (e.g. #8b5cf6 → #ec4899). */
+export function getCategoryGradient(from: string, to: string): string {
+	return `linear-gradient(135deg, ${from}, ${to})`;
+}
+
+function hexToRgbChannels(hex: string): string {
+	const normalized = hex.replace('#', '');
+	const full =
+		normalized.length === 3
+			? normalized
+					.split('')
+					.map((c) => c + c)
+					.join('')
+			: normalized;
+	const value = Number.parseInt(full, 16);
+	return `${(value >> 16) & 255}, ${(value >> 8) & 255}, ${value & 255}`;
+}
+
+export const categoryRgb = Object.fromEntries(
+	(Object.keys(categoryGradients) as CategoryId[]).map((id) => [
+		id,
+		{
+			from: hexToRgbChannels(categoryGradients[id].from),
+			to: hexToRgbChannels(categoryGradients[id].to),
+		},
+	]),
+) as Record<CategoryId, { from: string; to: string }>;
 
 export const categories: Category[] = [
 	{

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import type { CategoryId } from '../data/categories';
+import { categoryGradients, categoryRgb, getCategoryGradient } from '../data/categories';
 
 interface Props {
 	title: string;
@@ -42,6 +43,8 @@ const countdownDropdownLinks = [
 
 const toolsDropdownLinks = [
 	{ label: 'All tools', href: '/#all-tools' },
+	{ label: 'Overtime Calculator', href: '/overtime-calculator' },
+	{ label: 'Pomodoro Timer', href: '/pomodoro-timer' },
 	{ label: 'Age Calculator', href: '/age-calculator' },
 	{ label: 'Days Until Birthday', href: '/days-until-birthday' },
 	{ label: 'Pregnancy Due Date Calculator', href: '/pregnancy-due-date-calculator' },
@@ -59,6 +62,11 @@ const footerLinks = [
 	{ label: 'Privacy', href: '/privacy' },
 	{ label: 'Contact', href: '/contact' },
 ];
+
+const catGradient = categoryGradients[category];
+const catRgb = categoryRgb[category];
+const catGradientCss = getCategoryGradient(catGradient.from, catGradient.to);
+const categoryStyle = `--cat-from: ${catGradient.from}; --cat-to: ${catGradient.to}; --cat-gradient: ${catGradientCss}; --cat-from-rgb: ${catRgb.from}; --cat-to-rgb: ${catRgb.to};`;
 ---
 
 <!doctype html>
@@ -92,7 +100,7 @@ const footerLinks = [
 			rel="stylesheet"
 		/>
 	</head>
-	<body class="min-h-screen flex flex-col">
+	<body class="min-h-screen flex flex-col" style={categoryStyle}>
 		<header class="w-full border-b border-border">
 			<nav>
 				<div class="logo-wrap">

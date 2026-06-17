@@ -358,7 +358,7 @@ const days = [
 		font-weight: 700;
 		letter-spacing: 3px;
 		text-transform: uppercase;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -375,7 +375,7 @@ const days = [
 	}
 
 	.whc-gradient {
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -391,11 +391,11 @@ const days = [
 	.whc-form-card,
 	.whc-rate-card {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.2);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
 		border-radius: 20px;
 		padding: 32px;
 		margin-bottom: 24px;
-		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.06);
 	}
 
 	.whc-card-title {
@@ -431,7 +431,7 @@ const days = [
 
 	.whc-input {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.3);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
 		border-radius: 12px;
 		padding: 16px 20px;
 		font-family: 'Outfit', sans-serif;
@@ -457,8 +457,8 @@ const days = [
 	}
 
 	.whc-input:focus {
-		border-color: rgba(16, 185, 129, 0.8);
-		box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+		border-color: rgba(var(--cat-from-rgb), 0.8);
+		box-shadow: 0 0 20px rgba(var(--cat-from-rgb), 0.15);
 	}
 
 	.whc-results-grid {
@@ -468,17 +468,17 @@ const days = [
 	}
 
 	.whc-stat-card {
-		background: rgba(16, 185, 129, 0.04);
-		border: 1px solid rgba(16, 185, 129, 0.15);
+		background: rgba(var(--cat-from-rgb), 0.04);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
 		border-radius: 14px;
 		padding: 24px 16px;
 		text-align: center;
 	}
 
 	.whc-stat-card--highlight {
-		background: rgba(16, 185, 129, 0.08);
-		border-color: rgba(16, 185, 129, 0.3);
-		box-shadow: 0 0 24px rgba(16, 185, 129, 0.08);
+		background: rgba(var(--cat-from-rgb), 0.08);
+		border-color: rgba(var(--cat-from-rgb), 0.3);
+		box-shadow: 0 0 24px rgba(var(--cat-from-rgb), 0.08);
 	}
 
 	.whc-stat-label {
@@ -496,7 +496,7 @@ const days = [
 		font-size: 40px;
 		font-weight: 900;
 		letter-spacing: -2px;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -533,7 +533,7 @@ const days = [
 		font-family: 'Outfit', sans-serif;
 		font-size: 24px;
 		font-weight: 700;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -546,7 +546,7 @@ const days = [
 	.whc-pay-results {
 		margin-top: 24px;
 		padding-top: 24px;
-		border-top: 1px solid rgba(16, 185, 129, 0.15);
+		border-top: 1px solid rgba(var(--cat-from-rgb), 0.15);
 	}
 
 	.whc-pay-grid {
@@ -556,8 +556,8 @@ const days = [
 	}
 
 	.whc-pay-card {
-		background: rgba(16, 185, 129, 0.06);
-		border: 1px solid rgba(16, 185, 129, 0.2);
+		background: rgba(var(--cat-from-rgb), 0.06);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
 		border-radius: 14px;
 		padding: 20px 16px;
 		text-align: center;
@@ -578,7 +578,7 @@ const days = [
 		font-size: 28px;
 		font-weight: 900;
 		letter-spacing: -1px;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -608,9 +608,9 @@ const days = [
 	.whc-table-wrap {
 		overflow-x: auto;
 		border-radius: 16px;
-		border: 1px solid rgba(16, 185, 129, 0.2);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
 		background: #0c0c0c;
-		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.06);
 	}
 
 	.whc-table {
@@ -630,7 +630,7 @@ const days = [
 		color: rgba(255, 255, 255, 0.4);
 		padding: 16px 12px;
 		text-align: center;
-		border-bottom: 1px solid rgba(16, 185, 129, 0.15);
+		border-bottom: 1px solid rgba(var(--cat-from-rgb), 0.15);
 	}
 
 	.whc-table th:first-child {
@@ -661,7 +661,7 @@ const days = [
 
 	.whc-table-input {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.25);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.25);
 		border-radius: 8px;
 		padding: 8px 6px;
 		font-family: 'Outfit', sans-serif;
@@ -688,14 +688,14 @@ const days = [
 	}
 
 	.whc-table-input:focus {
-		border-color: rgba(16, 185, 129, 0.7);
+		border-color: rgba(var(--cat-from-rgb), 0.7);
 	}
 
 	.whc-day-hours {
 		font-family: 'Outfit', sans-serif;
 		font-size: 15px;
 		font-weight: 700;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -704,10 +704,10 @@ const days = [
 	}
 
 	.whc-table tfoot td {
-		border-top: 1px solid rgba(16, 185, 129, 0.25);
+		border-top: 1px solid rgba(var(--cat-from-rgb), 0.25);
 		border-bottom: none;
 		padding: 16px 12px;
-		background: rgba(16, 185, 129, 0.04);
+		background: rgba(var(--cat-from-rgb), 0.04);
 	}
 
 	.whc-total-label {
@@ -723,7 +723,7 @@ const days = [
 		font-family: 'Outfit', sans-serif;
 		font-size: 20px;
 		font-weight: 900;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -747,7 +747,7 @@ const days = [
 
 	.whc-how-card {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.15);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
 		border-radius: 14px;
 		padding: 24px;
 	}
@@ -776,7 +776,7 @@ const days = [
 
 	.whc-faq-item {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.15);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
 		border-radius: 14px;
 		overflow: hidden;
 	}
@@ -788,7 +788,7 @@ const days = [
 		padding: 18px 24px;
 		cursor: pointer;
 		list-style: none;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -803,7 +803,7 @@ const days = [
 		float: right;
 		font-size: 18px;
 		font-weight: 700;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -855,14 +855,14 @@ const days = [
 	}
 
 	.whc-related-card:hover {
-		border-color: rgba(16, 185, 129, 0.4);
+		border-color: rgba(var(--cat-from-rgb), 0.4);
 	}
 
 	.whc-related-name {
 		font-family: 'Outfit', sans-serif;
 		font-size: 14px;
 		font-weight: 600;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;

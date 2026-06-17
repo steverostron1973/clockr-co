@@ -7,6 +7,7 @@ const currentYear = new Date().getFullYear();
 <Layout
 	title="Business Days Calculator — Working Days Between Dates | Clockr"
 	description="Calculate the number of business days between two dates. Free working days calculator excluding weekends."
+	category="work"
 >
 	<div class="bd-page">
 		<!-- PAGE HEADER -->
@@ -331,7 +332,7 @@ const currentYear = new Date().getFullYear();
 		font-weight: 700;
 		letter-spacing: 3px;
 		text-transform: uppercase;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -348,7 +349,7 @@ const currentYear = new Date().getFullYear();
 	}
 
 	.bd-gradient {
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -366,7 +367,7 @@ const currentYear = new Date().getFullYear();
 		gap: 8px;
 		margin-bottom: 32px;
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.2);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
 		border-radius: 14px;
 		padding: 6px;
 	}
@@ -393,18 +394,18 @@ const currentYear = new Date().getFullYear();
 	}
 
 	.bd-tab--active {
-		background: rgba(16, 185, 129, 0.15);
+		background: rgba(var(--cat-from-rgb), 0.15);
 		color: #fff;
-		box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+		box-shadow: 0 0 20px rgba(var(--cat-from-rgb), 0.1);
 	}
 
 	.bd-form-card {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.2);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
 		border-radius: 20px;
 		padding: 32px;
 		margin-bottom: 24px;
-		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.06);
 	}
 
 	.bd-inputs {
@@ -434,7 +435,7 @@ const currentYear = new Date().getFullYear();
 
 	.bd-input {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.3);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
 		border-radius: 12px;
 		padding: 16px 24px;
 		font-family: 'Outfit', sans-serif;
@@ -461,8 +462,8 @@ const currentYear = new Date().getFullYear();
 	}
 
 	.bd-input:focus {
-		border-color: rgba(16, 185, 129, 0.8);
-		box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+		border-color: rgba(var(--cat-from-rgb), 0.8);
+		box-shadow: 0 0 20px rgba(var(--cat-from-rgb), 0.15);
 	}
 
 	.bd-toggle {
@@ -505,7 +506,7 @@ const currentYear = new Date().getFullYear();
 	}
 
 	.bd-toggle input:checked + .bd-toggle-track {
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 	}
 
 	.bd-toggle input:checked + .bd-toggle-track .bd-toggle-thumb {
@@ -522,12 +523,12 @@ const currentYear = new Date().getFullYear();
 
 	.bd-main-card {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.2);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
 		border-radius: 20px;
 		padding: 40px;
 		text-align: center;
 		margin-bottom: 16px;
-		box-shadow: 0 0 40px rgba(16, 185, 129, 0.06);
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.06);
 	}
 
 	.bd-main-num {
@@ -536,7 +537,7 @@ const currentYear = new Date().getFullYear();
 		font-weight: 900;
 		letter-spacing: -4px;
 		line-height: 1;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -565,7 +566,7 @@ const currentYear = new Date().getFullYear();
 
 	.bd-stat-card {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.15);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
 		border-radius: 14px;
 		padding: 24px 16px;
 		text-align: center;
@@ -576,7 +577,7 @@ const currentYear = new Date().getFullYear();
 		font-size: 32px;
 		font-weight: 900;
 		letter-spacing: -1px;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -595,7 +596,7 @@ const currentYear = new Date().getFullYear();
 
 	.bd-breakdown {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.15);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
 		border-radius: 14px;
 		padding: 24px;
 		margin-bottom: 24px;
@@ -607,7 +608,7 @@ const currentYear = new Date().getFullYear();
 		font-weight: 700;
 		letter-spacing: 1px;
 		text-transform: uppercase;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -625,7 +626,7 @@ const currentYear = new Date().getFullYear();
 		justify-content: space-between;
 		align-items: center;
 		padding: 10px 14px;
-		background: rgba(16, 185, 129, 0.04);
+		background: rgba(var(--cat-from-rgb), 0.04);
 		border-radius: 8px;
 	}
 
@@ -639,7 +640,7 @@ const currentYear = new Date().getFullYear();
 		font-family: 'Outfit', sans-serif;
 		font-size: 16px;
 		font-weight: 700;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -654,8 +655,8 @@ const currentYear = new Date().getFullYear();
 		line-height: 1.6;
 		margin-bottom: 48px;
 		padding: 16px 20px;
-		background: rgba(16, 185, 129, 0.04);
-		border: 1px solid rgba(16, 185, 129, 0.1);
+		background: rgba(var(--cat-from-rgb), 0.04);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.1);
 		border-radius: 12px;
 	}
 
@@ -677,7 +678,7 @@ const currentYear = new Date().getFullYear();
 
 	.bd-how-card {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.15);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
 		border-radius: 14px;
 		padding: 24px;
 	}
@@ -706,7 +707,7 @@ const currentYear = new Date().getFullYear();
 
 	.bd-faq-item {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.15);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
 		border-radius: 14px;
 		overflow: hidden;
 	}
@@ -718,7 +719,7 @@ const currentYear = new Date().getFullYear();
 		padding: 18px 24px;
 		cursor: pointer;
 		list-style: none;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -733,7 +734,7 @@ const currentYear = new Date().getFullYear();
 		float: right;
 		font-size: 18px;
 		font-weight: 700;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -759,7 +760,7 @@ const currentYear = new Date().getFullYear();
 		font-family: 'Outfit', sans-serif;
 		font-size: 20px;
 		font-weight: 700;
-		background: linear-gradient(135deg, #10B981, #84CC16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -775,7 +776,7 @@ const currentYear = new Date().getFullYear();
 
 	.bd-ref-card {
 		background: #0c0c0c;
-		border: 1px solid rgba(16, 185, 129, 0.15);
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
 		border-radius: 12px;
 		padding: 20px 12px;
 		text-align: center;
@@ -783,7 +784,7 @@ const currentYear = new Date().getFullYear();
 	}
 
 	.bd-ref-card:hover {
-		border-color: rgba(16, 185, 129, 0.35);
+		border-color: rgba(var(--cat-from-rgb), 0.35);
 	}
 
 	.bd-ref-month {
@@ -792,7 +793,7 @@ const currentYear = new Date().getFullYear();
 		font-weight: 600;
 		letter-spacing: 0.5px;
 		text-transform: uppercase;
-		color: #10B981;
+		color: var(--cat-from);
 		margin-bottom: 8px;
 	}
 
@@ -801,7 +802,7 @@ const currentYear = new Date().getFullYear();
 		font-size: 28px;
 		font-weight: 900;
 		letter-spacing: -1px;
-		color: #84CC16;
+		color: var(--cat-to);
 		font-variant-numeric: tabular-nums;
 	}
 
@@ -835,14 +836,14 @@ const currentYear = new Date().getFullYear();
 	}
 
 	.bd-related-card:hover {
-		border-color: rgba(16, 185, 129, 0.4);
+		border-color: rgba(var(--cat-from-rgb), 0.4);
 	}
 
 	.bd-related-name {
 		font-family: 'Outfit', sans-serif;
 		font-size: 14px;
 		font-weight: 600;
-		background: linear-gradient(135deg, #10b981, #84cc16);
+		background: var(--cat-gradient);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
@@ -1135,7 +1136,7 @@ const currentYear = new Date().getFullYear();
 		grid.innerHTML = MONTH_SHORT.map((name, i) => {
 			const count = countBusinessDaysInMonth(year, i);
 			return `<div class="bd-ref-card">
-				<div class="bd-ref-month" style="color: #10B981">${name}</div>
+				<div class="bd-ref-month" style="color: var(--cat-from)">${name}</div>
 				<div class="bd-ref-count">${count}</div>
 			</div>`;
 		}).join('');

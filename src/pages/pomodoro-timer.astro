@@ -1,0 +1,649 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PomodoroTimer from '../components/PomodoroTimer.jsx';
+---
+
+<Layout
+	title="Pomodoro Timer — Focus Timer with Breaks | Clockr"
+	description="Free Pomodoro timer for focused work sessions and breaks. Customise work and break durations. Classic 25/5/15 minute cycles with session tracking."
+	category="work"
+>
+	<div class="pomo-page">
+		<div class="pomo-header">
+			<div class="pomo-eyebrow">
+				<span class="pomo-eyebrow-square" aria-hidden="true"></span>
+				Work & Business
+			</div>
+			<h1 class="pomo-title">
+				<span class="pomo-gradient">Pomodoro Timer</span>
+			</h1>
+			<p class="pomo-subtitle">Stay focused with timed work sessions and breaks</p>
+		</div>
+
+		<PomodoroTimer client:load />
+
+		<section class="pomo-how">
+			<h2 class="pomo-section-title">How it works</h2>
+			<div class="pomo-how-card">
+				<p>
+					The Pomodoro Technique is a time-management method developed by Francesco
+					Cirillo in the late 1980s. Cirillo used a tomato-shaped kitchen timer
+					(<em>pomodoro</em> is Italian for tomato) to structure his university
+					study sessions into short, focused blocks. The method spread through
+					productivity circles and remains one of the most widely used approaches
+					for sustained concentration.
+				</p>
+				<p>
+					The core idea is alternating focused work with regular breaks. Working in
+					bounded intervals helps you commit fully to a single task, while
+					scheduled rest prevents the mental fatigue that builds during long,
+					uninterrupted stretches. Research on attention and cognitive load
+					suggests that brief breaks can support sustained performance — though
+					results vary by person and task. The technique works best as a
+					structure you adapt, not a rigid rule.
+				</p>
+				<p>
+					Clockr's Pomodoro timer follows the classic 25-minute work session, 5-minute
+					short break, and 15-minute long break after every four sessions. Open
+					"Customise timings" below the controls to adjust work length, break
+					duration, or how many sessions run before a long break — useful if you
+					prefer longer deep-work blocks or shorter sprints.
+				</p>
+			</div>
+		</section>
+
+		<section class="pomo-faq">
+			<h2 class="pomo-section-title">Frequently asked questions</h2>
+			<div class="pomo-faq-list">
+				<details class="pomo-faq-item">
+					<summary class="pomo-faq-question">What is the Pomodoro Technique?</summary>
+					<div class="pomo-faq-answer">
+						<p>
+							The Pomodoro Technique is a focus method where you work in timed
+							intervals (traditionally 25 minutes) separated by short breaks.
+							After completing four work sessions, you take a longer break before
+							starting the next cycle. The goal is to make deep work feel
+							manageable and to build a rhythm of concentration and recovery
+							throughout the day.
+						</p>
+					</div>
+				</details>
+				<details class="pomo-faq-item">
+					<summary class="pomo-faq-question"
+						>How long should a Pomodoro work session be?</summary
+					>
+					<div class="pomo-faq-answer">
+						<p>
+							The standard length is 25 minutes, which Cirillo found effective for
+							study sessions. Many people use 25 to 50 minutes depending on the
+							task — shorter blocks suit admin and email; longer blocks suit
+							writing, coding, or design. Start with 25 minutes and adjust using
+							the settings panel if you find yourself stopping early or needing
+							more time to reach flow.
+						</p>
+					</div>
+				</details>
+				<details class="pomo-faq-item">
+					<summary class="pomo-faq-question"
+						>Why is it called the Pomodoro Technique?</summary
+					>
+					<div class="pomo-faq-answer">
+						<p>
+							Francesco Cirillo named the method after the tomato-shaped kitchen
+							timer he used as a student in the late 1980s. <em>Pomodoro</em> means
+							tomato in Italian. The playful name stuck even as the technique moved
+							from physical timers to apps and browser tools like this one.
+						</p>
+					</div>
+				</details>
+				<details class="pomo-faq-item">
+					<summary class="pomo-faq-question"
+						>Can I customise the work and break durations?</summary
+					>
+					<div class="pomo-faq-answer">
+						<p>
+							Yes. Click "Customise timings" on the timer to change work length,
+							short break, long break, and the number of sessions before a long
+							break. Pause or reset the timer first if it is running — settings
+							apply to the next session once you adjust them. Defaults match the
+							classic 25 / 5 / 15 minute pattern with four sessions per cycle.
+						</p>
+					</div>
+				</details>
+				<details class="pomo-faq-item">
+					<summary class="pomo-faq-question"
+						>How many Pomodoro sessions should I do per day?</summary
+					>
+					<div class="pomo-faq-answer">
+						<p>
+							There is no fixed target — it depends on your schedule and energy.
+							Eight focused pomodoros (about four hours of deep work) is a common
+							daily goal for knowledge workers, but two to four sessions can be
+							meaningful on busy days. Quality matters more than quantity: fully
+							disengage during breaks, and stop when concentration drops rather
+							than forcing extra rounds.
+						</p>
+					</div>
+				</details>
+				<details class="pomo-faq-item">
+					<summary class="pomo-faq-question"
+						>Does this timer work if I switch tabs or browsers?</summary
+					>
+					<div class="pomo-faq-answer">
+						<p>
+							The timer runs in your browser using JavaScript, so it continues while
+							the Clockr tab is open. Background tabs may be throttled by your
+							browser, which can slightly delay updates and the end-of-phase chime.
+							For the most reliable experience, keep this tab visible or pinned
+							while a session is active. Closing the tab or browser stops the
+							timer.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="pomo-related">
+			<h3 class="pomo-related-title">Related tools</h3>
+			<div class="pomo-related-grid">
+				<a href="/countdown-timer" class="pomo-related-card"
+					><span class="pomo-related-name">Countdown Timer</span></a
+				>
+				<a href="/stopwatch" class="pomo-related-card"
+					><span class="pomo-related-name">Stopwatch</span></a
+				>
+				<a href="/work-hours-calculator" class="pomo-related-card"
+					><span class="pomo-related-name">Work Hours Calculator</span></a
+				>
+				<a href="/business-days" class="pomo-related-card"
+					><span class="pomo-related-name">Business Days Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.pomo-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.pomo-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.pomo-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.pomo-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: var(--cat-gradient);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.pomo-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.pomo-gradient {
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pomo-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.pomo-tool {
+		margin-bottom: 48px;
+	}
+
+	.pomo-display-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
+		border-radius: 20px;
+		padding: 40px 32px 48px;
+		text-align: center;
+		margin-bottom: 20px;
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.06);
+		transition:
+			border-color 0.3s ease,
+			box-shadow 0.3s ease,
+			transform 0.3s ease;
+	}
+
+	.pomo-display-card--flash {
+		animation: pomo-flash 0.6s ease-in-out;
+	}
+
+	@keyframes pomo-flash {
+		0%,
+		100% {
+			border-color: rgba(var(--cat-from-rgb), 0.2);
+			box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.06);
+			transform: scale(1);
+		}
+		50% {
+			border-color: rgba(var(--cat-to-rgb), 0.9);
+			box-shadow: 0 0 60px rgba(var(--cat-from-rgb), 0.35);
+			transform: scale(1.02);
+		}
+	}
+
+	.pomo-phase-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		margin-bottom: 20px;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pomo-phase-label--shortBreak,
+	.pomo-phase-label--longBreak {
+		background: linear-gradient(135deg, var(--cat-to), #93c5fd);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pomo-display {
+		font-family: 'Outfit', sans-serif;
+		font-size: 96px;
+		font-weight: 900;
+		letter-spacing: -4px;
+		line-height: 1;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.pomo-session {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	.pomo-session-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.55);
+		margin: 0 0 12px;
+		letter-spacing: 0.3px;
+	}
+
+	.pomo-dots {
+		display: flex;
+		justify-content: center;
+		gap: 10px;
+	}
+
+	.pomo-dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.12);
+		transition:
+			background 0.2s ease,
+			box-shadow 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.pomo-dot--complete {
+		background: var(--cat-gradient);
+	}
+
+	.pomo-dot--active {
+		background: var(--cat-gradient);
+		box-shadow: 0 0 12px rgba(var(--cat-from-rgb), 0.5);
+		transform: scale(1.15);
+	}
+
+	.pomo-controls {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+		margin-bottom: 24px;
+	}
+
+	.pomo-control-btn {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
+		border-radius: 12px;
+		padding: 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.85);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.pomo-control-btn:hover {
+		border-color: rgba(var(--cat-from-rgb), 0.6);
+		background: rgba(var(--cat-from-rgb), 0.08);
+	}
+
+	.pomo-control-primary {
+		background: var(--cat-gradient);
+		border: none;
+		color: #fff;
+	}
+
+	.pomo-control-primary:hover {
+		opacity: 0.92;
+		background: var(--cat-gradient);
+	}
+
+	.pomo-settings {
+		margin-top: 8px;
+		text-align: center;
+	}
+
+	.pomo-settings-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
+		border-radius: 12px;
+		padding: 12px 20px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.85);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.pomo-settings-toggle:hover {
+		border-color: rgba(var(--cat-from-rgb), 0.6);
+		background: rgba(var(--cat-from-rgb), 0.08);
+	}
+
+	.pomo-settings-toggle--open {
+		border-color: rgba(var(--cat-from-rgb), 0.5);
+		background: rgba(var(--cat-from-rgb), 0.06);
+		box-shadow: 0 0 24px rgba(var(--cat-from-rgb), 0.08);
+	}
+
+	.pomo-settings-icon {
+		font-size: 16px;
+		line-height: 1;
+		opacity: 0.9;
+	}
+
+	.pomo-settings-panel {
+		margin-top: 16px;
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
+		border-radius: 16px;
+		padding: 24px;
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.06);
+		text-align: left;
+	}
+
+	.pomo-settings-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: #fff;
+		margin: 0 0 20px;
+		text-align: center;
+	}
+
+	.pomo-settings-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+	}
+
+	.pomo-setting {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.pomo-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.55);
+		letter-spacing: 0.3px;
+		text-align: center;
+	}
+
+	.pomo-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
+		border-radius: 12px;
+		padding: 12px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		width: 100%;
+		max-width: 120px;
+		transition: border-color 0.2s ease;
+		-moz-appearance: textfield;
+		color-scheme: dark;
+	}
+
+	.pomo-input::-webkit-outer-spin-button,
+	.pomo-input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	.pomo-input:focus {
+		border-color: rgba(var(--cat-from-rgb), 0.8);
+		box-shadow: 0 0 20px rgba(var(--cat-from-rgb), 0.15);
+	}
+
+	.pomo-input:disabled {
+		opacity: 0.45;
+		cursor: not-allowed;
+	}
+
+	.pomo-settings-note {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+		margin: 16px 0 0;
+		text-align: center;
+	}
+
+	.pomo-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.pomo-how {
+		margin-bottom: 48px;
+	}
+
+	.pomo-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.pomo-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.pomo-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.pomo-faq {
+		margin-bottom: 48px;
+	}
+
+	.pomo-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.pomo-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.pomo-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pomo-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.pomo-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pomo-faq-item[open] .pomo-faq-question::after {
+		content: '−';
+	}
+
+	.pomo-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.pomo-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.pomo-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.pomo-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.pomo-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.pomo-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.pomo-related-card:hover {
+		border-color: rgba(var(--cat-from-rgb), 0.4);
+	}
+
+	.pomo-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.pomo-title {
+			font-size: 48px;
+		}
+
+		.pomo-display {
+			font-size: 64px;
+			letter-spacing: -2px;
+		}
+
+		.pomo-settings-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

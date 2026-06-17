@@ -1,0 +1,650 @@
+---
+import Layout from '../layouts/Layout.astro';
+import OvertimeCalculator from '../components/OvertimeCalculator.jsx';
+---
+
+<Layout
+	title="Overtime Calculator — Calculate Overtime Pay | Clockr"
+	description="Calculate overtime pay from your hourly rate, standard hours, and hours worked. Free overtime calculator with time-and-a-half and double-time multipliers."
+	category="work"
+>
+	<div class="ot-page">
+		<div class="ot-header">
+			<div class="ot-eyebrow">
+				<span class="ot-eyebrow-square" aria-hidden="true"></span>
+				Work & Business
+			</div>
+			<h1 class="ot-title">
+				<span class="ot-gradient">Overtime Calculator</span>
+			</h1>
+			<p class="ot-subtitle">Calculate your overtime pay quickly and accurately</p>
+		</div>
+
+		<OvertimeCalculator client:load />
+
+		<section class="ot-how">
+			<h2 class="ot-section-title">How it works</h2>
+			<div class="ot-how-card">
+				<p>
+					Overtime pay is compensation for hours worked beyond a standard workweek.
+					Many employers pay extra for those hours using a multiplier on your
+					regular hourly rate. The most common rates are time and a half (1.5× your
+					base rate) and double time (2× your base rate), though the exact multiplier
+					depends on your employer, role, and when the extra hours are worked.
+				</p>
+				<p>
+					Overtime rules and entitlements vary significantly by country, industry,
+					and individual employment contract. Some workers have a statutory right
+					to enhanced pay above a weekly hour threshold; others rely entirely on
+					what their contract states. This calculator is for general arithmetic
+					only — it is not a substitute for checking your specific contractual or
+					legal entitlements with your employer or a qualified adviser.
+				</p>
+				<p>
+					Clockr splits your week into regular and overtime portions automatically.
+					Regular hours are capped at your standard hours per week (default 40).
+					Any hours above that threshold count as overtime and are multiplied by
+					your chosen rate before being added to your regular pay for a weekly
+					total.
+				</p>
+			</div>
+		</section>
+
+		<section class="ot-faq">
+			<h2 class="ot-section-title">Frequently asked questions</h2>
+			<div class="ot-faq-list">
+				<details class="ot-faq-item">
+					<summary class="ot-faq-question">How is overtime pay calculated?</summary>
+					<div class="ot-faq-answer">
+						<p>
+							Overtime pay is typically calculated by multiplying your regular
+							hourly rate by an overtime multiplier (such as 1.5 or 2), then
+							multiplying that enhanced rate by the number of overtime hours worked.
+							Regular pay covers hours up to your standard week; overtime pay covers
+							only the hours beyond that threshold. Total weekly pay is the sum of
+							both amounts.
+						</p>
+					</div>
+				</details>
+				<details class="ot-faq-item">
+					<summary class="ot-faq-question">What is time and a half?</summary>
+					<div class="ot-faq-answer">
+						<p>
+							Time and a half means your hourly rate multiplied by 1.5. If you earn
+							£20 per hour, time and a half is £30 per hour for each qualifying
+							overtime hour. It is one of the most widely used overtime multipliers,
+							though not every employer or jurisdiction applies it in the same way.
+						</p>
+					</div>
+				</details>
+				<details class="ot-faq-item">
+					<summary class="ot-faq-question">What is double time?</summary>
+					<div class="ot-faq-answer">
+						<p>
+							Double time means your hourly rate multiplied by 2. A £20 hourly rate
+							becomes £40 per overtime hour at double time. Some employers offer
+							double time for Sundays, public holidays, or hours beyond a second
+							weekly threshold — but this varies widely and is often set out in
+							employment contracts or collective agreements.
+						</p>
+					</div>
+				</details>
+				<details class="ot-faq-item">
+					<summary class="ot-faq-question">Is overtime pay required by law?</summary>
+					<div class="ot-faq-answer">
+						<p>
+							It depends on where you work and your employment status. Some countries
+							mandate overtime premiums for eligible employees above certain hour
+							limits; others leave overtime pay to individual contracts. Exempt
+							salaried roles, contractors, and part-time arrangements may be treated
+							differently. Check your local employment rules and your contract for
+							what applies to you.
+						</p>
+					</div>
+				</details>
+				<details class="ot-faq-item">
+					<summary class="ot-faq-question">How many hours is considered overtime?</summary>
+					<div class="ot-faq-answer">
+						<p>
+							The overtime threshold is not universal. In the United States, 40 hours
+							per workweek is a common federal benchmark for many non-exempt employees.
+							In the UK and elsewhere, there is often no single statutory weekly
+							limit — overtime may begin after your contracted hours, which could be
+							35, 37.5, 40, or another figure. Set your standard hours in the
+							calculator to match your own schedule.
+						</p>
+					</div>
+				</details>
+				<details class="ot-faq-item">
+					<summary class="ot-faq-question"
+						>Does overtime pay vary by industry or country?</summary
+					>
+					<div class="ot-faq-answer">
+						<p>
+							Yes. Healthcare, hospitality, transport, and public-sector roles often
+							have different overtime rules from office-based work. Countries differ
+							in whether overtime is legally required, how the threshold is defined,
+							and whether premiums apply on weekends or holidays. Union agreements
+							and company policies can add further variation — always confirm the
+							rate and rules that apply to your situation.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="ot-related">
+			<h3 class="ot-related-title">Related tools</h3>
+			<div class="ot-related-grid">
+				<a href="/work-hours-calculator" class="ot-related-card"
+					><span class="ot-related-name">Work Hours Calculator</span></a
+				>
+				<a href="/business-days" class="ot-related-card"
+					><span class="ot-related-name">Business Days Calculator</span></a
+				>
+				<a href="/pomodoro-timer" class="ot-related-card"
+					><span class="ot-related-name">Pomodoro Timer</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.ot-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.ot-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.ot-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.ot-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: var(--cat-gradient);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.ot-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.ot-gradient {
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ot-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.ot-tool {
+		margin-bottom: 48px;
+	}
+
+	.ot-form-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
+		border-radius: 20px;
+		padding: 32px;
+		margin-bottom: 24px;
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.06);
+	}
+
+	.ot-inputs {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		margin-bottom: 28px;
+	}
+
+	.ot-input-wrap {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.ot-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.55);
+		letter-spacing: 0.3px;
+	}
+
+	.ot-label--block {
+		display: block;
+		margin-bottom: 12px;
+	}
+
+	.ot-rate-row {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.ot-currency {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.45);
+		flex-shrink: 0;
+	}
+
+	.ot-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
+		border-radius: 12px;
+		padding: 14px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #ffffff;
+		outline: none;
+		width: 100%;
+		transition: border-color 0.2s ease;
+		color-scheme: dark;
+	}
+
+	.ot-input--rate {
+		font-size: 24px;
+	}
+
+	.ot-input--multiplier {
+		max-width: 120px;
+		text-align: center;
+	}
+
+	.ot-input:focus {
+		border-color: rgba(var(--cat-from-rgb), 0.8);
+		box-shadow: 0 0 20px rgba(var(--cat-from-rgb), 0.15);
+	}
+
+	.ot-input::placeholder {
+		color: rgba(255, 255, 255, 0.25);
+		font-weight: 500;
+	}
+
+	.ot-input-note {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.35);
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	.ot-multiplier-section {
+		border-top: 1px solid rgba(var(--cat-from-rgb), 0.12);
+		padding-top: 24px;
+	}
+
+	.ot-multiplier-btns {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+	}
+
+	.ot-multiplier-btn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
+		border-radius: 12px;
+		padding: 14px 10px;
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.ot-multiplier-btn:hover {
+		border-color: rgba(var(--cat-from-rgb), 0.6);
+		background: rgba(var(--cat-from-rgb), 0.08);
+	}
+
+	.ot-multiplier-btn--active {
+		border-color: rgba(var(--cat-to-rgb), 0.7);
+		background: rgba(var(--cat-from-rgb), 0.12);
+		box-shadow: 0 0 24px rgba(var(--cat-from-rgb), 0.1);
+	}
+
+	.ot-multiplier-btn-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		color: #fff;
+	}
+
+	.ot-multiplier-btn-sub {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		color: rgba(255, 255, 255, 0.4);
+		text-align: center;
+		line-height: 1.3;
+	}
+
+	.ot-custom-multiplier {
+		margin-top: 16px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	.ot-custom-row {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+
+	.ot-custom-suffix {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.ot-results {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.ot-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.ot-stat-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
+		border-radius: 14px;
+		padding: 20px;
+		text-align: center;
+	}
+
+	.ot-stat-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.45);
+		margin-bottom: 8px;
+		letter-spacing: 0.3px;
+	}
+
+	.ot-stat-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 28px;
+		font-weight: 800;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.ot-total-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.25);
+		border-radius: 16px;
+		padding: 28px;
+		text-align: center;
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.08);
+	}
+
+	.ot-total-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 12px;
+		letter-spacing: 0.3px;
+	}
+
+	.ot-total-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 48px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.ot-table-wrap {
+		overflow-x: auto;
+	}
+
+	.ot-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+	}
+
+	.ot-table th,
+	.ot-table td {
+		padding: 14px 16px;
+		text-align: left;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.ot-table th {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.45);
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+	}
+
+	.ot-table td {
+		color: rgba(255, 255, 255, 0.7);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.ot-table tfoot td {
+		font-family: 'Outfit', sans-serif;
+		font-weight: 700;
+		color: #fff;
+		border-bottom: none;
+		border-top: 1px solid rgba(var(--cat-from-rgb), 0.2);
+	}
+
+	.ot-table tfoot td:last-child {
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-size: 16px;
+	}
+
+	.ot-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.ot-how {
+		margin-bottom: 48px;
+	}
+
+	.ot-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.ot-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.ot-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.ot-faq {
+		margin-bottom: 48px;
+	}
+
+	.ot-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.ot-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.ot-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ot-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.ot-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ot-faq-item[open] .ot-faq-question::after {
+		content: '−';
+	}
+
+	.ot-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.ot-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.ot-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.ot-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.ot-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.ot-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.ot-related-card:hover {
+		border-color: rgba(var(--cat-from-rgb), 0.4);
+	}
+
+	.ot-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.ot-title {
+			font-size: 48px;
+		}
+
+		.ot-multiplier-btns {
+			grid-template-columns: 1fr;
+		}
+
+		.ot-total-num {
+			font-size: 36px;
+		}
+
+		.ot-stat-num {
+			font-size: 22px;
+		}
+	}
+</style>
