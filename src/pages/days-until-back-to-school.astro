@@ -1,0 +1,707 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BackToSchoolCountdown from '../components/BackToSchoolCountdown.jsx';
+
+const leftEmojis = [
+	{ emoji: '🎒', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '📚', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '✏️', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '🍎', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '🎒', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '📚', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '✏️', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '🍎', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '🎒', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '📚', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '✏️', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '🍎', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title="Back to School Countdown — Days Until School Starts | Clockr"
+	description="Count down to your first day back at school. Enter your term start date for a live countdown showing days, hours, minutes and seconds until the big day."
+	category="holidays"
+>
+	<div class="bts-page">
+		<section class="bts-hero" aria-label="Back to school countdown">
+			<div class="bts-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="bts-float-emoji bts-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="bts-float-emoji bts-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="bts-hero-centre">
+				<div class="bts-eyebrow">
+					<span class="bts-eyebrow-square" aria-hidden="true"></span>
+					HOLIDAY COUNTDOWNS
+				</div>
+				<h1 class="bts-hero-title">Back to School Countdown</h1>
+				<p class="bts-subtitle">
+					Count down to your first day back — term start dates vary, so enter
+					yours below
+				</p>
+
+				<BackToSchoolCountdown client:load />
+			</div>
+		</section>
+
+		<div class="bts-body">
+			<section class="bts-how">
+				<h2 class="bts-section-title">How it works</h2>
+				<div class="bts-how-card">
+					<p>
+						Unlike Christmas or Halloween, there is no single global "back to
+						school" date. Term start dates are decided at many levels — by
+						national education authorities, regional governments, individual
+						school districts, and sometimes even individual schools. A child in
+						one US state may return weeks before a child in another, and private
+						schools often set their own calendars entirely independently of
+						nearby state schools.
+					</p>
+					<p>
+						That said, some broad patterns exist. In the UK, most state schools
+						return in the first week of September, often just after the August
+						bank holiday. In the United States, start dates vary enormously —
+						from early August in parts of the South and Midwest to early or mid
+						September in the Northeast and West Coast. Southern Hemisphere
+						countries such as Australia, New Zealand, and South Africa follow
+						entirely different academic calendars, with the school year typically
+						running from late January or February through to December, divided
+						into three or four terms.
+					</p>
+					<p>
+						Because of this variation, Clockr does not guess your start date —
+						you enter it yourself. If you are unsure of the exact date, check your
+						school&apos;s website, the welcome letter or newsletter sent to
+						parents, or your local education authority&apos;s published term
+						dates. Once you have the date, enter it above and the live countdown
+						will show exactly how long remains until the first day back.
+					</p>
+				</div>
+			</section>
+
+			<section class="bts-faq">
+				<h2 class="bts-section-title">Frequently asked questions</h2>
+				<div class="bts-faq-list">
+					<details class="bts-faq-item">
+						<summary class="bts-faq-question"
+							>When does school go back in the UK?</summary
+						>
+						<div class="bts-faq-answer">
+							<p>
+								Most UK state schools return in the first week of September,
+								typically the Monday or Tuesday after the August bank holiday.
+								Exact dates vary by local authority and school type — academies
+								and independent schools set their own calendars. Scotland often
+								returns slightly earlier, in mid to late August. Always check
+								your school&apos;s website or your local council&apos;s term dates
+								page for the precise date.
+							</p>
+						</div>
+					</details>
+					<details class="bts-faq-item">
+						<summary class="bts-faq-question"
+							>When does school go back in the US?</summary
+						>
+						<div class="bts-faq-answer">
+							<p>
+								There is no single US back-to-school date. Start dates are set
+								by individual school districts and vary widely by state — from
+								early August in states like Arizona and Georgia to early or mid
+								September in New York, Massachusetts, and parts of the West
+								Coast. Many districts publish their academic calendars online;
+								search for your district name plus "school calendar" to find
+								yours.
+							</p>
+						</div>
+					</details>
+					<details class="bts-faq-item">
+						<summary class="bts-faq-question"
+							>Why do school start dates vary so much?</summary
+						>
+						<div class="bts-faq-answer">
+							<p>
+								School calendars reflect local decisions about holidays, weather,
+								agricultural history, teacher training days, and state or national
+								regulations. In the US, education is largely decentralised — each
+								district sets its own schedule. Even within one country, urban and
+								rural areas, public and private schools, and different age groups
+								can all start on different days.
+							</p>
+						</div>
+					</details>
+					<details class="bts-faq-item">
+						<summary class="bts-faq-question"
+							>How do I find out my child&apos;s school start date?</summary
+						>
+						<div class="bts-faq-answer">
+							<p>
+								The most reliable source is your school directly — check its
+								website, parent portal, or welcome pack. Schools usually send
+								term dates to parents by email or post in the weeks before the
+								summer break. You can also search your local education
+								authority&apos;s website; most publish a full academic year
+								calendar listing term start and end dates for all schools in the
+								area.
+							</p>
+						</div>
+					</details>
+					<details class="bts-faq-item">
+						<summary class="bts-faq-question"
+							>Is the school year the same in every country?</summary
+						>
+						<div class="bts-faq-answer">
+							<p>
+								No. School calendars differ significantly around the world. Many
+								Northern Hemisphere countries run roughly September to June or
+								July, while Southern Hemisphere nations such as Australia, New
+								Zealand, and South Africa typically start in late January or
+								February and finish in November or December. Some countries use
+								a trimester system; others use two or four terms. There is no
+								universal academic calendar.
+							</p>
+						</div>
+					</details>
+					<details class="bts-faq-item">
+						<summary class="bts-faq-question"
+							>Can I save or share my back-to-school countdown?</summary
+						>
+						<div class="bts-faq-answer">
+							<p>
+								You can bookmark this page in your browser to return to your
+								countdown any time. Clockr does not store your date on a server —
+								it stays in your browser session only. To share with family,
+								send them the link to this page and they can enter the same start
+								date. For a custom countdown to any date, try the{' '}
+								<a href="/countdown-timer">Countdown Timer</a> tool.
+							</p>
+						</div>
+					</details>
+				</div>
+			</section>
+
+			<div class="bts-related">
+				<h3 class="bts-related-title">Related tools</h3>
+				<div class="bts-related-grid">
+					<a href="/days-until-christmas" class="bts-related-card"
+						><span class="bts-related-name">Days Until Christmas</span></a
+					>
+					<a href="/business-days" class="bts-related-card"
+						><span class="bts-related-name">Business Days Calculator</span></a
+					>
+					<a href="/countdown-timer" class="bts-related-card"
+						><span class="bts-related-name">Countdown Timer</span></a
+					>
+					<a href="/days-until-halloween" class="bts-related-card"
+						><span class="bts-related-name">Days Until Halloween</span></a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.bts-page {
+		width: 100%;
+	}
+
+	.bts-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #0a0a0b, #18181b);
+		border-bottom: 1px solid rgba(59, 130, 246, 0.35);
+		overflow: hidden;
+		position: relative;
+		min-height: 320px;
+	}
+
+	.bts-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.bts-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: bts-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.bts-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes bts-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.bts-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.bts-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.bts-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: linear-gradient(135deg, #3b82f6, #facc15);
+		box-shadow: 0 0 18px rgba(59, 130, 246, 0.45);
+	}
+
+	.bts-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #3b82f6, #facc15);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bts-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0 0 28px;
+	}
+
+	:global(.bts-countdown-widget) {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	:global(.bts-input-section) {
+		width: 100%;
+		max-width: 420px;
+		margin-bottom: 8px;
+	}
+
+	:global(.bts-input-wrap) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+		width: 100%;
+	}
+
+	:global(.bts-input-label) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.85);
+	}
+
+	:global(.bts-input) {
+		width: 100%;
+		max-width: 280px;
+		padding: 14px 18px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 600;
+		text-align: center;
+		color: #fff;
+		background: rgba(255, 255, 255, 0.06);
+		border: 1px solid rgba(59, 130, 246, 0.35);
+		border-radius: 12px;
+		outline: none;
+		transition: border-color 0.2s ease;
+		box-sizing: border-box;
+	}
+
+	:global(.bts-input:focus) {
+		border-color: rgba(250, 204, 21, 0.6);
+	}
+
+	:global(.bts-input::placeholder) {
+		color: rgba(255, 255, 255, 0.25);
+		font-weight: 500;
+	}
+
+	:global(.bts-input-note) {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+		line-height: 1.6;
+		margin: 12px 0 0;
+		text-align: center;
+	}
+
+	:global(.bts-results) {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 20px;
+	}
+
+	:global(.bts-countdown) {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	:global(.bts-countdown-block) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	:global(.bts-countdown-num) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #3b82f6, #facc15);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	:global(.bts-countdown-num--days) {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	:global(.bts-countdown-sep) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	:global(.bts-countdown-unit) {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	:global(.bts-target-date) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(15px, 2.5vw, 18px);
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.65);
+		margin: 24px 0 0;
+		line-height: 1.5;
+	}
+
+	:global(.bts-past-message) {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+		margin: 0;
+		text-align: center;
+	}
+
+	:global(.bts-past-message strong) {
+		color: rgba(255, 255, 255, 0.8);
+		font-weight: 600;
+	}
+
+	:global(.bts-presets) {
+		width: 100%;
+		max-width: 560px;
+		margin-top: 32px;
+		text-align: center;
+	}
+
+	:global(.bts-presets-title) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.7);
+		margin: 0 0 8px;
+		letter-spacing: 0.5px;
+	}
+
+	:global(.bts-presets-note) {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.35);
+		line-height: 1.5;
+		margin: 0 0 14px;
+	}
+
+	:global(.bts-presets-grid) {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+	}
+
+	@media (max-width: 600px) {
+		:global(.bts-presets-grid) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	:global(.bts-preset) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		padding: 12px 10px;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(59, 130, 246, 0.25);
+		border-radius: 10px;
+		cursor: pointer;
+		transition: border-color 0.2s ease, background 0.2s ease;
+		font-family: inherit;
+	}
+
+	:global(.bts-preset:hover) {
+		border-color: rgba(250, 204, 21, 0.45);
+		background: rgba(59, 130, 246, 0.08);
+	}
+
+	:global(.bts-preset-label) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #3b82f6, #facc15);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	:global(.bts-preset-sublabel) {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		color: rgba(255, 255, 255, 0.35);
+		line-height: 1.3;
+	}
+
+	.bts-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.bts-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.bts-how {
+		margin-bottom: 48px;
+	}
+
+	.bts-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(59, 130, 246, 0.2);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.bts-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.bts-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.bts-faq {
+		margin-bottom: 48px;
+	}
+
+	.bts-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.bts-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(59, 130, 246, 0.2);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.bts-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #3b82f6, #facc15);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bts-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.bts-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #3b82f6, #facc15);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bts-faq-item[open] .bts-faq-question::after {
+		content: '−';
+	}
+
+	.bts-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.bts-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.bts-faq-answer a {
+		color: #60a5fa;
+		text-decoration: none;
+	}
+
+	.bts-faq-answer a:hover {
+		text-decoration: underline;
+	}
+
+	.bts-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.bts-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.bts-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.bts-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.bts-related-card:hover {
+		border-color: rgba(59, 130, 246, 0.45);
+	}
+
+	.bts-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #3b82f6, #facc15);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.bts-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

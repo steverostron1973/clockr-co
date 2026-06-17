@@ -2,8 +2,14 @@ import { useEffect, useState } from 'react';
 
 export function formatDateMask(raw) {
 	const digits = raw.replace(/\D/g, '').slice(0, 8);
-	if (digits.length <= 2) return digits;
-	if (digits.length <= 4) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+	if (digits.length === 0) return '';
+	if (digits.length <= 2) {
+		return digits.length === 2 ? `${digits}/` : digits;
+	}
+	if (digits.length <= 4) {
+		const formatted = `${digits.slice(0, 2)}/${digits.slice(2)}`;
+		return digits.length === 4 ? `${formatted}/` : formatted;
+	}
 	return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
 }
 
