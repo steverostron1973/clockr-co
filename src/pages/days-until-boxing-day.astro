@@ -1,0 +1,526 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BoxingDayCountdown from '../components/BoxingDayCountdown.jsx';
+
+const leftEmojis = [
+	{ emoji: '🎁', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '🛍️', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '🦌', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '❄️', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '🎁', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '🛍️', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '🦌', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '❄️', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '🎁', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '🛍️', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '🦌', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '❄️', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title="Boxing Day Countdown — Days Until Boxing Day | Clockr"
+	description="How many days until Boxing Day? Live countdown to 26 December — showing days, hours, minutes and seconds until the next Boxing Day."
+	category="holidays"
+>
+	<div class="bxd-page">
+		<section class="bxd-hero" aria-label="Boxing Day countdown">
+			<div class="bxd-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="bxd-float-emoji bxd-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="bxd-float-emoji bxd-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="bxd-hero-centre">
+				<div class="bxd-eyebrow">
+					<span class="bxd-eyebrow-square" aria-hidden="true"></span>
+					HOLIDAY COUNTDOWNS
+				</div>
+				<h1 class="bxd-hero-title">Boxing Day Countdown</h1>
+				<p class="bxd-subtitle">Counting down to Boxing Day</p>
+
+				<BoxingDayCountdown client:load />
+			</div>
+		</section>
+
+		<div class="bxd-body">
+			<section class="bxd-how">
+				<h2 class="bxd-section-title">How it works</h2>
+				<div class="bxd-how-card">
+					<p>
+						Boxing Day takes its name from a long-standing British tradition in
+						which employers gave servants, tradespeople, and the less fortunate
+						a "Christmas box" — a gift or gratuity — on the day after Christmas.
+						The practice dates back to at least the Victorian era and draws on
+						even older customs of charitable giving during the twelve days of
+						Christmas. For household staff who worked on Christmas Day itself,
+						26 December was their day off and their chance to receive thanks in
+						the form of food, money, or goods.
+					</p>
+					<p>
+						Today, Boxing Day is a major public holiday across the United
+						Kingdom and much of the Commonwealth — including Canada, Australia,
+						New Zealand, and South Africa. Banks, schools, and many workplaces
+						close for the day. It has also become one of the biggest retail
+						events of the year, with post-Christmas sales drawing crowds to shops
+						and online stores. Sporting traditions are equally strong: football
+						fixtures fill stadiums in England, while horse racing meetings such
+						as the King George VI Chase at Kempton Park are fixtures of the
+						seasonal calendar.
+					</p>
+					<p>
+						Despite sharing Christmas itself, Boxing Day is not widely
+						recognised or observed in the United States. Americans typically
+						return to work on 26 December unless it falls on a weekend, and the
+						name carries little cultural weight there. The countdown on this
+						page targets midnight on 26 December of the current year — and if
+						that date has already passed, it automatically rolls forward to 26
+						December of the following year.
+					</p>
+				</div>
+			</section>
+
+			<section class="bxd-faq">
+				<h2 class="bxd-section-title">Frequently asked questions</h2>
+				<div class="bxd-faq-list">
+					<details class="bxd-faq-item">
+						<summary class="bxd-faq-question">When is Boxing Day?</summary>
+						<div class="bxd-faq-answer">
+							<p>
+								Boxing Day is always on 26 December — the day immediately after
+								Christmas Day. It does not move from year to year. The live
+								countdown at the top of this page shows the exact date and time
+								remaining until the next 26 December.
+							</p>
+						</div>
+					</details>
+					<details class="bxd-faq-item">
+						<summary class="bxd-faq-question">Why is it called Boxing Day?</summary>
+						<div class="bxd-faq-answer">
+							<p>
+								The name comes from the tradition of giving "Christmas boxes" to
+								servants, tradespeople, and those in need on the day after
+								Christmas. Employers and wealthy households would present boxes
+								containing gifts, bonuses, or leftover food as a token of
+								gratitude. The custom was well established in Victorian Britain
+								and reflects centuries of post-Christmas charitable giving.
+							</p>
+						</div>
+					</details>
+					<details class="bxd-faq-item">
+						<summary class="bxd-faq-question">Is Boxing Day a public holiday?</summary>
+						<div class="bxd-faq-answer">
+							<p>
+								Yes, in the United Kingdom and many Commonwealth countries
+								including Canada, Australia, New Zealand, and South Africa.
+								Banks, government offices, schools, and many businesses close
+								for the day. When 26 December falls on a weekend, some countries
+								observe a substitute public holiday on the following Monday.
+							</p>
+						</div>
+					</details>
+					<details class="bxd-faq-item">
+						<summary class="bxd-faq-question">Which countries celebrate Boxing Day?</summary>
+						<div class="bxd-faq-answer">
+							<p>
+								Boxing Day is primarily observed in the United Kingdom, Ireland,
+								and Commonwealth nations such as Canada, Australia, New Zealand,
+								and South Africa. It is also recognised in some other countries
+								with British colonial ties. It is not a public holiday in the
+								United States, most of continental Europe, or much of Asia.
+							</p>
+						</div>
+					</details>
+					<details class="bxd-faq-item">
+						<summary class="bxd-faq-question">Is Boxing Day celebrated in the US?</summary>
+						<div class="bxd-faq-answer">
+							<p>
+								No. Boxing Day is not a recognised holiday in the United States.
+								While Americans celebrate Christmas on 25 December, 26 December is
+								typically a normal working day unless it falls on a weekend. The
+								post-Christmas sales tradition exists in the US but is not tied
+								to the Boxing Day name or public holiday status.
+							</p>
+						</div>
+					</details>
+					<details class="bxd-faq-item">
+						<summary class="bxd-faq-question">What traditions are associated with Boxing Day?</summary>
+						<div class="bxd-faq-answer">
+							<p>
+								Common Boxing Day traditions include post-Christmas sales
+								shopping, watching or attending football matches and horse
+								racing, family gatherings and leftover Christmas feasts, and
+								charitable giving. In some communities, Boxing Day hunts and
+								outdoor walks remain popular ways to shake off the Christmas
+								indulgence and enjoy time with friends and family.
+							</p>
+						</div>
+					</details>
+				</div>
+			</section>
+
+			<div class="bxd-related">
+				<h3 class="bxd-related-title">Related tools</h3>
+				<div class="bxd-related-grid">
+					<a href="/days-until-christmas" class="bxd-related-card"
+						><span class="bxd-related-name">Days Until Christmas</span></a
+					>
+					<a href="/days-until-new-year" class="bxd-related-card"
+						><span class="bxd-related-name">Days Until New Year</span></a
+					>
+					<a href="/days-until-black-friday" class="bxd-related-card"
+						><span class="bxd-related-name">Black Friday Countdown</span></a
+					>
+					<a href="/days-until-valentines" class="bxd-related-card"
+						><span class="bxd-related-name">Days Until Valentine's Day</span></a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.bxd-page {
+		width: 100%;
+	}
+
+	.bxd-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #0a0a0b, #18181b);
+		border-bottom: 1px solid rgba(220, 38, 38, 0.35);
+		overflow: hidden;
+		position: relative;
+		min-height: 320px;
+	}
+
+	.bxd-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.bxd-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: bxd-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.bxd-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes bxd-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.bxd-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.bxd-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.bxd-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: linear-gradient(135deg, #dc2626, #16a34a);
+		box-shadow: 0 0 18px rgba(220, 38, 38, 0.45);
+	}
+
+	.bxd-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #dc2626, #16a34a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bxd-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0 0 28px;
+	}
+
+	:global(.bxd-countdown-widget) {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	:global(.bxd-countdown) {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	:global(.bxd-countdown-block) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	:global(.bxd-countdown-num) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #dc2626, #16a34a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	:global(.bxd-countdown-num--days) {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	:global(.bxd-countdown-sep) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	:global(.bxd-countdown-unit) {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	:global(.bxd-target-date) {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(15px, 2.5vw, 18px);
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.65);
+		margin: 24px 0 0;
+		line-height: 1.5;
+	}
+
+	.bxd-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.bxd-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.bxd-how {
+		margin-bottom: 48px;
+	}
+
+	.bxd-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(220, 38, 38, 0.2);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.bxd-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.bxd-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.bxd-faq {
+		margin-bottom: 48px;
+	}
+
+	.bxd-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.bxd-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(220, 38, 38, 0.2);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.bxd-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #dc2626, #16a34a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bxd-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.bxd-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #dc2626, #16a34a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.bxd-faq-item[open] .bxd-faq-question::after {
+		content: '−';
+	}
+
+	.bxd-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.bxd-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.bxd-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.bxd-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.bxd-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.bxd-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.bxd-related-card:hover {
+		border-color: rgba(220, 38, 38, 0.45);
+	}
+
+	.bxd-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #dc2626, #16a34a);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.bxd-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
