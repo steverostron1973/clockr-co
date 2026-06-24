@@ -46,3 +46,50 @@
 		box-shadow: var(--shadow-card);
 	}
 }
+
+/* Shared DateInput (dd/mm/yyyy) — used site-wide via default classes in DateInput.jsx */
+.date-input-wrap-default {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	align-items: center;
+	justify-content: center;
+}
+
+.date-input-label-default {
+	font-family: var(--font-display), 'Outfit', sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+	color: rgba(255, 255, 255, 0.6);
+	letter-spacing: 0.5px;
+	text-align: center;
+}
+
+.date-input-default {
+	background: #0c0c0c;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: 12px;
+	padding: 16px 24px;
+	font-family: var(--font-display), 'Outfit', sans-serif;
+	font-size: 24px;
+	font-weight: 700;
+	color: #ffffff;
+	text-align: left;
+	width: 10ch;
+	box-sizing: content-box;
+	outline: none;
+	transition:
+		border-color 0.2s ease,
+		box-shadow 0.2s ease;
+	color-scheme: dark;
+}
+
+.date-input-default:focus {
+	border-color: rgba(255, 255, 255, 0.35);
+	box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+}
+
+.date-input-default::placeholder {
+	color: rgba(255, 255, 255, 0.25);
+	font-weight: 500;
+}

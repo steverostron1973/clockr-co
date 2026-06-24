@@ -56,15 +56,19 @@ function selectSegment(input, start) {
 	requestAnimationFrame(() => input.setSelectionRange(start, end));
 }
 
+const DEFAULT_INPUT_CLASS = 'date-input-default';
+const DEFAULT_LABEL_CLASS = 'date-input-label-default';
+const DEFAULT_WRAP_CLASS = 'date-input-wrap-default';
+
 export default function DateInput({
 	id,
 	label,
 	value,
 	onChange,
 	placeholder = 'dd/mm/yyyy',
-	inputClassName = '',
-	labelClassName = '',
-	wrapClassName = '',
+	inputClassName = DEFAULT_INPUT_CLASS,
+	labelClassName = DEFAULT_LABEL_CLASS,
+	wrapClassName = DEFAULT_WRAP_CLASS,
 	maxDate = null,
 }) {
 	const [display, setDisplay] = useState(value ?? '');

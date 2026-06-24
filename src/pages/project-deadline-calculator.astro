@@ -1,0 +1,755 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectDeadlineCalculator from '../components/ProjectDeadlineCalculator.jsx';
+---
+
+<Layout
+	title="Project Deadline Calculator — Working Days Until Deadline | Clockr"
+	description="Calculate working days until your project deadline or find the finish date after a set number of working days. Free deadline calculator with weekend and public holiday options."
+	category="work"
+>
+	<div class="pdc-page">
+		<div class="pdc-header">
+			<div class="pdc-eyebrow">
+				<span class="pdc-eyebrow-square" aria-hidden="true"></span>
+				Work & Business
+			</div>
+			<h1 class="pdc-title">
+				<span class="pdc-gradient">Project Deadline Calculator</span>
+			</h1>
+			<p class="pdc-subtitle">Work out exactly how long you have until your deadline</p>
+		</div>
+
+		<ProjectDeadlineCalculator client:load />
+
+		<section class="pdc-how">
+			<h2 class="pdc-section-title">How it works</h2>
+			<div class="pdc-how-card">
+				<p>
+					Project deadlines in the real world rarely line up with calendar days.
+					Most teams work Monday to Friday, so a &ldquo;10-day&rdquo; sprint might
+					span two full weeks on the calendar once weekends are accounted for.
+					Public holidays add another layer — a deadline set in working days can
+					slip by several calendar days if bank holidays fall in between. For
+					accurate project planning, working days matter more than raw calendar
+					days because they reflect when work actually gets done.
+				</p>
+				<p>
+					Clockr offers two modes. &ldquo;Time until deadline&rdquo; counts down
+					from today (or your project start date) to a fixed deadline, showing
+					calendar days, working days, and a weeks-and-days breakdown. A progress
+					bar appears when your start date is today or in the past, visualising
+					time elapsed versus time remaining. &ldquo;Calculate finish date&rdquo;
+					works in the opposite direction — enter a start date and a number of
+					working days, and the tool calculates when the project should be
+					complete.
+				</p>
+				<p>
+					You can choose to include or exclude weekends, and optionally subtract
+					public holidays using standard UK or US holiday schedules as a guide.
+					Public holiday dates vary by region, employer, and year — some
+					jurisdictions observe substitute days when a holiday falls on a weekend,
+					and not every organisation closes on the same dates. Treat the holiday
+					option as a planning estimate and adjust manually for your local
+					calendar where precision matters.
+				</p>
+			</div>
+		</section>
+
+		<section class="pdc-faq">
+			<h2 class="pdc-section-title">Frequently asked questions</h2>
+			<div class="pdc-faq-list">
+				<details class="pdc-faq-item">
+					<summary class="pdc-faq-question"
+						>How do I calculate working days until a deadline?</summary
+					>
+					<div class="pdc-faq-answer">
+						<p>
+							Select &ldquo;Time until deadline&rdquo;, enter your project start
+							date and deadline date, and leave &ldquo;Exclude weekends&rdquo;
+							selected. The calculator shows how many working days remain from
+							today to your deadline. Optionally check &ldquo;Exclude public
+							holidays&rdquo; and choose UK or US to subtract bank holidays that
+							fall within the range.
+						</p>
+					</div>
+				</details>
+				<details class="pdc-faq-item">
+					<summary class="pdc-faq-question">What counts as a working day?</summary>
+					<div class="pdc-faq-answer">
+						<p>
+							By default, a working day is any weekday — Monday through Friday.
+							Saturday and Sunday are excluded unless you switch to &ldquo;Include
+							weekends&rdquo;. When public holiday exclusion is enabled, recognised
+							bank holidays for your selected country are also removed from the
+							working day count, even when they fall on a weekday.
+						</p>
+					</div>
+				</details>
+				<details class="pdc-faq-item">
+					<summary class="pdc-faq-question"
+						>How do I find out what date is 30 working days from today?</summary
+					>
+					<div class="pdc-faq-answer">
+						<p>
+							Switch to &ldquo;Calculate finish date&rdquo;, set the start date to
+							today, enter 30 in the working days field, and keep weekends
+							excluded. The result shows the calendar date that is exactly 30
+							weekdays later, skipping any Saturdays and Sundays along the way.
+							Enable public holiday exclusion if you want bank holidays subtracted
+							too.
+						</p>
+					</div>
+				</details>
+				<details class="pdc-faq-item">
+					<summary class="pdc-faq-question"
+						>Does this calculator exclude public holidays?</summary
+					>
+					<div class="pdc-faq-answer">
+						<p>
+							Only when you check &ldquo;Exclude public holidays&rdquo;. By default
+							the tool counts weekdays only and does not subtract bank holidays.
+							When enabled, it uses standard UK bank holidays or US federal
+							holidays as a guide — including movable dates like Good Friday and
+							Thanksgiving. Regional variations and employer-specific closures are
+							not covered automatically.
+						</p>
+					</div>
+				</details>
+				<details class="pdc-faq-item">
+					<summary class="pdc-faq-question"
+						>How many working days are in a month?</summary
+					>
+					<div class="pdc-faq-answer">
+						<p>
+							Most months contain between 20 and 23 weekdays, depending on how
+							weekends fall. A 31-day month with five full weekends can have as
+							few as 20 working days, while a month starting on a Friday can have
+							23. Public holidays reduce the count further. Use the Business Days
+							Calculator for a detailed month-by-month breakdown of any year.
+						</p>
+					</div>
+				</details>
+				<details class="pdc-faq-item">
+					<summary class="pdc-faq-question"
+						>Can I use this for project management planning?</summary
+					>
+					<div class="pdc-faq-answer">
+						<p>
+							Yes. The countdown mode helps you see how much runway remains on a
+							fixed deadline, while the finish-date mode answers &ldquo;when will
+							we be done if we have X working days of effort?&rdquo; — useful for
+							sprint planning, contract milestones, and delivery estimates. Pair
+							it with the Work Hours Calculator to convert working days into
+							actual labour hours for your team.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="pdc-related">
+			<h3 class="pdc-related-title">Related tools</h3>
+			<div class="pdc-related-grid">
+				<a href="/business-days" class="pdc-related-card"
+					><span class="pdc-related-name">Business Days Calculator</span></a
+				>
+				<a href="/work-hours-calculator" class="pdc-related-card"
+					><span class="pdc-related-name">Work Hours Calculator</span></a
+				>
+				<a href="/overtime-calculator" class="pdc-related-card"
+					><span class="pdc-related-name">Overtime Calculator</span></a
+				>
+				<a href="/countdown-timer" class="pdc-related-card"
+					><span class="pdc-related-name">Countdown Timer</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.pdc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.pdc-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.pdc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.pdc-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: var(--cat-gradient);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.pdc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.pdc-gradient {
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pdc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.pdc-tool {
+		margin-bottom: 48px;
+	}
+
+	.pdc-tabs {
+		display: flex;
+		gap: 8px;
+		margin-bottom: 24px;
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
+		border-radius: 14px;
+		padding: 6px;
+	}
+
+	.pdc-tab {
+		flex: 1;
+		background: transparent;
+		border: none;
+		border-radius: 10px;
+		padding: 14px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.45);
+		cursor: pointer;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease;
+		line-height: 1.3;
+	}
+
+	.pdc-tab:hover {
+		color: rgba(255, 255, 255, 0.7);
+	}
+
+	.pdc-tab--active {
+		background: rgba(var(--cat-from-rgb), 0.15);
+		color: #fff;
+		box-shadow: 0 0 20px rgba(var(--cat-from-rgb), 0.1);
+	}
+
+	.pdc-form-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
+		border-radius: 20px;
+		padding: 32px;
+		margin-bottom: 24px;
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.06);
+	}
+
+	:global(.rcc-inputs) {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+		margin-bottom: 24px;
+	}
+
+	:global(.rcc-input-wrap) {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	:global(.rcc-label) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+		text-align: center;
+	}
+
+	:global(.rcc-input) {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
+		border-radius: 12px;
+		padding: 16px 24px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #ffffff;
+		text-align: center;
+		outline: none;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	:global(.rcc-input:focus) {
+		border-color: rgba(var(--cat-from-rgb), 0.8);
+		box-shadow: 0 0 20px rgba(var(--cat-from-rgb), 0.15);
+	}
+
+	.pdc-options {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		border-top: 1px solid rgba(var(--cat-from-rgb), 0.12);
+		padding-top: 24px;
+	}
+
+	.pdc-toggle-group {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+	}
+
+	.pdc-toggle-btn {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
+		border-radius: 12px;
+		padding: 14px 12px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.55);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.pdc-toggle-btn:hover {
+		border-color: rgba(var(--cat-from-rgb), 0.6);
+		background: rgba(var(--cat-from-rgb), 0.08);
+	}
+
+	.pdc-toggle-btn--active {
+		border-color: rgba(var(--cat-to-rgb), 0.7);
+		background: rgba(var(--cat-from-rgb), 0.12);
+		color: #fff;
+		box-shadow: 0 0 24px rgba(var(--cat-from-rgb), 0.1);
+	}
+
+	.pdc-holiday-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 16px;
+	}
+
+	.pdc-checkbox {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		cursor: pointer;
+		user-select: none;
+	}
+
+	.pdc-checkbox input {
+		position: absolute;
+		opacity: 0;
+		width: 0;
+		height: 0;
+	}
+
+	.pdc-checkbox-box {
+		width: 20px;
+		height: 20px;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.4);
+		border-radius: 6px;
+		background: #0c0c0c;
+		flex-shrink: 0;
+		position: relative;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.pdc-checkbox input:checked + .pdc-checkbox-box {
+		background: rgba(var(--cat-from-rgb), 0.2);
+		border-color: rgba(var(--cat-to-rgb), 0.7);
+	}
+
+	.pdc-checkbox input:checked + .pdc-checkbox-box::after {
+		content: '';
+		position: absolute;
+		left: 6px;
+		top: 2px;
+		width: 5px;
+		height: 10px;
+		border: solid #fff;
+		border-width: 0 2px 2px 0;
+		transform: rotate(45deg);
+	}
+
+	.pdc-checkbox-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.65);
+	}
+
+	.pdc-select {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
+		border-radius: 10px;
+		padding: 10px 14px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: #fff;
+		outline: none;
+		cursor: pointer;
+		color-scheme: dark;
+	}
+
+	.pdc-select:focus {
+		border-color: rgba(var(--cat-from-rgb), 0.8);
+	}
+
+	.pdc-results {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.pdc-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.pdc-stat-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
+		border-radius: 14px;
+		padding: 20px;
+		text-align: center;
+	}
+
+	.pdc-stat-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.45);
+		margin-bottom: 8px;
+		letter-spacing: 0.3px;
+		line-height: 1.4;
+	}
+
+	.pdc-stat-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: 36px;
+		font-weight: 800;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		line-height: 1.1;
+		margin-bottom: 6px;
+	}
+
+	.pdc-stat-sub {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.pdc-holiday-note {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+		text-align: center;
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	.pdc-progress {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
+		border-radius: 14px;
+		padding: 20px;
+	}
+
+	.pdc-progress-top {
+		display: flex;
+		justify-content: space-between;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.4);
+		margin-bottom: 10px;
+	}
+
+	.pdc-progress-track {
+		height: 10px;
+		background: rgba(255, 255, 255, 0.06);
+		border-radius: 999px;
+		overflow: hidden;
+		margin-bottom: 10px;
+	}
+
+	.pdc-progress-fill {
+		height: 100%;
+		background: var(--cat-gradient);
+		border-radius: 999px;
+		transition: width 0.3s ease;
+	}
+
+	.pdc-progress-labels {
+		display: flex;
+		justify-content: space-between;
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.pdc-finish-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.25);
+		border-radius: 16px;
+		padding: 32px 24px;
+		text-align: center;
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.08);
+	}
+
+	.pdc-finish-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 12px;
+		letter-spacing: 0.3px;
+	}
+
+	.pdc-finish-date {
+		font-family: 'Outfit', sans-serif;
+		font-size: 32px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		line-height: 1.2;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 12px;
+	}
+
+	.pdc-finish-sub {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	.pdc-error {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 120, 120, 0.85);
+		text-align: center;
+		margin: 0;
+		padding: 16px;
+		background: rgba(255, 80, 80, 0.06);
+		border: 1px solid rgba(255, 80, 80, 0.15);
+		border-radius: 12px;
+	}
+
+	.pdc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.pdc-how {
+		margin-bottom: 48px;
+	}
+
+	.pdc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.pdc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.pdc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.pdc-faq {
+		margin-bottom: 48px;
+	}
+
+	.pdc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.pdc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.pdc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pdc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.pdc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pdc-faq-item[open] .pdc-faq-question::after {
+		content: '−';
+	}
+
+	.pdc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.pdc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.pdc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.pdc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.pdc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.pdc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.pdc-related-card:hover {
+		border-color: rgba(var(--cat-from-rgb), 0.4);
+	}
+
+	.pdc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.pdc-title {
+			font-size: 40px;
+			letter-spacing: -2px;
+		}
+
+		.pdc-tab {
+			font-size: 12px;
+			padding: 12px 10px;
+		}
+
+		.pdc-stats-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.pdc-stat-num {
+			font-size: 28px;
+		}
+
+		.pdc-finish-date {
+			font-size: 24px;
+		}
+
+		.pdc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
