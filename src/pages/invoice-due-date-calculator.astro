@@ -1,0 +1,633 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InvoiceDueDateCalculator from '../components/InvoiceDueDateCalculator.jsx';
+---
+
+<Layout
+	title="Invoice Due Date Calculator — Payment Terms & Deadlines | Clockr"
+	description="Calculate when your invoice is due from the invoice date and payment terms. Track days remaining, overdue status, and common UK payment terms like net 30."
+	category="work"
+>
+	<div class="idc-page">
+		<div class="idc-header">
+			<div class="idc-eyebrow">
+				<span class="idc-eyebrow-square" aria-hidden="true"></span>
+				Work & Business
+			</div>
+			<h1 class="idc-title">
+				<span class="idc-gradient">Invoice Due Date Calculator</span>
+			</h1>
+			<p class="idc-subtitle">
+				Calculate when your invoice is due and track payment deadlines
+			</p>
+		</div>
+
+		<InvoiceDueDateCalculator client:load />
+
+		<section class="idc-how">
+			<h2 class="idc-section-title">How it works</h2>
+			<div class="idc-how-card">
+				<p>
+					Payment terms define how long a customer has to pay after an invoice is
+					issued. The due date is calculated by adding the agreed number of days
+					to the invoice date — so an invoice dated 1 June with 30-day terms is
+					due on 1 July. Enter your invoice date and select or enter the payment
+					terms, and Clockr calculates the due date instantly and shows how many
+					days remain until payment is expected.
+				</p>
+				<p>
+					In UK business, common payment terms include 7 days (often for small
+					jobs or cash-flow-sensitive work), 14 days, and 30 days. Net 30 — meaning
+					payment within 30 calendar days of the invoice date — is the most widely
+					used standard between businesses. Longer terms such as 60 or 90 days are
+					sometimes negotiated for larger contracts or established supplier
+					relationships, but they extend the wait before cash arrives.
+				</p>
+				<p>
+					If an invoice is paid after the due date, UK law provides certain
+					statutory rights under the Late Payment of Commercial Debts (Interest)
+					Act 1998, including the right to claim statutory interest and a fixed
+					compensation sum on qualifying business-to-business debts. This
+					calculator is for date arithmetic only — it does not constitute legal
+					advice, and you should confirm your specific rights and procedures with
+					a qualified adviser if payment is late.
+				</p>
+			</div>
+		</section>
+
+		<section class="idc-faq">
+			<h2 class="idc-section-title">Frequently asked questions</h2>
+			<div class="idc-faq-list">
+				<details class="idc-faq-item">
+					<summary class="idc-faq-question">How do I calculate an invoice due date?</summary>
+					<div class="idc-faq-answer">
+						<p>
+							Add the payment terms in days to the invoice date. For example, an
+							invoice dated 15 March with 30-day terms is due on 14 April. Enter
+							the invoice date in dd/mm/yyyy format, choose your payment terms (or
+							enter a custom number of days), and the calculator shows the due
+							date plus how many days remain or how overdue the invoice is.
+						</p>
+					</div>
+				</details>
+				<details class="idc-faq-item">
+					<summary class="idc-faq-question">What are standard payment terms in the UK?</summary>
+					<div class="idc-faq-answer">
+						<p>
+							The most common terms are 7, 14, and 30 days from the invoice date.
+							Net 30 is the de facto standard for many B2B transactions — payment
+							is expected within 30 calendar days. Smaller suppliers or freelancers
+							may ask for 7 or 14 days; larger corporate buyers sometimes request
+							60 or 90 days. Terms should always be agreed in writing before work
+							begins or stated clearly on the invoice.
+						</p>
+					</div>
+				</details>
+				<details class="idc-faq-item">
+					<summary class="idc-faq-question">What does &ldquo;net 30&rdquo; mean on an invoice?</summary>
+					<div class="idc-faq-answer">
+						<p>
+							Net 30 means the full invoice amount is due within 30 calendar days
+							of the invoice date — not 30 working days. An invoice dated 1
+							January with net 30 terms is due on 31 January. &ldquo;Net&rdquo;
+							indicates the full amount with no early-payment discount applied
+							(unlike &ldquo;2/10 net 30&rdquo;, which offers a 2% discount if paid
+							within 10 days).
+						</p>
+					</div>
+				</details>
+				<details class="idc-faq-item">
+					<summary class="idc-faq-question">What happens if an invoice is paid late?</summary>
+					<div class="idc-faq-answer">
+						<p>
+							Once the due date passes without payment, the invoice is overdue.
+							You may follow up with reminders, pause further work, or escalate
+							through your agreed dispute process. For qualifying commercial
+							debts in the UK, statutory interest and compensation may be
+							claimable under the Late Payment of Commercial Debts legislation.
+							Exact steps depend on your contract, relationship, and whether the
+							debt meets the statutory criteria.
+						</p>
+					</div>
+				</details>
+				<details class="idc-faq-item">
+					<summary class="idc-faq-question">Can I charge interest on a late invoice?</summary>
+					<div class="idc-faq-answer">
+						<p>
+							On qualifying business-to-business debts in the UK, you may be
+							entitled to statutory simple interest at 8% above the Bank of England
+							base rate, plus a fixed compensation amount, under the Late Payment
+							of Commercial Debts (Interest) Act 1998. Your contract may also specify
+							its own late-payment interest clause. This is general factual
+							information only — not legal advice. Consult a solicitor or debt
+							recovery specialist for your specific situation.
+						</p>
+					</div>
+				</details>
+				<details class="idc-faq-item">
+					<summary class="idc-faq-question">How do I track multiple invoice due dates?</summary>
+					<div class="idc-faq-answer">
+						<p>
+							Run the calculator for each invoice separately, noting the due date
+							and days remaining. For ongoing tracking, use a spreadsheet or
+							accounting software with an aged debtors report — most list
+							outstanding invoices by due date and flag overdue items. Pair this
+							tool with the Business Days Calculator if you need working-day
+							counts for follow-up schedules or internal SLAs.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="idc-related">
+			<h3 class="idc-related-title">Related tools</h3>
+			<div class="idc-related-grid">
+				<a href="/business-days" class="idc-related-card"
+					><span class="idc-related-name">Business Days Calculator</span></a
+				>
+				<a href="/project-deadline-calculator" class="idc-related-card"
+					><span class="idc-related-name">Project Deadline Calculator</span></a
+				>
+				<a href="/overtime-calculator" class="idc-related-card"
+					><span class="idc-related-name">Overtime Calculator</span></a
+				>
+				<a href="/work-hours-calculator" class="idc-related-card"
+					><span class="idc-related-name">Work Hours Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.idc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.idc-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.idc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.idc-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: var(--cat-gradient);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.idc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.idc-gradient {
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.idc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.idc-tool {
+		margin-bottom: 48px;
+	}
+
+	.idc-form-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
+		border-radius: 20px;
+		padding: 32px;
+		margin-bottom: 24px;
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.06);
+	}
+
+	.idc-inputs {
+		display: flex;
+		flex-direction: column;
+		gap: 28px;
+	}
+
+	.idc-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.55);
+		letter-spacing: 0.3px;
+	}
+
+	.idc-label--block {
+		display: block;
+		margin-bottom: 12px;
+		text-align: center;
+	}
+
+	.idc-terms-section {
+		border-top: 1px solid rgba(var(--cat-from-rgb), 0.12);
+		padding-top: 24px;
+	}
+
+	.idc-terms-btns {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+	}
+
+	.idc-terms-btn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
+		border-radius: 12px;
+		padding: 14px 10px;
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.idc-terms-btn:hover {
+		border-color: rgba(var(--cat-from-rgb), 0.6);
+		background: rgba(var(--cat-from-rgb), 0.08);
+	}
+
+	.idc-terms-btn--active {
+		border-color: rgba(var(--cat-to-rgb), 0.7);
+		background: rgba(var(--cat-from-rgb), 0.12);
+		box-shadow: 0 0 24px rgba(var(--cat-from-rgb), 0.1);
+	}
+
+	.idc-terms-btn-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: #fff;
+	}
+
+	.idc-terms-btn-sub {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		color: rgba(255, 255, 255, 0.4);
+		text-align: center;
+		line-height: 1.3;
+	}
+
+	.idc-custom-terms {
+		margin-top: 16px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: center;
+	}
+
+	.idc-custom-row {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.idc-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.3);
+		border-radius: 12px;
+		padding: 14px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #ffffff;
+		outline: none;
+		transition: border-color 0.2s ease;
+		color-scheme: dark;
+	}
+
+	.idc-input--terms {
+		max-width: 100px;
+		text-align: center;
+	}
+
+	.idc-input:focus {
+		border-color: rgba(var(--cat-from-rgb), 0.8);
+		box-shadow: 0 0 20px rgba(var(--cat-from-rgb), 0.15);
+	}
+
+	.idc-custom-suffix {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.idc-results {
+		margin-bottom: 32px;
+	}
+
+	.idc-due-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.25);
+		border-radius: 16px;
+		padding: 32px 24px;
+		text-align: center;
+		box-shadow: 0 0 40px rgba(var(--cat-from-rgb), 0.08);
+	}
+
+	.idc-due-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 8px;
+		letter-spacing: 0.3px;
+	}
+
+	.idc-due-date {
+		font-family: 'Outfit', sans-serif;
+		font-size: 32px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		line-height: 1.2;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.idc-days {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.55);
+		margin-bottom: 16px;
+	}
+
+	.idc-days--overdue {
+		color: rgba(248, 113, 113, 0.95);
+		font-weight: 600;
+	}
+
+	.idc-status {
+		display: inline-block;
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 0.3px;
+		padding: 8px 16px;
+		border-radius: 999px;
+	}
+
+	.idc-status--on-time {
+		background: rgba(34, 197, 94, 0.12);
+		border: 1px solid rgba(34, 197, 94, 0.35);
+		color: rgba(74, 222, 128, 0.95);
+	}
+
+	.idc-status--due-soon {
+		background: rgba(245, 158, 11, 0.12);
+		border: 1px solid rgba(245, 158, 11, 0.35);
+		color: rgba(251, 191, 36, 0.95);
+	}
+
+	.idc-status--overdue {
+		background: rgba(239, 68, 68, 0.12);
+		border: 1px solid rgba(239, 68, 68, 0.35);
+		color: rgba(248, 113, 113, 0.95);
+	}
+
+	.idc-quick {
+		margin-bottom: 48px;
+	}
+
+	.idc-quick-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.idc-quick-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.idc-quick-btn {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.2);
+		border-radius: 12px;
+		padding: 20px 16px;
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.idc-quick-btn:hover {
+		border-color: rgba(var(--cat-from-rgb), 0.5);
+		background: rgba(var(--cat-from-rgb), 0.06);
+	}
+
+	.idc-quick-btn-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: #fff;
+	}
+
+	.idc-quick-btn-sub {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.idc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.idc-how {
+		margin-bottom: 48px;
+	}
+
+	.idc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.idc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.idc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.idc-faq {
+		margin-bottom: 48px;
+	}
+
+	.idc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.idc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(var(--cat-from-rgb), 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.idc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.idc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.idc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.idc-faq-item[open] .idc-faq-question::after {
+		content: '−';
+	}
+
+	.idc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.idc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.idc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.idc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.idc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.idc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.idc-related-card:hover {
+		border-color: rgba(var(--cat-from-rgb), 0.4);
+	}
+
+	.idc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: var(--cat-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.idc-title {
+			font-size: 40px;
+			letter-spacing: -2px;
+		}
+
+		.idc-terms-btns {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.idc-due-date {
+			font-size: 24px;
+		}
+
+		.idc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
