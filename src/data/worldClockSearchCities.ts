@@ -1,11 +1,22 @@
+import { getCityCoordinates } from './cityCoordinates';
+
 export interface WorldClockCity {
 	city: string;
 	country: string;
 	timezone: string;
 	flag: string;
+	lat: number;
+	lng: number;
 }
 
-export const gridCities: WorldClockCity[] = [
+type CityEntry = Omit<WorldClockCity, 'lat' | 'lng'>;
+
+function withCoordinates(city: CityEntry): WorldClockCity {
+	const { lat, lng } = getCityCoordinates(city.city, city.country);
+	return { ...city, lat, lng };
+}
+
+const gridCitiesBase: CityEntry[] = [
 	{ city: 'London', country: 'United Kingdom', timezone: 'Europe/London', flag: '🇬🇧' },
 	{ city: 'New York', country: 'United States', timezone: 'America/New_York', flag: '🇺🇸' },
 	{ city: 'Los Angeles', country: 'United States', timezone: 'America/Los_Angeles', flag: '🇺🇸' },
@@ -32,7 +43,7 @@ export const gridCities: WorldClockCity[] = [
 	{ city: 'Chicago', country: 'United States', timezone: 'America/Chicago', flag: '🇺🇸' },
 ];
 
-export const searchOnlyCities: WorldClockCity[] = [
+const searchOnlyCitiesBase: CityEntry[] = [
 	// Europe
 	{ city: 'Edinburgh', country: 'United Kingdom', timezone: 'Europe/London', flag: '🇬🇧' },
 	{ city: 'Cardiff', country: 'United Kingdom', timezone: 'Europe/London', flag: '🇬🇧' },
@@ -237,6 +248,10 @@ export const searchOnlyCities: WorldClockCity[] = [
 	{ city: 'Apia', country: 'Samoa', timezone: 'Pacific/Apia', flag: '🇼🇸' },
 	{ city: "Nuku'alofa", country: 'Tonga', timezone: 'Pacific/Tongatapu', flag: '🇹🇴' },
 ];
+
+export const gridCities: WorldClockCity[] = gridCitiesBase.map(withCoordinates);
+export const searchOnlyCities: WorldClockCity[] =
+	searchOnlyCitiesBase.map(withCoordinates);
 
 export const allWorldClockCities: WorldClockCity[] = [
 	...gridCities,

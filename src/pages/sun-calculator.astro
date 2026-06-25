@@ -1,0 +1,697 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SunCalculator from '../components/SunCalculator.jsx';
+---
+
+<Layout
+	title="Sun Calculator — Sunrise, Sunset & Daylight Hours | Clockr"
+	description="Find sunrise, sunset and daylight hours for any location and date. See solar noon, dawn, dusk and a visual daylight timeline."
+	category="seasons"
+>
+	<div class="sc-page">
+		<div class="sc-header">
+			<div class="sc-eyebrow">
+				<span class="sc-eyebrow-square" aria-hidden="true"></span>
+				SEASONS
+			</div>
+			<h1 class="sc-title">
+				<span class="sc-gradient">Sun Calculator</span>
+			</h1>
+			<p class="sc-subtitle">
+				Find sunrise, sunset and daylight hours for any location and date
+			</p>
+		</div>
+
+		<SunCalculator client:load />
+
+		<!-- HOW IT WORKS -->
+		<section class="sc-how">
+			<h2 class="sc-section-title">How it works</h2>
+			<div class="sc-how-card">
+				<p>
+					Sunrise and sunset are not fixed clock times — they depend on where you
+					are on Earth, the date, and how the planet is tilted on its axis. This
+					calculator uses a standard solar-position algorithm (the same family of
+					formulas used by NOAA and other astronomical references) with each
+					city&apos;s latitude and longitude from our 250-city database. For any
+					chosen date it works out when the Sun crosses the horizon, when it
+					reaches its highest point (solar noon), and how many hours of daylight
+					you get — all in local time for that city.
+				</p>
+				<p>
+					Daylight length changes through the year because Earth&apos;s axis is
+					tilted about 23.5° relative to its orbit. Near the summer solstice,
+					the Northern Hemisphere leans toward the Sun, so days are longest;
+					near the winter solstice they are shortest. The effect is strongest at
+					high latitudes — Edinburgh sees dramatic swings between long June days
+					and short December ones, while cities near the equator have roughly
+					equal day and night year-round. Your distance from the equator
+					(latitude) sets the range; the time of year sets where you are within
+					that range.
+				</p>
+				<p>
+					Twilight is the period when the Sun is below the horizon but the sky
+					is still partly lit. <strong>Civil twilight</strong> (used for dawn and
+					dusk here) ends when the Sun is 6° below the horizon — roughly when
+					outdoor activities are still possible without artificial light.
+					<strong>Nautical twilight</strong> (12° below) is when the horizon at
+					sea is still visible; <strong>astronomical twilight</strong> (18° below)
+					is when the faintest stars begin to appear. Dawn is civil twilight
+					before sunrise; dusk is civil twilight after sunset.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="sc-faq">
+			<h2 class="sc-section-title">Frequently asked questions</h2>
+			<div class="sc-faq-list">
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">What time is sunrise today?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							Select your city and leave the date on today (or tap the
+							&ldquo;Today&rdquo; quick link). The sunrise time appears in the
+							results panel, shown in local time for that city. Times update
+							automatically for the current date and shift slightly each day as
+							Earth moves along its orbit.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Why do sunrise and sunset times change throughout the year?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							Earth&apos;s 23.5° axial tilt means different parts of the planet
+							receive more or less sunlight as we orbit the Sun. In summer (around
+							the June solstice in the Northern Hemisphere), days grow longer;
+							in winter they shrink. The change is gradual through spring and
+							autumn and fastest around the equinoxes, when day and night are
+							nearly equal.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">What is solar noon?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							Solar noon is the moment when the Sun reaches its highest point in
+							the sky for that day. It is not always exactly 12:00 on your clock
+							— clock noon is a time-zone convention, while solar noon depends on
+							your longitude and the equation of time (Earth&apos;s slightly
+							elliptical orbit). It usually falls within an hour or so of midday
+							local time.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">What is civil twilight?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							Civil twilight occurs when the Sun is between 0° and 6° below the
+							horizon. There is enough natural light to see clearly outside, but
+							street lights may switch on. Dawn (civil) begins at the end of
+							night; dusk (civil) ends when the sky is dark enough for most stars
+							to be visible. This calculator shows civil dawn and dusk times.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Which place has the most daylight hours?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							On the summer solstice, high-latitude cities in the Northern
+							Hemisphere — such as Reykjavik, Helsinki, or Anchorage — have the
+							longest days, sometimes with nearly 24 hours of light (midnight sun
+							above the Arctic Circle). Near the equator, daylight stays close to
+							12 hours all year. Use the quick links to compare solstice dates
+							for different cities.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>How are sunrise and sunset times calculated?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							Clockr uses a standard solar-position model based on NOAA/USNO
+							algorithms. Given a date, latitude, and longitude, it calculates
+							the Sun&apos;s declination and hour angle, then finds when the
+							solar disc crosses the horizon (accounting for atmospheric
+							refraction). Results are converted to the city&apos;s IANA time
+							zone, including daylight saving time where applicable. No external
+							API is required.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="sc-related">
+			<h3 class="sc-related-title">Related tools</h3>
+			<div class="sc-related-grid">
+				<a href="/season-countdown" class="sc-related-card"
+					><span class="sc-related-name">Season Countdown</span></a
+				>
+				<a href="/moon-phase-calculator" class="sc-related-card"
+					><span class="sc-related-name">Moon Phase Calculator</span></a
+				>
+				<a href="/year-progress" class="sc-related-card"
+					><span class="sc-related-name">Year Progress Bar</span></a
+				>
+				<a href="/timezone-converter" class="sc-related-card"
+					><span class="sc-related-name">Time Zone Converter</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.sc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.sc-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.sc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.sc-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.sc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.sc-gradient {
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.sc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sc-how {
+		margin-bottom: 48px;
+	}
+
+	.sc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.sc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.sc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.sc-how-card strong {
+		color: rgba(255, 255, 255, 0.7);
+		font-weight: 600;
+	}
+
+	.sc-faq {
+		margin-bottom: 48px;
+	}
+
+	.sc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.sc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.sc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.sc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-faq-item[open] .sc-faq-question::after {
+		content: '−';
+	}
+
+	.sc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.sc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.sc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.sc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.sc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.sc-related-card:hover {
+		border-color: rgba(45, 106, 79, 0.4);
+	}
+
+	.sc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.sc-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.sc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Sun Calculator tool */
+	.sunc-tool {
+		margin-bottom: 48px;
+	}
+
+	.sunc-inputs {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+		margin-bottom: 20px;
+	}
+
+	@media (max-width: 600px) {
+		.sunc-inputs {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.sunc-label {
+		display: block;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+		margin-bottom: 8px;
+	}
+
+	.sunc-location-wrap {
+		position: relative;
+	}
+
+	.sunc-location-input {
+		width: 100%;
+		box-sizing: border-box;
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.25);
+		border-radius: 12px;
+		padding: 14px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		color: #fff;
+		outline: none;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.sunc-location-input:focus {
+		border-color: rgba(116, 180, 155, 0.6);
+		box-shadow: 0 0 20px rgba(45, 106, 79, 0.15);
+	}
+
+	.sunc-location-input::placeholder {
+		color: rgba(255, 255, 255, 0.3);
+		font-weight: 500;
+	}
+
+	.sunc-picker-list {
+		position: absolute;
+		top: calc(100% + 6px);
+		left: 0;
+		right: 0;
+		z-index: 20;
+		max-height: 280px;
+		overflow-y: auto;
+		margin: 0;
+		padding: 6px;
+		list-style: none;
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.3);
+		border-radius: 12px;
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+	}
+
+	.sunc-picker-item {
+		display: block;
+		width: 100%;
+		padding: 10px 12px;
+		background: none;
+		border: none;
+		border-radius: 8px;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.75);
+		text-align: left;
+		cursor: pointer;
+		transition: background 0.15s ease;
+	}
+
+	.sunc-picker-item:hover {
+		background: rgba(45, 106, 79, 0.15);
+	}
+
+	.sunc-picker-empty {
+		padding: 12px;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.4);
+		text-align: center;
+	}
+
+	.sunc-date-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.sunc-quick-dates {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: 24px;
+	}
+
+	.sunc-quick-btn {
+		padding: 8px 14px;
+		background: rgba(12, 12, 12, 0.6);
+		border: 1px solid rgba(45, 106, 79, 0.25);
+		border-radius: 999px;
+		cursor: pointer;
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.55);
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.sunc-quick-btn:hover {
+		border-color: rgba(116, 180, 155, 0.5);
+		background: rgba(45, 106, 79, 0.08);
+	}
+
+	.sunc-quick-btn--active {
+		border-color: rgba(116, 180, 155, 0.7);
+		background: rgba(45, 106, 79, 0.15);
+		color: #fff;
+	}
+
+	.sunc-hero-band {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100vw;
+		margin-left: calc(50% - 50vw);
+		padding: 48px 24px 56px;
+		background: linear-gradient(135deg, #0d1f17, #1a2e24);
+		border-top: 1px solid rgba(45, 106, 79, 0.25);
+		border-bottom: 1px solid rgba(45, 106, 79, 0.25);
+	}
+
+	.sunc-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		width: 100%;
+		max-width: 640px;
+	}
+
+	.sunc-result-location {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.65);
+		margin: 0 0 6px;
+	}
+
+	.sunc-result-date {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+		margin: 0 0 24px;
+	}
+
+	.sunc-daylight-hero {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(28px, 5vw, 40px);
+		font-weight: 900;
+		letter-spacing: -1px;
+		line-height: 1.1;
+		margin: 0 0 28px;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sunc-daylight-hero-label {
+		font-size: 0.55em;
+		font-weight: 600;
+		-webkit-text-fill-color: rgba(255, 255, 255, 0.5);
+		background: none;
+	}
+
+	.sunc-daylight-bar-wrap {
+		width: 100%;
+		margin-bottom: 32px;
+	}
+
+	.sunc-daylight-bar {
+		position: relative;
+		height: 14px;
+		background: rgba(255, 255, 255, 0.06);
+		border-radius: 999px;
+		overflow: visible;
+		margin-bottom: 8px;
+	}
+
+	.sunc-daylight-seg {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		border-radius: 0;
+	}
+
+	.sunc-daylight-seg--night {
+		background: #1a1a2e;
+	}
+
+	.sunc-daylight-seg--dawn,
+	.sunc-daylight-seg--dusk {
+		background: linear-gradient(90deg, #1a1a2e, #74b49b);
+	}
+
+	.sunc-daylight-seg--dusk {
+		background: linear-gradient(90deg, #74b49b, #1a1a2e);
+	}
+
+	.sunc-daylight-seg--day {
+		background: linear-gradient(90deg, #2d6a4f, #74b49b);
+	}
+
+	.sunc-daylight-now {
+		position: absolute;
+		top: 50%;
+		width: 4px;
+		height: 22px;
+		margin-left: -2px;
+		margin-top: -11px;
+		border-radius: 2px;
+		background: #fff;
+		box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+		z-index: 2;
+	}
+
+	.sunc-daylight-labels {
+		display: flex;
+		justify-content: space-between;
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		color: rgba(255, 255, 255, 0.35);
+	}
+
+	.sunc-polar-note {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.5);
+		text-align: center;
+		margin: 0 0 24px;
+	}
+
+	.sunc-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		width: 100%;
+	}
+
+	@media (max-width: 560px) {
+		.sunc-stats-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.sunc-stat {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+		padding: 16px 12px;
+		background: rgba(12, 12, 12, 0.5);
+		border: 1px solid rgba(45, 106, 79, 0.2);
+		border-radius: 12px;
+	}
+
+	.sunc-stat-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(16px, 3vw, 20px);
+		font-weight: 800;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		text-align: center;
+		line-height: 1.2;
+	}
+
+	.sunc-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.45);
+		text-align: center;
+	}
+</style>
