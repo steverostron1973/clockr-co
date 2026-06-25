@@ -1,0 +1,640 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
+---
+
+<Layout
+	title="Moon Phase Calculator — Today's Moon Phase & Any Date | Clockr"
+	description="Find the moon phase for today or any date. See illumination, lunar cycle day, and days until the next full moon or new moon."
+	category="seasons"
+>
+	<div class="sc-page">
+		<div class="sc-header">
+			<div class="sc-eyebrow">
+				<span class="sc-eyebrow-square" aria-hidden="true"></span>
+				SEASONS
+			</div>
+			<h1 class="sc-title">
+				<span class="sc-gradient">Moon Phase Calculator</span>
+			</h1>
+			<p class="sc-subtitle">Find the moon phase for any date</p>
+		</div>
+
+		<MoonPhaseCalculator client:load />
+
+		<!-- HOW IT WORKS -->
+		<section class="sc-how">
+			<h2 class="sc-section-title">How it works</h2>
+			<div class="sc-how-card">
+				<p>
+					The Moon does not produce its own light — we see it because sunlight
+					reflects off its surface. As the Moon orbits Earth, the angle between
+					the Sun, Earth, and Moon changes, so the portion of the lit side we can
+					see from Earth changes too. One complete cycle from new moon to new moon
+					takes about 29.5 days, which is why moon phases follow a predictable
+					monthly rhythm.
+				</p>
+				<p>
+					This calculator uses a standard astronomical approximation: a known new
+					moon on 6 January 2000 as a reference point, plus a lunar cycle length
+					of 29.53059 days. For any date, it works out how many days have elapsed
+					since that reference, divides by the cycle length, and finds the
+					position within the current cycle. From that position it derives the
+					illumination percentage, phase name, and estimated dates of the next
+					full and new moons — no API or telescope required.
+				</p>
+				<p>
+					Moon phases have long been used as a practical calendar in farming,
+					fishing, and navigation, and they still influence coastal tides
+					(alongside the Sun). Many cultures mark lunar festivals and folklore
+					around the full moon. This tool gives a quick mathematical snapshot;
+					for precise astronomical times to the minute, observatories use
+					orbital models that account for the Moon's elliptical path.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="sc-faq">
+			<h2 class="sc-section-title">Frequently asked questions</h2>
+			<div class="sc-faq-list">
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">What is the moon phase today?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							Select &ldquo;Today&apos;s moon phase&rdquo; at the top of this page
+							to see the current phase automatically — including the phase name,
+							illumination percentage, and how many days until the next full or
+							new moon. The result updates for the current calendar date.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">How are moon phases calculated?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							Clockr uses a synodic month length of 29.53059 days and a reference
+							new moon on 6 January 2000. The number of days between your chosen
+							date and that reference is divided by the cycle length; the
+							remainder gives the Moon&apos;s age in the current cycle. Illumination
+							is derived from that age using a cosine formula, and phase names
+							follow standard waxing and waning ranges.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">How long is a lunar cycle?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							A synodic month — the time from one new moon to the next — averages
+							about 29.53 days (29 days, 12 hours, and 44 minutes). That is
+							slightly longer than the Moon&apos;s orbital period around Earth
+							because Earth is also moving around the Sun, so the Sun-Moon angle
+							takes longer to repeat.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">What is a full moon?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							A full moon occurs when the Moon is on the opposite side of Earth
+							from the Sun, so nearly the entire face we see is lit. In this
+							calculator, full moon corresponds to roughly 100% illumination, at
+							about the midpoint of the 29.5-day lunar cycle.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">What is a new moon?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							At new moon, the Moon sits between Earth and the Sun. The side
+							facing us is in shadow, so the Moon is barely visible — often not
+							at all without special conditions. A new cycle begins at this
+							point; the visible portion then grows (waxes) toward the first
+							quarter and full moon.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">Does the moon phase affect tides?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							Yes. The Moon&apos;s gravity is the main driver of ocean tides on
+							Earth. Spring tides (higher highs and lower lows) tend to occur
+							around new and full moons when the Sun and Moon align; neap tides
+							(milder) occur around the first and last quarters. Local geography
+							and weather also shape what you see at the coast.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="sc-related">
+			<h3 class="sc-related-title">Related tools</h3>
+			<div class="sc-related-grid">
+				<a href="/season-countdown" class="sc-related-card"
+					><span class="sc-related-name">Season Countdown</span></a
+				>
+				<a href="/year-progress" class="sc-related-card"
+					><span class="sc-related-name">Year Progress Bar</span></a
+				>
+				<a href="/days-until-halloween" class="sc-related-card"
+					><span class="sc-related-name">Days Until Halloween</span></a
+				>
+				<a href="/days-until-christmas" class="sc-related-card"
+					><span class="sc-related-name">Days Until Christmas</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.sc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.sc-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.sc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.sc-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.sc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.sc-gradient {
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.sc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sc-how {
+		margin-bottom: 48px;
+	}
+
+	.sc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.sc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.sc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.sc-faq {
+		margin-bottom: 48px;
+	}
+
+	.sc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.sc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.sc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.sc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-faq-item[open] .sc-faq-question::after {
+		content: '−';
+	}
+
+	.sc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.sc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.sc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.sc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.sc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.sc-related-card:hover {
+		border-color: rgba(45, 106, 79, 0.4);
+	}
+
+	.sc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	/* Moon Phase Calculator tool */
+	.mpc-tool {
+		margin-bottom: 48px;
+	}
+
+	.mpc-mode-toggle {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+		margin-bottom: 24px;
+	}
+
+	.mpc-mode-btn {
+		padding: 14px 16px;
+		background: rgba(12, 12, 12, 0.6);
+		border: 1px solid rgba(45, 106, 79, 0.25);
+		border-radius: 12px;
+		cursor: pointer;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.55);
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.mpc-mode-btn:hover {
+		border-color: rgba(116, 180, 155, 0.5);
+		background: rgba(45, 106, 79, 0.08);
+	}
+
+	.mpc-mode-btn--active {
+		border-color: rgba(116, 180, 155, 0.7);
+		background: rgba(45, 106, 79, 0.15);
+		box-shadow: 0 0 24px rgba(45, 106, 79, 0.2);
+		color: #fff;
+		background-image: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.mpc-date-wrap {
+		max-width: 320px;
+		margin: 0 auto 24px;
+	}
+
+	.mpc-hint {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.4);
+		text-align: center;
+		margin: 0;
+	}
+
+	.mpc-hero-band {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100vw;
+		margin-left: calc(50% - 50vw);
+		padding: 48px 24px 56px;
+		background: linear-gradient(135deg, #0d1f17, #1a2e24);
+		border-top: 1px solid rgba(45, 106, 79, 0.25);
+		border-bottom: 1px solid rgba(45, 106, 79, 0.25);
+		overflow: hidden;
+		position: relative;
+	}
+
+	.mpc-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.mpc-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: mpc-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	.mpc-float-emoji--right {
+		left: auto;
+	}
+
+	@keyframes mpc-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	@media (max-width: 600px) {
+		.mpc-float-emoji {
+			opacity: 0.35;
+		}
+
+		.sc-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.sc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.mpc-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 560px;
+	}
+
+	.mpc-result-date {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		margin: 0 0 20px;
+	}
+
+	.mpc-moon-display {
+		font-size: clamp(72px, 18vw, 120px);
+		line-height: 1;
+		margin-bottom: 16px;
+		filter: drop-shadow(0 0 32px rgba(116, 180, 155, 0.25));
+	}
+
+	.mpc-phase-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(28px, 5vw, 40px);
+		font-weight: 900;
+		letter-spacing: -1px;
+		line-height: 1.1;
+		margin: 0 0 8px;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.mpc-illumination {
+		font-family: 'Inter', sans-serif;
+		font-size: 18px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.65);
+		margin: 0 0 32px;
+	}
+
+	.mpc-cycle-bar-wrap {
+		width: 100%;
+		margin-bottom: 32px;
+	}
+
+	.mpc-cycle-bar-track {
+		position: relative;
+		height: 10px;
+		background: rgba(255, 255, 255, 0.08);
+		border-radius: 999px;
+		overflow: visible;
+		margin-bottom: 10px;
+	}
+
+	.mpc-cycle-bar-fill {
+		height: 100%;
+		border-radius: 999px;
+		background: linear-gradient(90deg, #2d6a4f, #74b49b);
+		transition: width 0.4s ease;
+	}
+
+	.mpc-cycle-bar-marker {
+		position: absolute;
+		top: 50%;
+		width: 16px;
+		height: 16px;
+		margin-left: -8px;
+		margin-top: -8px;
+		border-radius: 50%;
+		background: #74b49b;
+		border: 2px solid #0d1f17;
+		box-shadow: 0 0 12px rgba(116, 180, 155, 0.5);
+		transition: left 0.4s ease;
+	}
+
+	.mpc-cycle-bar-labels {
+		display: flex;
+		justify-content: space-between;
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.mpc-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+		width: 100%;
+		margin-bottom: 28px;
+	}
+
+	@media (max-width: 560px) {
+		.mpc-stats-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.mpc-stat {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+		padding: 16px 12px;
+		background: rgba(12, 12, 12, 0.5);
+		border: 1px solid rgba(45, 106, 79, 0.2);
+		border-radius: 12px;
+	}
+
+	.mpc-stat-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(16px, 3vw, 20px);
+		font-weight: 800;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		text-align: center;
+		line-height: 1.2;
+	}
+
+	.mpc-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.45);
+		text-align: center;
+	}
+
+	.mpc-upcoming {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.mpc-upcoming-row {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		margin: 0;
+		padding: 14px 16px;
+		background: rgba(12, 12, 12, 0.4);
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 10px;
+	}
+
+	.mpc-upcoming-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.mpc-upcoming-date {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.75);
+	}
+</style>
