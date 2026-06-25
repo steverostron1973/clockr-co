@@ -1,0 +1,573 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SeasonCountdown from '../components/SeasonCountdown.jsx';
+---
+
+<Layout
+	title="Season Countdown — Days Until Spring, Summer, Autumn or Winter | Clockr"
+	description="How long until the next season? Live astronomical season countdown to the spring equinox, summer solstice, autumn equinox or winter solstice."
+	category="seasons"
+>
+	<div class="sc-page">
+		<div class="sc-header">
+			<div class="sc-eyebrow">
+				<span class="sc-eyebrow-square" aria-hidden="true"></span>
+				SEASONS
+			</div>
+			<h1 class="sc-title">
+				<span class="sc-gradient">Season Countdown</span>
+			</h1>
+			<p class="sc-subtitle">Find out exactly how long until the next season</p>
+		</div>
+
+		<SeasonCountdown client:load />
+
+		<!-- HOW IT WORKS -->
+		<section class="sc-how">
+			<h2 class="sc-section-title">How it works</h2>
+			<div class="sc-how-card">
+				<p>
+					There are two common ways to define the seasons. Astronomical seasons
+					are based on Earth's position relative to the Sun — they begin at the
+					solstices and equinoxes, when day length reaches its extremes or when
+					day and night are roughly equal. Meteorological seasons, used by most
+					weather services, divide the year into neat three-month blocks: spring
+					from 1 March, summer from 1 June, autumn from 1 September, and winter
+					from 1 December. This countdown uses astronomical dates because they
+					mark precise, observable moments in Earth's orbit.
+				</p>
+				<p>
+					Solstices and equinoxes are not fixed calendar dates. They occur when
+					the Sun crosses certain points in the sky — the equator for equinoxes,
+					and the Tropic of Cancer or Capricorn for solstices. Clockr calculates
+					these moments using standard astronomical formulas (based on Jean
+					Meeus's <em>Astronomical Algorithms</em>), which account for Earth's
+					elliptical orbit and the gravitational pull of the Moon and other
+					planets. That is why the March equinox might fall on 19, 20, or 21
+					March depending on the year, and why the exact time shifts by a few
+					minutes each year.
+				</p>
+				<p>
+					Seasons are reversed in the Southern Hemisphere. When the Northern
+					Hemisphere experiences the June solstice and its longest day, the
+					Southern Hemisphere has its shortest day and the start of astronomical
+					winter. Likewise, the December solstice brings summer to the south and
+					winter to the north. This page counts down to the astronomical season
+					starts as observed from the Northern Hemisphere perspective, which is
+					how most English-language references define spring, summer, autumn,
+					and winter.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="sc-faq">
+			<h2 class="sc-section-title">Frequently asked questions</h2>
+			<div class="sc-faq-list">
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">When does spring start?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							Astronomical spring in the Northern Hemisphere begins at the March
+							equinox (vernal equinox), when the Sun crosses the celestial
+							equator heading north. This usually falls around 20 March, though
+							the exact date and time vary slightly each year. Meteorological
+							spring, used by weather forecasters, always starts on 1 March.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>What is the difference between astronomical and meteorological
+						seasons?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							Astronomical seasons begin at solstices and equinoxes — precise
+							points in Earth's orbit around the Sun. Meteorological seasons use
+							fixed calendar dates: 1 March (spring), 1 June (summer), 1
+							September (autumn), and 1 December (winter). Weather services prefer
+							meteorological seasons because they align with monthly climate
+							records. Astronomical seasons match what you see in the sky: the
+							longest and shortest days, and equal day and night.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">When is the summer solstice?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							The summer solstice in the Northern Hemisphere occurs around 21
+							June each year, when the North Pole is tilted closest to the Sun
+							and the day is longest. The exact date and time shift by a few
+							hours from year to year — select Summer above to see the precise
+							countdown and UTC time for the next summer solstice.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">When is the winter solstice?</summary>
+					<div class="sc-faq-answer">
+						<p>
+							The winter solstice in the Northern Hemisphere falls around 21
+							December, when the North Pole is tilted farthest from the Sun and
+							the night is longest. Like other solstices and equinoxes, the
+							exact moment varies slightly each year. Select Winter above for
+							the live countdown to the next winter solstice.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Why do the seasons start on different dates each year?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							Astronomical season starts depend on Earth's exact position in its
+							orbit, which is affected by the elliptical shape of the orbit,
+							leap years, and gravitational interactions with the Moon and
+							planets. A tropical year (the time between successive March
+							equinoxes) is about 365.2422 days, not a whole number of calendar
+							days, so equinox and solstice times drift within a one- or
+							two-day window on the calendar.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Are the seasons reversed in the Southern Hemisphere?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							Yes. When it is summer in the Northern Hemisphere (around the June
+							solstice), it is winter in the Southern Hemisphere, and vice versa
+							at the December solstice. The March equinox marks the start of
+							autumn in the south and spring in the north. This countdown follows
+							the Northern Hemisphere convention used in most UK and US
+							references.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="sc-related">
+			<h3 class="sc-related-title">Related tools</h3>
+			<div class="sc-related-grid">
+				<a href="/days-until-christmas" class="sc-related-card"
+					><span class="sc-related-name">Days Until Christmas</span></a
+				>
+				<a href="/year-progress" class="sc-related-card"
+					><span class="sc-related-name">Year Progress Bar</span></a
+				>
+				<a href="/days-until-halloween" class="sc-related-card"
+					><span class="sc-related-name">Days Until Halloween</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.sc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.sc-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.sc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.sc-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.sc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.sc-gradient {
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.sc-tool {
+		margin-bottom: 48px;
+	}
+
+	.sc-hero-band {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100vw;
+		margin-left: calc(50% - 50vw);
+		padding: 48px 24px 56px;
+		background: linear-gradient(135deg, #0d1f17, #1a2e24);
+		border-top: 1px solid rgba(45, 106, 79, 0.25);
+		border-bottom: 1px solid rgba(45, 106, 79, 0.25);
+		overflow: hidden;
+		position: relative;
+	}
+
+	.sc-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.sc-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: sc-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.sc-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes sc-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.sc-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.sc-season-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 12px;
+		width: 100%;
+		margin-bottom: 36px;
+	}
+
+	@media (max-width: 640px) {
+		.sc-season-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.sc-season-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		padding: 20px 12px;
+		background: rgba(12, 12, 12, 0.6);
+		border: 1px solid rgba(45, 106, 79, 0.25);
+		border-radius: 16px;
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			box-shadow 0.2s ease;
+		font-family: inherit;
+		color: inherit;
+	}
+
+	.sc-season-card:hover {
+		border-color: rgba(116, 180, 155, 0.5);
+		background: rgba(45, 106, 79, 0.08);
+	}
+
+	.sc-season-card--active {
+		border-color: rgba(116, 180, 155, 0.7);
+		background: rgba(45, 106, 79, 0.15);
+		box-shadow: 0 0 24px rgba(45, 106, 79, 0.2);
+	}
+
+	.sc-season-emoji {
+		font-size: 32px;
+		line-height: 1;
+	}
+
+	.sc-season-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-countdown {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	.sc-countdown-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.sc-countdown-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	.sc-countdown-num--days {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	.sc-countdown-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	.sc-countdown-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.sc-target-date {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(15px, 2.5vw, 18px);
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.7);
+		margin: 28px 0 0;
+		line-height: 1.5;
+	}
+
+	.sc-note {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+		line-height: 1.6;
+		margin: 16px 0 0;
+		max-width: 520px;
+	}
+
+	.sc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sc-how {
+		margin-bottom: 48px;
+	}
+
+	.sc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.sc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.sc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.sc-faq {
+		margin-bottom: 48px;
+	}
+
+	.sc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.sc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.sc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.sc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-faq-item[open] .sc-faq-question::after {
+		content: '−';
+	}
+
+	.sc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.sc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.sc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.sc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.sc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.sc-related-card:hover {
+		border-color: rgba(45, 106, 79, 0.4);
+	}
+
+	.sc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.sc-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.sc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
