@@ -1,0 +1,743 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DaylightHoursCalculator from '../components/DaylightHoursCalculator.jsx';
+---
+
+<Layout
+	title="Daylight Hours Calculator — Hours of Sunlight by Location & Date | Clockr"
+	description="Find how many hours of daylight any city gets on any date. Compare with solstices, see sunrise and sunset times, and view a 24-hour daylight chart."
+	category="seasons"
+>
+	<div class="sc-page">
+		<div class="sc-header">
+			<div class="sc-eyebrow">
+				<span class="sc-eyebrow-square" aria-hidden="true"></span>
+				SEASONS
+			</div>
+			<h1 class="sc-title">
+				<span class="sc-gradient">Daylight Hours Calculator</span>
+			</h1>
+			<p class="sc-subtitle">
+				Find out how many hours of daylight any location gets on any date
+			</p>
+		</div>
+
+		<DaylightHoursCalculator client:load />
+
+		<!-- HOW IT WORKS -->
+		<section class="sc-how">
+			<h2 class="sc-section-title">How it works</h2>
+			<div class="sc-how-card">
+				<p>
+					Daylight hours are not the same everywhere, or on every day of the year.
+					Earth is tilted about 23.5° on its axis as it orbits the Sun, so
+					different hemispheres lean toward or away from the Sun at different
+					times. That tilt is why summer days are longer and winter nights are
+					longer — and why the change is gradual through spring and autumn. This
+					calculator uses the same solar-position algorithm as our Sun Calculator
+					(based on NOAA/USNO methods) with each city&apos;s latitude and
+					longitude to work out exactly how many minutes of daylight fall between
+					sunrise and sunset on your chosen date.
+				</p>
+				<p>
+					Latitude has a dramatic effect on daylight length. Near the equator —
+					in cities like Singapore or Nairobi — day length stays close to 12
+					hours all year. Move toward the poles and the seasonal swing grows:
+					London gains roughly eight hours of daylight between the winter and
+					summer solstices, while Reykjavik can have nearly 21 hours of light in
+					June and under five in December. Your latitude sets the range of
+					possible daylight; the date tells you where you are within that range.
+				</p>
+				<p>
+					At extreme latitudes, daylight can behave in remarkable ways. Above the
+					Arctic Circle in summer, the Sun may not set at all — a phenomenon
+					called the <strong>midnight sun</strong>. In winter, the opposite occurs:
+					<strong>polar night</strong>, when the Sun stays below the horizon for
+					weeks. This calculator shows these edge cases clearly and lets you
+					compare any date with the summer and winter solstices, or the same
+					date last year, to see how daylight is changing where you live.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="sc-faq">
+			<h2 class="sc-section-title">Frequently asked questions</h2>
+			<div class="sc-faq-list">
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>How many hours of daylight are there today?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							Select your city and leave the date on today (or tap the
+							&ldquo;Today&rdquo; quick link). The total daylight hours and
+							minutes appear at the top of the results, along with sunrise and
+							sunset times in local time for that city. Daylight length changes
+							slightly every day as Earth moves along its orbit.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Which day has the most daylight hours?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							In the Northern Hemisphere, the summer solstice (around 21 June)
+							has the longest day; in the Southern Hemisphere, that date is the
+							winter solstice with the shortest day. Tap &ldquo;Summer
+							Solstice&rdquo; to see the maximum daylight for your location in
+							the current year. High-latitude cities see the biggest totals —
+							sometimes over 20 hours.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Which day has the fewest daylight hours?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							The winter solstice (around 21 December in the Northern Hemisphere)
+							has the shortest day and fewest daylight hours. Use the
+							&ldquo;Winter Solstice&rdquo; quick link or check the comparison
+							table below the main result. Cities far from the equator can have
+							very short December days — under six hours in some places.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Why do daylight hours change throughout the year?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							Earth&apos;s 23.5° axial tilt means the Northern and Southern
+							Hemispheres take turns leaning toward the Sun as we orbit. When
+							your hemisphere tilts toward the Sun, days grow longer; when it
+							tilts away, nights grow longer. The change is fastest around the
+							equinoxes (when day and night are nearly equal) and slowest near
+							the solstices.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Does latitude affect how many daylight hours you get?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							Yes — latitude is one of the biggest factors. The equator gets
+							roughly 12 hours of daylight year-round. As you move toward the
+							poles, seasonal variation increases. Compare two cities at
+							different latitudes using the location search to see the
+							difference, especially on the solstice quick links.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>What is the longest day of the year?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							The longest day is the summer solstice — astronomically the moment
+							when the Sun reaches its highest point in the sky for the year, which
+							usually falls on 20, 21, or 22 June in the Northern Hemisphere
+							(and around 21 December in the Southern Hemisphere). It is not
+							always the earliest sunrise or latest sunset; those can differ by a
+							few days due to Earth&apos;s elliptical orbit and time-zone rules.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="sc-related">
+			<h3 class="sc-related-title">Related tools</h3>
+			<div class="sc-related-grid">
+				<a href="/sun-calculator" class="sc-related-card"
+					><span class="sc-related-name">Sun Calculator</span></a
+				>
+				<a href="/season-countdown" class="sc-related-card"
+					><span class="sc-related-name">Season Countdown</span></a
+				>
+				<a href="/clock-change-countdown" class="sc-related-card"
+					><span class="sc-related-name">Clock Change Countdown</span></a
+				>
+				<a href="/moon-phase-calculator" class="sc-related-card"
+					><span class="sc-related-name">Moon Phase Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.sc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.sc-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.sc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.sc-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.sc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.sc-gradient {
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.sc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sc-how {
+		margin-bottom: 48px;
+	}
+
+	.sc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.sc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.sc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.sc-how-card strong {
+		color: rgba(255, 255, 255, 0.7);
+		font-weight: 600;
+	}
+
+	.sc-faq {
+		margin-bottom: 48px;
+	}
+
+	.sc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.sc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.sc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.sc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-faq-item[open] .sc-faq-question::after {
+		content: '−';
+	}
+
+	.sc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.sc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.sc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.sc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.sc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.sc-related-card:hover {
+		border-color: rgba(45, 106, 79, 0.4);
+	}
+
+	.sc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.sc-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.sc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* Daylight Hours Calculator tool */
+	.dhc-tool {
+		margin-bottom: 48px;
+	}
+
+	.dhc-inputs {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
+		margin-bottom: 20px;
+	}
+
+	@media (max-width: 600px) {
+		.dhc-inputs {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.dhc-label {
+		display: block;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+		margin-bottom: 8px;
+	}
+
+	.dhc-location-wrap {
+		position: relative;
+	}
+
+	.dhc-location-input {
+		width: 100%;
+		box-sizing: border-box;
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.25);
+		border-radius: 12px;
+		padding: 14px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		color: #fff;
+		outline: none;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.dhc-location-input:focus {
+		border-color: rgba(116, 180, 155, 0.6);
+		box-shadow: 0 0 20px rgba(45, 106, 79, 0.15);
+	}
+
+	.dhc-location-input::placeholder {
+		color: rgba(255, 255, 255, 0.3);
+		font-weight: 500;
+	}
+
+	.dhc-picker-list {
+		position: absolute;
+		top: calc(100% + 6px);
+		left: 0;
+		right: 0;
+		z-index: 20;
+		max-height: 280px;
+		overflow-y: auto;
+		margin: 0;
+		padding: 6px;
+		list-style: none;
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.3);
+		border-radius: 12px;
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+	}
+
+	.dhc-picker-item {
+		display: block;
+		width: 100%;
+		padding: 10px 12px;
+		background: none;
+		border: none;
+		border-radius: 8px;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.75);
+		text-align: left;
+		cursor: pointer;
+		transition: background 0.15s ease;
+	}
+
+	.dhc-picker-item:hover {
+		background: rgba(45, 106, 79, 0.15);
+	}
+
+	.dhc-picker-empty {
+		padding: 12px;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.4);
+		text-align: center;
+	}
+
+	.dhc-date-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.dhc-quick-dates {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: 24px;
+	}
+
+	.dhc-quick-btn {
+		padding: 8px 14px;
+		background: rgba(12, 12, 12, 0.6);
+		border: 1px solid rgba(45, 106, 79, 0.25);
+		border-radius: 999px;
+		cursor: pointer;
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.55);
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.dhc-quick-btn:hover {
+		border-color: rgba(116, 180, 155, 0.5);
+		background: rgba(45, 106, 79, 0.08);
+	}
+
+	.dhc-quick-btn--active {
+		border-color: rgba(116, 180, 155, 0.7);
+		background: rgba(45, 106, 79, 0.15);
+		color: #fff;
+	}
+
+	.dhc-hero-band {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100vw;
+		margin-left: calc(50% - 50vw);
+		padding: 48px 24px 56px;
+		background: linear-gradient(135deg, #0d1f17, #1a2e24);
+		border-top: 1px solid rgba(45, 106, 79, 0.25);
+		border-bottom: 1px solid rgba(45, 106, 79, 0.25);
+		margin-bottom: 40px;
+	}
+
+	.dhc-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		width: 100%;
+		max-width: 640px;
+	}
+
+	.dhc-result-location {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.65);
+		margin: 0 0 6px;
+	}
+
+	.dhc-result-date {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+		margin: 0 0 24px;
+	}
+
+	.dhc-daylight-hero {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 6vw, 48px);
+		font-weight: 900;
+		letter-spacing: -1px;
+		line-height: 1.1;
+		margin: 0 0 20px;
+		color: #fff;
+	}
+
+	.dhc-sun-times {
+		display: flex;
+		gap: 32px;
+		margin-bottom: 32px;
+	}
+
+	.dhc-sun-time {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.dhc-sun-time-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.dhc-sun-time-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 800;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.dhc-chart-wrap {
+		width: 100%;
+	}
+
+	.dhc-chart-bar {
+		position: relative;
+		height: 20px;
+		background: #0a0a14;
+		border-radius: 999px;
+		overflow: visible;
+		margin-bottom: 28px;
+	}
+
+	.dhc-chart-bar--polar {
+		margin-bottom: 12px;
+	}
+
+	.dhc-chart-seg {
+		position: absolute;
+		top: 0;
+		height: 100%;
+		border-radius: 0;
+	}
+
+	.dhc-chart-seg--night {
+		background: #0f172a;
+	}
+
+	.dhc-chart-seg--day {
+		background: linear-gradient(90deg, #fbbf24, #f59e0b);
+		box-shadow: 0 0 12px rgba(251, 191, 36, 0.35);
+	}
+
+	.dhc-chart-tick {
+		position: absolute;
+		top: 100%;
+		width: 2px;
+		height: 10px;
+		margin-left: -1px;
+		margin-top: 2px;
+		background: rgba(255, 255, 255, 0.6);
+		z-index: 2;
+	}
+
+	.dhc-chart-tick-label {
+		position: absolute;
+		top: 14px;
+		left: 50%;
+		transform: translateX(-50%);
+		white-space: nowrap;
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.55);
+	}
+
+	.dhc-chart-axis {
+		display: flex;
+		justify-content: space-between;
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		color: rgba(255, 255, 255, 0.35);
+		margin-top: 4px;
+	}
+
+	.dhc-polar-note {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.5);
+		text-align: center;
+		margin: 0 0 8px;
+	}
+
+	.dhc-compare {
+		margin-bottom: 48px;
+	}
+
+	.dhc-compare-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin: 0 0 16px;
+	}
+
+	.dhc-compare-table-wrap {
+		overflow-x: auto;
+		border-radius: 14px;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+	}
+
+	.dhc-compare-table {
+		width: 100%;
+		border-collapse: collapse;
+		background: #0c0c0c;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+	}
+
+	.dhc-compare-table th {
+		text-align: left;
+		padding: 14px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.45);
+		border-bottom: 1px solid rgba(45, 106, 79, 0.15);
+	}
+
+	.dhc-compare-table td {
+		padding: 14px 16px;
+		color: rgba(255, 255, 255, 0.65);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+	}
+
+	.dhc-compare-table tr:last-child td {
+		border-bottom: none;
+	}
+
+	.dhc-compare-row--highlight td {
+		color: #fff;
+		font-weight: 600;
+		background: rgba(45, 106, 79, 0.08);
+	}
+
+	.dhc-compare-row--highlight td:nth-child(2) {
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>

@@ -51,9 +51,35 @@ function placeCaretForDigits(input, digitTotal) {
 	requestAnimationFrame(() => input.setSelectionRange(pos, pos));
 }
 
+function segmentStartForPosition(pos) {
+	if (pos <= 2) return 0;
+	if (pos <= 5) return 3;
+	return 6;
+}
+
+function segmentMeta(start) {
+	if (start === 0) return { start: 0, end: 2, digitOffset: 0, digitLen: 2 };
+	if (start === 3) return { start: 3, end: 5, digitOffset: 2, digitLen: 2 };
+	return { start: 6, end: 10, digitOffset: 4, digitLen: 4 };
+}
+
+function segmentForPosition(pos) {
+	return segmentMeta(segmentStartForPosition(pos));
+}
+
 function selectSegment(input, start) {
-	const end = start === 6 ? 10 : start + 2;
+	const { end } = segmentMeta(start);
 	requestAnimationFrame(() => input.setSelectionRange(start, end));
+}
+
+function selectSegmentForPosition(input, pos) {
+	selectSegment(input, segmentStartForPosition(pos));
+}
+
+function indexInSegment(selStart, selEnd, seg) {
+	if (selEnd - selStart >= seg.digitLen) return 0;
+	const offset = selStart - seg.start;
+	return Math.max(0, Math.min(seg.digitLen - 1, offset));
 }
 
 const DEFAULT_INPUT_CLASS = 'date-input-default';
@@ -93,13 +119,17 @@ export default function DateInput({
 		}
 	}
 
+	function applyMasked(input, masked) {
+		setDisplay(masked);
+		notifyChange(masked);
+	}
+
 	function handleChange(e) {
 		const input = e.target;
 		const prevDigits = digitCount(display);
 		const masked = formatDateMask(input.value);
 		const newDigits = digitCount(masked);
-		setDisplay(masked);
-		notifyChange(masked);
+		applyMasked(input, masked);
 
 		if (newDigits === 2 && prevDigits < 2) {
 			selectSegment(input, 3);
@@ -108,6 +138,65 @@ export default function DateInput({
 		} else {
 			placeCaretForDigits(input, newDigits);
 		}
+	}
+
+	function handleKeyDown(e) {
+		const input = e.target;
+		const key = e.key;
+
+		if (display.length !== 10) return;
+
+		if (key === 'ArrowLeft') {
+			e.preventDefault();
+			const pos = input.selectionStart ?? 0;
+			const seg = segmentForPosition(pos);
+			if (seg.start === 0) selectSegment(input, 0);
+			else if (seg.start === 3) selectSegment(input, 0);
+			else selectSegment(input, 3);
+			return;
+		}
+
+		if (key === 'ArrowRight') {
+			e.preventDefault();
+			const pos = input.selectionStart ?? 0;
+			const seg = segmentForPosition(pos);
+			if (seg.start === 0) selectSegment(input, 3);
+			else if (seg.start === 3) selectSegment(input, 6);
+			else selectSegment(input, 6);
+			return;
+		}
+
+		if (!/^\d$/.test(key)) return;
+
+		e.preventDefault();
+
+		const selStart = input.selectionStart ?? 0;
+		const selEnd = input.selectionEnd ?? selStart;
+		const seg = segmentForPosition(selStart);
+		const idxInSeg = indexInSegment(selStart, selEnd, seg);
+
+		const chars = display.replace(/\D/g, '').split('');
+		while (chars.length < 8) chars.push('0');
+		chars[seg.digitOffset + idxInSeg] = key;
+
+		const masked = formatDateMask(chars.join(''));
+		applyMasked(input, masked);
+
+		const nextIdxInSeg = idxInSeg + 1;
+		if (nextIdxInSeg >= seg.digitLen) {
+			if (seg.start === 0) selectSegment(input, 3);
+			else if (seg.start === 3) selectSegment(input, 6);
+			else requestAnimationFrame(() => input.setSelectionRange(10, 10));
+		} else {
+			const nextPos = seg.start + nextIdxInSeg;
+			requestAnimationFrame(() => input.setSelectionRange(nextPos, nextPos + 1));
+		}
+	}
+
+	function handleClick(e) {
+		const input = e.target;
+		const pos = input.selectionStart ?? 0;
+		selectSegmentForPosition(input, pos);
 	}
 
 	return (
@@ -124,6 +213,8 @@ export default function DateInput({
 				className={inputClassName}
 				value={display}
 				onChange={handleChange}
+				onKeyDown={handleKeyDown}
+				onClick={handleClick}
 				onFocus={(e) => {
 					e.target.setSelectionRange(0, 0);
 				}}
