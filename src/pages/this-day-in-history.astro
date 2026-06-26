@@ -1,0 +1,643 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThisDayInHistory from '../components/ThisDayInHistory.jsx';
+---
+
+<Layout
+	title="This Day in History — What Happened Today? | Clockr"
+	description="Discover notable events, births, and deaths that happened on this day throughout history. Browse any date using Wikipedia's On This Day data."
+	category="history"
+>
+	<div class="tdih-page">
+		<div class="tdih-header">
+			<div class="tdih-eyebrow">
+				<span class="tdih-eyebrow-square" aria-hidden="true"></span>
+				HISTORY
+			</div>
+			<h1 class="tdih-title">
+				<span class="tdih-gradient">This Day in History</span>
+			</h1>
+			<p class="tdih-subtitle">
+				Discover what happened on this day throughout history
+			</p>
+		</div>
+
+		<ThisDayInHistory client:load />
+
+		<section class="tdih-how">
+			<h2 class="tdih-section-title">How it works</h2>
+			<div class="tdih-how-card">
+				<p>
+					This tool pulls its data from Wikipedia&apos;s open &ldquo;On This
+					Day&rdquo; REST API — a free, community-maintained feed that lists
+					notable events, births, and deaths associated with each calendar date.
+					Thousands of volunteer editors curate and verify the entries over time,
+					so the content grows and improves as Wikipedia itself does. Clockr
+					fetches the feed for your chosen month and day directly in your
+					browser; no account or API key is required.
+				</p>
+				<p>
+					History does not happen on a single timeline for each date on the
+					calendar. When you look at 26 June, you might see a battle from the
+					15th century alongside a scientific breakthrough from the 20th and a
+					political event from last decade. The same month-and-day recurs every
+					year, so each date accumulates moments from across centuries and
+					continents — which is why the results are grouped by year rather than
+					presented as one continuous story.
+				</p>
+				<p>
+					Wikipedia&apos;s coverage reflects what has been documented and deemed
+					notable by its editors, which means some cultures, regions, and time
+					periods are represented more fully than others. The lists favour
+					well-sourced, widely recognised events rather than attempting to be a
+					complete archive of everything that ever occurred on a given day. Use
+					this page as a starting point for curiosity — and follow the
+					&ldquo;Read more&rdquo; links to explore any entry in depth on
+					Wikipedia.
+				</p>
+			</div>
+		</section>
+
+		<section class="tdih-faq">
+			<h2 class="tdih-section-title">Frequently asked questions</h2>
+			<div class="tdih-faq-list">
+				<details class="tdih-faq-item">
+					<summary class="tdih-faq-question"
+						>What happened on this day in history?</summary
+					>
+					<div class="tdih-faq-answer">
+						<p>
+							Open this page to see a curated selection of events, births, and
+							deaths tied to today&apos;s calendar date. Switch between the
+							Events, Births, and Deaths tabs to explore each category. Use the
+							arrow buttons or date picker to browse any other day of the year.
+						</p>
+					</div>
+				</details>
+				<details class="tdih-faq-item">
+					<summary class="tdih-faq-question">How is this data sourced?</summary>
+					<div class="tdih-faq-answer">
+						<p>
+							Data comes from the English Wikipedia &ldquo;On This Day&rdquo; API
+							(<code>en.wikipedia.org/api/rest_v1/feed/onthisday</code>). Entries
+							are written and maintained by Wikipedia volunteers and updated as
+							articles change. Clockr requests the feed for your selected month
+							and day and displays a filtered list of the most notable items with
+							links back to Wikipedia.
+						</p>
+					</div>
+				</details>
+				<details class="tdih-faq-item">
+					<summary class="tdih-faq-question"
+						>Can I look up any date in history?</summary
+					>
+					<div class="tdih-faq-answer">
+						<p>
+							Yes. Use the left and right arrows to step through consecutive
+							days, or enter any date in the date field to jump directly to that
+							month and day. The tool uses the calendar month and day only — the
+							year you type is ignored for the lookup, because historical
+							entries are tied to recurring dates like &ldquo;26 June&rdquo;
+							rather than a specific year.
+						</p>
+					</div>
+				</details>
+				<details class="tdih-faq-item">
+					<summary class="tdih-faq-question"
+						>Why are some years better represented than others?</summary
+					>
+					<div class="tdih-faq-answer">
+						<p>
+							Wikipedia&apos;s coverage depends on which topics have articles and
+							which events editors have added to the On This Day lists. Recent
+							decades, major world powers, and widely documented fields such as
+							science and sport tend to have more entries. Older, local, or
+							less-documented events may appear less often — this is a limitation
+							of the source material, not the calculator.
+						</p>
+					</div>
+				</details>
+				<details class="tdih-faq-item">
+					<summary class="tdih-faq-question"
+						>How do I find out who was born on my birthday?</summary
+					>
+					<div class="tdih-faq-answer">
+						<p>
+							Enter your birthday in the date field (any year works), then open
+							the Births tab. You&apos;ll see notable people born on that
+							month-and-day, with a short description and a Wikipedia link for
+							each entry.
+						</p>
+					</div>
+				</details>
+				<details class="tdih-faq-item">
+					<summary class="tdih-faq-question"
+						>Can I share today&apos;s history with someone?</summary
+					>
+					<div class="tdih-faq-answer">
+						<p>
+							Copy the URL from your browser&apos;s address bar and send it to
+							friends or family. When they open the link on the same calendar
+							date, they&apos;ll see that day&apos;s history. To share a
+							different date, navigate to it first so they see the same results
+							when they visit.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="tdih-related">
+			<h3 class="tdih-related-title">Related tools</h3>
+			<div class="tdih-related-grid">
+				<a href="/day-of-week" class="tdih-related-card"
+					><span class="tdih-related-name">Day of the Week Calculator</span></a
+				>
+				<a href="/year-progress" class="tdih-related-card"
+					><span class="tdih-related-name">Year Progress Bar</span></a
+				>
+				<a href="/days-until-christmas" class="tdih-related-card"
+					><span class="tdih-related-name">Days Until Christmas</span></a
+				>
+				<a href="/anniversary-calculator" class="tdih-related-card"
+					><span class="tdih-related-name">Anniversary Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.tdih-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.tdih-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.tdih-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.tdih-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.tdih-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.tdih-gradient {
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tdih-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.tdih-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tdih-how {
+		margin-bottom: 48px;
+	}
+
+	.tdih-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(217, 119, 6, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.tdih-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.tdih-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.tdih-faq {
+		margin-bottom: 48px;
+	}
+
+	.tdih-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.tdih-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(217, 119, 6, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.tdih-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tdih-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.tdih-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tdih-faq-item[open] .tdih-faq-question::after {
+		content: '−';
+	}
+
+	.tdih-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.tdih-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.tdih-faq-answer code {
+		font-size: 12px;
+		color: rgba(245, 158, 11, 0.85);
+		word-break: break-all;
+	}
+
+	.tdih-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.tdih-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tdih-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.tdih-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.tdih-related-card:hover {
+		border-color: rgba(217, 119, 6, 0.4);
+	}
+
+	.tdih-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	/* This Day in History tool */
+	.tdih-tool {
+		margin-bottom: 48px;
+	}
+
+	.tdih-date-nav {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 24px;
+		margin-bottom: 24px;
+	}
+
+	.tdih-nav-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 44px;
+		height: 44px;
+		background: #0c0c0c;
+		border: 1px solid rgba(217, 119, 6, 0.25);
+		border-radius: 12px;
+		cursor: pointer;
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #f59e0b;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.tdih-nav-btn:hover {
+		border-color: rgba(245, 158, 11, 0.5);
+		background: rgba(217, 119, 6, 0.08);
+	}
+
+	.tdih-date-display {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(28px, 5vw, 40px);
+		font-weight: 900;
+		letter-spacing: -1px;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		min-width: 160px;
+		text-align: center;
+	}
+
+	.tdih-date-input-wrap {
+		max-width: 320px;
+		margin: 0 auto 28px;
+	}
+
+	.tdih-tabs {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 10px;
+		margin-bottom: 24px;
+	}
+
+	.tdih-tab {
+		padding: 14px 12px;
+		background: rgba(12, 12, 12, 0.6);
+		border: 1px solid rgba(217, 119, 6, 0.25);
+		border-radius: 12px;
+		cursor: pointer;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.55);
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.tdih-tab:hover {
+		border-color: rgba(245, 158, 11, 0.5);
+		background: rgba(217, 119, 6, 0.08);
+	}
+
+	.tdih-tab--active {
+		border-color: rgba(245, 158, 11, 0.7);
+		background: rgba(217, 119, 6, 0.15);
+		box-shadow: 0 0 24px rgba(217, 119, 6, 0.2);
+		color: #fff;
+		background-image: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tdih-loading {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 16px;
+		padding: 24px 0;
+	}
+
+	.tdih-spinner {
+		width: 36px;
+		height: 36px;
+		border: 3px solid rgba(217, 119, 6, 0.2);
+		border-top-color: #f59e0b;
+		border-radius: 50%;
+		animation: tdih-spin 0.8s linear infinite;
+	}
+
+	@keyframes tdih-spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	.tdih-loading-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+		margin: 0;
+	}
+
+	.tdih-skeleton-list {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-top: 8px;
+	}
+
+	.tdih-skeleton-card {
+		height: 88px;
+		background: linear-gradient(
+			90deg,
+			rgba(217, 119, 6, 0.06) 0%,
+			rgba(245, 158, 11, 0.12) 50%,
+			rgba(217, 119, 6, 0.06) 100%
+		);
+		background-size: 200% 100%;
+		border-radius: 12px;
+		animation: tdih-shimmer 1.4s ease-in-out infinite;
+	}
+
+	@keyframes tdih-shimmer {
+		0% {
+			background-position: 200% 0;
+		}
+		100% {
+			background-position: -200% 0;
+		}
+	}
+
+	.tdih-error {
+		text-align: center;
+		padding: 32px 24px;
+		background: #0c0c0c;
+		border: 1px solid rgba(217, 119, 6, 0.2);
+		border-radius: 14px;
+	}
+
+	.tdih-error p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+		margin: 0 0 16px;
+	}
+
+	.tdih-retry-btn {
+		padding: 12px 24px;
+		background: rgba(217, 119, 6, 0.15);
+		border: 1px solid rgba(245, 158, 11, 0.4);
+		border-radius: 10px;
+		cursor: pointer;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: #f59e0b;
+		transition: background 0.2s ease;
+	}
+
+	.tdih-retry-btn:hover {
+		background: rgba(217, 119, 6, 0.25);
+	}
+
+	.tdih-empty {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.45);
+		text-align: center;
+		padding: 32px 16px;
+		margin: 0;
+	}
+
+	.tdih-list {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.tdih-item {
+		display: flex;
+		gap: 20px;
+		align-items: flex-start;
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-left: 3px solid #d97706;
+		border-radius: 12px;
+		padding: 20px;
+	}
+
+	.tdih-item-year {
+		flex-shrink: 0;
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(22px, 4vw, 28px);
+		font-weight: 900;
+		line-height: 1.1;
+		min-width: 64px;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tdih-item-body {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.tdih-item-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.75);
+		line-height: 1.65;
+		margin: 0 0 10px;
+	}
+
+	.tdih-read-more {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 700;
+		color: #f59e0b;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.tdih-read-more:hover {
+		color: #fbbf24;
+		text-decoration: underline;
+	}
+
+	@media (max-width: 600px) {
+		.tdih-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.tdih-related-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.tdih-item {
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.tdih-item-year {
+			min-width: 0;
+		}
+	}
+</style>

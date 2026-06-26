@@ -25,7 +25,7 @@ export const categoryGradients: Record<
 	holidays: { from: '#FF5C4D', to: '#FF9A3C' },
 	birthdays: { from: '#8B5CF6', to: '#EC4899' },
 	timezones: { from: '#00E5C4', to: '#0099FF' },
-	history: { from: '#FFC04D', to: '#FF9A3C' },
+	history: { from: '#D97706', to: '#F59E0B' },
 	milestones: { from: '#A855F7', to: '#FF5C4D' },
 	work: { from: '#475569', to: '#3B82F6' },
 	religious: { from: '#E8937A', to: '#C9956C' },
@@ -91,7 +91,7 @@ export const categories: Category[] = [
 		description: 'What happened on this exact date',
 		emoji: '📜',
 		...categoryGradients.history,
-		href: '/history',
+		href: '/this-day-in-history',
 	},
 	{
 		id: 'milestones',

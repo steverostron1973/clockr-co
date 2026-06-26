@@ -8,7 +8,7 @@ const categoryHrefs: Record<CategoryId, string> = {
 	holidays: '/days-until-christmas',
 	birthdays: '/age-calculator',
 	timezones: '/world-clock',
-	history: '/world-clock',
+	history: '/this-day-in-history',
 	milestones: '/life-in-numbers',
 	work: '/business-days',
 	seasons: '/season-countdown',
@@ -27,6 +27,7 @@ const categoryFloatEmojis: Record<CategoryId, string[]> = {
 };
 
 const searchTools = [
+	{ name: 'This Day in History', description: 'What happened on this day throughout history', href: '/this-day-in-history', keywords: ['this day in history', 'on this day', 'historical events', 'born today', 'died today', 'wikipedia history'], emoji: '📜', from: '#D97706', to: '#F59E0B' },
 	{ name: 'Age Calculator', description: 'How old are you, exactly?', href: '/age-calculator', keywords: ['how old am i', 'age', 'birthday', 'born'], emoji: '🎂', from: '#8B5CF6', to: '#EC4899' },
 	{ name: 'Pregnancy Due Date Calculator', description: 'Estimate your due date and pregnancy week', href: '/pregnancy-due-date-calculator', keywords: ['pregnancy due date', 'due date calculator', 'weeks pregnant', 'lmp', 'conception', 'ivf'], emoji: '👶', from: '#8B5CF6', to: '#EC4899' },
 	{ name: 'Anniversary Calculator', description: 'How long have you been together or married?', href: '/anniversary-calculator', keywords: ['anniversary calculator', 'how long married', 'years together', 'wedding anniversary'], emoji: '💍', from: '#8B5CF6', to: '#EC4899' },
@@ -97,6 +98,7 @@ const searchPlaceholders = [
 ];
 
 const allTools = [
+	{ emoji: '📜', name: 'This Day in History', href: '/this-day-in-history', from: '#D97706', to: '#F59E0B' },
 	{ emoji: '🎂', name: 'Age Calculator', href: '/age-calculator', from: '#8B5CF6', to: '#EC4899' },
 	{ emoji: '👶', name: 'Pregnancy Due Date Calculator', href: '/pregnancy-due-date-calculator', from: '#8B5CF6', to: '#EC4899' },
 	{ emoji: '💍', name: 'Anniversary Calculator', href: '/anniversary-calculator', from: '#8B5CF6', to: '#EC4899' },

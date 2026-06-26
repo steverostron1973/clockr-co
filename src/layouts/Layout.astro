@@ -21,8 +21,11 @@ const siteUrl = Astro.site ?? 'https://clockr.co';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 
 const navLinks = [
-	{ label: 'History', href: '/history' },
 	{ label: 'More', href: '/more' },
+];
+
+const historyDropdownLinks = [
+	{ label: 'This Day in History', href: '/this-day-in-history' },
 ];
 
 const countdownDropdownLinks = [
@@ -137,6 +140,20 @@ const categoryStyle = `--cat-from: ${catGradient.from}; --cat-to: ${catGradient.
 							<div class="tools-menu" role="menu" aria-label="Countdowns">
 								{
 									countdownDropdownLinks.map((link) => (
+										<a role="menuitem" href={link.href} class="tools-menu-link">
+											{link.label}
+										</a>
+									))
+								}
+							</div>
+						</details>
+					</li>
+					<li class="tools-dropdown">
+						<details>
+							<summary>History</summary>
+							<div class="tools-menu" role="menu" aria-label="History">
+								{
+									historyDropdownLinks.map((link) => (
 										<a role="menuitem" href={link.href} class="tools-menu-link">
 											{link.label}
 										</a>
