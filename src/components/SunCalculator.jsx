@@ -264,6 +264,7 @@ export default function SunCalculator() {
 
 	const [selectedCity, setSelectedCity] = useState(defaultCity);
 	const [locationQuery, setLocationQuery] = useState(() => cityLabel(defaultCity));
+	const [searchQuery, setSearchQuery] = useState('');
 	const [pickerOpen, setPickerOpen] = useState(false);
 	const [selectedDate, setSelectedDate] = useState(() => startOfDay(new Date()));
 	const [dateDisplay, setDateDisplay] = useState(() =>
@@ -294,17 +295,15 @@ export default function SunCalculator() {
 	}, [pickerOpen]);
 
 	const filteredCities = useMemo(() => {
-		const q = locationQuery.trim().toLowerCase();
-		if (!q) return sortedCities.slice(0, 50);
-		return sortedCities
-			.filter(
-				(c) =>
-					c.city.toLowerCase().includes(q) ||
-					c.country.toLowerCase().includes(q) ||
-					cityLabel(c).toLowerCase().includes(q),
-			)
-			.slice(0, 50);
-	}, [locationQuery]);
+		const q = searchQuery.trim().toLowerCase();
+		if (!q) return sortedCities;
+		return sortedCities.filter(
+			(c) =>
+				c.city.toLowerCase().includes(q) ||
+				c.country.toLowerCase().includes(q) ||
+				cityLabel(c).toLowerCase().includes(q),
+		);
+	}, [searchQuery]);
 
 	const times = useMemo(
 		() =>
@@ -364,6 +363,7 @@ export default function SunCalculator() {
 			const resolved = resolveCity(city);
 			setSelectedCity(resolved);
 			setLocationQuery(cityLabel(resolved));
+			setSearchQuery('');
 			setPickerOpen(false);
 		},
 		[resolveCity],
@@ -372,9 +372,15 @@ export default function SunCalculator() {
 	function handleLocationChange(e) {
 		const value = e.target.value;
 		setLocationQuery(value);
+		setSearchQuery(value);
 		setPickerOpen(true);
 		const exact = sortedCities.find((c) => cityLabel(c) === value.trim());
 		if (exact) setSelectedCity(exact);
+	}
+
+	function handleLocationFocus() {
+		setPickerOpen(true);
+		setSearchQuery('');
 	}
 
 	function handleLocationBlur() {
@@ -392,6 +398,7 @@ export default function SunCalculator() {
 			} else {
 				setLocationQuery(cityLabel(selectedCity));
 			}
+			setSearchQuery('');
 			setPickerOpen(false);
 		}, 0);
 	}
@@ -422,7 +429,7 @@ export default function SunCalculator() {
 						value={locationQuery}
 						onChange={handleLocationChange}
 						onBlur={handleLocationBlur}
-						onFocus={() => setPickerOpen(true)}
+						onFocus={handleLocationFocus}
 						autoComplete="off"
 						placeholder="Search 250+ cities…"
 					/>
