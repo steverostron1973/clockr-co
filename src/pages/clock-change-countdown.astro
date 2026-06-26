@@ -1,0 +1,604 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ClockChangeCountdown from '../components/ClockChangeCountdown.jsx';
+---
+
+<Layout
+	title="Clock Change Countdown — When Do the Clocks Go Forward or Back? | Clockr"
+	description="Live countdown to the next daylight saving time change. Find out when clocks go forward or back in the UK, US, or EU."
+	category="seasons"
+>
+	<div class="sc-page">
+		<div class="sc-header">
+			<div class="sc-eyebrow">
+				<span class="sc-eyebrow-square" aria-hidden="true"></span>
+				SEASONS
+			</div>
+			<h1 class="sc-title">
+				<span class="sc-gradient">Clock Change Countdown</span>
+			</h1>
+			<p class="sc-subtitle">Find out when the clocks go forward or back</p>
+		</div>
+
+		<ClockChangeCountdown client:load />
+
+		<!-- HOW IT WORKS -->
+		<section class="sc-how">
+			<h2 class="sc-section-title">How it works</h2>
+			<div class="sc-how-card">
+				<p>
+					Daylight Saving Time (DST) shifts clocks forward by one hour in spring
+					and back by one hour in autumn. The idea, first widely adopted during
+					the First World War, was to make better use of natural daylight —
+					moving an hour of sunlight from early morning to the evening so people
+					use less artificial lighting and can enjoy lighter evenings after work.
+					Many countries still observe DST today, though the practice remains
+					controversial.
+				</p>
+				<p>
+					Clock change dates are not the same everywhere. In the UK and EU,
+					clocks go forward on the last Sunday in March and back on the last
+					Sunday in October. The United States follows a different schedule:
+					clocks spring forward on the second Sunday in March and fall back on
+					the first Sunday in November. This page calculates those dates
+					dynamically for each year — no hardcoded calendar entries — so the
+					countdown always points to the correct upcoming change for your
+					selected region.
+				</p>
+				<p>
+					Whether DST should continue is actively debated. The European
+					Parliament voted in 2019 to abolish seasonal clock changes, but
+					implementation has been delayed and most EU member states still
+					observe DST as of 2026. In the US, the Sunshine Protection Act —
+					which would make daylight saving time permanent — has been discussed in
+					Congress but has not become federal law. Some US states and countries
+					worldwide have already opted out of DST entirely.
+				</p>
+			</div>
+		</section>
+
+		<!-- FAQ -->
+		<section class="sc-faq">
+			<h2 class="sc-section-title">Frequently asked questions</h2>
+			<div class="sc-faq-list">
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>When do the clocks go forward in the UK?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							In the UK, clocks go forward one hour to British Summer Time (BST)
+							on the last Sunday in March, at 1:00am. At that moment, 1:00am
+							becomes 2:00am. The exact date changes each year depending on
+							which Sunday falls last in March — use the countdown above for the
+							precise date and live timer.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>When do the clocks go back in the UK?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							UK clocks go back one hour to Greenwich Mean Time (GMT) on the
+							last Sunday in October, at 2:00am. At that moment, 2:00am becomes
+							1:00am, giving you an extra hour in bed. The date varies slightly
+							by year; the countdown above shows the next occurrence.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Do the US and UK change clocks on the same date?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							No. The UK and EU change clocks on the last Sunday in March and
+							the last Sunday in October. The United States uses different
+							dates: the second Sunday in March (spring forward) and the first
+							Sunday in November (fall back). That means US and UK clock changes
+							are often a week or more apart. Select your region in the toggle
+							above to see the correct dates.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Which countries don't observe Daylight Saving Time?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							Many countries near the equator do not use DST because daylight
+							length barely changes through the year. Japan, India, China, and
+							most of Africa do not observe it. Within the US, Arizona (except
+							the Navajo Nation) and Hawaii stay on standard time year-round.
+							Russia abolished seasonal clock changes in 2014. Turkey also
+							keeps a fixed offset year-round.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question">Why do we change the clocks?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							Clocks are changed to shift an hour of daylight from the morning
+							to the evening during the longer days of summer. Proponents argue
+							this saves energy, reduces road accidents in lighter evenings, and
+							boosts outdoor leisure and retail. Critics point to disrupted
+							sleep, health effects, and questionable energy savings in the
+							modern era. The original motivation was wartime fuel conservation.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Is the UK going to stop changing the clocks?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							There is no confirmed plan to end clock changes in the UK as of
+							2026. The EU voted to abolish seasonal changes, which prompted UK
+							debate, but Brexit means the UK sets its own policy independently.
+							Any change would require legislation and coordination with
+							neighbouring countries — especially Ireland, which shares a land
+							border with Northern Ireland.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<!-- RELATED TOOLS -->
+		<div class="sc-related">
+			<h3 class="sc-related-title">Related tools</h3>
+			<div class="sc-related-grid">
+				<a href="/season-countdown" class="sc-related-card"
+					><span class="sc-related-name">Season Countdown</span></a
+				>
+				<a href="/utc-gmt-converter" class="sc-related-card"
+					><span class="sc-related-name">UTC/GMT Converter</span></a
+				>
+				<a href="/world-clock" class="sc-related-card"
+					><span class="sc-related-name">World Clock</span></a
+				>
+				<a href="/time-zone-meeting-planner" class="sc-related-card"
+					><span class="sc-related-name">Time Zone Meeting Planner</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.sc-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.sc-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.sc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.sc-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.sc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.sc-gradient {
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.sc-tool {
+		margin-bottom: 48px;
+	}
+
+	.sc-hero-band {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100vw;
+		margin-left: calc(50% - 50vw);
+		padding: 48px 24px 56px;
+		background: linear-gradient(135deg, #0d1f17, #1a2e24);
+		border-top: 1px solid rgba(45, 106, 79, 0.25);
+		border-bottom: 1px solid rgba(45, 106, 79, 0.25);
+		overflow: hidden;
+		position: relative;
+	}
+
+	.sc-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.sc-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: sc-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.sc-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes sc-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.sc-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.ccc-region-wrap {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 28px;
+		width: 100%;
+	}
+
+	.ccc-region-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.ccc-region-toggle {
+		display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+
+	.ccc-region-btn {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		padding: 10px 24px;
+		border-radius: 999px;
+		border: 1px solid rgba(45, 106, 79, 0.35);
+		background: rgba(12, 12, 12, 0.6);
+		color: rgba(255, 255, 255, 0.55);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			background 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.ccc-region-btn:hover {
+		border-color: rgba(116, 180, 155, 0.5);
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.ccc-region-btn--active {
+		border-color: rgba(116, 180, 155, 0.7);
+		background: rgba(45, 106, 79, 0.2);
+		color: #fff;
+		box-shadow: 0 0 20px rgba(45, 106, 79, 0.2);
+	}
+
+	.ccc-direction {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(20px, 4vw, 28px);
+		font-weight: 800;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		margin: 0 0 24px;
+		padding: 10px 24px;
+		border-radius: 12px;
+		line-height: 1.3;
+	}
+
+	.ccc-direction--forward {
+		color: #fbbf24;
+		background: rgba(245, 158, 11, 0.12);
+		border: 1px solid rgba(251, 191, 36, 0.35);
+		text-shadow: 0 0 24px rgba(245, 158, 11, 0.3);
+	}
+
+	.ccc-direction--back {
+		color: #60a5fa;
+		background: rgba(59, 130, 246, 0.12);
+		border: 1px solid rgba(96, 165, 250, 0.35);
+		text-shadow: 0 0 24px rgba(59, 130, 246, 0.3);
+	}
+
+	.sc-countdown {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	.sc-countdown-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.sc-countdown-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	.sc-countdown-num--days {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	.sc-countdown-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	.sc-countdown-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.sc-target-date {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(15px, 2.5vw, 18px);
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.7);
+		margin: 28px 0 0;
+		line-height: 1.5;
+	}
+
+	.ccc-following {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+		margin: 10px 0 0;
+		line-height: 1.5;
+		max-width: 520px;
+	}
+
+	.sc-note {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+		line-height: 1.6;
+		margin: 16px 0 0;
+		max-width: 520px;
+	}
+
+	.sc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sc-how {
+		margin-bottom: 48px;
+	}
+
+	.sc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.sc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.sc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.sc-faq {
+		margin-bottom: 48px;
+	}
+
+	.sc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.sc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.sc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.sc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sc-faq-item[open] .sc-faq-question::after {
+		content: '−';
+	}
+
+	.sc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.sc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.sc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.sc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.sc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.sc-related-card:hover {
+		border-color: rgba(45, 106, 79, 0.4);
+	}
+
+	.sc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.sc-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.sc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
