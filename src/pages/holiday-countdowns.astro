@@ -1,0 +1,347 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const countdowns = [
+	{
+		name: 'Days Until Christmas',
+		description: 'Countdown to 25 December',
+		href: '/days-until-christmas',
+		emoji: '🎄',
+	},
+	{
+		name: 'Boxing Day Countdown',
+		description: 'Countdown to 26 December',
+		href: '/days-until-boxing-day',
+		emoji: '🎁',
+	},
+	{
+		name: 'Days Until New Year',
+		description: 'Countdown to 1 January',
+		href: '/days-until-new-year',
+		emoji: '🎆',
+	},
+	{
+		name: 'Days Until Halloween',
+		description: 'Countdown to 31 October',
+		href: '/days-until-halloween',
+		emoji: '🎃',
+	},
+	{
+		name: "Days Until Valentine's Day",
+		description: 'Countdown to 14 February',
+		href: '/days-until-valentines',
+		emoji: '💝',
+	},
+	{
+		name: 'Days Until Easter',
+		description: 'Countdown to Easter Sunday',
+		href: '/days-until-easter',
+		emoji: '🐣',
+	},
+	{
+		name: "St Patrick's Day Countdown",
+		description: 'Countdown to 17 March',
+		href: '/days-until-st-patricks-day',
+		emoji: '☘️',
+	},
+	{
+		name: "Mother's Day Countdown",
+		description: "UK and US Mother's Day dates",
+		href: '/days-until-mothers-day',
+		emoji: '💐',
+	},
+	{
+		name: "Father's Day Countdown",
+		description: 'Countdown to the third Sunday in June',
+		href: '/days-until-fathers-day',
+		emoji: '👔',
+	},
+	{
+		name: 'Thanksgiving Countdown',
+		description: 'US Thanksgiving — fourth Thursday in November',
+		href: '/days-until-thanksgiving',
+		emoji: '🦃',
+	},
+	{
+		name: 'Black Friday Countdown',
+		description: 'The day after US Thanksgiving',
+		href: '/days-until-black-friday',
+		emoji: '🛍️',
+	},
+	{
+		name: 'Days Until Bonfire Night',
+		description: 'Countdown to 5 November',
+		href: '/days-until-bonfire-night',
+		emoji: '🔥',
+	},
+	{
+		name: 'Back to School Countdown',
+		description: 'Countdown to the new school year',
+		href: '/days-until-back-to-school',
+		emoji: '🎒',
+	},
+];
+---
+
+<Layout
+	title="Holiday Countdowns — Christmas, Halloween, New Year & More | Clockr"
+	description="Christmas, Mother's Day, Father's Day, Halloween, New Year and more — live holiday countdowns with days, hours, minutes and seconds."
+	category="holidays"
+>
+	<div class="hc-page">
+		<div class="hc-header">
+			<div class="hc-eyebrow">
+				<span class="hc-eyebrow-square" aria-hidden="true"></span>
+				HOLIDAYS
+			</div>
+			<h1 class="hc-title">
+				<span class="hc-gradient">Holiday Countdowns</span>
+			</h1>
+			<p class="hc-subtitle">
+				Christmas, Mother&apos;s Day, Father&apos;s Day, Halloween, New Year and more
+			</p>
+		</div>
+
+		<div class="hc-grid">
+			{
+				countdowns.map((item) => (
+					<a href={item.href} class="hc-card">
+						<span class="hc-card-emoji" aria-hidden="true">
+							{item.emoji}
+						</span>
+						<span class="hc-card-name">{item.name}</span>
+						<span class="hc-card-desc">{item.description}</span>
+					</a>
+				))
+			}
+		</div>
+
+		<section class="hc-how">
+			<h2 class="hc-section-title">About holiday countdowns</h2>
+			<div class="hc-how-card">
+				<p>
+					Pick a holiday above to see a live countdown with days, hours, minutes,
+					and seconds remaining. Some dates are fixed every year — like Christmas
+					and Halloween — while others shift, such as Easter, Thanksgiving, and
+					Mother&apos;s Day. Each page uses the same Clockr timer style so you can
+					quickly see how long you have left to plan, shop, or celebrate.
+				</p>
+			</div>
+		</section>
+
+		<div class="hc-related">
+			<h3 class="hc-related-title">You might also like</h3>
+			<div class="hc-related-grid">
+				<a href="/create-countdown" class="hc-related-card"
+					><span class="hc-related-name">Create Your Own Countdown</span></a
+				>
+				<a href="/fun-holidays" class="hc-related-card"
+					><span class="hc-related-name">Fun & Unofficial Holidays</span></a
+				>
+				<a href="/season-countdown" class="hc-related-card"
+					><span class="hc-related-name">Season Countdown</span></a
+				>
+				<a href="/countdown-timer" class="hc-related-card"
+					><span class="hc-related-name">Countdown Timer</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.hc-page {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 60px 24px 80px;
+	}
+
+	.hc-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.hc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.hc-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.hc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.hc-gradient {
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+		max-width: 540px;
+		margin-inline: auto;
+	}
+
+	.hc-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 14px;
+		margin-bottom: 56px;
+	}
+
+	@media (max-width: 640px) {
+		.hc-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.hc-card {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 92, 77, 0.15);
+		border-radius: 14px;
+		padding: 22px 20px;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.hc-card:hover {
+		border-color: rgba(255, 154, 60, 0.45);
+		transform: translateY(-3px);
+		box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+	}
+
+	.hc-card-emoji {
+		font-size: 28px;
+		line-height: 1;
+		margin-bottom: 4px;
+	}
+
+	.hc-card-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 17px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hc-card-desc {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+		line-height: 1.5;
+	}
+
+	.hc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.hc-how {
+		margin-bottom: 48px;
+	}
+
+	.hc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 92, 77, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.hc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.hc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.hc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.hc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.hc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.hc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.hc-related-card:hover {
+		border-color: rgba(255, 92, 77, 0.4);
+	}
+
+	.hc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>

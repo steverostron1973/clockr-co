@@ -67,7 +67,7 @@ export const categories: Category[] = [
 		description: "Christmas, Mother's Day, Father's Day, Halloween, New Year and more",
 		emoji: '🎄',
 		...categoryGradients.holidays,
-		href: '/countdowns',
+		href: '/holiday-countdowns',
 	},
 	{
 		id: 'birthdays',
