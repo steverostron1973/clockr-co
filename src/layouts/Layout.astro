@@ -21,9 +21,40 @@ const {
 const siteUrl = Astro.site ?? 'https://clockr.co';
 const canonicalURL = new URL(Astro.url.pathname, siteUrl);
 
-const navLinks = [
-	{ label: 'History', href: '/this-day-in-history' },
-	{ label: 'More', href: '/more' },
+const moreDropdownSections = [
+	{
+		label: 'Time & Zone Tools',
+		links: [
+			{ label: 'World Clock', href: '/world-clock' },
+			{ label: 'Timezone Converter', href: '/timezone-converter' },
+			{ label: 'Time Zone Meeting Planner', href: '/time-zone-meeting-planner' },
+			{ label: 'UTC/GMT Converter', href: '/utc-gmt-converter' },
+		],
+	},
+	{
+		label: 'Date Tools',
+		links: [
+			{ label: 'Date Calculator', href: '/date-calculator' },
+			{ label: 'Day of Week', href: '/day-of-week' },
+			{ label: 'Week Number Calculator', href: '/week-number-calculator' },
+			{ label: 'Quarter Calculator', href: '/quarter-calculator' },
+			{ label: 'Leap Year Calculator', href: '/leap-year' },
+			{ label: 'Random Date Generator', href: '/random-date-generator' },
+			{ label: 'Year Progress', href: '/year-progress' },
+			{ label: 'Business Days Calculator', href: '/business-days' },
+		],
+	},
+	{
+		label: 'More Tools',
+		links: [
+			{ label: 'Countdown Timer', href: '/countdown-timer' },
+			{ label: 'Stopwatch', href: '/stopwatch' },
+			{ label: 'Sleep Calculator', href: '/sleep-calculator' },
+			{ label: 'Time Difference', href: '/time-difference' },
+			{ label: 'Unix Timestamp Converter', href: '/unix-timestamp' },
+			{ label: 'Age on Other Planets', href: '/age-on-other-planets' },
+		],
+	},
 ];
 
 const countdownDropdownLinks = [
@@ -65,9 +96,11 @@ const toolsDropdownLinks = [
 	{ label: 'What Generation Am I', href: '/what-generation' },
 ];
 
-const navDropdowns = [
+const navItems = [
 	{ label: 'Tools', links: toolsDropdownLinks, wide: true },
 	{ label: 'Countdowns', links: countdownDropdownLinks, wide: true },
+	{ label: 'History', href: '/this-day-in-history' },
+	{ label: 'More', sections: moreDropdownSections, wide: true, alignRight: true },
 ];
 
 const footerLinks = [
@@ -116,7 +149,7 @@ const categoryStyle = `--cat-from: ${catGradient.from}; --cat-to: ${catGradient.
 	</head>
 	<body class="min-h-screen flex flex-col" style={categoryStyle}>
 		<header class="w-full border-b border-border">
-			<SiteNav client:load dropdowns={navDropdowns} links={navLinks} />
+			<SiteNav client:load items={navItems} />
 		</header>
 
 		<main class="flex-1 w-full">
@@ -273,6 +306,22 @@ const categoryStyle = `--cat-from: ${catGradient.from}; --cat-to: ${catGradient.
 	.nav-menu-link:hover {
 		background: rgba(255, 92, 77, 0.12);
 		color: rgba(255, 255, 255, 0.95);
+	}
+
+	.nav-menu-section + .nav-menu-section {
+		margin-top: 8px;
+		padding-top: 8px;
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.nav-menu-section-label {
+		padding: 6px 12px 4px;
+		font-family: 'Inter', sans-serif;
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.4);
 	}
 
 	nav {

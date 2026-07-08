@@ -1,6 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function SiteNav({ dropdowns, links = [] }) {
+function NavMenuLinks({ links, onLinkClick }) {
+	return links.map((link) => (
+		<a
+			key={link.href}
+			role="menuitem"
+			href={link.href}
+			className="nav-menu-link"
+			onClick={onLinkClick}
+		>
+			{link.label}
+		</a>
+	));
+}
+
+export default function SiteNav({ items }) {
 	const [activeDropdown, setActiveDropdown] = useState(null);
 	const navRef = useRef(null);
 
@@ -29,6 +43,10 @@ export default function SiteNav({ dropdowns, links = [] }) {
 		setActiveDropdown(activeDropdown === name ? null : name);
 	}
 
+	function closeDropdown() {
+		setActiveDropdown(null);
+	}
+
 	return (
 		<nav ref={navRef}>
 			<div className="logo-wrap">
@@ -38,54 +56,70 @@ export default function SiteNav({ dropdowns, links = [] }) {
 				</a>
 			</div>
 			<ul className="nav-links">
-				{dropdowns.map((dropdown) => {
-					const isOpen = activeDropdown === dropdown.label;
+				{items.map((item) => {
+					if (item.href) {
+						return (
+							<li key={item.label}>
+								<a href={item.href}>{item.label}</a>
+							</li>
+						);
+					}
+
+					const isOpen = activeDropdown === item.label;
 					const menuClassName = [
 						'nav-menu',
-						dropdown.wide ? 'nav-menu--wide' : '',
-						dropdown.alignRight ? 'nav-menu--right' : '',
+						item.wide ? 'nav-menu--wide' : '',
+						item.alignRight ? 'nav-menu--right' : '',
 					]
 						.filter(Boolean)
 						.join(' ');
 
 					return (
-						<li key={dropdown.label} className="nav-dropdown">
+						<li key={item.label} className="nav-dropdown">
 							<button
 								type="button"
 								className="nav-dropdown-trigger"
 								aria-expanded={isOpen}
 								aria-haspopup="menu"
-								onClick={() => handleTriggerClick(dropdown.label)}
+								onClick={() => handleTriggerClick(item.label)}
 							>
-								{dropdown.label}
+								{item.label}
 							</button>
 							{isOpen && (
 								<div
 									className={menuClassName}
 									role="menu"
-									aria-label={dropdown.label}
+									aria-label={item.label}
 								>
-									{dropdown.links.map((link) => (
-										<a
-											key={link.href}
-											role="menuitem"
-											href={link.href}
-											className="nav-menu-link"
-											onClick={() => setActiveDropdown(null)}
-										>
-											{link.label}
-										</a>
-									))}
+									{item.sections
+										? item.sections.map((section) => (
+												<div
+													key={section.label}
+													className="nav-menu-section"
+												>
+													<div
+														className="nav-menu-section-label"
+														role="presentation"
+													>
+														{section.label}
+													</div>
+													<NavMenuLinks
+														links={section.links}
+														onLinkClick={closeDropdown}
+													/>
+												</div>
+											))
+										: (
+											<NavMenuLinks
+												links={item.links}
+												onLinkClick={closeDropdown}
+											/>
+										)}
 								</div>
 							)}
 						</li>
 					);
 				})}
-				{links.map((link) => (
-					<li key={link.href}>
-						<a href={link.href}>{link.label}</a>
-					</li>
-				))}
 			</ul>
 			<a href="/create-countdown" className="nav-cta">
 				Create Countdown
