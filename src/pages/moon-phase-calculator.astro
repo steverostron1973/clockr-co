@@ -36,12 +36,12 @@ import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
 				</p>
 				<p>
 					This calculator uses a standard astronomical approximation: a known new
-					moon on 6 January 2000 as a reference point, plus a lunar cycle length
-					of 29.53059 days. For any date, it works out how many days have elapsed
-					since that reference, divides by the cycle length, and finds the
-					position within the current cycle. From that position it derives the
-					illumination percentage, phase name, and estimated dates of the next
-					full and new moons — no API or telescope required.
+					moon at 18:14 UTC on 6 January 2000 as a reference point, plus a
+					synodic month of 29.53058867 days. For any date, it works out how many
+					days have elapsed since that reference, divides by the cycle length, and
+					finds the position within the current cycle. From that position it
+					derives the illumination percentage, phase name, and estimated days
+					until the next full and new moons — no API or telescope required.
 				</p>
 				<p>
 					Moon phases have long been used as a practical calendar in farming,
@@ -59,13 +59,29 @@ import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
 			<h2 class="sc-section-title">Frequently asked questions</h2>
 			<div class="sc-faq-list">
 				<details class="sc-faq-item">
-					<summary class="sc-faq-question">What is the moon phase today?</summary>
+					<summary class="sc-faq-question">How often does a full moon occur?</summary>
 					<div class="sc-faq-answer">
 						<p>
-							Select &ldquo;Today&apos;s moon phase&rdquo; at the top of this page
-							to see the current phase automatically — including the phase name,
-							illumination percentage, and how many days until the next full or
-							new moon. The result updates for the current calendar date.
+							Full moons occur once per synodic month — about every 29.5 days.
+							That works out to roughly 12 full moons a year, with an occasional
+							13th (a &ldquo;blue moon&rdquo; in the seasonal sense) when the
+							timing of the cycle aligns that way. The exact date and time shift
+							slightly each month because the Moon&apos;s orbit is not a perfect
+							circle.
+						</p>
+					</div>
+				</details>
+				<details class="sc-faq-item">
+					<summary class="sc-faq-question"
+						>Is the moon phase the same everywhere on Earth?</summary
+					>
+					<div class="sc-faq-answer">
+						<p>
+							Yes — at any given moment, everyone on Earth sees the same moon
+							phase. Someone in London and someone in Sydney both see a waxing
+							gibbous (or whatever the phase is) at the same universal time. What
+							changes by location is when the Moon rises and sets, and which way
+							up it appears in the sky — not which fraction of the disc is lit.
 						</p>
 					</div>
 				</details>
@@ -73,12 +89,12 @@ import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
 					<summary class="sc-faq-question">How are moon phases calculated?</summary>
 					<div class="sc-faq-answer">
 						<p>
-							Clockr uses a synodic month length of 29.53059 days and a reference
-							new moon on 6 January 2000. The number of days between your chosen
-							date and that reference is divided by the cycle length; the
-							remainder gives the Moon&apos;s age in the current cycle. Illumination
-							is derived from that age using a cosine formula, and phase names
-							follow standard waxing and waning ranges.
+							Clockr uses a synodic month of 29.53058867 days and a reference new
+							moon at 18:14 UTC on 6 January 2000. Days since that reference are
+							divided by the cycle length; the remainder is the Moon&apos;s age
+							in the current cycle. Illumination comes from a cosine of that age,
+							and the eight named phases are assigned by dividing the cycle into
+							equal eighths.
 						</p>
 					</div>
 				</details>
@@ -89,43 +105,8 @@ import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
 							A synodic month — the time from one new moon to the next — averages
 							about 29.53 days (29 days, 12 hours, and 44 minutes). That is
 							slightly longer than the Moon&apos;s orbital period around Earth
-							because Earth is also moving around the Sun, so the Sun-Moon angle
+							because Earth is also moving around the Sun, so the Sun–Moon angle
 							takes longer to repeat.
-						</p>
-					</div>
-				</details>
-				<details class="sc-faq-item">
-					<summary class="sc-faq-question">What is a full moon?</summary>
-					<div class="sc-faq-answer">
-						<p>
-							A full moon occurs when the Moon is on the opposite side of Earth
-							from the Sun, so nearly the entire face we see is lit. In this
-							calculator, full moon corresponds to roughly 100% illumination, at
-							about the midpoint of the 29.5-day lunar cycle.
-						</p>
-					</div>
-				</details>
-				<details class="sc-faq-item">
-					<summary class="sc-faq-question">What is a new moon?</summary>
-					<div class="sc-faq-answer">
-						<p>
-							At new moon, the Moon sits between Earth and the Sun. The side
-							facing us is in shadow, so the Moon is barely visible — often not
-							at all without special conditions. A new cycle begins at this
-							point; the visible portion then grows (waxes) toward the first
-							quarter and full moon.
-						</p>
-					</div>
-				</details>
-				<details class="sc-faq-item">
-					<summary class="sc-faq-question">Does the moon phase affect tides?</summary>
-					<div class="sc-faq-answer">
-						<p>
-							Yes. The Moon&apos;s gravity is the main driver of ocean tides on
-							Earth. Spring tides (higher highs and lower lows) tend to occur
-							around new and full moons when the Sun and Moon align; neap tides
-							(milder) occur around the first and last quarters. Local geography
-							and weather also shape what you see at the coast.
 						</p>
 					</div>
 				</details>
@@ -136,17 +117,14 @@ import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
 		<div class="sc-related">
 			<h3 class="sc-related-title">Related tools</h3>
 			<div class="sc-related-grid">
+				<a href="/sun-calculator" class="sc-related-card"
+					><span class="sc-related-name">Sun Calculator</span></a
+				>
+				<a href="/daylight-hours-calculator" class="sc-related-card"
+					><span class="sc-related-name">Daylight Hours Calculator</span></a
+				>
 				<a href="/season-countdown" class="sc-related-card"
 					><span class="sc-related-name">Season Countdown</span></a
-				>
-				<a href="/year-progress" class="sc-related-card"
-					><span class="sc-related-name">Year Progress Bar</span></a
-				>
-				<a href="/days-until-halloween" class="sc-related-card"
-					><span class="sc-related-name">Days Until Halloween</span></a
-				>
-				<a href="/days-until-christmas" class="sc-related-card"
-					><span class="sc-related-name">Days Until Christmas</span></a
 				>
 			</div>
 		</div>
@@ -353,48 +331,9 @@ import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
 		margin-bottom: 48px;
 	}
 
-	.mpc-mode-toggle {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 12px;
-		margin-bottom: 24px;
-	}
-
-	.mpc-mode-btn {
-		padding: 14px 16px;
-		background: rgba(12, 12, 12, 0.6);
-		border: 1px solid rgba(45, 106, 79, 0.25);
-		border-radius: 12px;
-		cursor: pointer;
-		font-family: 'Outfit', sans-serif;
-		font-size: 14px;
-		font-weight: 700;
-		color: rgba(255, 255, 255, 0.55);
-		transition:
-			border-color 0.2s ease,
-			background 0.2s ease,
-			box-shadow 0.2s ease;
-	}
-
-	.mpc-mode-btn:hover {
-		border-color: rgba(116, 180, 155, 0.5);
-		background: rgba(45, 106, 79, 0.08);
-	}
-
-	.mpc-mode-btn--active {
-		border-color: rgba(116, 180, 155, 0.7);
-		background: rgba(45, 106, 79, 0.15);
-		box-shadow: 0 0 24px rgba(45, 106, 79, 0.2);
-		color: #fff;
-		background-image: linear-gradient(135deg, #2d6a4f, #74b49b);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
-
 	.mpc-date-wrap {
 		max-width: 320px;
-		margin: 0 auto 24px;
+		margin: 0 auto 32px;
 	}
 
 	.mpc-hint {
@@ -405,92 +344,43 @@ import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
 		margin: 0;
 	}
 
-	.mpc-hero-band {
+	.mpc-results {
 		display: flex;
+		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-		width: 100vw;
-		margin-left: calc(50% - 50vw);
-		padding: 48px 24px 56px;
-		background: linear-gradient(135deg, #0d1f17, #1a2e24);
-		border-top: 1px solid rgba(45, 106, 79, 0.25);
-		border-bottom: 1px solid rgba(45, 106, 79, 0.25);
-		overflow: hidden;
-		position: relative;
+		gap: 28px;
 	}
 
-	.mpc-hero-decor {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		user-select: none;
-	}
-
-	.mpc-float-emoji {
-		position: absolute;
-		display: inline-block;
-		line-height: 1;
-		transform: rotate(var(--rotation, 0deg));
-		animation: mpc-float 4s ease-in-out infinite;
-		opacity: 0.9;
-	}
-
-	.mpc-float-emoji--right {
-		left: auto;
-	}
-
-	@keyframes mpc-float {
-		0%,
-		100% {
-			transform: translateY(0) rotate(var(--rotation, 0deg));
-		}
-		33% {
-			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
-		}
-		66% {
-			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
-		}
-	}
-
-	@media (max-width: 600px) {
-		.mpc-float-emoji {
-			opacity: 0.35;
-		}
-
-		.sc-title {
-			font-size: 44px;
-			letter-spacing: -2px;
-		}
-
-		.sc-related-grid {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	.mpc-hero-centre {
+	.mpc-hero {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		position: relative;
-		z-index: 1;
 		width: 100%;
-		max-width: 560px;
+		padding: 40px 24px;
+		background: linear-gradient(135deg, #0d1f17, #1a2e24);
+		border: 1px solid rgba(45, 106, 79, 0.25);
+		border-radius: 20px;
+	}
+
+	.mpc-moon-display {
+		margin-bottom: 16px;
+		filter: drop-shadow(0 0 28px rgba(116, 180, 155, 0.3));
+		line-height: 0;
+	}
+
+	.mpc-moon-svg {
+		display: block;
+		width: clamp(96px, 22vw, 120px);
+		height: auto;
 	}
 
 	.mpc-result-date {
 		font-family: 'Outfit', sans-serif;
 		font-size: 15px;
 		font-weight: 600;
-		color: rgba(255, 255, 255, 0.6);
-		margin: 0 0 20px;
-	}
-
-	.mpc-moon-display {
-		font-size: clamp(72px, 18vw, 120px);
-		line-height: 1;
-		margin-bottom: 16px;
-		filter: drop-shadow(0 0 32px rgba(116, 180, 155, 0.25));
+		color: rgba(255, 255, 255, 0.55);
+		margin: 0 0 12px;
 	}
 
 	.mpc-phase-name {
@@ -511,87 +401,49 @@ import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
 		font-size: 18px;
 		font-weight: 600;
 		color: rgba(255, 255, 255, 0.65);
-		margin: 0 0 32px;
-	}
-
-	.mpc-cycle-bar-wrap {
-		width: 100%;
-		margin-bottom: 32px;
-	}
-
-	.mpc-cycle-bar-track {
-		position: relative;
-		height: 10px;
-		background: rgba(255, 255, 255, 0.08);
-		border-radius: 999px;
-		overflow: visible;
-		margin-bottom: 10px;
-	}
-
-	.mpc-cycle-bar-fill {
-		height: 100%;
-		border-radius: 999px;
-		background: linear-gradient(90deg, #2d6a4f, #74b49b);
-		transition: width 0.4s ease;
-	}
-
-	.mpc-cycle-bar-marker {
-		position: absolute;
-		top: 50%;
-		width: 16px;
-		height: 16px;
-		margin-left: -8px;
-		margin-top: -8px;
-		border-radius: 50%;
-		background: #74b49b;
-		border: 2px solid #0d1f17;
-		box-shadow: 0 0 12px rgba(116, 180, 155, 0.5);
-		transition: left 0.4s ease;
-	}
-
-	.mpc-cycle-bar-labels {
-		display: flex;
-		justify-content: space-between;
-		font-family: 'Inter', sans-serif;
-		font-size: 12px;
-		color: rgba(255, 255, 255, 0.4);
+		margin: 0;
 	}
 
 	.mpc-stats-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
 		width: 100%;
-		margin-bottom: 28px;
 	}
 
 	@media (max-width: 560px) {
 		.mpc-stats-grid {
 			grid-template-columns: 1fr;
 		}
+
+		.sc-title {
+			font-size: 44px;
+			letter-spacing: -2px;
+		}
+
+		.sc-related-grid {
+			grid-template-columns: 1fr;
+		}
 	}
 
-	.mpc-stat {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 6px;
-		padding: 16px 12px;
-		background: rgba(12, 12, 12, 0.5);
-		border: 1px solid rgba(45, 106, 79, 0.2);
-		border-radius: 12px;
+	.mpc-stat-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		padding: 24px 16px;
+		text-align: center;
 	}
 
-	.mpc-stat-value {
+	.mpc-stat-num {
 		font-family: 'Outfit', sans-serif;
-		font-size: clamp(16px, 3vw, 20px);
-		font-weight: 800;
+		font-size: 32px;
+		font-weight: 900;
+		letter-spacing: -1px;
 		background: linear-gradient(135deg, #2d6a4f, #74b49b);
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
-		text-align: center;
-		line-height: 1.2;
+		margin-bottom: 6px;
 	}
 
 	.mpc-stat-label {
@@ -600,8 +452,7 @@ import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
 		font-weight: 600;
 		letter-spacing: 1px;
 		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.45);
-		text-align: center;
+		color: rgba(255, 255, 255, 0.35);
 	}
 
 	.mpc-upcoming {
@@ -617,9 +468,9 @@ import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
 		gap: 4px;
 		margin: 0;
 		padding: 14px 16px;
-		background: rgba(12, 12, 12, 0.4);
+		background: #0c0c0c;
 		border: 1px solid rgba(45, 106, 79, 0.15);
-		border-radius: 10px;
+		border-radius: 14px;
 	}
 
 	.mpc-upcoming-label {
@@ -628,7 +479,7 @@ import MoonPhaseCalculator from '../components/MoonPhaseCalculator.jsx';
 		font-weight: 600;
 		letter-spacing: 1.5px;
 		text-transform: uppercase;
-		color: rgba(255, 255, 255, 0.4);
+		color: rgba(255, 255, 255, 0.35);
 	}
 
 	.mpc-upcoming-date {
