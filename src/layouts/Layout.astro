@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import SiteNav from '../components/SiteNav.jsx';
 import type { CategoryId } from '../data/categories';
 import { categoryGradients, categoryRgb, getCategoryGradient } from '../data/categories';
 
@@ -67,6 +68,12 @@ const toolsDropdownLinks = [
 	{ label: 'What Generation Am I', href: '/what-generation' },
 ];
 
+const navDropdowns = [
+	{ label: 'Tools', links: toolsDropdownLinks, wide: true },
+	{ label: 'Countdowns', links: countdownDropdownLinks, wide: true },
+	{ label: 'History', links: historyDropdownLinks },
+];
+
 const footerLinks = [
 	{ label: 'About', href: '/about' },
 	{ label: 'Privacy Policy', href: '/privacy' },
@@ -113,69 +120,7 @@ const categoryStyle = `--cat-from: ${catGradient.from}; --cat-to: ${catGradient.
 	</head>
 	<body class="min-h-screen flex flex-col" style={categoryStyle}>
 		<header class="w-full border-b border-border">
-			<nav>
-				<div class="logo-wrap">
-					<a href="/">
-						<span class="logo-main">Clock</span><span class="logo-r">r</span>
-					</a>
-				</div>
-
-				<ul class="nav-links">
-					<li class="tools-dropdown">
-						<details>
-							<summary>Tools</summary>
-							<div class="tools-menu" role="menu" aria-label="Tools">
-								{
-									toolsDropdownLinks.map((link) => (
-										<a role="menuitem" href={link.href} class="tools-menu-link">
-											{link.label}
-										</a>
-									))
-								}
-							</div>
-						</details>
-					</li>
-					<li class="tools-dropdown">
-						<details>
-							<summary>Countdowns</summary>
-							<div class="tools-menu" role="menu" aria-label="Countdowns">
-								{
-									countdownDropdownLinks.map((link) => (
-										<a role="menuitem" href={link.href} class="tools-menu-link">
-											{link.label}
-										</a>
-									))
-								}
-							</div>
-						</details>
-					</li>
-					<li class="tools-dropdown">
-						<details>
-							<summary>History</summary>
-							<div class="tools-menu" role="menu" aria-label="History">
-								{
-									historyDropdownLinks.map((link) => (
-										<a role="menuitem" href={link.href} class="tools-menu-link">
-											{link.label}
-										</a>
-									))
-								}
-							</div>
-						</details>
-					</li>
-					{
-						navLinks.map((link) => (
-							<li>
-								<a href={link.href}>
-									{link.label}
-								</a>
-							</li>
-						))
-					}
-				</ul>
-
-				<a href="/create-countdown" class="nav-cta">Create Countdown</a>
-			</nav>
+			<SiteNav client:load dropdowns={navDropdowns} links={navLinks} />
 		</header>
 
 		<main class="flex-1 w-full">
@@ -260,12 +205,14 @@ const categoryStyle = `--cat-from: ${catGradient.from}; --cat-to: ${catGradient.
 		color: #FF5C4D;
 	}
 
-	.tools-dropdown details {
+	.nav-dropdown {
 		position: relative;
 	}
 
-	.tools-dropdown summary {
-		list-style: none;
+	.nav-dropdown-trigger {
+		background: none;
+		border: none;
+		padding: 0;
 		cursor: pointer;
 		font-family: 'Outfit', sans-serif;
 		font-size: 16px;
@@ -275,22 +222,18 @@ const categoryStyle = `--cat-from: ${catGradient.from}; --cat-to: ${catGradient.
 		transition: color 0.2s ease;
 	}
 
-	.tools-dropdown summary::-webkit-details-marker {
-		display: none;
-	}
-
-	.tools-dropdown summary:hover {
+	.nav-dropdown-trigger:hover {
 		color: #FF5C4D;
 	}
 
-	.tools-dropdown summary::after {
+	.nav-dropdown-trigger::after {
 		content: '▾';
 		margin-left: 8px;
 		font-size: 12px;
 		opacity: 0.7;
 	}
 
-	.tools-menu {
+	.nav-menu {
 		position: absolute;
 		top: calc(100% + 12px);
 		left: 50%;
@@ -307,7 +250,19 @@ const categoryStyle = `--cat-from: ${catGradient.from}; --cat-to: ${catGradient.
 		z-index: 50;
 	}
 
-	.tools-menu-link {
+	.nav-menu--wide {
+		min-width: 300px;
+		max-height: 70vh;
+		overflow-y: auto;
+	}
+
+	.nav-menu--right {
+		left: auto;
+		right: 0;
+		transform: none;
+	}
+
+	.nav-menu-link {
 		display: block;
 		padding: 10px 12px;
 		border-radius: 10px;
@@ -319,7 +274,7 @@ const categoryStyle = `--cat-from: ${catGradient.from}; --cat-to: ${catGradient.
 		transition: background 0.15s ease, color 0.15s ease;
 	}
 
-	.tools-menu-link:hover {
+	.nav-menu-link:hover {
 		background: rgba(255, 92, 77, 0.12);
 		color: rgba(255, 255, 255, 0.95);
 	}

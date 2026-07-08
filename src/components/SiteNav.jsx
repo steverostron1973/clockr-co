@@ -1,18 +1,22 @@
 import { useEffect, useRef, useState } from 'react';
-export default function SiteNav({ dropdowns }) {
+
+export default function SiteNav({ dropdowns, links = [] }) {
 	const [activeDropdown, setActiveDropdown] = useState(null);
 	const navRef = useRef(null);
+
 	useEffect(() => {
 		function handleMouseDown(event) {
 			if (!navRef.current?.contains(event.target)) {
 				setActiveDropdown(null);
 			}
 		}
+
 		function handleKeyDown(event) {
 			if (event.key === 'Escape') {
 				setActiveDropdown(null);
 			}
 		}
+
 		document.addEventListener('mousedown', handleMouseDown);
 		document.addEventListener('keydown', handleKeyDown);
 		return () => {
@@ -20,11 +24,13 @@ export default function SiteNav({ dropdowns }) {
 			document.removeEventListener('keydown', handleKeyDown);
 		};
 	}, []);
-	function handleTriggerClick(label) {
-		setActiveDropdown((current) => (current === label ? null : label));
+
+	function handleTriggerClick(name) {
+		setActiveDropdown(activeDropdown === name ? null : name);
 	}
+
 	return (
-		<nav ref={navRef} onMouseLeave={() => setActiveDropdown(null)}>
+		<nav ref={navRef}>
 			<div className="logo-wrap">
 				<a href="/">
 					<span className="logo-main">Clock</span>
@@ -41,6 +47,7 @@ export default function SiteNav({ dropdowns }) {
 					]
 						.filter(Boolean)
 						.join(' ');
+
 					return (
 						<li key={dropdown.label} className="nav-dropdown">
 							<button
@@ -59,7 +66,7 @@ export default function SiteNav({ dropdowns }) {
 									aria-label={dropdown.label}
 								>
 									{dropdown.links.map((link) => (
-										
+										<a
 											key={link.href}
 											role="menuitem"
 											href={link.href}
@@ -74,6 +81,11 @@ export default function SiteNav({ dropdowns }) {
 						</li>
 					);
 				})}
+				{links.map((link) => (
+					<li key={link.href}>
+						<a href={link.href}>{link.label}</a>
+					</li>
+				))}
 			</ul>
 			<a href="/create-countdown" className="nav-cta">
 				Create Countdown
