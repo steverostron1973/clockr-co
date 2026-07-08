@@ -75,7 +75,7 @@ export const categories: Category[] = [
 		description: 'How old are you, exactly?',
 		emoji: '🎂',
 		...categoryGradients.birthdays,
-		href: '/birthdays',
+		href: '/age-birthdays',
 	},
 	{
 		id: 'timezones',
