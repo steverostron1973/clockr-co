@@ -1,0 +1,506 @@
+[
+	{
+		"date": "01-02",
+		"name": "National Science Fiction Day",
+		"description": "Celebrates sci-fi storytelling and often coincides with Isaac Asimov’s birthday.",
+		"category": "Internet Culture"
+	},
+	{
+		"date": "01-04",
+		"name": "National Trivia Day",
+		"description": "A day to quiz friends, play pub trivia, and celebrate curious facts.",
+		"category": "Fun"
+	},
+	{
+		"date": "01-15",
+		"name": "National Strawberry Ice Cream Day",
+		"description": "An unofficial food holiday dedicated to pink, fruity scoops of strawberry ice cream.",
+		"category": "Food"
+	},
+	{
+		"date": "01-19",
+		"name": "National Popcorn Day",
+		"description": "Honours one of the world’s favourite movie and snack-time treats.",
+		"category": "Food"
+	},
+	{
+		"date": "01-21",
+		"name": "Squirrel Appreciation Day",
+		"description": "A quirky awareness day encouraging kindness toward neighbourhood squirrels.",
+		"category": "Awareness"
+	},
+	{
+		"date": "01-24",
+		"name": "National Compliment Day",
+		"description": "Encourages people to say something kind and lift someone’s mood.",
+		"category": "Fun"
+	},
+	{
+		"date": "01-25",
+		"name": "Opposite Day",
+		"description": "A playful day when right might mean left and no might mean yes.",
+		"category": "Fun"
+	},
+	{
+		"date": "01-28",
+		"name": "Data Privacy Day",
+		"description": "Raises awareness about protecting personal information online.",
+		"category": "Awareness"
+	},
+	{
+		"date": "01-29",
+		"name": "National Puzzle Day",
+		"description": "Celebrates jigsaws, crosswords, and brain-teasers of every kind.",
+		"category": "Fun"
+	},
+	{
+		"date": "01-30",
+		"name": "National Croissant Day",
+		"description": "A buttery excuse to enjoy fresh croissants and French bakery culture.",
+		"category": "Food"
+	},
+	{
+		"date": "02-02",
+		"name": "Groundhog Day",
+		"description": "Folklore weather day when a groundhog’s shadow predicts more winter.",
+		"category": "Fun"
+	},
+	{
+		"date": "02-05",
+		"name": "World Nutella Day",
+		"description": "Fans of the hazelnut cocoa spread celebrate with spoonfuls and recipes.",
+		"category": "Food"
+	},
+	{
+		"date": "02-07",
+		"name": "National Send a Card to a Friend Day",
+		"description": "A reminder to post or leave a thoughtful note for someone you care about.",
+		"category": "Fun"
+	},
+	{
+		"date": "02-09",
+		"name": "National Pizza Day",
+		"description": "One of the best-known unofficial food holidays dedicated to pizza lovers everywhere.",
+		"category": "Food"
+	},
+	{
+		"date": "02-11",
+		"name": "Inventors’ Day",
+		"description": "Celebrates creativity and innovation, especially noted in the United States and some European countries.",
+		"category": "Awareness"
+	},
+	{
+		"date": "02-17",
+		"name": "Random Acts of Kindness Day",
+		"description": "Encourages small, unexpected good deeds toward strangers and friends.",
+		"category": "Awareness"
+	},
+	{
+		"date": "02-20",
+		"name": "Love Your Pet Day",
+		"description": "A day to spoil companion animals and appreciate the joy they bring.",
+		"category": "Fun"
+	},
+	{
+		"date": "02-22",
+		"name": "National Margarita Day",
+		"description": "Bartenders and fans toast the classic tequila cocktail.",
+		"category": "Food"
+	},
+	{
+		"date": "02-26",
+		"name": "National Pistachio Day",
+		"description": "Celebrates the crunchy green nut with snacks, ice cream, and recipes.",
+		"category": "Food"
+	},
+	{
+		"date": "02-27",
+		"name": "International Polar Bear Day",
+		"description": "Raises awareness of polar bears and the Arctic habitat they need.",
+		"category": "Awareness"
+	},
+	{
+		"date": "03-01",
+		"name": "World Compliment Day",
+		"description": "A global nudge to give genuine compliments and brighten someone’s day.",
+		"category": "Fun"
+	},
+	{
+		"date": "03-10",
+		"name": "Mario Day",
+		"description": "Fans celebrate Nintendo’s iconic plumber — because MAR10 looks like Mario.",
+		"category": "Internet Culture"
+	},
+	{
+		"date": "03-14",
+		"name": "Pi Day",
+		"description": "Celebrates the mathematical constant π (3.14) — often with pie.",
+		"category": "Fun"
+	},
+	{
+		"date": "03-20",
+		"name": "International Day of Happiness",
+		"description": "A UN-recognised day promoting happiness as a shared human goal.",
+		"category": "Awareness"
+	},
+	{
+		"date": "03-21",
+		"name": "World Poetry Day",
+		"description": "UNESCO’s day celebrating poets, poems, and the power of language.",
+		"category": "Awareness"
+	},
+	{
+		"date": "03-22",
+		"name": "World Water Day",
+		"description": "Highlights freshwater conservation and access to clean water worldwide.",
+		"category": "Awareness"
+	},
+	{
+		"date": "03-23",
+		"name": "National Puppy Day",
+		"description": "Celebrates puppies and promotes adoption of dogs in need of homes.",
+		"category": "Fun"
+	},
+	{
+		"date": "03-25",
+		"name": "Tolkien Reading Day",
+		"description": "Fans of J.R.R. Tolkien gather to read and discuss Middle-earth.",
+		"category": "Internet Culture"
+	},
+	{
+		"date": "04-01",
+		"name": "April Fools’ Day",
+		"description": "The classic day of pranks, hoaxes, and lighthearted news spoofs.",
+		"category": "Fun"
+	},
+	{
+		"date": "04-07",
+		"name": "World Health Day",
+		"description": "Marked by the World Health Organization to spotlight global health topics.",
+		"category": "Awareness"
+	},
+	{
+		"date": "04-10",
+		"name": "National Siblings Day",
+		"description": "Honours brothers, sisters, and the bonds of sibling relationships.",
+		"category": "Fun"
+	},
+	{
+		"date": "04-11",
+		"name": "National Pet Day",
+		"description": "A day to celebrate pets and support animal welfare causes.",
+		"category": "Fun"
+	},
+	{
+		"date": "04-12",
+		"name": "National Grilled Cheese Day",
+		"description": "Dedicated to the crispy, melty comfort of grilled cheese sandwiches.",
+		"category": "Food"
+	},
+	{
+		"date": "04-12",
+		"name": "Yuri’s Night",
+		"description": "A worldwide space party marking Yuri Gagarin’s first human spaceflight.",
+		"category": "Awareness"
+	},
+	{
+		"date": "04-13",
+		"name": "National Scrabble Day",
+		"description": "Word-game fans celebrate Scrabble and competitive letter play.",
+		"category": "Fun"
+	},
+	{
+		"date": "04-22",
+		"name": "Earth Day",
+		"description": "A global environmental observance for climate action and conservation.",
+		"category": "Awareness"
+	},
+	{
+		"date": "04-23",
+		"name": "World Book Day",
+		"description": "UNESCO’s celebration of reading, publishing, and copyright.",
+		"category": "Awareness"
+	},
+	{
+		"date": "04-25",
+		"name": "DNA Day",
+		"description": "Commemorates the discovery of DNA’s double helix and genetic science.",
+		"category": "Awareness"
+	},
+	{
+		"date": "04-26",
+		"name": "National Pretzel Day",
+		"description": "A salty celebration of soft and hard pretzels alike.",
+		"category": "Food"
+	},
+	{
+		"date": "05-04",
+		"name": "Star Wars Day",
+		"description": "May the Fourth be with you — an unofficial holiday for Star Wars fans.",
+		"category": "Internet Culture"
+	},
+	{
+		"date": "05-05",
+		"name": "Cinco de Mayo",
+		"description": "Commemorates the Battle of Puebla and is widely celebrated with Mexican-inspired food and culture.",
+		"category": "Fun"
+	},
+	{
+		"date": "05-09",
+		"name": "Lost Sock Memorial Day",
+		"description": "A tongue-in-cheek day mourning every sock that vanished in the laundry.",
+		"category": "Fun"
+	},
+	{
+		"date": "05-20",
+		"name": "World Bee Day",
+		"description": "Raises awareness of bees and other pollinators crucial to food systems.",
+		"category": "Awareness"
+	},
+	{
+		"date": "05-21",
+		"name": "World Day for Cultural Diversity",
+		"description": "UNESCO day promoting dialogue and cultural exchange.",
+		"category": "Awareness"
+	},
+	{
+		"date": "05-21",
+		"name": "National Talk Like Yoda Day",
+		"description": "A Star Wars fan day for speaking in Yoda’s distinctive word order.",
+		"category": "Internet Culture"
+	},
+	{
+		"date": "05-25",
+		"name": "Towel Day",
+		"description": "A tribute to Douglas Adams — always know where your towel is.",
+		"category": "Internet Culture"
+	},
+	{
+		"date": "05-28",
+		"name": "National Hamburger Day",
+		"description": "Celebrates the classic burger in all its regional styles.",
+		"category": "Food"
+	},
+	{
+		"date": "06-05",
+		"name": "World Environment Day",
+		"description": "The UN’s flagship day for environmental protection campaigns.",
+		"category": "Awareness"
+	},
+	{
+		"date": "06-08",
+		"name": "World Oceans Day",
+		"description": "Focuses on ocean conservation and healthy marine ecosystems.",
+		"category": "Awareness"
+	},
+	{
+		"date": "06-10",
+		"name": "National Iced Tea Day",
+		"description": "A refreshing unofficial holiday for sweet and unsweet iced tea fans.",
+		"category": "Food"
+	},
+	{
+		"date": "06-21",
+		"name": "International Day of Yoga",
+		"description": "A UN observance promoting yoga’s benefits for mind and body.",
+		"category": "Awareness"
+	},
+	{
+		"date": "06-21",
+		"name": "World Music Day",
+		"description": "Also known as Fête de la Musique — free performances fill streets worldwide.",
+		"category": "Fun"
+	},
+	{
+		"date": "07-01",
+		"name": "International Joke Day",
+		"description": "A day to share punchlines and keep laughter circulating.",
+		"category": "Fun"
+	},
+	{
+		"date": "07-02",
+		"name": "World UFO Day",
+		"description": "Encourages open-minded curiosity about unidentified aerial phenomena.",
+		"category": "Fun"
+	},
+	{
+		"date": "07-07",
+		"name": "World Chocolate Day",
+		"description": "Celebrates cacao and chocolate in every form from bars to hot cocoa.",
+		"category": "Food"
+	},
+	{
+		"date": "07-17",
+		"name": "World Emoji Day",
+		"description": "Created by Jeremy Burge — a global celebration of emoji culture.",
+		"category": "Internet Culture"
+	},
+	{
+		"date": "07-30",
+		"name": "International Day of Friendship",
+		"description": "A UN day recognising friendship as a foundation of peace.",
+		"category": "Awareness"
+	},
+	{
+		"date": "08-08",
+		"name": "International Cat Day",
+		"description": "Created by International Fund for Animal Welfare to celebrate cats.",
+		"category": "Fun"
+	},
+	{
+		"date": "08-10",
+		"name": "National S’mores Day",
+		"description": "Toast marshmallows, sandwich chocolate, and celebrate campfire snacks.",
+		"category": "Food"
+	},
+	{
+		"date": "08-13",
+		"name": "International Lefthanders Day",
+		"description": "Raises awareness of left-handed people’s everyday challenges and talents.",
+		"category": "Awareness"
+	},
+	{
+		"date": "08-19",
+		"name": "World Photography Day",
+		"description": "Marks the importance of photography as art and documentation.",
+		"category": "Fun"
+	},
+	{
+		"date": "08-26",
+		"name": "National Dog Day",
+		"description": "Celebrates dogs and encourages adoption of pets in shelters.",
+		"category": "Fun"
+	},
+	{
+		"date": "09-05",
+		"name": "National Cheese Pizza Day",
+		"description": "A cheese-only spin on pizza appreciation — simple toppings, big flavour.",
+		"category": "Food"
+	},
+	{
+		"date": "09-08",
+		"name": "International Literacy Day",
+		"description": "UNESCO day highlighting literacy as a human right.",
+		"category": "Awareness"
+	},
+	{
+		"date": "09-13",
+		"name": "Positive Thinking Day",
+		"description": "Encourages optimism and constructive mindsets for the week ahead.",
+		"category": "Fun"
+	},
+	{
+		"date": "09-19",
+		"name": "International Talk Like a Pirate Day",
+		"description": "Ahoy, matey — the famous unofficial holiday for pirate speak and sea shanties.",
+		"category": "Fun"
+	},
+	{
+		"date": "09-21",
+		"name": "International Day of Peace",
+		"description": "A UN observance devoted to peace and non-violence.",
+		"category": "Awareness"
+	},
+	{
+		"date": "09-22",
+		"name": "Hobbit Day",
+		"description": "Celebrates Bilbo and Frodo’s shared birthday from Tolkien’s stories.",
+		"category": "Internet Culture"
+	},
+	{
+		"date": "09-29",
+		"name": "National Coffee Day",
+		"description": "Widely marked by free cups and coffee-shop promotions across the US.",
+		"category": "Food"
+	},
+	{
+		"date": "10-01",
+		"name": "International Coffee Day",
+		"description": "An industry-backed global day celebrating coffee growers and drinkers.",
+		"category": "Food"
+	},
+	{
+		"date": "10-04",
+		"name": "World Animal Day",
+		"description": "Raises awareness of animal welfare and the human–animal bond.",
+		"category": "Awareness"
+	},
+	{
+		"date": "10-05",
+		"name": "World Teachers’ Day",
+		"description": "UNESCO day recognising educators and the profession of teaching.",
+		"category": "Awareness"
+	},
+	{
+		"date": "10-10",
+		"name": "World Mental Health Day",
+		"description": "Highlights mental health awareness and access to support.",
+		"category": "Awareness"
+	},
+	{
+		"date": "10-16",
+		"name": "World Food Day",
+		"description": "FAO’s day tackling hunger and sustainable food systems.",
+		"category": "Awareness"
+	},
+	{
+		"date": "10-31",
+		"name": "Halloween",
+		"description": "Costumes, candy, and spooky fun on All Hallows’ Eve.",
+		"category": "Fun"
+	},
+	{
+		"date": "11-01",
+		"name": "World Vegan Day",
+		"description": "Marks the founding of The Vegan Society and plant-based living.",
+		"category": "Food"
+	},
+	{
+		"date": "11-13",
+		"name": "World Kindness Day",
+		"description": "Promotes kindness as a global force for connection.",
+		"category": "Awareness"
+	},
+	{
+		"date": "11-15",
+		"name": "National Clean Out Your Refrigerator Day",
+		"description": "A practical quirky day to tidy the fridge before holiday cooking.",
+		"category": "Fun"
+	},
+	{
+		"date": "11-21",
+		"name": "World Television Day",
+		"description": "A UN day noting television’s role in informing and connecting people.",
+		"category": "Awareness"
+	},
+	{
+		"date": "12-05",
+		"name": "International Volunteer Day",
+		"description": "Recognises volunteers and community service worldwide.",
+		"category": "Awareness"
+	},
+	{
+		"date": "12-09",
+		"name": "National Pastry Day",
+		"description": "A sweet unofficial holiday for croissants, danishes, and bakery treats.",
+		"category": "Food"
+	},
+	{
+		"date": "12-21",
+		"name": "Crossword Puzzle Day",
+		"description": "Celebrates the classic grid puzzle beloved by word lovers.",
+		"category": "Fun"
+	},
+	{
+		"date": "12-23",
+		"name": "Festivus",
+		"description": "The Seinfeld-inspired “Festivus for the rest of us” with airing of grievances.",
+		"category": "Internet Culture"
+	},
+	{
+		"date": "12-30",
+		"name": "National Bicarbonate of Soda Day",
+		"description": "A quirky chemistry-and-kitchen day honouring versatile baking soda.",
+		"category": "Fun"
+	}
+]

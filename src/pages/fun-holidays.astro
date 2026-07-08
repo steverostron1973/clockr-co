@@ -1,0 +1,562 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FunHolidaysExplorer from '../components/FunHolidaysExplorer.jsx';
+---
+
+<Layout
+	title="Fun & Unofficial Holidays — Quirky Named Days Calendar | Clockr"
+	description="Browse quirky unofficial holidays throughout the year — National Pizza Day, Star Wars Day, World Emoji Day, Talk Like a Pirate Day, and dozens more."
+	category="history"
+>
+	<div class="fh-page">
+		<div class="fh-header">
+			<div class="fh-eyebrow">
+				<span class="fh-eyebrow-square" aria-hidden="true"></span>
+				HISTORY
+			</div>
+			<h1 class="fh-title">
+				<span class="fh-gradient">Fun & Unofficial Holidays</span>
+			</h1>
+			<p class="fh-subtitle">Quirky celebrations for every day of the year</p>
+		</div>
+
+		<FunHolidaysExplorer client:load />
+
+		<section class="fh-how">
+			<h2 class="fh-section-title">About unofficial holidays</h2>
+			<div class="fh-how-card">
+				<p>
+					Alongside public holidays and religious festivals sits a sprawling
+					calendar of unofficial &ldquo;national days&rdquo; — National Pizza Day,
+					Star Wars Day, Talk Like a Pirate Day, and hundreds more. Most are not
+					government-declared. They catch on through brands, fan communities,
+					awareness charities, or someone who simply picked a date and shared it
+					widely enough that it stuck.
+				</p>
+				<p>
+					This page gathers well-known recurring observances with fixed
+					month-and-day dates. Some are playful food and pop-culture celebrations;
+					others are serious awareness campaigns that happen to sit outside formal
+					public holiday schedules. Dates can vary by country, and a few
+					observances move with the moon or fall on a particular weekday — those
+					are left off this fixed MM-DD list.
+				</p>
+			</div>
+		</section>
+
+		<section class="fh-faq">
+			<h2 class="fh-section-title">Frequently asked questions</h2>
+			<div class="fh-faq-list">
+				<details class="fh-faq-item">
+					<summary class="fh-faq-question">Who decides these holidays?</summary>
+					<div class="fh-faq-answer">
+						<p>
+							There is no single authority. Some days start with fan groups or
+							marketing campaigns, others with charities or UN agencies, and many
+							spread simply because people enjoy marking them. &ldquo;National&rdquo;
+							in a holiday name rarely means a government decree — it usually means
+							the observance is popular in a particular country.
+						</p>
+					</div>
+				</details>
+				<details class="fh-faq-item">
+					<summary class="fh-faq-question"
+						>Are unofficial holidays the same as public holidays?</summary
+					>
+					<div class="fh-faq-answer">
+						<p>
+							No. Public holidays usually come with legal time off; unofficial
+							days generally do not. You can celebrate National Pizza Day at work
+							with a lunch order, but you will not get a bank holiday for it
+							unless your local government has formally designated one.
+						</p>
+					</div>
+				</details>
+				<details class="fh-faq-item">
+					<summary class="fh-faq-question">Can I submit a new one?</summary>
+					<div class="fh-faq-answer">
+						<p>
+							We only list observances that are already widely recognised online
+							or by major calendars — not brand-new inventions created just for
+							this page. If a quirky day has clear, recurring recognition and a
+							stable calendar date, you can tip us off via the contact page and we
+							may add it in a future update.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="fh-related">
+			<h3 class="fh-related-title">Related tools</h3>
+			<div class="fh-related-grid">
+				<a href="/this-day-in-history" class="fh-related-card"
+					><span class="fh-related-name">This Day in History</span></a
+				>
+				<a href="/days-until-christmas" class="fh-related-card"
+					><span class="fh-related-name">Days Until Christmas</span></a
+				>
+				<a href="/random-date-generator" class="fh-related-card"
+					><span class="fh-related-name">Random Date Generator</span></a
+				>
+				<a href="/create-countdown" class="fh-related-card"
+					><span class="fh-related-name">Create Countdown</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.fh-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.fh-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.fh-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.fh-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.fh-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.fh-gradient {
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.fh-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.fh-tool {
+		margin-bottom: 56px;
+	}
+
+	.fh-today {
+		background: #0c0c0c;
+		border: 1px solid rgba(217, 119, 6, 0.25);
+		border-radius: 20px;
+		padding: 28px 24px;
+		margin-bottom: 32px;
+		box-shadow: 0 0 40px rgba(217, 119, 6, 0.08);
+	}
+
+	.fh-today-header {
+		margin-bottom: 16px;
+	}
+
+	.fh-today-eyebrow {
+		display: block;
+		font-family: 'Outfit', sans-serif;
+		font-size: 11px;
+		font-weight: 800;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(245, 158, 11, 0.8);
+		margin-bottom: 6px;
+	}
+
+	.fh-today-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 28px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		margin: 0;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.fh-today-empty {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.fh-today-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.fh-today-item {
+		padding-top: 12px;
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.fh-today-item:first-child {
+		padding-top: 0;
+		border-top: none;
+	}
+
+	.fh-today-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 22px;
+		font-weight: 800;
+		color: #fff;
+		margin: 8px 0 6px;
+	}
+
+	.fh-today-desc {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.fh-pill {
+		display: inline-block;
+		font-family: 'Inter', sans-serif;
+		font-size: 10px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(245, 158, 11, 0.95);
+		border: 1px solid rgba(217, 119, 6, 0.35);
+		border-radius: 999px;
+		padding: 4px 10px;
+	}
+
+	.fh-controls {
+		margin-bottom: 28px;
+	}
+
+	.fh-search-label {
+		display: block;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		margin-bottom: 10px;
+	}
+
+	.fh-search {
+		width: 100%;
+		box-sizing: border-box;
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		border-radius: 12px;
+		padding: 14px 18px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		color: #fff;
+		outline: none;
+		margin-bottom: 16px;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.fh-search:focus {
+		border-color: rgba(245, 158, 11, 0.55);
+		box-shadow: 0 0 20px rgba(217, 119, 6, 0.12);
+	}
+
+	.fh-search::placeholder {
+		color: rgba(255, 255, 255, 0.3);
+		font-weight: 500;
+	}
+
+	.fh-filters {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: 12px;
+	}
+
+	.fh-filter-btn {
+		background: #0c0c0c;
+		border: 1px solid rgba(217, 119, 6, 0.25);
+		border-radius: 999px;
+		padding: 8px 14px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.55);
+		cursor: pointer;
+		transition:
+			border-color 0.2s ease,
+			color 0.2s ease,
+			background 0.2s ease;
+	}
+
+	.fh-filter-btn:hover {
+		border-color: rgba(245, 158, 11, 0.5);
+		color: #fff;
+	}
+
+	.fh-filter-btn--active {
+		border-color: rgba(245, 158, 11, 0.7);
+		background: rgba(217, 119, 6, 0.15);
+		color: #fff;
+	}
+
+	.fh-count {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+		margin: 0;
+	}
+
+	.fh-empty {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.45);
+		text-align: center;
+		padding: 24px;
+	}
+
+	.fh-months {
+		display: flex;
+		flex-direction: column;
+		gap: 36px;
+	}
+
+	.fh-month-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 22px;
+		font-weight: 800;
+		color: #fff;
+		margin: 0 0 14px;
+	}
+
+	.fh-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 12px;
+	}
+
+	.fh-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(217, 119, 6, 0.15);
+		border-radius: 14px;
+		padding: 20px 18px;
+	}
+
+	.fh-card-top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		margin-bottom: 10px;
+		flex-wrap: wrap;
+	}
+
+	.fh-card-date {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.fh-card-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 17px;
+		font-weight: 700;
+		color: #fff;
+		margin: 0 0 8px;
+	}
+
+	.fh-card-desc {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.fh-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.fh-how {
+		margin-bottom: 48px;
+	}
+
+	.fh-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(217, 119, 6, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.fh-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.fh-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.fh-faq {
+		margin-bottom: 48px;
+	}
+
+	.fh-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.fh-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(217, 119, 6, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.fh-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.fh-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.fh-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.fh-faq-item[open] .fh-faq-question::after {
+		content: '−';
+	}
+
+	.fh-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.fh-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.fh-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.fh-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.fh-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.fh-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.fh-related-card:hover {
+		border-color: rgba(217, 119, 6, 0.4);
+	}
+
+	.fh-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #d97706, #f59e0b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 600px) {
+		.fh-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
