@@ -1,0 +1,671 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TimezoneMapStrip from '../components/TimezoneMapStrip.jsx';
+---
+
+<Layout
+	title="Time Zone Map — World Time Zones at a Glance | Clockr"
+	description="See what time it is around the world at a glance. Interactive UTC offset strip from UTC−12 to UTC+14 with live times and your zone highlighted."
+	category="timezones"
+>
+	<div class="tzm-page">
+		<div class="tzm-header">
+			<div class="tzm-eyebrow">🌍 Time Zones</div>
+			<h1 class="tzm-title">
+				<span class="tzm-gradient">Time Zone Map</span>
+			</h1>
+			<p class="tzm-subtitle">See what time it is around the world at a glance</p>
+		</div>
+
+		<TimezoneMapStrip client:load />
+
+		<section class="tzm-how">
+			<h2 class="tzm-section-title">How it works</h2>
+			<div class="tzm-how-card">
+				<p>
+					The Earth is divided into time zones — offset bands measured from UTC
+					(Coordinated Universal Time), the global reference clock. Each zone is
+					roughly 15 degrees of longitude wide, though political borders and
+					historical choices mean real zones do not follow neat meridian lines.
+					This page shows a simplified strip from UTC−12 to UTC+14 with major
+					cities in each band.
+				</p>
+				<p>
+					Each block displays the current wall-clock time for that UTC offset,
+					updating every second in your browser. Clockr detects your IANA time
+					zone automatically and highlights the matching band. Tap or click any
+					zone to expand a panel with representative cities, their live local
+					times, and today&apos;s date — powered by the same Intl API used on our
+					World Clock.
+				</p>
+				<p>
+					This is a reference visualization, not a geographic map. Fractional
+					offsets such as UTC+5:30 (India) and UTC+5:45 (Nepal) appear as
+					separate bands because some countries align clocks to the sun rather
+					than whole-hour meridians. Daylight saving can shift cities between
+					bands seasonally — the highlight always reflects your offset right now.
+				</p>
+			</div>
+		</section>
+
+		<section class="tzm-faq">
+			<h2 class="tzm-section-title">Frequently asked questions</h2>
+			<div class="tzm-faq-list">
+				<details class="tzm-faq-item">
+					<summary class="tzm-faq-question">What is UTC?</summary>
+					<div class="tzm-faq-answer">
+						<p>
+							UTC (Coordinated Universal Time) is the international standard that
+							all time zones are measured against. It replaced GMT as the
+							primary reference in 1972 and is kept precise using atomic clocks.
+							When a zone is labeled UTC+9, local time is nine hours ahead of
+							UTC; UTC−5 is five hours behind. See our UTC/GMT Converter for
+							direct conversions.
+						</p>
+					</div>
+				</details>
+				<details class="tzm-faq-item">
+					<summary class="tzm-faq-question"
+						>Why do some time zones have unusual offsets like UTC+5:45?</summary
+					>
+					<div class="tzm-faq-answer">
+						<p>
+							Most zones differ from UTC by whole hours, but some countries chose
+							fractional offsets to better match local solar noon. Nepal uses
+							UTC+5:45 — a quarter-hour ahead of India&apos;s UTC+5:30 — and
+							Chatham Islands use UTC+12:45 in summer. Iran (UTC+3:30) and
+							Newfoundland (UTC−3:30) follow the same logic with half-hour steps.
+						</p>
+					</div>
+				</details>
+				<details class="tzm-faq-item">
+					<summary class="tzm-faq-question"
+						>How is my time zone detected?</summary
+					>
+					<div class="tzm-faq-answer">
+						<p>
+							Your browser reports an IANA time zone identifier (such as
+							<code>Europe/London</code> or <code>America/New_York</code>)
+							through the Intl API. Clockr calculates your current UTC offset
+							from that identifier and highlights the matching band on the strip.
+							No location permission is requested — only the time zone setting
+							your device already uses.
+						</p>
+					</div>
+				</details>
+				<details class="tzm-faq-item">
+					<summary class="tzm-faq-question"
+						>Why does my highlighted zone change in summer?</summary
+					>
+					<div class="tzm-faq-answer">
+						<p>
+							Countries that observe daylight saving time shift their clocks by
+							one hour for part of the year. London moves from UTC+0 (GMT) to
+							UTC+1 (BST); New York moves from UTC−5 to UTC−4. The highlight
+							follows your actual offset at this moment, so it will jump between
+							adjacent bands when clocks change.
+						</p>
+					</div>
+				</details>
+				<details class="tzm-faq-item">
+					<summary class="tzm-faq-question"
+						>How many time zones are there?</summary
+					>
+					<div class="tzm-faq-answer">
+						<p>
+							There are 24 principal meridian-based hours, but political and
+							fractional zones bring the total to about 38 distinct UTC offsets
+							in use today, spanning UTC−12 through UTC+14. This map shows the
+							most commonly referenced bands; our World Clock lists live times
+							for 200+ individual cities.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="tzm-related">
+			<h3 class="tzm-related-title">Related tools</h3>
+			<div class="tzm-related-grid">
+				<a href="/world-clock" class="tzm-related-card"
+					><span class="tzm-related-name">World Clock</span></a
+				>
+				<a href="/timezone-converter" class="tzm-related-card"
+					><span class="tzm-related-name">Timezone Converter</span></a
+				>
+				<a href="/timezone-abbreviations" class="tzm-related-card"
+					><span class="tzm-related-name">Time Zone Abbreviations</span></a
+				>
+				<a href="/time-zones" class="tzm-related-card"
+					><span class="tzm-related-name">All Time Zone Tools</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.tzm-tool {
+		margin-bottom: 56px;
+	}
+
+	.tzm-user-banner {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		gap: 10px 20px;
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.35);
+		border-radius: 16px;
+		padding: 18px 24px;
+		margin-bottom: 16px;
+		box-shadow: 0 0 32px rgba(139, 92, 246, 0.1);
+	}
+
+	.tzm-user-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 11px;
+		font-weight: 800;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(139, 92, 246, 0.85);
+		width: 100%;
+		text-align: center;
+	}
+
+	.tzm-user-location {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: #fff;
+	}
+
+	.tzm-user-time {
+		font-family: 'Outfit', sans-serif;
+		font-size: 28px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		font-variant-numeric: tabular-nums;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tzm-user-offset {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.4);
+	}
+
+	.tzm-hint {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+		text-align: center;
+		margin: 0 0 20px;
+		line-height: 1.5;
+	}
+
+	.tzm-strip-wrap {
+		overflow-x: auto;
+		padding-bottom: 8px;
+		margin-bottom: 24px;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-color: rgba(139, 92, 246, 0.4) transparent;
+	}
+
+	.tzm-strip {
+		display: flex;
+		gap: 10px;
+		min-width: min-content;
+		padding: 4px 2px 12px;
+	}
+
+	.tzm-band {
+		flex: 0 0 auto;
+		width: 132px;
+		min-height: 140px;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 6px;
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.18);
+		border-radius: 14px;
+		padding: 14px 12px;
+		cursor: pointer;
+		text-align: left;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease,
+			transform 0.15s ease;
+		position: relative;
+	}
+
+	.tzm-band:hover {
+		border-color: rgba(139, 92, 246, 0.45);
+		transform: translateY(-2px);
+	}
+
+	.tzm-band--user {
+		border-color: rgba(236, 72, 153, 0.75);
+		box-shadow: 0 0 24px rgba(236, 72, 153, 0.2);
+	}
+
+	.tzm-band--selected {
+		border-color: rgba(139, 92, 246, 0.85);
+		box-shadow: 0 0 28px rgba(139, 92, 246, 0.25);
+	}
+
+	.tzm-band--user.tzm-band--selected {
+		border-color: rgba(236, 72, 153, 0.95);
+		box-shadow: 0 0 32px rgba(236, 72, 153, 0.3);
+	}
+
+	.tzm-band-you {
+		position: absolute;
+		top: 8px;
+		right: 8px;
+		font-family: 'Inter', sans-serif;
+		font-size: 9px;
+		font-weight: 800;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		color: #ec4899;
+		border: 1px solid rgba(236, 72, 153, 0.5);
+		border-radius: 999px;
+		padding: 2px 6px;
+	}
+
+	.tzm-band-offset {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 800;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tzm-band-time {
+		font-family: 'Outfit', sans-serif;
+		font-size: 22px;
+		font-weight: 900;
+		letter-spacing: -0.5px;
+		color: #fff;
+		font-variant-numeric: tabular-nums;
+		line-height: 1;
+	}
+
+	.tzm-band-cities {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		color: rgba(255, 255, 255, 0.42);
+		line-height: 1.4;
+		margin-top: auto;
+	}
+
+	.tzm-detail {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.25);
+		border-radius: 18px;
+		padding: 24px;
+		animation: tzm-detail-in 0.25s ease;
+	}
+
+	@keyframes tzm-detail-in {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.tzm-detail-header {
+		margin-bottom: 20px;
+		padding-bottom: 18px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	}
+
+	.tzm-detail-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 28px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		margin: 0 0 8px;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tzm-detail-regions {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0 0 14px;
+	}
+
+	.tzm-detail-now {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 12px;
+		margin: 0;
+	}
+
+	.tzm-detail-clock {
+		font-family: 'Outfit', sans-serif;
+		font-size: 36px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		font-variant-numeric: tabular-nums;
+		color: #fff;
+	}
+
+	.tzm-detail-date {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.tzm-detail-cities {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		gap: 12px;
+	}
+
+	.tzm-detail-city {
+		background: rgba(255, 255, 255, 0.02);
+		border: 1px solid rgba(139, 92, 246, 0.12);
+		border-radius: 12px;
+		padding: 16px;
+	}
+
+	.tzm-detail-city--user {
+		border-color: rgba(236, 72, 153, 0.45);
+		box-shadow: 0 0 16px rgba(236, 72, 153, 0.1);
+	}
+
+	.tzm-detail-city-top {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		margin-bottom: 12px;
+	}
+
+	.tzm-detail-flag {
+		font-size: 22px;
+		line-height: 1;
+		flex-shrink: 0;
+	}
+
+	.tzm-detail-city-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: #fff;
+	}
+
+	.tzm-detail-city-country {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.35);
+		margin-top: 2px;
+	}
+
+	.tzm-detail-you-badge {
+		margin-left: auto;
+		font-family: 'Inter', sans-serif;
+		font-size: 9px;
+		font-weight: 800;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		color: #ec4899;
+		border: 1px solid rgba(236, 72, 153, 0.4);
+		border-radius: 999px;
+		padding: 3px 8px;
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+
+	.tzm-detail-city-time {
+		font-family: 'Outfit', sans-serif;
+		font-size: 28px;
+		font-weight: 900;
+		letter-spacing: -0.5px;
+		font-variant-numeric: tabular-nums;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		line-height: 1;
+		margin-bottom: 6px;
+	}
+
+	.tzm-detail-city-date {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	@media (max-width: 640px) {
+		.tzm-band {
+			width: 118px;
+			min-height: 128px;
+		}
+
+		.tzm-band-time {
+			font-size: 20px;
+		}
+	}
+</style>
+
+<style>
+	.tzm-page {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 60px 24px 80px;
+	}
+
+	.tzm-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.tzm-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.tzm-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(40px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.tzm-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tzm-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.tzm-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tzm-how {
+		margin-bottom: 48px;
+	}
+
+	.tzm-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.tzm-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.tzm-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.tzm-faq {
+		margin-bottom: 48px;
+	}
+
+	.tzm-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.tzm-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.tzm-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tzm-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.tzm-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tzm-faq-item[open] .tzm-faq-question::after {
+		content: '−';
+	}
+
+	.tzm-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.tzm-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.tzm-faq-answer code {
+		font-family: ui-monospace, monospace;
+		font-size: 13px;
+		color: rgba(139, 92, 246, 0.9);
+	}
+
+	.tzm-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.tzm-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tzm-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.tzm-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.tzm-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.tzm-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.45);
+	}
+
+	.tzm-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
