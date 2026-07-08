@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+	title="Contact | Clockr"
+	description="Clockr is an independently built website. For feedback or to report a bug, email us at hello@clockr.co."
+>
+	<div class="content-page">
+		<div class="content-header">
+			<div class="content-eyebrow">✉️ Get in touch</div>
+			<h1 class="content-title">
+				<span class="content-gradient">Contact</span>
+			</h1>
+		</div>
+
+		<div class="content-card">
+			<p>
+				Clockr is an independently built website. For feedback or to report a bug,
+				email us at: <a href="mailto:hello@clockr.co">hello@clockr.co</a>
+			</p>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.content-page {
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.content-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.content-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 16px;
+	}
+
+	.content-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 56px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin: 0;
+	}
+
+	.content-gradient {
+		background: var(--cat-gradient, linear-gradient(135deg, #FF5C4D, #FF9A3C));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.content-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 20px;
+		padding: 40px;
+	}
+
+	.content-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.6);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.content-card a {
+		color: #FF5C4D;
+		text-decoration: none;
+		font-weight: 600;
+	}
+
+	.content-card a:hover {
+		text-decoration: underline;
+	}
+
+	@media (max-width: 600px) {
+		.content-title {
+			font-size: 40px;
+			letter-spacing: -2px;
+		}
+
+		.content-card {
+			padding: 28px 24px;
+		}
+	}
+</style>
