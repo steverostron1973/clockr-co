@@ -249,9 +249,19 @@ export default function HijriCalendarConverter() {
 				</div>
 			</div>
 
+			<div className="hcc-reference">
+				<p className="hcc-reference-title">Umm al-Qura reference dates</p>
+				<ul className="hcc-reference-list">
+					<li>1 Muharram 1448 AH (Islamic New Year) — 16 June 2026</li>
+					<li>12 Muharram 1448 AH — 27 June 2026</li>
+					<li>23 Muharram 1448 AH — 8 July 2026</li>
+					<li>1 Ramadan 1447 AH — 18 February 2026</li>
+				</ul>
+			</div>
+
 			<p className="hcc-disclaimer">
-				This conversion is based on standard astronomical calculation and may differ
-				by a day from locally observed dates, which depend on moon sighting.
+				Dates use the Umm al-Qura astronomical calendar (as on our Ramadan and Eid
+				countdowns). Local moon sighting may shift dates by a day in some regions.
 			</p>
 		</div>
 	);

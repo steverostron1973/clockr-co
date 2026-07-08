@@ -1,12 +1,61 @@
 /**
- * Hijri ↔ Gregorian conversion using the Umm al-Qura tabular calendar
- * (@tabby_ai/hijri-converter). This is an astronomical/tabular approximation;
- * locally observed dates may differ by a day depending on moon sighting.
+ * Hijri ↔ Gregorian conversion using the Umm al-Qura calendar
+ * (@tabby_ai/hijri-converter, based on the mhalshehri/hijri-converter tables).
+ *
+ * This is an astronomical/tabular approximation aligned with Saudi Arabia's
+ * official civil calendar. Locally observed dates may differ by ±1 day
+ * depending on moon sighting.
+ *
+ * Verified reference pairs (Umm al-Qura / aladhan.com):
+ * - 1 Muharram 1448 AH ↔ 16 June 2026 (Islamic New Year)
+ * - 1 Ramadan 1447 AH ↔ 18 February 2026
+ * - 1 Shawwal 1447 AH ↔ 20 March 2026 (Eid al-Fitr)
+ * - 10 Dhu al-Hijjah 1447 AH ↔ 27 May 2026 (Eid al-Adha)
+ * - 12 Muharram 1448 AH ↔ 27 June 2026
+ * - 23 Muharram 1448 AH ↔ 8 July 2026
  */
 import {
 	gregorianToHijri,
 	hijriToGregorian,
 } from '@tabby_ai/hijri-converter';
+
+/** Pairs used to sanity-check conversions (Hijri → expected Gregorian). */
+export const HIJRI_REFERENCE_PAIRS: {
+	label: string;
+	hijri: HijriDateParts;
+	gregorian: GregorianDateParts;
+}[] = [
+	{
+		label: 'Islamic New Year 1448 AH',
+		hijri: { year: 1448, month: 1, day: 1 },
+		gregorian: { year: 2026, month: 6, day: 16 },
+	},
+	{
+		label: 'Ramadan 1447 AH begins',
+		hijri: { year: 1447, month: 9, day: 1 },
+		gregorian: { year: 2026, month: 2, day: 18 },
+	},
+	{
+		label: 'Eid al-Fitr 1447 AH',
+		hijri: { year: 1447, month: 10, day: 1 },
+		gregorian: { year: 2026, month: 3, day: 20 },
+	},
+	{
+		label: 'Eid al-Adha 1447 AH',
+		hijri: { year: 1447, month: 12, day: 10 },
+		gregorian: { year: 2026, month: 5, day: 27 },
+	},
+	{
+		label: '12 Muharram 1448 AH',
+		hijri: { year: 1448, month: 1, day: 12 },
+		gregorian: { year: 2026, month: 6, day: 27 },
+	},
+	{
+		label: '23 Muharram 1448 AH',
+		hijri: { year: 1448, month: 1, day: 23 },
+		gregorian: { year: 2026, month: 7, day: 8 },
+	},
+];
 
 export interface HijriDateParts {
 	year: number;
@@ -82,5 +131,28 @@ export function formatGregorianLong(date: Date): string {
 		day: 'numeric',
 		month: 'long',
 		year: 'numeric',
+	});
+}
+
+export function gregorianPartsToDate(parts: GregorianDateParts): Date {
+	return new Date(parts.year, parts.month - 1, parts.day);
+}
+
+/** Returns true when all reference pairs round-trip correctly. */
+export function verifyHijriReferencePairs(): boolean {
+	return HIJRI_REFERENCE_PAIRS.every(({ hijri, gregorian }) => {
+		const fromHijri = hijriToGregorian(hijri);
+		const hijriOk =
+			fromHijri.year === gregorian.year &&
+			fromHijri.month === gregorian.month &&
+			fromHijri.day === gregorian.day;
+
+		const fromGregorian = gregorianToHijri(gregorian);
+		const gregorianOk =
+			fromGregorian.year === hijri.year &&
+			fromGregorian.month === hijri.month &&
+			fromGregorian.day === hijri.day;
+
+		return hijriOk && gregorianOk;
 	});
 }
