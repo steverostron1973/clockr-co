@@ -1,12 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import publicHolidaysData from '../data/publicHolidays.json';
 
 const currentYear = new Date().getFullYear();
+const countryOptions = Object.entries(publicHolidaysData).map(([code, data]) => ({
+	code,
+	label: data.label,
+}));
 ---
 
 <Layout
 	title="Business Days Calculator — Working Days Between Dates | Clockr"
-	description="Calculate the number of business days between two dates. Free working days calculator excluding weekends."
+	description="Calculate business days between two dates. Free working days calculator excluding weekends and UK or US public holidays."
 	category="work"
 >
 	<div class="bd-page">
@@ -18,7 +23,7 @@ const currentYear = new Date().getFullYear();
 				<span class="bd-gradient">Calculator</span>
 			</h1>
 			<p class="bd-subtitle">
-				Calculate working days between dates, excluding weekends
+				Calculate working days between dates, excluding weekends and public holidays
 			</p>
 		</div>
 
@@ -46,6 +51,29 @@ const currentYear = new Date().getFullYear();
 			</button>
 		</div>
 
+		<!-- HOLIDAY SETTINGS -->
+		<div class="bd-form-card bd-holiday-card">
+			<div class="bd-holiday-row">
+				<div class="bd-input-wrap bd-input-wrap--country">
+					<label class="bd-label" for="country-select">Country / Region</label>
+					<select id="country-select" class="bd-input bd-select">
+						{
+							countryOptions.map(({ code, label }) => (
+								<option value={code}>{label}</option>
+							))
+						}
+					</select>
+				</div>
+				<label class="bd-toggle bd-toggle--holiday">
+					<input type="checkbox" id="exclude-holidays-toggle" checked />
+					<span class="bd-toggle-track">
+						<span class="bd-toggle-thumb"></span>
+					</span>
+					<span class="bd-toggle-label">Exclude public holidays</span>
+				</label>
+			</div>
+		</div>
+
 		<!-- TAB A: DAYS BETWEEN DATES -->
 		<div class="bd-panel" id="panel-between" role="tabpanel">
 			<div class="bd-form-card">
@@ -64,10 +92,10 @@ const currentYear = new Date().getFullYear();
 			<div class="bd-results" id="between-results" style="display:none">
 				<div class="bd-main-card">
 					<div class="bd-main-num" id="between-business">0</div>
-					<div class="bd-main-label">business days</div>
+					<div class="bd-main-label" id="between-summary">business days</div>
 				</div>
 
-				<div class="bd-grid">
+				<div class="bd-grid bd-grid--three">
 					<div class="bd-stat-card">
 						<div class="bd-stat-num" id="between-calendar">0</div>
 						<div class="bd-stat-label">Calendar days</div>
@@ -75,6 +103,10 @@ const currentYear = new Date().getFullYear();
 					<div class="bd-stat-card">
 						<div class="bd-stat-num" id="between-weekends">0</div>
 						<div class="bd-stat-label">Weekends excluded</div>
+					</div>
+					<div class="bd-stat-card" id="between-holidays-card">
+						<div class="bd-stat-num" id="between-holidays">0</div>
+						<div class="bd-stat-label">Public holidays excluded</div>
 					</div>
 				</div>
 
@@ -136,9 +168,9 @@ const currentYear = new Date().getFullYear();
 		</div>
 
 		<!-- NOTE -->
-		<p class="bd-note">
-			Public holidays are not excluded — dates are based on weekdays only
-			(Monday–Friday)
+		<p class="bd-note" id="holiday-note">
+			Public holiday dates are based on official government sources (GOV.UK for
+			the UK, OPM for the US). Dates may occasionally change at short notice.
 		</p>
 
 		<!-- QUICK REFERENCE -->
@@ -167,11 +199,13 @@ const currentYear = new Date().getFullYear();
 					knowing the exact count matters for compliance and planning.
 				</p>
 				<p>
-					Clockr's calculator excludes weekends but not public holidays. Bank
-					holidays vary by country, region, and even employer — Christmas Day
-					might be a holiday in the UK but a normal working day elsewhere. Check
-					your local calendar and subtract any public holidays that fall within
-					your date range for the most accurate result.
+					Clockr's calculator excludes weekends and, when you select a country,
+					public holidays for that region. Choose United Kingdom or United States
+					from the country selector and leave "Exclude public holidays" enabled
+					to count only true working days. UK dates follow England &amp; Wales
+					bank holidays from GOV.UK; US dates follow federal holidays from the
+					Office of Personnel Management. Holiday calendars can change at short
+					notice — always confirm critical deadlines against an official source.
 				</p>
 			</div>
 		</section>
@@ -213,9 +247,10 @@ const currentYear = new Date().getFullYear();
 						<p>
 							A business day is any weekday — Monday through Friday — that is
 							not a public holiday in your jurisdiction. Clockr counts Monday to
-							Friday only. Saturday and Sunday are always excluded. If your
-							employer or contract uses a different definition, adjust the
-							result manually for any additional non-working days.
+							Friday and can exclude public holidays when you select a country.
+							Saturday and Sunday are always excluded. Scotland, Northern
+							Ireland, and individual US states may observe additional holidays
+							not included in the default calendars.
 						</p>
 					</div>
 				</details>
@@ -241,9 +276,26 @@ const currentYear = new Date().getFullYear();
 						<p>
 							No — bank holidays and public holidays are not business days in
 							legal and commercial contexts, even when they fall on a weekday.
-							However, Clockr does not automatically exclude them because holiday
-							calendars differ by country and region. Subtract any bank holidays
-							within your range manually for an accurate count.
+							Enable "Exclude public holidays" and select your country to have
+							Clockr subtract them automatically. Turn the toggle off if you
+							only want a plain weekday count without holiday adjustments.
+						</p>
+					</div>
+				</details>
+				<details class="bd-faq-item">
+					<summary class="bd-faq-question"
+						>Which public holidays are included?</summary
+					>
+					<div class="bd-faq-answer">
+						<p>
+							For the United Kingdom, Clockr uses England &amp; Wales bank
+							holidays published on GOV.UK, including substitute days when a
+							holiday falls on a weekend. For the United States, federal holidays
+							from the Office of Personnel Management are used, including
+							observed dates when a holiday falls on a Saturday or Sunday. Dates
+							are provided for 2026–2028 and may be updated as governments
+							publish new schedules. Scotland, Northern Ireland, and individual
+							US states may have additional holidays not covered here.
 						</p>
 					</div>
 				</details>
@@ -268,10 +320,11 @@ const currentYear = new Date().getFullYear();
 					>
 					<div class="bd-faq-answer">
 						<p>
-							2026 has 261 business days — weekdays from Monday to Friday,
-							excluding weekends but not public holidays. Because 1 January 2026
-							falls on a Thursday and 31 December on a Thursday, the year
-							includes the maximum number of weekdays a non-leap year can have.
+							2026 has 261 weekdays (Monday to Friday) before public holidays.
+							With UK bank holidays excluded, England &amp; Wales has 253 business
+							days in 2026. The exact count depends on your country and whether
+							you exclude public holidays — use the calculator above for any
+							specific date range.
 						</p>
 					</div>
 				</details>
@@ -283,10 +336,10 @@ const currentYear = new Date().getFullYear();
 						<p>
 							Identify the start date specified in the contract — often the date
 							of notice or signing — then use the "Add Business Days" tab to add
-							the required number. Check whether the contract counts the start
-							day itself, and subtract any bank holidays in your jurisdiction
-							that fall within the period. When in doubt, consult the contract
-							wording or a legal professional.
+							the required number. Select your country and enable holiday
+							exclusion so bank holidays are skipped automatically. Check whether
+							the contract counts the start day itself. When in doubt, consult the
+							contract wording or a legal professional.
 						</p>
 					</div>
 				</details>
@@ -416,6 +469,38 @@ const currentYear = new Date().getFullYear();
 
 	.bd-inputs--add {
 		margin-bottom: 24px;
+	}
+
+	.bd-holiday-card {
+		margin-bottom: 32px;
+		padding: 24px 32px;
+	}
+
+	.bd-holiday-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: center;
+		gap: 24px 32px;
+	}
+
+	.bd-input-wrap--country {
+		flex: 1;
+		min-width: 220px;
+		max-width: 320px;
+	}
+
+	.bd-select {
+		appearance: none;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff80' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: right 20px center;
+		padding-right: 48px;
+		cursor: pointer;
+	}
+
+	.bd-toggle--holiday {
+		padding-bottom: 4px;
 	}
 
 	.bd-input-wrap {
@@ -555,6 +640,11 @@ const currentYear = new Date().getFullYear();
 		font-size: 20px;
 		font-weight: 600;
 		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.4;
+	}
+
+	.bd-grid--three {
+		grid-template-columns: repeat(3, 1fr);
 	}
 
 	.bd-grid {
@@ -864,6 +954,19 @@ const currentYear = new Date().getFullYear();
 			grid-template-columns: 1fr;
 		}
 
+		.bd-holiday-row {
+			flex-direction: column;
+			align-items: stretch;
+		}
+
+		.bd-input-wrap--country {
+			max-width: none;
+		}
+
+		.bd-grid--three {
+			grid-template-columns: 1fr;
+		}
+
 		.bd-main-num {
 			font-size: 72px;
 		}
@@ -883,6 +986,10 @@ const currentYear = new Date().getFullYear();
 </style>
 
 <script>
+	import publicHolidaysData from '../data/publicHolidays.json';
+
+	type CountryCode = keyof typeof publicHolidaysData;
+
 	const MONTH_NAMES = [
 		'January',
 		'February',
@@ -925,6 +1032,33 @@ const currentYear = new Date().getFullYear();
 		return day === 0 || day === 6;
 	}
 
+	function buildHolidaySet(country: CountryCode): Set<string> {
+		const set = new Set<string>();
+		const countryData = publicHolidaysData[country];
+		if (!countryData) return set;
+
+		for (const yearHolidays of Object.values(countryData.holidays)) {
+			for (const holiday of yearHolidays) {
+				set.add(holiday.date);
+			}
+		}
+		return set;
+	}
+
+	function isPublicHoliday(date: Date, holidaySet: Set<string>): boolean {
+		return holidaySet.has(formatDateInput(date));
+	}
+
+	function isBusinessDay(
+		date: Date,
+		holidaySet: Set<string>,
+		excludeHolidays: boolean,
+	): boolean {
+		if (isWeekend(date)) return false;
+		if (excludeHolidays && isPublicHoliday(date, holidaySet)) return false;
+		return true;
+	}
+
 	function formatDateInput(date: Date): string {
 		const y = date.getFullYear();
 		const m = String(date.getMonth() + 1).padStart(2, '0');
@@ -932,7 +1066,12 @@ const currentYear = new Date().getFullYear();
 		return `${y}-${m}-${d}`;
 	}
 
-	function countBetween(start: Date, end: Date) {
+	function countBetween(
+		start: Date,
+		end: Date,
+		holidaySet: Set<string>,
+		excludeHolidays: boolean,
+	) {
 		let s = new Date(start);
 		let e = new Date(end);
 		s.setHours(0, 0, 0, 0);
@@ -942,6 +1081,7 @@ const currentYear = new Date().getFullYear();
 
 		let businessDays = 0;
 		let weekends = 0;
+		let holidays = 0;
 		const monthly: Record<string, number> = {};
 		const current = new Date(s);
 
@@ -949,6 +1089,12 @@ const currentYear = new Date().getFullYear();
 			const key = `${current.getFullYear()}-${current.getMonth()}`;
 			if (isWeekend(current)) {
 				weekends++;
+			} else if (
+				excludeHolidays &&
+				holidaySet.size > 0 &&
+				isPublicHoliday(current, holidaySet)
+			) {
+				holidays++;
 			} else {
 				businessDays++;
 				monthly[key] = (monthly[key] ?? 0) + 1;
@@ -959,16 +1105,29 @@ const currentYear = new Date().getFullYear();
 		const calendarDays =
 			Math.round((e.getTime() - s.getTime()) / (24 * 60 * 60 * 1000)) + 1;
 
-		return { businessDays, calendarDays, weekends, monthly, start: s, end: e };
+		return {
+			businessDays,
+			calendarDays,
+			weekends,
+			holidays,
+			monthly,
+			start: s,
+			end: e,
+		};
 	}
 
-	function countBusinessDaysInMonth(year: number, month: number): number {
+	function countBusinessDaysInMonth(
+		year: number,
+		month: number,
+		holidaySet: Set<string>,
+		excludeHolidays: boolean,
+	): number {
 		const start = new Date(year, month, 1);
 		const end = new Date(year, month + 1, 0);
 		let count = 0;
 		const current = new Date(start);
 		while (current <= end) {
-			if (!isWeekend(current)) count++;
+			if (isBusinessDay(current, holidaySet, excludeHolidays)) count++;
 			current.setDate(current.getDate() + 1);
 		}
 		return count;
@@ -978,6 +1137,8 @@ const currentYear = new Date().getFullYear();
 		start: Date,
 		days: number,
 		subtract: boolean,
+		holidaySet: Set<string>,
+		excludeHolidays: boolean,
 	): { result: Date; calendarDays: number } {
 		const d = new Date(start);
 		d.setHours(0, 0, 0, 0);
@@ -988,10 +1149,39 @@ const currentYear = new Date().getFullYear();
 		while (remaining > 0) {
 			d.setDate(d.getDate() + direction);
 			calendarDays++;
-			if (!isWeekend(d)) remaining--;
+			if (isBusinessDay(d, holidaySet, excludeHolidays)) remaining--;
 		}
 
 		return { result: d, calendarDays };
+	}
+
+	function formatBusinessDayDetail(
+		excludeHolidays: boolean,
+		holidays: number,
+	): string {
+		if (!excludeHolidays || holidays === 0) {
+			return 'business days (excluding weekends)';
+		}
+		const holidayLabel =
+			holidays === 1 ? 'public holiday' : 'public holidays';
+		return `business days (excluding weekends and ${formatNumber(holidays)} ${holidayLabel})`;
+	}
+
+	function getHolidaySettings(): {
+		country: CountryCode;
+		excludeHolidays: boolean;
+		holidaySet: Set<string>;
+	} {
+		const countrySelect = document.getElementById(
+			'country-select',
+		) as HTMLSelectElement;
+		const excludeToggle = document.getElementById(
+			'exclude-holidays-toggle',
+		) as HTMLInputElement;
+		const country = (countrySelect?.value ?? 'UK') as CountryCode;
+		const excludeHolidays = excludeToggle?.checked ?? true;
+		const holidaySet = buildHolidaySet(country);
+		return { country, excludeHolidays, holidaySet };
 	}
 
 	function formatNumber(n: number): string {
@@ -1034,18 +1224,33 @@ const currentYear = new Date().getFullYear();
 
 		betweenResults.style.display = 'block';
 
-		const result = countBetween(start, end);
+		const { excludeHolidays, holidaySet } = getHolidaySettings();
+		const result = countBetween(start, end, holidaySet, excludeHolidays);
 
 		const businessEl = document.getElementById('between-business');
+		const summaryEl = document.getElementById('between-summary');
 		const calendarEl = document.getElementById('between-calendar');
 		const weekendsEl = document.getElementById('between-weekends');
+		const holidaysEl = document.getElementById('between-holidays');
+		const holidaysCard = document.getElementById('between-holidays-card');
 		const breakdownEl = document.getElementById('month-breakdown');
 
 		if (businessEl)
 			businessEl.textContent = formatNumber(result.businessDays);
+		if (summaryEl) {
+			summaryEl.textContent = formatBusinessDayDetail(
+				excludeHolidays,
+				result.holidays,
+			);
+		}
 		if (calendarEl)
 			calendarEl.textContent = formatNumber(result.calendarDays);
 		if (weekendsEl) weekendsEl.textContent = formatNumber(result.weekends);
+		if (holidaysEl)
+			holidaysEl.textContent = formatNumber(result.holidays);
+		if (holidaysCard) {
+			holidaysCard.style.display = excludeHolidays ? 'block' : 'none';
+		}
 
 		if (breakdownEl) {
 			const keys = Object.keys(result.monthly).sort((a, b) => {
@@ -1100,7 +1305,14 @@ const currentYear = new Date().getFullYear();
 
 		addResults.style.display = 'block';
 
-		const { result, calendarDays } = addBusinessDays(start, days, subtract);
+		const { excludeHolidays, holidaySet } = getHolidaySettings();
+		const { result, calendarDays } = addBusinessDays(
+			start,
+			days,
+			subtract,
+			holidaySet,
+			excludeHolidays,
+		);
 
 		const dateEl = document.getElementById('add-result-date');
 		const dowEl = document.getElementById('add-result-dow');
@@ -1132,14 +1344,26 @@ const currentYear = new Date().getFullYear();
 		const grid = document.getElementById('year-reference');
 		if (!grid) return;
 
+		const { excludeHolidays, holidaySet } = getHolidaySettings();
 		const year = new Date().getFullYear();
 		grid.innerHTML = MONTH_SHORT.map((name, i) => {
-			const count = countBusinessDaysInMonth(year, i);
+			const count = countBusinessDaysInMonth(
+				year,
+				i,
+				holidaySet,
+				excludeHolidays,
+			);
 			return `<div class="bd-ref-card">
 				<div class="bd-ref-month" style="color: var(--cat-from)">${name}</div>
 				<div class="bd-ref-count">${count}</div>
 			</div>`;
 		}).join('');
+	}
+
+	function recalculateAll() {
+		calculateBetween();
+		calculateAdd();
+		renderYearReference();
 	}
 
 	// Default values
@@ -1157,6 +1381,13 @@ const currentYear = new Date().getFullYear();
 	addStartInput?.addEventListener('input', calculateAdd);
 	addDaysInput?.addEventListener('input', calculateAdd);
 	subtractToggle?.addEventListener('change', calculateAdd);
+
+	const countrySelect = document.getElementById('country-select');
+	const excludeHolidaysToggle = document.getElementById(
+		'exclude-holidays-toggle',
+	);
+	countrySelect?.addEventListener('change', recalculateAll);
+	excludeHolidaysToggle?.addEventListener('change', recalculateAll);
 
 	renderYearReference();
 	calculateBetween();
