@@ -1,0 +1,297 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const tools = [
+	{
+		name: 'World Clock',
+		description: 'Current time in 250+ cities',
+		href: '/world-clock',
+		emoji: '🌍',
+	},
+	{
+		name: 'Timezone Converter',
+		description: 'Convert time between time zones',
+		href: '/timezone-converter',
+		emoji: '🌐',
+	},
+	{
+		name: 'Time Zone Meeting Planner',
+		description: 'Find the best time to meet across zones',
+		href: '/time-zone-meeting-planner',
+		emoji: '📅',
+	},
+	{
+		name: 'UTC/GMT Converter',
+		description: 'Convert to or from UTC/GMT',
+		href: '/utc-gmt-converter',
+		emoji: '🕐',
+	},
+	{
+		name: 'Time Difference',
+		description: 'Time difference between two cities',
+		href: '/time-difference',
+		emoji: '⏳',
+	},
+];
+---
+
+<Layout
+	title="Time Zones — World Clock, Converters & Meeting Planner | Clockr"
+	description="What time is it anywhere in the world? World clock, timezone converter, meeting planner, UTC/GMT and time difference tools."
+	category="timezones"
+>
+	<div class="tz-page">
+		<div class="tz-header">
+			<div class="tz-eyebrow">
+				<span class="tz-eyebrow-square" aria-hidden="true"></span>
+				TIME ZONES
+			</div>
+			<h1 class="tz-title">
+				<span class="tz-gradient">Time Zones</span>
+			</h1>
+			<p class="tz-subtitle">What time is it anywhere in the world</p>
+		</div>
+
+		<div class="tz-grid">
+			{
+				tools.map((item) => (
+					<a href={item.href} class="tz-card">
+						<span class="tz-card-emoji" aria-hidden="true">
+							{item.emoji}
+						</span>
+						<span class="tz-card-name">{item.name}</span>
+						<span class="tz-card-desc">{item.description}</span>
+					</a>
+				))
+			}
+		</div>
+
+		<section class="tz-how">
+			<h2 class="tz-section-title">About time zone tools</h2>
+			<div class="tz-how-card">
+				<p>
+					Whether you need the current time in another city, a clean conversion
+					between zones, a good meeting slot for a remote team, or the simple
+					offset between two places — these tools take the guesswork out of
+					coordinated universal and local times. Pick a card above to get
+					started.
+				</p>
+			</div>
+		</section>
+
+		<div class="tz-related">
+			<h3 class="tz-related-title">You might also like</h3>
+			<div class="tz-related-grid">
+				<a href="/unix-timestamp" class="tz-related-card"
+					><span class="tz-related-name">Unix Timestamp Converter</span></a
+				>
+				<a href="/sun-calculator" class="tz-related-card"
+					><span class="tz-related-name">Sun Calculator</span></a
+				>
+				<a href="/daylight-hours-calculator" class="tz-related-card"
+					><span class="tz-related-name">Daylight Hours Calculator</span></a
+				>
+				<a href="/holiday-countdowns" class="tz-related-card"
+					><span class="tz-related-name">Holiday Countdowns</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.tz-page {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 60px 24px 80px;
+	}
+
+	.tz-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.tz-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.tz-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.tz-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.tz-gradient {
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tz-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+		max-width: 540px;
+		margin-inline: auto;
+	}
+
+	.tz-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 14px;
+		margin-bottom: 56px;
+	}
+
+	@media (max-width: 640px) {
+		.tz-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.tz-card {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		padding: 22px 20px;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.tz-card:hover {
+		border-color: rgba(0, 153, 255, 0.45);
+		transform: translateY(-3px);
+		box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+	}
+
+	.tz-card-emoji {
+		font-size: 28px;
+		line-height: 1;
+		margin-bottom: 4px;
+	}
+
+	.tz-card-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 17px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tz-card-desc {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+		line-height: 1.5;
+	}
+
+	.tz-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tz-how {
+		margin-bottom: 48px;
+	}
+
+	.tz-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.tz-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.tz-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.tz-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tz-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.tz-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.tz-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.tz-related-card:hover {
+		border-color: rgba(0, 229, 196, 0.4);
+	}
+
+	.tz-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
