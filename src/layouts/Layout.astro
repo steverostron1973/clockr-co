@@ -214,6 +214,26 @@ const categoryStyle = `--cat-from: ${catGradient.from}; --cat-to: ${catGradient.
 		text-decoration: none;
 	}
 
+	.logo-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		text-decoration: none;
+		color: inherit;
+		transition: opacity 0.2s ease;
+	}
+
+	.logo-link:hover {
+		opacity: 0.8;
+	}
+
+	.logo-home-icon {
+		width: 22px;
+		height: 22px;
+		flex-shrink: 0;
+		color: #FF5C4D;
+	}
+
 	.nav-links {
 		display: flex;
 		gap: 32px;

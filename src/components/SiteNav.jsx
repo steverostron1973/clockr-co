@@ -50,7 +50,22 @@ export default function SiteNav({ items }) {
 	return (
 		<nav ref={navRef}>
 			<div className="logo-wrap">
-				<a href="/">
+				<a href="/" className="logo-link" aria-label="Clockr home">
+					<svg
+						className="logo-home-icon"
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						aria-hidden="true"
+					>
+						<path d="M3 10.5 12 3l9 7.5" />
+						<path d="M5 9.5V21h14V9.5" />
+						<path d="M10 21v-7h4v7" />
+					</svg>
 					<span className="logo-main">Clock</span>
 					<span className="logo-r">r</span>
 				</a>
