@@ -180,7 +180,7 @@ export default function HijriCalendarConverter() {
 					<h2 className="hcc-card-title">Hijri date</h2>
 					<div className="hcc-hijri-fields">
 						<div className="hcc-hijri-row">
-							<div className="date-input-wrap-default">
+							<div className="date-input-wrap-default hcc-hijri-day-wrap">
 								<label className="date-input-label-default" htmlFor="hcc-hijri-day">
 									Day
 								</label>

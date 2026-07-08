@@ -196,12 +196,37 @@ import HijriCalendarConverter from '../components/HijriCalendarConverter.jsx';
 
 	.hcc-hijri-row {
 		display: grid;
-		grid-template-columns: 88px 1fr;
+		grid-template-columns: minmax(0, 88px) minmax(0, 1fr);
 		gap: 12px;
+		align-items: start;
+	}
+
+	.hcc-hijri-fields .date-input-wrap-default {
+		align-items: stretch;
+		width: 100%;
+		min-width: 0;
+	}
+
+	.hcc-hijri-fields .date-input-label-default {
+		text-align: left;
+		align-self: flex-start;
+		width: 100%;
+	}
+
+	.hcc-hijri-fields .date-input-default {
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.hcc-hijri-day-wrap,
+	.hcc-hijri-month-wrap {
+		min-width: 0;
 	}
 
 	.hcc-hijri-day {
 		text-align: center;
+		padding-left: 12px;
+		padding-right: 12px;
 		-moz-appearance: textfield;
 	}
 
@@ -214,14 +239,18 @@ import HijriCalendarConverter from '../components/HijriCalendarConverter.jsx';
 	.hcc-hijri-select {
 		cursor: pointer;
 		appearance: none;
+		text-align: left;
 		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff80' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
 		background-repeat: no-repeat;
 		background-position: right 16px center;
 		padding-right: 40px;
 	}
 
-	.hcc-hijri-month-wrap {
-		min-width: 0;
+	@media (max-width: 720px) {
+		.hcc-hijri-row {
+			grid-template-columns: minmax(0, 72px) minmax(0, 1fr);
+			gap: 10px;
+		}
 	}
 
 	.hcc-output {
