@@ -123,6 +123,6 @@ export const categories: Category[] = [
 		description: 'Ramadan, Diwali, Easter and more',
 		emoji: '🕌',
 		...categoryGradients.religious,
-		href: '/religious',
+		href: '/religious-calendars',
 	},
 ];
