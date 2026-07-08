@@ -1,0 +1,723 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {
+	formatRamadanDate,
+	getNextRamadanStart,
+	getRamadanDatesForClient,
+} from '../data/ramadanDates';
+
+const nextRamadan = getNextRamadanStart(new Date());
+const targetYear = nextRamadan.year;
+const targetDateLabel = formatRamadanDate(nextRamadan.date);
+const hijriYear = nextRamadan.hijriYear;
+const ramadanDates = getRamadanDatesForClient();
+
+const leftEmojis = [
+	{ emoji: '🕌', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '🌙', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '⭐', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '🙏', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '✨', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '🌙', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '☪️', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '🌙', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '⭐', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '🕌', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '🙏', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '✨', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title={`Days Until Ramadan ${targetYear} — Ramadan Countdown | Clockr`}
+	description={`How many days until Ramadan ${targetYear}? Live countdown to the start of Ramadan — ${targetDateLabel}.`}
+	category="religious"
+>
+	<div class="ramadan-page">
+		<section class="ramadan-hero" aria-label="Ramadan countdown">
+			<div class="ramadan-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="ramadan-float-emoji ramadan-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="ramadan-float-emoji ramadan-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="ramadan-hero-centre">
+				<h1 class="ramadan-hero-title">Days Until Ramadan</h1>
+				<p class="ramadan-hero-subtitle">Countdown to the start of Ramadan</p>
+
+				<div class="ramadan-countdown" id="ramadan-countdown">
+					<div class="ramadan-countdown-block">
+						<span
+							class="ramadan-countdown-num ramadan-countdown-num--days"
+							id="hero-days">0</span
+						>
+						<span class="ramadan-countdown-unit">Days</span>
+					</div>
+					<span class="ramadan-countdown-sep">:</span>
+					<div class="ramadan-countdown-block">
+						<span class="ramadan-countdown-num" id="hero-hours">00</span>
+						<span class="ramadan-countdown-unit">Hours</span>
+					</div>
+					<span class="ramadan-countdown-sep">:</span>
+					<div class="ramadan-countdown-block">
+						<span class="ramadan-countdown-num" id="hero-mins">00</span>
+						<span class="ramadan-countdown-unit">Minutes</span>
+					</div>
+					<span class="ramadan-countdown-sep">:</span>
+					<div class="ramadan-countdown-block">
+						<span class="ramadan-countdown-num" id="hero-secs">00</span>
+						<span class="ramadan-countdown-unit">Seconds</span>
+					</div>
+				</div>
+
+				<p class="ramadan-target-date" id="hero-target-date">{targetDateLabel}</p>
+				<p class="ramadan-disclaimer">
+					Ramadan begins with the sighting of the new moon and may vary by a day
+					depending on your location and local moon sighting announcements.
+				</p>
+			</div>
+		</section>
+
+		<div class="ramadan-body">
+			<section class="ramadan-stats-section">
+				<h2 class="ramadan-stats-heading">Ramadan by the numbers</h2>
+				<div class="ramadan-stats-grid">
+					<div class="ramadan-stat-card">
+						<div class="ramadan-stat-label">Estimated start date</div>
+						<div class="ramadan-stat-value" id="stat-date">—</div>
+					</div>
+					<div class="ramadan-stat-card">
+						<div class="ramadan-stat-label">Hijri year</div>
+						<div class="ramadan-stat-value" id="stat-hijri">—</div>
+					</div>
+					<div class="ramadan-stat-card">
+						<div class="ramadan-stat-label">Weeks until Ramadan</div>
+						<div class="ramadan-stat-value" id="stat-weeks">—</div>
+					</div>
+					<div class="ramadan-stat-card">
+						<div class="ramadan-stat-label">Exact time remaining</div>
+						<div class="ramadan-stat-value" id="stat-exact">—</div>
+					</div>
+				</div>
+			</section>
+
+			<button class="ramadan-share-btn" id="ramadan-share-btn"
+				>📋 Copy &amp; Share</button
+			>
+
+			<section class="ramadan-about">
+				<h2 class="ramadan-section-title">About Ramadan</h2>
+				<div class="ramadan-about-card">
+					<p>
+						Ramadan is the ninth month of the Islamic lunar calendar and the
+						holiest month in Islam. Muslims observe sawm — fasting from dawn to
+						sunset — as one of the Five Pillars of Islam, alongside increased
+						prayer, reflection, and charitable giving.
+					</p>
+					<p>
+						The Quran is believed to have been first revealed during Ramadan,
+						and the month includes Laylat al-Qadr (the Night of Decree), regarded
+						as better than a thousand months. Ramadan lasts 29 or 30 days and
+						ends with Eid al-Fitr, a festival of breaking the fast celebrated
+						with family, food, and community.
+					</p>
+				</div>
+			</section>
+
+			<section class="ramadan-how">
+				<h2 class="ramadan-section-title">How is the Ramadan countdown calculated?</h2>
+				<div class="ramadan-how-card">
+					<p>
+						This countdown targets midnight on the estimated first day of
+						Ramadan in your local time zone. The dates shown are based on the
+						Umm al-Qura calendar used in Saudi Arabia and many Gulf states,
+						which calculates the new moon astronomically. The display updates
+						every second with the precise days, hours, minutes, and seconds
+						remaining.
+					</p>
+					<p>
+						Because the Islamic calendar follows the lunar cycle, Ramadan shifts
+						about 11 days earlier each Gregorian year. Once the current
+						Ramadan start date has passed, the countdown automatically rolls
+						forward to the next listed date — including rare years like 2030,
+						when Ramadan occurs twice in the same Gregorian calendar year.
+					</p>
+				</div>
+			</section>
+
+			<section class="ramadan-faq">
+				<h2 class="ramadan-section-title">Frequently asked questions</h2>
+				<div class="ramadan-faq-list">
+					<details class="ramadan-faq-item">
+						<summary class="ramadan-faq-question"
+							>Why does the date of Ramadan change every year?</summary
+						>
+						<div class="ramadan-faq-answer">
+							<p>
+								The Islamic calendar is lunar, with months of 29 or 30 days
+								based on the moon's cycle. A lunar year is roughly 354 days —
+								about 11 days shorter than the solar Gregorian year — so Ramadan
+								moves earlier through the seasons each year. Over roughly 33
+								years it completes a full cycle through all seasons.
+							</p>
+						</div>
+					</details>
+					<details class="ramadan-faq-item">
+						<summary class="ramadan-faq-question"
+							>How is the start of Ramadan determined?</summary
+						>
+						<div class="ramadan-faq-answer">
+							<p>
+								Ramadan begins when the crescent moon (hilal) marking the start
+								of the month is sighted after the new moon of Sha'ban. Many
+								countries, including Saudi Arabia and most Gulf states, use
+								astronomical calculation (the Umm al-Qura calendar). Others —
+								such as Pakistan, parts of India, and Morocco — wait for a
+								verified local moon sighting, which can shift the start by a
+								day or more between regions.
+							</p>
+						</div>
+					</details>
+					<details class="ramadan-faq-item">
+						<summary class="ramadan-faq-question"
+							>Why might the countdown date differ from my local mosque?</summary
+						>
+						<div class="ramadan-faq-answer">
+							<p>
+								Clockr uses Umm al-Qura estimated dates for planning purposes.
+								If your community follows local moon sighting, the actual start
+								may be one day earlier or later. Always check announcements
+								from your local Islamic authority or mosque for the confirmed
+								date in your area.
+							</p>
+						</div>
+					</details>
+					<details class="ramadan-faq-item">
+						<summary class="ramadan-faq-question"
+							>Can Ramadan happen twice in one Gregorian year?</summary
+						>
+						<div class="ramadan-faq-answer">
+							<p>
+								Yes. Because the Islamic year is shorter than the Gregorian year,
+								Ramadan drifts backward through the calendar. Roughly every 33
+								years, two Ramadans fall within the same Gregorian year — the
+								next occurrence is 2030, when Ramadan is expected to begin in
+								early January and again in late December.
+							</p>
+						</div>
+					</details>
+				</div>
+			</section>
+
+			<div class="ramadan-related">
+				<h3 class="ramadan-related-title">Related tools</h3>
+				<div class="ramadan-related-grid">
+					<a href="/days-until-easter" class="ramadan-related-card"
+						><span class="ramadan-related-name">Days Until Easter</span></a
+					>
+					<a href="/moon-phase-calculator" class="ramadan-related-card"
+						><span class="ramadan-related-name">Moon Phase Calculator</span></a
+					>
+					<a href="/countdown-timer" class="ramadan-related-card"
+						><span class="ramadan-related-name">Countdown Timer</span></a
+					>
+					<a href="/holiday-countdowns" class="ramadan-related-card"
+						><span class="ramadan-related-name">Holiday Countdowns</span></a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.ramadan-page {
+		width: 100%;
+	}
+
+	.ramadan-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #1a1428, #2d1f3d);
+		border-bottom: 1px solid rgba(232, 147, 122, 0.25);
+		overflow: hidden;
+		position: relative;
+		min-height: 360px;
+	}
+
+	.ramadan-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.ramadan-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: ramadan-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.ramadan-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes ramadan-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.ramadan-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.ramadan-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ramadan-hero-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.55);
+		margin: 0 0 28px;
+	}
+
+	.ramadan-countdown {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+		margin-bottom: 24px;
+	}
+
+	.ramadan-countdown-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.ramadan-countdown-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	.ramadan-countdown-num--days {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	.ramadan-countdown-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	.ramadan-countdown-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.ramadan-target-date {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(18px, 3vw, 22px);
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.9);
+		margin: 0 0 12px;
+	}
+
+	.ramadan-disclaimer {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+		line-height: 1.6;
+		margin: 0;
+		max-width: 520px;
+	}
+
+	.ramadan-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.ramadan-stats-section {
+		margin-bottom: 16px;
+	}
+
+	.ramadan-stats-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.ramadan-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.ramadan-stats-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.ramadan-stat-card {
+		background: #1a1420;
+		border: 1px solid rgba(232, 147, 122, 0.2);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.ramadan-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 10px;
+	}
+
+	.ramadan-stat-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.4;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ramadan-share-btn {
+		display: block;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		color: #1a1420;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		max-width: 320px;
+		width: 100%;
+		margin: 0 auto 48px;
+		transition: opacity 0.2s ease;
+	}
+
+	.ramadan-share-btn:hover {
+		opacity: 0.9;
+	}
+
+	.ramadan-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.ramadan-about {
+		margin-bottom: 48px;
+	}
+
+	.ramadan-about-card,
+	.ramadan-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.ramadan-about-card p,
+	.ramadan-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.ramadan-about-card p:last-child,
+	.ramadan-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.ramadan-how {
+		margin-bottom: 48px;
+	}
+
+	.ramadan-faq {
+		margin-bottom: 48px;
+	}
+
+	.ramadan-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.ramadan-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.ramadan-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ramadan-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.ramadan-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.ramadan-faq-item[open] .ramadan-faq-question::after {
+		content: '−';
+	}
+
+	.ramadan-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.ramadan-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.ramadan-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.ramadan-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.ramadan-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.ramadan-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.ramadan-related-card:hover {
+		border-color: rgba(232, 147, 122, 0.4);
+	}
+
+	.ramadan-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
+
+<script define:vars={{ ramadanDates }}>
+	function pad(n) {
+		return String(n).padStart(2, '0');
+	}
+
+	function getRamadanStartDate(entry) {
+		return new Date(entry.year, entry.month, entry.day, 0, 0, 0, 0);
+	}
+
+	function getTargetRamadan() {
+		const now = new Date();
+		const sorted = [...ramadanDates].sort(
+			(a, b) => getRamadanStartDate(a).getTime() - getRamadanStartDate(b).getTime(),
+		);
+
+		for (const entry of sorted) {
+			const date = getRamadanStartDate(entry);
+			if (now.getTime() < date.getTime()) {
+				return { ...entry, date };
+			}
+		}
+
+		const last = sorted[sorted.length - 1];
+		return { ...last, date: getRamadanStartDate(last) };
+	}
+
+	function formatRamadanDate(date) {
+		return date.toLocaleDateString('en-GB', {
+			weekday: 'long',
+			day: 'numeric',
+			month: 'long',
+			year: 'numeric',
+		});
+	}
+
+	function updateCountdown() {
+		const now = new Date();
+		const ramadan = getTargetRamadan();
+		const diff = ramadan.date.getTime() - now.getTime();
+
+		if (diff <= 0) return;
+
+		const totalSeconds = Math.floor(diff / 1000);
+		const days = Math.floor(totalSeconds / 86400);
+		const hours = Math.floor((totalSeconds % 86400) / 3600);
+		const mins = Math.floor((totalSeconds % 3600) / 60);
+		const secs = totalSeconds % 60;
+		const weeks = Math.floor(days / 7);
+
+		const heroDays = document.getElementById('hero-days');
+		const heroHours = document.getElementById('hero-hours');
+		const heroMins = document.getElementById('hero-mins');
+		const heroSecs = document.getElementById('hero-secs');
+		const heroTargetDate = document.getElementById('hero-target-date');
+		const statDate = document.getElementById('stat-date');
+		const statHijri = document.getElementById('stat-hijri');
+		const statWeeks = document.getElementById('stat-weeks');
+		const statExact = document.getElementById('stat-exact');
+
+		if (heroDays) heroDays.textContent = String(days);
+		if (heroHours) heroHours.textContent = pad(hours);
+		if (heroMins) heroMins.textContent = pad(mins);
+		if (heroSecs) heroSecs.textContent = pad(secs);
+
+		const dateLabel = formatRamadanDate(ramadan.date);
+
+		if (heroTargetDate) heroTargetDate.textContent = dateLabel;
+		if (statDate) statDate.textContent = dateLabel;
+		if (statHijri) statHijri.textContent = `1 Ramadan ${ramadan.hijriYear} AH`;
+		if (statWeeks)
+			statWeeks.textContent = `${weeks} week${weeks === 1 ? '' : 's'}`;
+		if (statExact)
+			statExact.textContent = `${days} days, ${hours} hours, ${mins} minutes, ${secs} seconds`;
+	}
+
+	const shareBtn = document.getElementById('ramadan-share-btn');
+	shareBtn?.addEventListener('click', () => {
+		const days = document.getElementById('hero-days')?.textContent ?? '0';
+		const ramadan = getTargetRamadan();
+		const dateLabel = formatRamadanDate(ramadan.date);
+		navigator.clipboard.writeText(
+			`🌙 Ramadan is ${days} days away — starting ${dateLabel}. Count down at clockr.co/days-until-ramadan`,
+		);
+		shareBtn.textContent = '✓ Copied!';
+		setTimeout(() => {
+			shareBtn.textContent = '📋 Copy & Share';
+		}, 2000);
+	});
+
+	updateCountdown();
+	setInterval(updateCountdown, 1000);
+</script>

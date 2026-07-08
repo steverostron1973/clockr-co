@@ -57,21 +57,32 @@ const moreDropdownSections = [
 	},
 ];
 
-const countdownDropdownLinks = [
-	{ label: 'All Holiday Countdowns', href: '/holiday-countdowns' },
-	{ label: 'Days Until Christmas', href: '/days-until-christmas' },
-	{ label: 'Boxing Day Countdown', href: '/days-until-boxing-day' },
-	{ label: 'Days Until New Year', href: '/days-until-new-year' },
-	{ label: 'Days Until Halloween', href: '/days-until-halloween' },
-	{ label: "Days Until Valentine's Day", href: '/days-until-valentines' },
-	{ label: 'Days Until Easter', href: '/days-until-easter' },
-	{ label: "St Patrick's Day Countdown", href: '/days-until-st-patricks-day' },
-	{ label: "Mother's Day Countdown", href: '/days-until-mothers-day' },
-	{ label: "Father's Day Countdown", href: '/days-until-fathers-day' },
-	{ label: 'Thanksgiving Countdown', href: '/days-until-thanksgiving' },
-	{ label: 'Black Friday Countdown', href: '/days-until-black-friday' },
-	{ label: 'Days Until Bonfire Night', href: '/days-until-bonfire-night' },
-	{ label: 'Back to School Countdown', href: '/days-until-back-to-school' },
+const countdownDropdownSections = [
+	{
+		label: 'Holiday Countdowns',
+		links: [
+			{ label: 'All Holiday Countdowns', href: '/holiday-countdowns' },
+			{ label: 'Days Until Christmas', href: '/days-until-christmas' },
+			{ label: 'Boxing Day Countdown', href: '/days-until-boxing-day' },
+			{ label: 'Days Until New Year', href: '/days-until-new-year' },
+			{ label: 'Days Until Halloween', href: '/days-until-halloween' },
+			{ label: "Days Until Valentine's Day", href: '/days-until-valentines' },
+			{ label: "St Patrick's Day Countdown", href: '/days-until-st-patricks-day' },
+			{ label: "Mother's Day Countdown", href: '/days-until-mothers-day' },
+			{ label: "Father's Day Countdown", href: '/days-until-fathers-day' },
+			{ label: 'Thanksgiving Countdown', href: '/days-until-thanksgiving' },
+			{ label: 'Black Friday Countdown', href: '/days-until-black-friday' },
+			{ label: 'Days Until Bonfire Night', href: '/days-until-bonfire-night' },
+			{ label: 'Back to School Countdown', href: '/days-until-back-to-school' },
+		],
+	},
+	{
+		label: 'Religious Calendars',
+		links: [
+			{ label: 'Days Until Easter', href: '/days-until-easter' },
+			{ label: 'Ramadan Countdown', href: '/days-until-ramadan' },
+		],
+	},
 ];
 
 const toolsDropdownLinks = [
@@ -106,7 +117,7 @@ const toolsDropdownLinks = [
 
 const navItems = [
 	{ label: 'Tools', links: toolsDropdownLinks, wide: true },
-	{ label: 'Countdowns', links: countdownDropdownLinks, wide: true },
+	{ label: 'Countdowns', sections: countdownDropdownSections, wide: true },
 	{ label: 'History', href: '/this-day-in-history' },
 	{ label: 'More', sections: moreDropdownSections, wide: true, alignRight: true },
 ];
