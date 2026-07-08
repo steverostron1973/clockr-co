@@ -1,0 +1,538 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HebrewCalendarConverter from '../components/HebrewCalendarConverter.jsx';
+---
+
+<Layout
+	title="Hebrew Calendar Converter — Gregorian ↔ Jewish Date | Clockr"
+	description="Convert between Gregorian and Hebrew (Jewish) dates instantly. Free two-way Hebrew calendar converter powered by Hebcal."
+	category="religious"
+>
+	<div class="hbc-page">
+		<div class="hbc-header">
+			<div class="hbc-eyebrow">
+				<span class="hbc-eyebrow-square" aria-hidden="true"></span>
+				RELIGIOUS CALENDARS
+			</div>
+			<h1 class="hbc-title">
+				<span class="hbc-gradient">Hebrew Calendar</span><br />
+				<span class="hbc-gradient">Converter</span>
+			</h1>
+			<p class="hbc-subtitle">Convert between Gregorian and Hebrew (Jewish) dates</p>
+		</div>
+
+		<HebrewCalendarConverter client:load />
+
+		<section class="hbc-how">
+			<h2 class="hbc-section-title">How it works</h2>
+			<div class="hbc-how-card">
+				<p>
+					The Hebrew calendar is a lunisolar calendar: months follow the lunar
+					cycle (29 or 30 days), while leap years add an extra month so the
+					calendar stays roughly aligned with the solar year and the seasons.
+					Unlike the purely lunar Islamic (Hijri) calendar, which drifts about
+					11 days earlier each Gregorian year, the Hebrew calendar uses a
+					19-year leap cycle to keep festivals such as Passover in their
+					seasonal place.
+				</p>
+				<p>
+					A Hebrew year begins in Tishrei (around September or October) and may
+					have 12 or 13 months. In leap years, Adar is split into Adar I and Adar
+					II. Month lengths vary — Cheshvan and Kislev can be 29 or 30 days
+					depending on the year — which makes hand-rolled conversion error-prone.
+				</p>
+				<p>
+					Clockr uses the Hebcal library (@hebcal/core), the same engine behind
+					hebcal.com, for authoritative Gregorian ↔ Hebrew conversion. Enter a
+					date on either side and the other updates automatically. For holidays
+					that start at sundown, the civil Gregorian date shown here is the
+					calendar day on which that Hebrew date falls during daylight hours.
+				</p>
+			</div>
+		</section>
+
+		<section class="hbc-faq">
+			<h2 class="hbc-section-title">Frequently asked questions</h2>
+			<div class="hbc-faq-list">
+				<details class="hbc-faq-item">
+					<summary class="hbc-faq-question"
+						>Why does the Hebrew calendar have a leap month?</summary
+					>
+					<div class="hbc-faq-answer">
+						<p>
+							Passover must fall in the spring, which requires the calendar to
+							track the solar year, not just the Moon. Roughly every three
+							years, a leap month (Adar II) is inserted in the 19-year Metonic
+							cycle so that lunar months do not drift out of season. This is
+							different from the Hijri calendar, which has no leap month and
+							therefore shifts through all seasons over a 33-year cycle.
+						</p>
+					</div>
+				</details>
+				<details class="hbc-faq-item">
+					<summary class="hbc-faq-question">Is this conversion exact?</summary>
+					<div class="hbc-faq-answer">
+						<p>
+							Yes, for the standard rabbinic Hebrew calendar rules implemented by
+							Hebcal. Given a Gregorian civil date, the corresponding Hebrew date
+							is mathematically determined, and converting back recovers the
+							original date exactly. The only nuance is holidays observed from
+							sundown: a Hebrew date that begins Friday evening may be associated
+							with Friday on the calendar even though observance starts Thursday
+							night.
+						</p>
+					</div>
+				</details>
+				<details class="hbc-faq-item">
+					<summary class="hbc-faq-question"
+						>What is the difference between AM and CE years?</summary
+					>
+					<div class="hbc-faq-answer">
+						<p>
+							AM (Anno Mundi, "in the year of the world") counts years from the
+							traditional Hebrew date of creation. CE (Common Era) is the
+							Gregorian year count used internationally. The two systems use
+							different starting points and month structures, so you cannot
+							convert years by simple subtraction — but any single civil day maps
+							to one Hebrew date and vice versa.
+						</p>
+					</div>
+				</details>
+				<details class="hbc-faq-item">
+					<summary class="hbc-faq-question"
+						>Why do some years have Adar I and Adar II?</summary
+					>
+					<div class="hbc-faq-answer">
+						<p>
+							In a leap year, the regular month of Adar becomes Adar I and an
+							extra Adar II is added before Nisan. Purim is celebrated in Adar II
+							during leap years. The month dropdown on this page shows Adar I and
+							Adar II only when the selected Hebrew year is a leap year.
+						</p>
+					</div>
+				</details>
+				<details class="hbc-faq-item">
+					<summary class="hbc-faq-question"
+						>How does this differ from the Hijri calendar?</summary
+					>
+					<div class="hbc-faq-answer">
+						<p>
+							Both calendars are rooted in lunar months, but the Hebrew calendar
+							adds intercalary months to stay aligned with the solar year,
+							while the Hijri calendar does not. That is why Ramadan moves through
+							all seasons over time, whereas Passover consistently falls in
+							spring. Use our Hijri Calendar Converter for Islamic dates.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="hbc-related">
+			<h3 class="hbc-related-title">Related tools</h3>
+			<div class="hbc-related-grid">
+				<a href="/days-until-hanukkah" class="hbc-related-card"
+					><span class="hbc-related-name">Days Until Hanukkah</span></a
+				>
+				<a href="/hijri-calendar-converter" class="hbc-related-card"
+					><span class="hbc-related-name">Hijri Calendar Converter</span></a
+				>
+				<a href="/religious-calendars" class="hbc-related-card"
+					><span class="hbc-related-name">Religious Calendars</span></a
+				>
+				<a href="/days-until-ramadan" class="hbc-related-card"
+					><span class="hbc-related-name">Days Until Ramadan</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.hbc-tool {
+		margin-bottom: 48px;
+	}
+
+	.hbc-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 20px;
+		margin-bottom: 20px;
+	}
+
+	@media (max-width: 720px) {
+		.hbc-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.hbc-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.2);
+		border-radius: 16px;
+		padding: 24px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.hbc-card-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin: 0;
+	}
+
+	.hbc-hebrew-fields {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.hbc-hebrew-row {
+		display: grid;
+		grid-template-columns: minmax(0, 88px) minmax(0, 1fr);
+		gap: 12px;
+		align-items: start;
+	}
+
+	.hbc-hebrew-fields .date-input-wrap-default {
+		align-items: stretch;
+		width: 100%;
+		min-width: 0;
+	}
+
+	.hbc-hebrew-fields .date-input-label-default {
+		text-align: left;
+		align-self: flex-start;
+		width: 100%;
+	}
+
+	.hbc-hebrew-fields .date-input-default {
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.hbc-hebrew-day-wrap,
+	.hbc-hebrew-month-wrap {
+		min-width: 0;
+	}
+
+	.hbc-hebrew-day {
+		text-align: center;
+		padding-left: 12px;
+		padding-right: 12px;
+		-moz-appearance: textfield;
+	}
+
+	.hbc-hebrew-day::-webkit-outer-spin-button,
+	.hbc-hebrew-day::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	.hbc-hebrew-select {
+		cursor: pointer;
+		appearance: none;
+		text-align: left;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff80' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: right 16px center;
+		padding-right: 40px;
+	}
+
+	@media (max-width: 720px) {
+		.hbc-hebrew-row {
+			grid-template-columns: minmax(0, 72px) minmax(0, 1fr);
+			gap: 10px;
+		}
+	}
+
+	.hbc-output {
+		margin-top: 4px;
+		padding-top: 16px;
+		border-top: 1px solid rgba(232, 147, 122, 0.15);
+	}
+
+	.hbc-output-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 8px;
+	}
+
+	.hbc-output-main {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(18px, 3vw, 22px);
+		font-weight: 700;
+		line-height: 1.35;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hbc-output-sub {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+		margin-top: 6px;
+	}
+
+	.hbc-output-placeholder {
+		font-family: 'Outfit', sans-serif;
+		font-size: 22px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.2);
+	}
+
+	.hbc-error {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: #f87171;
+		margin: 0;
+	}
+
+	.hbc-disclaimer {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+		line-height: 1.5;
+		text-align: center;
+		margin: 0;
+		max-width: 560px;
+		margin-inline: auto;
+	}
+
+	.hbc-reference {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.15);
+		border-radius: 12px;
+		padding: 16px 20px;
+		margin-bottom: 16px;
+		max-width: 560px;
+		margin-inline: auto;
+	}
+
+	.hbc-reference-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 700;
+		color: rgba(232, 147, 122, 0.9);
+		margin: 0 0 10px;
+		text-align: center;
+	}
+
+	.hbc-reference-list {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.45);
+		line-height: 1.6;
+		margin: 0;
+		padding-left: 18px;
+	}
+</style>
+
+<style>
+	.hbc-page {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 60px 24px 80px;
+	}
+
+	.hbc-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.hbc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.hbc-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.hbc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.hbc-gradient {
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hbc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.hbc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.hbc-how {
+		margin-bottom: 48px;
+	}
+
+	.hbc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.hbc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.hbc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.hbc-faq {
+		margin-bottom: 48px;
+	}
+
+	.hbc-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.hbc-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.hbc-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hbc-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.hbc-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hbc-faq-item[open] .hbc-faq-question::after {
+		content: '−';
+	}
+
+	.hbc-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.hbc-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.hbc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.hbc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.hbc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.hbc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.hbc-related-card:hover {
+		border-color: rgba(232, 147, 122, 0.4);
+	}
+
+	.hbc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
