@@ -1,0 +1,350 @@
+[
+	{
+		"abbreviation": "ACDT",
+		"fullName": "Australian Central Daylight Time",
+		"utcOffset": "UTC+10:30",
+		"region": "South Australia, Broken Hill (summer)"
+	},
+	{
+		"abbreviation": "ACST",
+		"fullName": "Australian Central Standard Time",
+		"utcOffset": "UTC+9:30",
+		"region": "South Australia, Northern Territory"
+	},
+	{
+		"abbreviation": "AEDT",
+		"fullName": "Australian Eastern Daylight Time",
+		"utcOffset": "UTC+11",
+		"region": "New South Wales, Victoria, Tasmania, ACT (summer)"
+	},
+	{
+		"abbreviation": "AEST",
+		"fullName": "Australian Eastern Standard Time",
+		"utcOffset": "UTC+10",
+		"region": "Queensland, New South Wales, Victoria (winter)"
+	},
+	{
+		"abbreviation": "AKDT",
+		"fullName": "Alaska Daylight Time",
+		"utcOffset": "UTC-8",
+		"region": "Alaska (summer)"
+	},
+	{
+		"abbreviation": "AKST",
+		"fullName": "Alaska Standard Time",
+		"utcOffset": "UTC-9",
+		"region": "Alaska (winter)"
+	},
+	{
+		"abbreviation": "ART",
+		"fullName": "Argentina Time",
+		"utcOffset": "UTC-3",
+		"region": "Argentina"
+	},
+	{
+		"abbreviation": "AST",
+		"fullName": "Arabia Standard Time",
+		"utcOffset": "UTC+3",
+		"region": "Saudi Arabia, Kuwait, Bahrain, Qatar, Iraq (east)"
+	},
+	{
+		"abbreviation": "AST",
+		"fullName": "Atlantic Standard Time",
+		"utcOffset": "UTC-4",
+		"region": "Atlantic Canada, Puerto Rico, US Virgin Islands"
+	},
+	{
+		"abbreviation": "AWST",
+		"fullName": "Australian Western Standard Time",
+		"utcOffset": "UTC+8",
+		"region": "Western Australia"
+	},
+	{
+		"abbreviation": "BRT",
+		"fullName": "Brasília Time",
+		"utcOffset": "UTC-3",
+		"region": "Brazil (east), Uruguay, Suriname"
+	},
+	{
+		"abbreviation": "BST",
+		"fullName": "Bangladesh Standard Time",
+		"utcOffset": "UTC+6",
+		"region": "Bangladesh"
+	},
+	{
+		"abbreviation": "BST",
+		"fullName": "British Summer Time",
+		"utcOffset": "UTC+1",
+		"region": "United Kingdom, Ireland (summer)"
+	},
+	{
+		"abbreviation": "CAT",
+		"fullName": "Central Africa Time",
+		"utcOffset": "UTC+2",
+		"region": "Zimbabwe, Zambia, Malawi, Mozambique, Rwanda"
+	},
+	{
+		"abbreviation": "CDT",
+		"fullName": "Central Daylight Time",
+		"utcOffset": "UTC-5",
+		"region": "US & Canada (central, summer)"
+	},
+	{
+		"abbreviation": "CEST",
+		"fullName": "Central European Summer Time",
+		"utcOffset": "UTC+2",
+		"region": "Most of continental Europe (summer)"
+	},
+	{
+		"abbreviation": "CET",
+		"fullName": "Central European Time",
+		"utcOffset": "UTC+1",
+		"region": "France, Germany, Italy, Spain, Poland (winter)"
+	},
+	{
+		"abbreviation": "CHST",
+		"fullName": "Chamorro Standard Time",
+		"utcOffset": "UTC+10",
+		"region": "Guam, Northern Mariana Islands"
+	},
+	{
+		"abbreviation": "CLST",
+		"fullName": "Chile Summer Time",
+		"utcOffset": "UTC-3",
+		"region": "Chile (mainland, summer)"
+	},
+	{
+		"abbreviation": "CLT",
+		"fullName": "Chile Standard Time",
+		"utcOffset": "UTC-4",
+		"region": "Chile (mainland, winter)"
+	},
+	{
+		"abbreviation": "CST",
+		"fullName": "Central Standard Time",
+		"utcOffset": "UTC-6",
+		"region": "US & Canada (central), Mexico (most), Central America"
+	},
+	{
+		"abbreviation": "CST",
+		"fullName": "China Standard Time",
+		"utcOffset": "UTC+8",
+		"region": "China mainland"
+	},
+	{
+		"abbreviation": "CST",
+		"fullName": "Cuba Standard Time",
+		"utcOffset": "UTC-5",
+		"region": "Cuba"
+	},
+	{
+		"abbreviation": "EAT",
+		"fullName": "East Africa Time",
+		"utcOffset": "UTC+3",
+		"region": "Kenya, Ethiopia, Tanzania, Uganda, Madagascar"
+	},
+	{
+		"abbreviation": "EDT",
+		"fullName": "Eastern Daylight Time",
+		"utcOffset": "UTC-4",
+		"region": "US & Canada (east, summer)"
+	},
+	{
+		"abbreviation": "EEST",
+		"fullName": "Eastern European Summer Time",
+		"utcOffset": "UTC+3",
+		"region": "Finland, Greece, Romania, Ukraine (summer)"
+	},
+	{
+		"abbreviation": "EET",
+		"fullName": "Eastern European Time",
+		"utcOffset": "UTC+2",
+		"region": "Finland, Greece, Romania, Ukraine (winter)"
+	},
+	{
+		"abbreviation": "EST",
+		"fullName": "Eastern Standard Time",
+		"utcOffset": "UTC-5",
+		"region": "US & Canada (east), Caribbean, Colombia, Peru (winter)"
+	},
+	{
+		"abbreviation": "GMT",
+		"fullName": "Greenwich Mean Time",
+		"utcOffset": "UTC+0",
+		"region": "United Kingdom (winter), Iceland, Ghana, Senegal, Morocco (winter)"
+	},
+	{
+		"abbreviation": "GST",
+		"fullName": "Gulf Standard Time",
+		"utcOffset": "UTC+4",
+		"region": "United Arab Emirates, Oman"
+	},
+	{
+		"abbreviation": "HKT",
+		"fullName": "Hong Kong Time",
+		"utcOffset": "UTC+8",
+		"region": "Hong Kong"
+	},
+	{
+		"abbreviation": "HST",
+		"fullName": "Hawaii–Aleutian Standard Time",
+		"utcOffset": "UTC-10",
+		"region": "Hawaii, Aleutian Islands (no DST)"
+	},
+	{
+		"abbreviation": "ICT",
+		"fullName": "Indochina Time",
+		"utcOffset": "UTC+7",
+		"region": "Thailand, Vietnam, Cambodia, Laos, western Indonesia"
+	},
+	{
+		"abbreviation": "IDT",
+		"fullName": "Israel Daylight Time",
+		"utcOffset": "UTC+3",
+		"region": "Israel (summer)"
+	},
+	{
+		"abbreviation": "IRST",
+		"fullName": "Iran Standard Time",
+		"utcOffset": "UTC+3:30",
+		"region": "Iran"
+	},
+	{
+		"abbreviation": "IST",
+		"fullName": "Indian Standard Time",
+		"utcOffset": "UTC+5:30",
+		"region": "India, Sri Lanka"
+	},
+	{
+		"abbreviation": "IST",
+		"fullName": "Irish Standard Time",
+		"utcOffset": "UTC+1",
+		"region": "Ireland (summer)"
+	},
+	{
+		"abbreviation": "IST",
+		"fullName": "Israel Standard Time",
+		"utcOffset": "UTC+2",
+		"region": "Israel (winter)"
+	},
+	{
+		"abbreviation": "JST",
+		"fullName": "Japan Standard Time",
+		"utcOffset": "UTC+9",
+		"region": "Japan"
+	},
+	{
+		"abbreviation": "KST",
+		"fullName": "Korea Standard Time",
+		"utcOffset": "UTC+9",
+		"region": "South Korea, North Korea"
+	},
+	{
+		"abbreviation": "MDT",
+		"fullName": "Mountain Daylight Time",
+		"utcOffset": "UTC-6",
+		"region": "US & Canada (mountain, summer)"
+	},
+	{
+		"abbreviation": "MSK",
+		"fullName": "Moscow Standard Time",
+		"utcOffset": "UTC+3",
+		"region": "Russia (west), Belarus"
+	},
+	{
+		"abbreviation": "MST",
+		"fullName": "Mountain Standard Time",
+		"utcOffset": "UTC-7",
+		"region": "US & Canada (mountain), Arizona (no DST)"
+	},
+	{
+		"abbreviation": "NDT",
+		"fullName": "Newfoundland Daylight Time",
+		"utcOffset": "UTC-2:30",
+		"region": "Newfoundland & Labrador (summer)"
+	},
+	{
+		"abbreviation": "NST",
+		"fullName": "Newfoundland Standard Time",
+		"utcOffset": "UTC-3:30",
+		"region": "Newfoundland & Labrador (winter)"
+	},
+	{
+		"abbreviation": "NZDT",
+		"fullName": "New Zealand Daylight Time",
+		"utcOffset": "UTC+13",
+		"region": "New Zealand, Chatham Islands (summer)"
+	},
+	{
+		"abbreviation": "NZST",
+		"fullName": "New Zealand Standard Time",
+		"utcOffset": "UTC+12",
+		"region": "New Zealand, Fiji (winter)"
+	},
+	{
+		"abbreviation": "PDT",
+		"fullName": "Pacific Daylight Time",
+		"utcOffset": "UTC-7",
+		"region": "US & Canada (west, summer)"
+	},
+	{
+		"abbreviation": "PET",
+		"fullName": "Peru Time",
+		"utcOffset": "UTC-5",
+		"region": "Peru, Ecuador, Colombia"
+	},
+	{
+		"abbreviation": "PKT",
+		"fullName": "Pakistan Standard Time",
+		"utcOffset": "UTC+5",
+		"region": "Pakistan"
+	},
+	{
+		"abbreviation": "PST",
+		"fullName": "Pacific Standard Time",
+		"utcOffset": "UTC-8",
+		"region": "US & Canada (west), Baja California"
+	},
+	{
+		"abbreviation": "SAST",
+		"fullName": "South Africa Standard Time",
+		"utcOffset": "UTC+2",
+		"region": "South Africa, Lesotho, Eswatini, Botswana"
+	},
+	{
+		"abbreviation": "SGT",
+		"fullName": "Singapore Time",
+		"utcOffset": "UTC+8",
+		"region": "Singapore, Malaysia (west)"
+	},
+	{
+		"abbreviation": "TRT",
+		"fullName": "Turkey Time",
+		"utcOffset": "UTC+3",
+		"region": "Turkey (year-round, no DST)"
+	},
+	{
+		"abbreviation": "UTC",
+		"fullName": "Coordinated Universal Time",
+		"utcOffset": "UTC+0",
+		"region": "Global reference; aviation, science, computing"
+	},
+	{
+		"abbreviation": "WAT",
+		"fullName": "West Africa Time",
+		"utcOffset": "UTC+1",
+		"region": "Nigeria, Angola, Algeria, Tunisia"
+	},
+	{
+		"abbreviation": "WEST",
+		"fullName": "Western European Summer Time",
+		"utcOffset": "UTC+1",
+		"region": "Portugal, Canary Islands (summer)"
+	},
+	{
+		"abbreviation": "WET",
+		"fullName": "Western European Time",
+		"utcOffset": "UTC+0",
+		"region": "Portugal, Canary Islands (winter)"
+	}
+]

@@ -1,0 +1,528 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TimezoneAbbreviationsList from '../components/TimezoneAbbreviationsList.jsx';
+---
+
+<Layout
+	title="Time Zone Abbreviations — GMT, EST, PST & More | Clockr"
+	description="Look up common time zone abbreviations — GMT, UTC, EST, PST, CET, IST, JST, AEST, and more. Searchable reference with UTC offsets and regions."
+	category="timezones"
+>
+	<div class="tza-page">
+		<div class="tza-header">
+			<div class="tza-eyebrow">
+				<span class="tza-eyebrow-square" aria-hidden="true"></span>
+				TIME ZONES
+			</div>
+			<h1 class="tza-title">
+				<span class="tza-gradient">Time Zone Abbreviations</span>
+			</h1>
+			<p class="tza-subtitle">Common time zone abbreviations and their meanings</p>
+		</div>
+
+		<TimezoneAbbreviationsList client:load />
+
+		<section class="tza-how">
+			<h2 class="tza-section-title">About time zone abbreviations</h2>
+			<div class="tza-how-card">
+				<p>
+					Time zone abbreviations are short letter codes — like EST, GMT, or JST
+					— that label a region&apos;s standard or daylight offset from UTC.
+					They make flight schedules, broadcast listings, and email timestamps
+					easier to read than spelling out full zone names every time. Most
+					abbreviations are three or four letters, often ending in &ldquo;ST&rdquo;
+					(standard time) or &ldquo;DT&rdquo; (daylight time).
+				</p>
+				<p>
+					The problem is that abbreviations were never assigned globally. Many
+					letter combinations are reused in different countries — CST can mean
+					Central Standard Time in North America or China Standard Time in East
+					Asia; IST can mean Indian Standard Time, Irish Standard Time, or Israel
+					Standard Time. That is why this page lists ambiguous codes as separate
+					entries with their full names, and why serious scheduling should always
+					include a city or IANA zone name (such as
+					<code>America/New_York</code>) rather than an abbreviation alone.
+				</p>
+			</div>
+		</section>
+
+		<section class="tza-faq">
+			<h2 class="tza-section-title">Frequently asked questions</h2>
+			<div class="tza-faq-list">
+				<details class="tza-faq-item">
+					<summary class="tza-faq-question"
+						>What&apos;s the difference between GMT and UTC?</summary
+					>
+					<div class="tza-faq-answer">
+						<p>
+							GMT (Greenwich Mean Time) is a time zone based on the sun&apos;s
+							position at Greenwich, London. UTC (Coordinated Universal Time) is
+							the modern global reference kept by atomic clocks. In everyday use
+							they both represent offset zero and are often used
+							interchangeably, but UTC is the technically correct term for the
+							international standard. See our UTC/GMT Converter for live
+							conversions.
+						</p>
+					</div>
+				</details>
+				<details class="tza-faq-item">
+					<summary class="tza-faq-question"
+						>Why do some abbreviations mean different things in different countries?</summary
+					>
+					<div class="tza-faq-answer">
+						<p>
+							Abbreviations grew organically within each country before global
+							coordination was common. There is no central registry that assigns
+							unique three-letter codes worldwide, so collisions are inevitable.
+							When you see IST, always check the full name and region — Indian
+							Standard Time (UTC+5:30) and Irish Standard Time (UTC+1) share the
+							same letters but are six and a half hours apart.
+						</p>
+					</div>
+				</details>
+				<details class="tza-faq-item">
+					<summary class="tza-faq-question"
+						>What is the difference between EST and EDT?</summary
+					>
+					<div class="tza-faq-answer">
+						<p>
+							EST (Eastern Standard Time) is UTC−5, used in winter in the US and
+							Canadian east. EDT (Eastern Daylight Time) is UTC−4, used during
+							daylight saving from spring through autumn. The same pattern
+							applies across US zones: CST/CDT, MST/MDT, and PST/PDT each shift
+							by one hour when clocks spring forward.
+						</p>
+					</div>
+				</details>
+				<details class="tza-faq-item">
+					<summary class="tza-faq-question"
+						>Should I use abbreviations when scheduling international meetings?</summary
+					>
+					<div class="tza-faq-answer">
+						<p>
+							Abbreviations are fine as shorthand among people who share the same
+							region, but for international calls always specify the city and
+							UTC offset — or use our Time Zone Meeting Planner. An email saying
+							&ldquo;3 pm CST&rdquo; could mean Chicago, Beijing, or Havana
+							depending on context.
+						</p>
+					</div>
+				</details>
+				<details class="tza-faq-item">
+					<summary class="tza-faq-question"
+						>Do all countries use daylight saving time?</summary
+					>
+					<div class="tza-faq-answer">
+						<p>
+							No. Hawaii, Arizona (most areas), Japan, South Korea, China, and
+							many countries near the equator keep the same offset year-round.
+							Others switch between standard and daylight variants seasonally.
+							This reference lists both where they are commonly searched.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="tza-related">
+			<h3 class="tza-related-title">Related tools</h3>
+			<div class="tza-related-grid">
+				<a href="/world-clock" class="tza-related-card"
+					><span class="tza-related-name">World Clock</span></a
+				>
+				<a href="/timezone-converter" class="tza-related-card"
+					><span class="tza-related-name">Timezone Converter</span></a
+				>
+				<a href="/utc-gmt-converter" class="tza-related-card"
+					><span class="tza-related-name">UTC/GMT Converter</span></a
+				>
+				<a href="/time-zones" class="tza-related-card"
+					><span class="tza-related-name">All Time Zone Tools</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.tza-tool {
+		margin-bottom: 56px;
+	}
+
+	.tza-controls {
+		margin-bottom: 24px;
+	}
+
+	.tza-search-label {
+		display: block;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		margin-bottom: 10px;
+	}
+
+	.tza-search {
+		width: 100%;
+		box-sizing: border-box;
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		border-radius: 12px;
+		padding: 14px 18px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		color: #fff;
+		outline: none;
+		margin-bottom: 12px;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.tza-search:focus {
+		border-color: rgba(0, 229, 196, 0.55);
+		box-shadow: 0 0 20px rgba(0, 153, 255, 0.12);
+	}
+
+	.tza-search::placeholder {
+		color: rgba(255, 255, 255, 0.3);
+		font-weight: 500;
+	}
+
+	.tza-count {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+		margin: 0;
+	}
+
+	.tza-empty {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.5);
+		text-align: center;
+		padding: 32px 16px;
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		margin: 0;
+	}
+
+	.tza-table-wrap {
+		overflow-x: auto;
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+	}
+
+	.tza-table {
+		width: 100%;
+		border-collapse: collapse;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+	}
+
+	.tza-table thead {
+		border-bottom: 1px solid rgba(0, 229, 196, 0.2);
+	}
+
+	.tza-table th {
+		font-family: 'Outfit', sans-serif;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(0, 229, 196, 0.75);
+		text-align: left;
+		padding: 14px 16px;
+		white-space: nowrap;
+	}
+
+	.tza-table td {
+		padding: 14px 16px;
+		color: rgba(255, 255, 255, 0.65);
+		line-height: 1.5;
+		border-top: 1px solid rgba(255, 255, 255, 0.05);
+		vertical-align: top;
+	}
+
+	.tza-table tbody tr:hover {
+		background: rgba(0, 153, 255, 0.04);
+	}
+
+	.tza-abbr {
+		white-space: nowrap;
+	}
+
+	.tza-abbr-code {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 800;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tza-ambig-badge {
+		display: inline-block;
+		margin-left: 8px;
+		font-family: 'Inter', sans-serif;
+		font-size: 9px;
+		font-weight: 700;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		color: rgba(255, 193, 7, 0.95);
+		border: 1px solid rgba(255, 193, 7, 0.35);
+		border-radius: 999px;
+		padding: 2px 7px;
+		vertical-align: middle;
+		-webkit-text-fill-color: initial;
+	}
+
+	.tza-name {
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.85);
+		min-width: 180px;
+	}
+
+	.tza-offset {
+		font-family: 'Outfit', sans-serif;
+		font-weight: 700;
+		color: rgba(0, 229, 196, 0.9);
+		white-space: nowrap;
+	}
+
+	.tza-region {
+		color: rgba(255, 255, 255, 0.5);
+		min-width: 160px;
+	}
+
+	.tza-disclaimer {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+		line-height: 1.6;
+		text-align: center;
+		margin: 20px 0 0;
+		max-width: 640px;
+		margin-inline: auto;
+	}
+
+	@media (max-width: 720px) {
+		.tza-table th:nth-child(4),
+		.tza-table td:nth-child(4) {
+			min-width: 140px;
+		}
+	}
+</style>
+
+<style>
+	.tza-page {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 60px 24px 80px;
+	}
+
+	.tza-header {
+		text-align: center;
+		margin-bottom: 32px;
+	}
+
+	.tza-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.tza-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.tza-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.tza-gradient {
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tza-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.tza-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tza-how {
+		margin-bottom: 48px;
+	}
+
+	.tza-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.tza-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.tza-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.tza-how-card code {
+		font-family: ui-monospace, monospace;
+		font-size: 13px;
+		color: rgba(0, 229, 196, 0.85);
+	}
+
+	.tza-faq {
+		margin-bottom: 48px;
+	}
+
+	.tza-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.tza-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.tza-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tza-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.tza-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tza-faq-item[open] .tza-faq-question::after {
+		content: '−';
+	}
+
+	.tza-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.tza-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.tza-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.tza-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tza-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.tza-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.tza-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.tza-related-card:hover {
+		border-color: rgba(0, 229, 196, 0.4);
+	}
+
+	.tza-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
