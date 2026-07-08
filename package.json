@@ -18,6 +18,7 @@
     "@tabby_ai/hijri-converter": "^1.0.5",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.4.4",
+    "jspdf": "^4.2.1",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tailwindcss": "^4.3.0"
