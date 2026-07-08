@@ -1,0 +1,483 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PrintableCalendarGenerator from '../components/PrintableCalendarGenerator.jsx';
+---
+
+<Layout
+	title="Printable Calendar Generator — Free PDF Monthly & Yearly | Clockr"
+	description="Create a printable monthly or yearly calendar as a PDF. Free client-side calendar generator — download and print on A4 or Letter paper."
+>
+	<div class="pcg-page">
+		<div class="pcg-header">
+			<div class="pcg-eyebrow">📅 Dates & Duration</div>
+			<h1 class="pcg-title">
+				<span class="pcg-gradient">Printable Calendar</span><br />
+				<span class="pcg-gradient">Generator</span>
+			</h1>
+			<p class="pcg-subtitle">Create a monthly or yearly calendar you can print</p>
+		</div>
+
+		<PrintableCalendarGenerator client:load />
+
+		<section class="pcg-how">
+			<h2 class="pcg-section-title">How it works</h2>
+			<div class="pcg-how-card">
+				<p>
+					Choose monthly or yearly, pick the month and year, and select a style.
+					Click Generate PDF and your browser builds a print-ready calendar
+					entirely on your device using jsPDF — no upload, no account, no server
+					round-trip. The file downloads immediately so you can open it, print
+					it, or share it.
+				</p>
+				<p>
+					Monthly calendars show a single large grid with the correct starting
+					weekday and the right number of days, including leap years. Yearly
+					calendars fit all twelve months on one landscape page in a 4×3 layout.
+					PDFs use black text on a white background with light grid lines, designed
+					for standard A4 paper (210 × 297 mm). US Letter prints fine with default
+					printer scaling.
+				</p>
+			</div>
+		</section>
+
+		<section class="pcg-faq">
+			<h2 class="pcg-section-title">Frequently asked questions</h2>
+			<div class="pcg-faq-list">
+				<details class="pcg-faq-item">
+					<summary class="pcg-faq-question">Can I print this?</summary>
+					<div class="pcg-faq-answer">
+						<p>
+							Yes. Open the downloaded PDF in any PDF viewer and print as usual.
+							The layout is optimised for white paper with minimal ink use. For
+							best results, print at 100% scale (no fit-to-page shrinking) on A4
+							or Letter stock.
+						</p>
+					</div>
+				</details>
+				<details class="pcg-faq-item">
+					<summary class="pcg-faq-question"
+						>What paper size is it formatted for?</summary
+					>
+					<div class="pcg-faq-answer">
+						<p>
+							Calendars are generated at A4 size — the international standard
+							(210 × 297 mm). Most home and office printers in the US accept A4
+							PDFs, and Letter-size paper works well if you print at 100% or
+							&quot;Actual size&quot;. Yearly calendars use landscape A4; monthly
+							calendars use portrait A4.
+						</p>
+					</div>
+				</details>
+				<details class="pcg-faq-item">
+					<summary class="pcg-faq-question"
+						>What is the difference between Minimal and With notes lines?</summary
+					>
+					<div class="pcg-faq-answer">
+						<p>
+							Minimal is a clean date grid only. With notes lines adds faint
+							ruled lines inside each day cell so you can jot appointments or
+							reminders by hand after printing. Notes style is available for
+							monthly calendars; yearly sheets use the compact minimal layout so
+							all twelve months fit on one page.
+						</p>
+					</div>
+				</details>
+				<details class="pcg-faq-item">
+					<summary class="pcg-faq-question">Is my data sent anywhere?</summary>
+					<div class="pcg-faq-answer">
+						<p>
+							No. PDF generation runs entirely in your browser. Clockr does not
+							receive the month, year, or generated file. You can use this tool
+							offline after the page has loaded once.
+						</p>
+					</div>
+				</details>
+				<details class="pcg-faq-item">
+					<summary class="pcg-faq-question">Which day does the week start on?</summary>
+					<div class="pcg-faq-answer">
+						<p>
+							Weeks start on Monday (ISO 8601), with Sunday in the last column.
+							This matches common UK and European wall calendars. Day-of-week
+							positions are calculated from the Gregorian calendar, so leap years
+							and month lengths are always correct.
+						</p>
+					</div>
+				</details>
+			</div>
+		</section>
+
+		<div class="pcg-related">
+			<h3 class="pcg-related-title">Related tools</h3>
+			<div class="pcg-related-grid">
+				<a href="/date-calculator" class="pcg-related-card"
+					><span class="pcg-related-name">Date Calculator</span></a
+				>
+				<a href="/business-days" class="pcg-related-card"
+					><span class="pcg-related-name">Business Days Calculator</span></a
+				>
+				<a href="/day-of-week" class="pcg-related-card"
+					><span class="pcg-related-name">Day of Week</span></a
+				>
+				<a href="/week-number-calculator" class="pcg-related-card"
+					><span class="pcg-related-name">Week Number Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.pcg-tool {
+		margin-bottom: 56px;
+	}
+
+	.pcg-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.2);
+		border-radius: 16px;
+		padding: 28px 24px;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.pcg-toggle {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 8px;
+		background: rgba(255, 255, 255, 0.04);
+		border-radius: 12px;
+		padding: 4px;
+	}
+
+	.pcg-toggle-btn {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		padding: 12px 16px;
+		border: none;
+		border-radius: 10px;
+		background: transparent;
+		color: rgba(255, 255, 255, 0.45);
+		cursor: pointer;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.pcg-toggle-btn--active {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		color: #fff;
+	}
+
+	.pcg-fields {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 16px;
+	}
+
+	@media (max-width: 560px) {
+		.pcg-fields {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.pcg-fields .date-input-wrap-default {
+		align-items: stretch;
+		width: 100%;
+		min-width: 0;
+	}
+
+	.pcg-fields .date-input-label-default {
+		text-align: left;
+		align-self: flex-start;
+		width: 100%;
+	}
+
+	.pcg-fields .date-input-default {
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.pcg-select {
+		cursor: pointer;
+		appearance: none;
+		text-align: left;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff80' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: right 16px center;
+		padding-right: 40px;
+	}
+
+	.pcg-style-label {
+		display: block;
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		margin-bottom: 10px;
+	}
+
+	.pcg-style-options {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	.pcg-style-option {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.7);
+		cursor: pointer;
+	}
+
+	.pcg-style-option--disabled {
+		opacity: 0.45;
+		cursor: not-allowed;
+	}
+
+	.pcg-style-hint {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.4);
+		margin: 8px 0 0;
+		line-height: 1.5;
+	}
+
+	.pcg-generate {
+		font-family: 'Outfit', sans-serif;
+		font-size: 17px;
+		font-weight: 700;
+		padding: 16px 24px;
+		border: none;
+		border-radius: 12px;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		color: #fff;
+		cursor: pointer;
+		transition:
+			opacity 0.2s ease,
+			transform 0.15s ease;
+	}
+
+	.pcg-generate:hover:not(:disabled) {
+		transform: translateY(-1px);
+	}
+
+	.pcg-generate:disabled {
+		opacity: 0.6;
+		cursor: wait;
+	}
+
+	.pcg-error {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: #f87171;
+		margin: 0;
+		text-align: center;
+	}
+
+	.pcg-preview-note {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+		line-height: 1.6;
+		text-align: center;
+		margin: 0;
+		max-width: 560px;
+		margin-inline: auto;
+	}
+</style>
+
+<style>
+	.pcg-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px 80px;
+	}
+
+	.pcg-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.pcg-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.pcg-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.pcg-gradient {
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pcg-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.pcg-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.pcg-how {
+		margin-bottom: 48px;
+	}
+
+	.pcg-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.pcg-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.pcg-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.pcg-faq {
+		margin-bottom: 48px;
+	}
+
+	.pcg-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.pcg-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(139, 92, 246, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.pcg-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pcg-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.pcg-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.pcg-faq-item[open] .pcg-faq-question::after {
+		content: '−';
+	}
+
+	.pcg-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.pcg-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.pcg-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.pcg-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.pcg-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.pcg-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.pcg-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.pcg-related-card:hover {
+		border-color: rgba(139, 92, 246, 0.45);
+	}
+
+	.pcg-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
