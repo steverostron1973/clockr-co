@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import AnalogueClock from '../components/AnalogueClock.astro';
 import { categories } from '../data/categories';
 import type { CategoryId } from '../data/categories';
+import { getAllToolsSections, siteTools } from '../data/siteTools';
 
 const categoryHrefs: Record<CategoryId, string> = {
 	holidays: '/holiday-countdowns',
@@ -97,45 +98,8 @@ const searchPlaceholders = [
 	'🔍 Try: How long until New Year?',
 ];
 
-const allTools = [
-	{ emoji: '📜', name: 'This Day in History', href: '/this-day-in-history', from: '#D97706', to: '#F59E0B' },
-	{ emoji: '🎂', name: 'Age Calculator', href: '/age-calculator', from: '#8B5CF6', to: '#EC4899' },
-	{ emoji: '👶', name: 'Pregnancy Due Date Calculator', href: '/pregnancy-due-date-calculator', from: '#8B5CF6', to: '#EC4899' },
-	{ emoji: '💍', name: 'Anniversary Calculator', href: '/anniversary-calculator', from: '#8B5CF6', to: '#EC4899' },
-	{ emoji: '👥', name: 'Age Difference Calculator', href: '/age-difference-calculator', from: '#8B5CF6', to: '#EC4899' },
-	{ emoji: '🏖️', name: 'Retirement Countdown Calculator', href: '/retirement-countdown-calculator', from: '#8B5CF6', to: '#EC4899' },
-	{ emoji: '🎯', name: "How Many Days Until I'm X", href: '/days-until-im-x', from: '#8B5CF6', to: '#EC4899' },
-	{ emoji: '📅', name: 'Date Calculator', href: '/date-calculator', from: '#10B981', to: '#84CC16' },
-	{ emoji: '📆', name: 'Week Number Calculator', href: '/week-number-calculator', from: '#10B981', to: '#84CC16' },
-	{ emoji: '📊', name: 'Quarter Calculator', href: '/quarter-calculator', from: '#10B981', to: '#84CC16' },
-	{ emoji: '🎲', name: 'Random Date Generator', href: '/random-date-generator', from: '#10B981', to: '#84CC16' },
-	{ emoji: '🌍', name: 'World Clock', href: '/world-clock', from: '#00E5C4', to: '#0099FF' },
-	{ emoji: '⏱️', name: 'Countdown Timer', href: '/countdown-timer', from: '#FF5C4D', to: '#FF9A3C' },
-	{ emoji: '⏱️', name: 'Stopwatch', href: '/stopwatch', from: '#8B5CF6', to: '#EC4899' },
-	{ emoji: '🌐', name: 'Time Zone Converter', href: '/timezone-converter', from: '#00E5C4', to: '#0099FF' },
-	{ emoji: '📅', name: 'Time Zone Meeting Planner', href: '/time-zone-meeting-planner', from: '#00E5C4', to: '#0099FF' },
-	{ emoji: '🕐', name: 'UTC/GMT Converter', href: '/utc-gmt-converter', from: '#00E5C4', to: '#0099FF' },
-	{ emoji: '📊', name: 'Year Progress', href: '/year-progress', from: '#FF5C4D', to: '#FF9A3C' },
-	{ emoji: '😴', name: 'Sleep Calculator', href: '/sleep-calculator', from: '#8B5CF6', to: '#EC4899' },
-	{ emoji: '🎄', name: 'Days Until Christmas', href: '/days-until-christmas', from: '#FF5C4D', to: '#FF9A3C' },
-	{ emoji: '🎆', name: 'Days Until New Year', href: '/days-until-new-year', from: '#FF5C4D', to: '#FF9A3C' },
-	{ emoji: '🎃', name: 'Days Until Halloween', href: '/days-until-halloween', from: '#FF5C4D', to: '#FF9A3C' },
-	{ emoji: '💝', name: "Days Until Valentine's Day", href: '/days-until-valentines', from: '#FF5C4D', to: '#FF9A3C' },
-	{ emoji: '🐣', name: 'Days Until Easter', href: '/days-until-easter', from: '#10B981', to: '#84CC16' },
-	{ emoji: '💐', name: "Mother's Day Countdown", href: '/days-until-mothers-day', from: '#EC4899', to: '#A855F7' },
-	{ emoji: '👔', name: "Father's Day Countdown", href: '/days-until-fathers-day', from: '#3B82F6', to: '#1E3A8A' },
-	{ emoji: '⚡', name: 'Unix Timestamp', href: '/unix-timestamp', from: '#10B981', to: '#84CC16' },
-	{ emoji: '💼', name: 'Business Days Calculator', href: '/business-days', from: '#10B981', to: '#84CC16' },
-	{ emoji: '🔢', name: 'Your Life in Numbers', href: '/life-in-numbers', from: '#8B5CF6', to: '#FF5C4D' },
-	{ emoji: '👥', name: 'What Generation Am I', href: '/what-generation', from: '#8B5CF6', to: '#FF5C4D' },
-	{ emoji: '🪐', name: 'Age on Other Planets', href: '/age-on-other-planets', from: '#8B5CF6', to: '#FF5C4D' },
-	{ emoji: '🎂', name: 'Days Until Birthday', href: '/days-until-birthday', from: '#8B5CF6', to: '#EC4899' },
-	{ emoji: '🕐', name: 'Time Difference Calculator', href: '/time-difference', from: '#00E5C4', to: '#0099FF' },
-	{ emoji: '🗓️', name: 'Leap Year Checker', href: '/leap-year', from: '#10B981', to: '#84CC16' },
-	{ emoji: '🍂', name: 'Season Countdown', href: '/season-countdown', from: '#2D6A4F', to: '#74B49B' },
-	{ emoji: '🌙', name: 'Moon Phase Calculator', href: '/moon-phase-calculator', from: '#2D6A4F', to: '#74B49B' },
-	{ emoji: '☀️', name: 'Sun Calculator', href: '/sun-calculator', from: '#2D6A4F', to: '#74B49B' },
-];
+const allToolsSections = getAllToolsSections();
+const toolCount = siteTools.length;
 ---
 
 <Layout
@@ -371,20 +335,25 @@ const allTools = [
 
 		<section class="all-tools-section" id="all-tools">
 			<h2 class="all-tools-heading">All tools</h2>
-			<div class="all-tools-pills">
-				{
-					allTools.map((tool) => (
-						<a href={tool.href} class="tool-pill">
-							<span class="tool-pill-text">
-								{tool.emoji} {tool.name}
-							</span>
-						</a>
-					))
-				}
-			</div>
+			{
+				allToolsSections.map((section) => (
+					<div class="all-tools-group">
+						<h3 class="all-tools-group-heading">{section.name}</h3>
+						<div class="all-tools-pills">
+							{section.tools.map((tool) => (
+								<a href={tool.href} class="tool-pill">
+									<span class="tool-pill-text">
+										{tool.emoji} {tool.name}
+									</span>
+								</a>
+							))}
+						</div>
+					</div>
+				))
+			}
 		</section>
 
-		<p class="footer-stat">30 tools · 250+ cities · Updated to the second</p>
+		<p class="footer-stat">{toolCount} tools · 250+ cities · Updated to the second</p>
 	</div>
 </Layout>
 
@@ -1352,7 +1321,25 @@ const allTools = [
 		font-size: 1.1rem;
 		font-weight: 700;
 		color: #ffffff;
-		margin: 0 0 1.25rem;
+		margin: 0 0 1.5rem;
+	}
+
+	.all-tools-group {
+		margin-bottom: 1.75rem;
+	}
+
+	.all-tools-group:last-child {
+		margin-bottom: 0;
+	}
+
+	.all-tools-group-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 0.8rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.45);
+		margin: 0 0 0.75rem;
 	}
 
 	.all-tools-pills {
