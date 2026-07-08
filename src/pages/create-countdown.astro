@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CreateCountdownForm from '../components/CreateCountdownForm.jsx';
+---
+
+<Layout
+	title="Create Your Own Countdown — Custom Event Countdown | Clockr"
+	description="Create a shareable countdown to any date or event. Pick a name, date and colour theme, then share the link."
+	category="holidays"
+>
+	<div class="cc-page">
+		<div class="cc-header">
+			<div class="cc-eyebrow">
+				<span class="cc-eyebrow-square" aria-hidden="true"></span>
+				CUSTOM COUNTDOWN
+			</div>
+			<h1 class="cc-title">
+				<span class="cc-gradient">Create Your Own Countdown</span>
+			</h1>
+			<p class="cc-subtitle">Countdown to any date or event</p>
+		</div>
+
+		<CreateCountdownForm client:load />
+
+		<section class="cc-how">
+			<h2 class="cc-section-title">How it works</h2>
+			<div class="cc-how-card">
+				<p>
+					Enter an event name and the date you&apos;re counting down to, choose a
+					colour theme, then hit Create Countdown. Clockr builds a unique link
+					with your details in the URL — no account, no save button, nothing stored
+					on a server.
+				</p>
+				<p>
+					Anyone with the link can open it and see the live timer. Copy and share
+					it from the countdown page, or bookmark it so you can come back any time.
+				</p>
+			</div>
+		</section>
+	</div>
+</Layout>
+
+<style>
+	.cc-page {
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 60px 24px 80px;
+	}
+
+	.cc-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.cc-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 800;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.7);
+		margin-bottom: 16px;
+	}
+
+	.cc-eyebrow-square {
+		width: 10px;
+		height: 10px;
+		border-radius: 3px;
+		background: #ff5c4d;
+		box-shadow: 0 0 18px rgba(255, 92, 77, 0.35);
+	}
+
+	.cc-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.cc-gradient {
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.cc-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	:global(.cc-form) {
+		margin-bottom: 56px;
+	}
+
+	:global(.cc-form-card) {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 92, 77, 0.2);
+		border-radius: 20px;
+		padding: 28px 24px;
+		box-shadow: 0 0 40px rgba(255, 92, 77, 0.06);
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	:global(.cc-field) {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	:global(.cc-field--date) {
+		align-items: center;
+	}
+
+	:global(.cc-label) {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.6);
+		letter-spacing: 0.5px;
+		text-align: center;
+	}
+
+	:global(.cc-text-input) {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.15);
+		border-radius: 12px;
+		padding: 16px 20px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 600;
+		color: #ffffff;
+		outline: none;
+		width: 100%;
+		box-sizing: border-box;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	:global(.cc-text-input:focus) {
+		border-color: rgba(255, 255, 255, 0.35);
+		box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+	}
+
+	:global(.cc-text-input::placeholder) {
+		color: rgba(255, 255, 255, 0.25);
+		font-weight: 500;
+	}
+
+	:global(.cc-swatches) {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	:global(.cc-swatch) {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		border: 2px solid transparent;
+		cursor: pointer;
+		padding: 0;
+		box-shadow: 0 0 0 0 transparent;
+		transition:
+			transform 0.15s ease,
+			box-shadow 0.15s ease,
+			border-color 0.15s ease;
+	}
+
+	:global(.cc-swatch:hover) {
+		transform: scale(1.08);
+	}
+
+	:global(.cc-swatch--selected) {
+		border-color: #ffffff;
+		box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
+	}
+
+	:global(.cc-error) {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: #ff7b6e;
+		text-align: center;
+		margin: 0;
+	}
+
+	:global(.cc-submit) {
+		display: block;
+		width: 100%;
+		max-width: 320px;
+		margin: 8px auto 0;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		transition: opacity 0.2s ease;
+	}
+
+	:global(.cc-submit:hover) {
+		opacity: 0.9;
+	}
+
+	.cc-how {
+		margin-bottom: 24px;
+	}
+
+	.cc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.cc-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 92, 77, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.cc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.cc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+</style>

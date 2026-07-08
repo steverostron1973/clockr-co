@@ -1,0 +1,353 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CustomCountdown from '../components/CustomCountdown.jsx';
+---
+
+<Layout
+	title="Your Countdown — Custom Event Countdown | Clockr"
+	description="Live custom countdown to your event. Share this link so anyone can follow the timer."
+	category="holidays"
+>
+	<CustomCountdown client:load />
+</Layout>
+
+<style is:global>
+	.cc-countdown-loading {
+		min-height: 320px;
+	}
+
+	.cc-invalid {
+		max-width: 560px;
+		margin: 0 auto;
+		padding: 80px 24px;
+		text-align: center;
+	}
+
+	.cc-invalid-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 48px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		margin-bottom: 16px;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.cc-invalid-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 28px;
+	}
+
+	.cc-invalid-link {
+		display: inline-block;
+		background: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+		color: #fff;
+		border-radius: 12px;
+		padding: 14px 28px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 700;
+		text-decoration: none;
+		transition: opacity 0.2s ease;
+	}
+
+	.cc-invalid-link:hover {
+		opacity: 0.9;
+	}
+
+	.cc-countdown-page {
+		width: 100%;
+		--cc-from: #ff5c4d;
+		--cc-to: #ff9a3c;
+		--cc-gradient: linear-gradient(135deg, #ff5c4d, #ff9a3c);
+	}
+
+	.cc-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(
+			135deg,
+			color-mix(in srgb, var(--cc-from) 18%, #080808),
+			color-mix(in srgb, var(--cc-to) 12%, #080808)
+		);
+		border-bottom: 1px solid color-mix(in srgb, var(--cc-from) 25%, transparent);
+		overflow: hidden;
+		position: relative;
+		min-height: 320px;
+	}
+
+	.cc-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.cc-hero-eyebrow {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.45);
+		margin: 0 0 12px;
+	}
+
+	.cc-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin: 0 0 12px;
+		background: var(--cc-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		word-break: break-word;
+	}
+
+	.cc-hero-date {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.5);
+		margin: 0 0 32px;
+	}
+
+	.cc-timer {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+	}
+
+	.cc-timer-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.cc-timer-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: var(--cc-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	.cc-timer-num--days {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	.cc-timer-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	.cc-timer-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.cc-arrived-text {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(40px, 8vw, 72px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		margin: 0;
+		background: var(--cc-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.cc-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.cc-stats-section {
+		margin-bottom: 16px;
+	}
+
+	.cc-stats-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.cc-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.cc-stats-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.cc-stat-card {
+		background: #0c0c0c;
+		border: 1px solid color-mix(in srgb, var(--cc-from) 18%, transparent);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.cc-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 10px;
+	}
+
+	.cc-stat-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.4;
+		background: var(--cc-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.cc-copy-btn {
+		display: block;
+		background: var(--cc-gradient);
+		color: #fff;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		max-width: 320px;
+		margin: 0 auto 48px;
+		transition: opacity 0.2s ease;
+	}
+
+	.cc-copy-btn:hover {
+		opacity: 0.9;
+	}
+
+	.cc-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.cc-how {
+		margin-bottom: 48px;
+	}
+
+	.cc-how-card {
+		background: #0c0c0c;
+		border: 1px solid color-mix(in srgb, var(--cc-from) 15%, transparent);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.cc-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.cc-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.cc-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.cc-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.cc-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.cc-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.cc-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.cc-related-card:hover {
+		border-color: color-mix(in srgb, var(--cc-from) 40%, transparent);
+	}
+
+	.cc-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: var(--cc-gradient);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
