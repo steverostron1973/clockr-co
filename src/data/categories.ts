@@ -107,7 +107,7 @@ export const categories: Category[] = [
 		description: 'Hours, deadlines and working days',
 		emoji: '💼',
 		...categoryGradients.work,
-		href: '/work',
+		href: '/work-business',
 	},
 	{
 		id: 'seasons',

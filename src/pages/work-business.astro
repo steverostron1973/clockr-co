@@ -1,0 +1,308 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const tools = [
+	{
+		name: 'Overtime Calculator',
+		description: 'Work out overtime pay from your hours and rate',
+		href: '/overtime-calculator',
+		emoji: '⏱️',
+	},
+	{
+		name: 'Project Deadline Calculator',
+		description: 'Working days until your deadline or finish date',
+		href: '/project-deadline-calculator',
+		emoji: '📌',
+	},
+	{
+		name: 'Invoice Due Date Calculator',
+		description: 'Calculate payment due dates from invoice terms',
+		href: '/invoice-due-date-calculator',
+		emoji: '🧾',
+	},
+	{
+		name: 'Pomodoro Timer',
+		description: 'Focus timer with work and break intervals',
+		href: '/pomodoro-timer',
+		emoji: '🍅',
+	},
+	{
+		name: 'Business Days Calculator',
+		description: 'Working days between any two dates',
+		href: '/business-days',
+		emoji: '💼',
+	},
+	{
+		name: 'Work Hours Calculator',
+		description: 'Total hours worked across shifts or days',
+		href: '/work-hours-calculator',
+		emoji: '🕒',
+	},
+	{
+		name: 'Quarter Calculator',
+		description: 'Find which fiscal or calendar quarter a date falls in',
+		href: '/quarter-calculator',
+		emoji: '📊',
+	},
+];
+---
+
+<Layout
+	title="Work & Business — Overtime, Deadlines, Hours & More | Clockr"
+	description="Hours, deadlines and working days — overtime pay, project deadlines, invoice due dates, Pomodoro timer, business days and more."
+	category="work"
+>
+	<div class="wb-page">
+		<div class="wb-header">
+			<div class="wb-eyebrow">
+				<span class="wb-eyebrow-square" aria-hidden="true"></span>
+				WORK & BUSINESS
+			</div>
+			<h1 class="wb-title">
+				<span class="wb-gradient">Work & Business</span>
+			</h1>
+			<p class="wb-subtitle">Hours, deadlines and working days</p>
+		</div>
+
+		<div class="wb-grid">
+			{
+				tools.map((item) => (
+					<a href={item.href} class="wb-card">
+						<span class="wb-card-emoji" aria-hidden="true">
+							{item.emoji}
+						</span>
+						<span class="wb-card-name">{item.name}</span>
+						<span class="wb-card-desc">{item.description}</span>
+					</a>
+				))
+			}
+		</div>
+
+		<section class="wb-how">
+			<h2 class="wb-section-title">About work & business tools</h2>
+			<div class="wb-how-card">
+				<p>
+					From overtime pay and project deadlines to invoice terms, focus timers,
+					and working-day math — these tools help you plan hours and dates the
+					way work actually runs, weekends and holidays included. Pick a card
+					above to get started.
+				</p>
+			</div>
+		</section>
+
+		<div class="wb-related">
+			<h3 class="wb-related-title">You might also like</h3>
+			<div class="wb-related-grid">
+				<a href="/time-zone-meeting-planner" class="wb-related-card"
+					><span class="wb-related-name">Time Zone Meeting Planner</span></a
+				>
+				<a href="/time-zones" class="wb-related-card"
+					><span class="wb-related-name">Time Zone Tools</span></a
+				>
+				<a href="/create-countdown" class="wb-related-card"
+					><span class="wb-related-name">Create Your Own Countdown</span></a
+				>
+				<a href="/#all-tools" class="wb-related-card"
+					><span class="wb-related-name">All tools</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.wb-page {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 60px 24px 80px;
+	}
+
+	.wb-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.wb-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #475569, #3b82f6);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.wb-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #475569, #3b82f6);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.wb-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.wb-gradient {
+		background: linear-gradient(135deg, #475569, #3b82f6);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.wb-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+		max-width: 540px;
+		margin-inline: auto;
+	}
+
+	.wb-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 14px;
+		margin-bottom: 56px;
+	}
+
+	@media (max-width: 640px) {
+		.wb-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.wb-card {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		background: #0c0c0c;
+		border: 1px solid rgba(59, 130, 246, 0.15);
+		border-radius: 14px;
+		padding: 22px 20px;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.wb-card:hover {
+		border-color: rgba(59, 130, 246, 0.45);
+		transform: translateY(-3px);
+		box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+	}
+
+	.wb-card-emoji {
+		font-size: 28px;
+		line-height: 1;
+		margin-bottom: 4px;
+	}
+
+	.wb-card-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 17px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #475569, #3b82f6);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.wb-card-desc {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+		line-height: 1.5;
+	}
+
+	.wb-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.wb-how {
+		margin-bottom: 48px;
+	}
+
+	.wb-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(59, 130, 246, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.wb-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.wb-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.wb-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.wb-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.wb-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.wb-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.wb-related-card:hover {
+		border-color: rgba(59, 130, 246, 0.4);
+	}
+
+	.wb-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #475569, #3b82f6);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
