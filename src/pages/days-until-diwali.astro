@@ -1,0 +1,709 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {
+	formatDiwaliDate,
+	getDiwaliDatesForClient,
+	getNextDiwali,
+} from '../data/diwaliDates';
+
+const nextDiwali = getNextDiwali(new Date());
+const targetYear = nextDiwali.year;
+const targetDateLabel = formatDiwaliDate(nextDiwali.date);
+const diwaliDates = getDiwaliDatesForClient();
+
+const leftEmojis = [
+	{ emoji: '🪔', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '✨', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '🎆', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '🌟', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '🪔', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '✨', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '🎇', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '🪔', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '✨', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '🌟', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '🎆', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '🪔', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title={`Days Until Diwali ${targetYear} — Diwali Countdown | Clockr`}
+	description={`How many days until Diwali ${targetYear}? Live countdown to the Festival of Lights — ${targetDateLabel}.`}
+	category="religious"
+>
+	<div class="diwali-page">
+		<section class="diwali-hero" aria-label="Diwali countdown">
+			<div class="diwali-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="diwali-float-emoji diwali-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="diwali-float-emoji diwali-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="diwali-hero-centre">
+				<h1 class="diwali-hero-title">Days Until Diwali</h1>
+				<p class="diwali-hero-subtitle">Countdown to the Festival of Lights</p>
+
+				<div class="diwali-countdown" id="diwali-countdown">
+					<div class="diwali-countdown-block">
+						<span
+							class="diwali-countdown-num diwali-countdown-num--days"
+							id="hero-days">0</span
+						>
+						<span class="diwali-countdown-unit">Days</span>
+					</div>
+					<span class="diwali-countdown-sep">:</span>
+					<div class="diwali-countdown-block">
+						<span class="diwali-countdown-num" id="hero-hours">00</span>
+						<span class="diwali-countdown-unit">Hours</span>
+					</div>
+					<span class="diwali-countdown-sep">:</span>
+					<div class="diwali-countdown-block">
+						<span class="diwali-countdown-num" id="hero-mins">00</span>
+						<span class="diwali-countdown-unit">Minutes</span>
+					</div>
+					<span class="diwali-countdown-sep">:</span>
+					<div class="diwali-countdown-block">
+						<span class="diwali-countdown-num" id="hero-secs">00</span>
+						<span class="diwali-countdown-unit">Seconds</span>
+					</div>
+				</div>
+
+				<p class="diwali-target-date" id="hero-target-date">{targetDateLabel}</p>
+			</div>
+		</section>
+
+		<div class="diwali-body">
+			<section class="diwali-stats-section">
+				<h2 class="diwali-stats-heading">Diwali by the numbers</h2>
+				<div class="diwali-stats-grid">
+					<div class="diwali-stat-card">
+						<div class="diwali-stat-label">Main day (Lakshmi Puja)</div>
+						<div class="diwali-stat-value" id="stat-date">—</div>
+					</div>
+					<div class="diwali-stat-card">
+						<div class="diwali-stat-label">Day of the week</div>
+						<div class="diwali-stat-value" id="stat-weekday">—</div>
+					</div>
+					<div class="diwali-stat-card">
+						<div class="diwali-stat-label">Weeks until Diwali</div>
+						<div class="diwali-stat-value" id="stat-weeks">—</div>
+					</div>
+					<div class="diwali-stat-card">
+						<div class="diwali-stat-label">Exact time remaining</div>
+						<div class="diwali-stat-value" id="stat-exact">—</div>
+					</div>
+				</div>
+			</section>
+
+			<button class="diwali-share-btn" id="diwali-share-btn"
+				>📋 Copy &amp; Share</button
+			>
+
+			<section class="diwali-about">
+				<h2 class="diwali-section-title">About Diwali</h2>
+				<div class="diwali-about-card">
+					<p>
+						Diwali (Deepavali) is the Hindu, Sikh, and Jain festival of lights,
+						celebrating the victory of light over darkness and good over evil.
+						Homes, temples, and streets are illuminated with diyas (oil lamps),
+						candles, and fireworks, and families gather for prayers, feasts, and
+						the exchange of gifts.
+					</p>
+					<p>
+						The main day falls on Kartik Amavasya — the new moon in the Hindu
+						month of Kartik — and is widely observed as Lakshmi Puja, honouring
+						the goddess of wealth and prosperity. Though traditions vary by
+						region and faith, the central theme of welcoming light and hope is
+						shared across more than a billion celebrants worldwide.
+					</p>
+				</div>
+			</section>
+
+			<section class="diwali-how">
+				<h2 class="diwali-section-title">How is the Diwali countdown calculated?</h2>
+				<div class="diwali-how-card">
+					<p>
+						This countdown targets midnight on the main day of Diwali (Lakshmi
+						Puja) in your local time zone. The dates shown follow the Hindu
+						lunisolar calendar, when Diwali falls on the new moon of Kartik.
+						The display updates every second with the precise days, hours,
+						minutes, and seconds remaining.
+					</p>
+					<p>
+						Because the Hindu calendar tracks both lunar months and solar
+						seasons, Diwali shifts within a roughly four-week window each
+						October and November. Once the current year's date has passed, the
+						countdown automatically rolls forward to the next listed Diwali.
+					</p>
+				</div>
+			</section>
+
+			<section class="diwali-faq">
+				<h2 class="diwali-section-title">Frequently asked questions</h2>
+				<div class="diwali-faq-list">
+					<details class="diwali-faq-item">
+						<summary class="diwali-faq-question"
+							>Why does the date of Diwali change every year?</summary
+						>
+						<div class="diwali-faq-answer">
+							<p>
+								Diwali follows the Hindu lunisolar calendar, not the fixed
+								Gregorian calendar. It falls on Kartik Amavasya — the new moon
+								night in the month of Kartik. Because lunar months are shorter
+								than solar months, the Gregorian date drifts each year,
+								typically landing between mid-October and mid-November.
+							</p>
+						</div>
+					</details>
+					<details class="diwali-faq-item">
+						<summary class="diwali-faq-question"
+							>How long does Diwali last?</summary
+						>
+						<div class="diwali-faq-answer">
+							<p>
+								Diwali is traditionally a five-day festival. It begins with
+								Dhanteras two days before the main night, continues through
+								Choti Diwali (Naraka Chaturdashi) the day before, peaks on the
+								third day with Lakshmi Puja — the main Diwali night — and
+								concludes with Govardhan Puja and Bhai Dooj in the days that
+								follow. This countdown targets the main Lakshmi Puja night.
+							</p>
+						</div>
+					</details>
+					<details class="diwali-faq-item">
+						<summary class="diwali-faq-question"
+							>Who celebrates Diwali?</summary
+						>
+						<div class="diwali-faq-answer">
+							<p>
+								Diwali is celebrated by Hindus, Sikhs, Jains, and many others
+								across India and the global diaspora. Hindus honour the return
+								of Lord Rama to Ayodhya and the triumph of light; Sikhs mark
+								the release of Guru Hargobind; Jains commemorate Lord
+								Mahavira's attainment of nirvana. Customs differ, but lighting
+								lamps and gathering with family are shared across traditions.
+							</p>
+						</div>
+					</details>
+					<details class="diwali-faq-item">
+						<summary class="diwali-faq-question"
+							>Why do people light diyas at Diwali?</summary
+						>
+						<div class="diwali-faq-answer">
+							<p>
+								Diyas — small clay oil lamps — symbolise the inner light that
+								protects against spiritual darkness. Lighting them at doorways
+								and windows welcomes Lakshmi, the goddess of prosperity, and
+								represents hope, knowledge, and the victory of good over evil.
+								The word "Deepavali" itself means "row of lights."
+							</p>
+						</div>
+					</details>
+				</div>
+			</section>
+
+			<div class="diwali-related">
+				<h3 class="diwali-related-title">Related tools</h3>
+				<div class="diwali-related-grid">
+					<a href="/days-until-ramadan" class="diwali-related-card"
+						><span class="diwali-related-name">Days Until Ramadan</span></a
+					>
+					<a href="/days-until-easter" class="diwali-related-card"
+						><span class="diwali-related-name">Days Until Easter</span></a
+					>
+					<a href="/religious-calendars" class="diwali-related-card"
+						><span class="diwali-related-name">Religious Calendars</span></a
+					>
+					<a href="/moon-phase-calculator" class="diwali-related-card"
+						><span class="diwali-related-name">Moon Phase Calculator</span></a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.diwali-page {
+		width: 100%;
+	}
+
+	.diwali-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #1a1420, #2d1a10);
+		border-bottom: 1px solid rgba(232, 147, 122, 0.25);
+		overflow: hidden;
+		position: relative;
+		min-height: 360px;
+	}
+
+	.diwali-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.diwali-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: diwali-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.diwali-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes diwali-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.diwali-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.diwali-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.diwali-hero-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.55);
+		margin: 0 0 28px;
+	}
+
+	.diwali-countdown {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+		margin-bottom: 24px;
+	}
+
+	.diwali-countdown-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.diwali-countdown-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	.diwali-countdown-num--days {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	.diwali-countdown-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	.diwali-countdown-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.diwali-target-date {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(18px, 3vw, 22px);
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.9);
+		margin: 0;
+	}
+
+	.diwali-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.diwali-stats-section {
+		margin-bottom: 16px;
+	}
+
+	.diwali-stats-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.diwali-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.diwali-stats-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.diwali-stat-card {
+		background: #1a1420;
+		border: 1px solid rgba(232, 147, 122, 0.2);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.diwali-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 10px;
+	}
+
+	.diwali-stat-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.4;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.diwali-share-btn {
+		display: block;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		color: #1a1420;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		max-width: 320px;
+		width: 100%;
+		margin: 0 auto 48px;
+		transition: opacity 0.2s ease;
+	}
+
+	.diwali-share-btn:hover {
+		opacity: 0.9;
+	}
+
+	.diwali-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.diwali-about {
+		margin-bottom: 48px;
+	}
+
+	.diwali-about-card,
+	.diwali-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.diwali-about-card p,
+	.diwali-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.diwali-about-card p:last-child,
+	.diwali-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.diwali-how {
+		margin-bottom: 48px;
+	}
+
+	.diwali-faq {
+		margin-bottom: 48px;
+	}
+
+	.diwali-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.diwali-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.diwali-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.diwali-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.diwali-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.diwali-faq-item[open] .diwali-faq-question::after {
+		content: '−';
+	}
+
+	.diwali-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.diwali-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.diwali-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.diwali-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.diwali-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.diwali-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.diwali-related-card:hover {
+		border-color: rgba(232, 147, 122, 0.4);
+	}
+
+	.diwali-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
+
+<script define:vars={{ diwaliDates }}>
+	function pad(n) {
+		return String(n).padStart(2, '0');
+	}
+
+	function getDiwaliDate(entry) {
+		return new Date(entry.year, entry.month, entry.day, 0, 0, 0, 0);
+	}
+
+	function getTargetDiwali() {
+		const now = new Date();
+		const sorted = [...diwaliDates].sort(
+			(a, b) => getDiwaliDate(a).getTime() - getDiwaliDate(b).getTime(),
+		);
+
+		for (const entry of sorted) {
+			const date = getDiwaliDate(entry);
+			if (now.getTime() < date.getTime()) {
+				return { ...entry, date };
+			}
+		}
+
+		const last = sorted[sorted.length - 1];
+		return { ...last, date: getDiwaliDate(last) };
+	}
+
+	function formatDiwaliDate(date) {
+		return date.toLocaleDateString('en-GB', {
+			weekday: 'long',
+			day: 'numeric',
+			month: 'long',
+			year: 'numeric',
+		});
+	}
+
+	function updateCountdown() {
+		const now = new Date();
+		const diwali = getTargetDiwali();
+		const diff = diwali.date.getTime() - now.getTime();
+
+		if (diff <= 0) return;
+
+		const totalSeconds = Math.floor(diff / 1000);
+		const days = Math.floor(totalSeconds / 86400);
+		const hours = Math.floor((totalSeconds % 86400) / 3600);
+		const mins = Math.floor((totalSeconds % 3600) / 60);
+		const secs = totalSeconds % 60;
+		const weeks = Math.floor(days / 7);
+
+		const heroDays = document.getElementById('hero-days');
+		const heroHours = document.getElementById('hero-hours');
+		const heroMins = document.getElementById('hero-mins');
+		const heroSecs = document.getElementById('hero-secs');
+		const heroTargetDate = document.getElementById('hero-target-date');
+		const statDate = document.getElementById('stat-date');
+		const statWeekday = document.getElementById('stat-weekday');
+		const statWeeks = document.getElementById('stat-weeks');
+		const statExact = document.getElementById('stat-exact');
+
+		if (heroDays) heroDays.textContent = String(days);
+		if (heroHours) heroHours.textContent = pad(hours);
+		if (heroMins) heroMins.textContent = pad(mins);
+		if (heroSecs) heroSecs.textContent = pad(secs);
+
+		const dateLabel = formatDiwaliDate(diwali.date);
+		const weekday = diwali.date.toLocaleDateString('en-GB', { weekday: 'long' });
+
+		if (heroTargetDate) heroTargetDate.textContent = dateLabel;
+		if (statDate) statDate.textContent = dateLabel;
+		if (statWeekday) statWeekday.textContent = weekday;
+		if (statWeeks)
+			statWeeks.textContent = `${weeks} week${weeks === 1 ? '' : 's'}`;
+		if (statExact)
+			statExact.textContent = `${days} days, ${hours} hours, ${mins} minutes, ${secs} seconds`;
+	}
+
+	const shareBtn = document.getElementById('diwali-share-btn');
+	shareBtn?.addEventListener('click', () => {
+		const days = document.getElementById('hero-days')?.textContent ?? '0';
+		const diwali = getTargetDiwali();
+		const dateLabel = formatDiwaliDate(diwali.date);
+		navigator.clipboard.writeText(
+			`🪔 Diwali is ${days} days away — ${dateLabel}. Count down at clockr.co/days-until-diwali`,
+		);
+		shareBtn.textContent = '✓ Copied!';
+		setTimeout(() => {
+			shareBtn.textContent = '📋 Copy & Share';
+		}, 2000);
+	});
+
+	updateCountdown();
+	setInterval(updateCountdown, 1000);
+</script>
