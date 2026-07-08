@@ -1,0 +1,716 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {
+	formatHanukkahDate,
+	getHanukkahDatesForClient,
+	getNextHanukkah,
+} from '../data/hanukkahDates';
+
+const nextHanukkah = getNextHanukkah(new Date());
+const targetYear = nextHanukkah.year;
+const targetDateLabel = formatHanukkahDate(nextHanukkah.date);
+const hanukkahDates = getHanukkahDatesForClient();
+
+const leftEmojis = [
+	{ emoji: '🕎', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '🕯️', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '✨', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '🌟', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '🕎', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '✨', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '🕯️', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '🕎', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '✨', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '🌟', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '🕯️', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '🕎', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title={`Days Until Hanukkah ${targetYear} — Hanukkah Countdown | Clockr`}
+	description={`How many days until Hanukkah ${targetYear}? Live countdown to the Festival of Lights — ${targetDateLabel}.`}
+	category="religious"
+>
+	<div class="hanukkah-page">
+		<section class="hanukkah-hero" aria-label="Hanukkah countdown">
+			<div class="hanukkah-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="hanukkah-float-emoji hanukkah-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="hanukkah-float-emoji hanukkah-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="hanukkah-hero-centre">
+				<h1 class="hanukkah-hero-title">Days Until Hanukkah</h1>
+				<p class="hanukkah-hero-subtitle">Countdown to the Festival of Lights</p>
+
+				<div class="hanukkah-countdown" id="hanukkah-countdown">
+					<div class="hanukkah-countdown-block">
+						<span
+							class="hanukkah-countdown-num hanukkah-countdown-num--days"
+							id="hero-days">0</span
+						>
+						<span class="hanukkah-countdown-unit">Days</span>
+					</div>
+					<span class="hanukkah-countdown-sep">:</span>
+					<div class="hanukkah-countdown-block">
+						<span class="hanukkah-countdown-num" id="hero-hours">00</span>
+						<span class="hanukkah-countdown-unit">Hours</span>
+					</div>
+					<span class="hanukkah-countdown-sep">:</span>
+					<div class="hanukkah-countdown-block">
+						<span class="hanukkah-countdown-num" id="hero-mins">00</span>
+						<span class="hanukkah-countdown-unit">Minutes</span>
+					</div>
+					<span class="hanukkah-countdown-sep">:</span>
+					<div class="hanukkah-countdown-block">
+						<span class="hanukkah-countdown-num" id="hero-secs">00</span>
+						<span class="hanukkah-countdown-unit">Seconds</span>
+					</div>
+				</div>
+
+				<p class="hanukkah-target-date" id="hero-target-date">{targetDateLabel}</p>
+			</div>
+		</section>
+
+		<div class="hanukkah-body">
+			<section class="hanukkah-stats-section">
+				<h2 class="hanukkah-stats-heading">Hanukkah by the numbers</h2>
+				<div class="hanukkah-stats-grid">
+					<div class="hanukkah-stat-card">
+						<div class="hanukkah-stat-label">First night of Hanukkah</div>
+						<div class="hanukkah-stat-value" id="stat-date">—</div>
+					</div>
+					<div class="hanukkah-stat-card">
+						<div class="hanukkah-stat-label">Day of the week</div>
+						<div class="hanukkah-stat-value" id="stat-weekday">—</div>
+					</div>
+					<div class="hanukkah-stat-card">
+						<div class="hanukkah-stat-label">Weeks until Hanukkah</div>
+						<div class="hanukkah-stat-value" id="stat-weeks">—</div>
+					</div>
+					<div class="hanukkah-stat-card">
+						<div class="hanukkah-stat-label">Exact time remaining</div>
+						<div class="hanukkah-stat-value" id="stat-exact">—</div>
+					</div>
+				</div>
+			</section>
+
+			<button class="hanukkah-share-btn" id="hanukkah-share-btn"
+				>📋 Copy &amp; Share</button
+			>
+
+			<section class="hanukkah-about">
+				<h2 class="hanukkah-section-title">About Hanukkah</h2>
+				<div class="hanukkah-about-card">
+					<p>
+						Hanukkah (Chanukah) is the Jewish eight-day festival of lights,
+						commemorating the rededication of the Second Temple in Jerusalem
+						after the Maccabean revolt. According to tradition, a single day's
+						supply of oil miraculously burned for eight nights — a symbol of
+						perseverance and hope that inspires the nightly lighting of the
+						menorah.
+					</p>
+					<p>
+						Families celebrate by lighting one additional candle on the
+						hanukkiah each evening, playing dreidel, eating foods fried in oil
+						such as latkes and sufganiyot, and exchanging gifts. Though a
+						minor festival in the Jewish calendar, Hanukkah is widely observed
+						across the Jewish diaspora and has become a cherished winter
+						celebration of light overcoming darkness.
+					</p>
+				</div>
+			</section>
+
+			<section class="hanukkah-how">
+				<h2 class="hanukkah-section-title">How is the Hanukkah countdown calculated?</h2>
+				<div class="hanukkah-how-card">
+					<p>
+						This countdown targets midnight on the first day of Hanukkah in
+						your local time zone — the calendar date when the festival begins.
+						The dates shown follow the Hebrew lunisolar calendar, when Hanukkah
+						always starts on 25 Kislev. The display updates every second with
+						the precise days, hours, minutes, and seconds remaining.
+					</p>
+					<p>
+						Because the Hebrew calendar adds a leap month roughly every three
+						years, Hanukkah can shift more dramatically in the Gregorian
+						calendar than some other religious holidays — anywhere from late
+						November to late December. Once the current year's date has passed,
+						the countdown automatically rolls forward to the next listed
+						Hanukkah.
+					</p>
+				</div>
+			</section>
+
+			<section class="hanukkah-faq">
+				<h2 class="hanukkah-section-title">Frequently asked questions</h2>
+				<div class="hanukkah-faq-list">
+					<details class="hanukkah-faq-item">
+						<summary class="hanukkah-faq-question"
+							>Why does the date of Hanukkah change every year?</summary
+						>
+						<div class="hanukkah-faq-answer">
+							<p>
+								Hanukkah always begins on 25 Kislev in the Hebrew calendar,
+								but that date maps to different Gregorian dates each year
+								because the Jewish year is lunisolar — it follows the moon's
+								cycles while staying aligned with the seasons through periodic
+								leap months. Hanukkah typically falls between late November
+								and late December on the civil calendar.
+							</p>
+						</div>
+					</details>
+					<details class="hanukkah-faq-item">
+						<summary class="hanukkah-faq-question"
+							>How long does Hanukkah last?</summary
+						>
+						<div class="hanukkah-faq-answer">
+							<p>
+								Hanukkah lasts eight nights and days, commemorating the miracle
+								of the oil that burned for eight days. Each evening, one
+								additional candle is lit on the hanukkiah (menorah) until all
+								eight candles plus the shamash (helper candle) are glowing on
+								the final night. This countdown targets the first night of the
+								festival.
+							</p>
+						</div>
+					</details>
+					<details class="hanukkah-faq-item">
+						<summary class="hanukkah-faq-question"
+							>When does Hanukkah actually begin each night?</summary
+						>
+						<div class="hanukkah-faq-answer">
+							<p>
+								In Jewish tradition, a new day begins at sundown, not midnight.
+								The first candle is lit at sundown on the evening before the
+								calendar date shown on this page. For example, if Hanukkah
+								falls on 4 December, families light the first candle on the
+								evening of 3 December. This countdown uses midnight on the
+								listed date as its target for consistency with other Clockr
+								countdowns.
+							</p>
+						</div>
+					</details>
+					<details class="hanukkah-faq-item">
+						<summary class="hanukkah-faq-question"
+							>What is the difference between a menorah and a hanukkiah?</summary
+						>
+						<div class="hanukkah-faq-answer">
+							<p>
+								A menorah is the seven-branched candelabrum described in the
+								Torah and used in the ancient Temple. A hanukkiah is the
+								nine-branched candelabrum used specifically at Hanukkah — eight
+								candles for the eight nights, plus a ninth shamash candle used
+								to light the others. Both are symbols of light, but only the
+								hanukkiah is used during the festival.
+							</p>
+						</div>
+					</details>
+				</div>
+			</section>
+
+			<div class="hanukkah-related">
+				<h3 class="hanukkah-related-title">Related tools</h3>
+				<div class="hanukkah-related-grid">
+					<a href="/days-until-diwali" class="hanukkah-related-card"
+						><span class="hanukkah-related-name">Days Until Diwali</span></a
+					>
+					<a href="/days-until-ramadan" class="hanukkah-related-card"
+						><span class="hanukkah-related-name">Days Until Ramadan</span></a
+					>
+					<a href="/religious-calendars" class="hanukkah-related-card"
+						><span class="hanukkah-related-name">Religious Calendars</span></a
+					>
+					<a href="/days-until-easter" class="hanukkah-related-card"
+						><span class="hanukkah-related-name">Days Until Easter</span></a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.hanukkah-page {
+		width: 100%;
+	}
+
+	.hanukkah-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #0f1428, #1a2040);
+		border-bottom: 1px solid rgba(232, 147, 122, 0.25);
+		overflow: hidden;
+		position: relative;
+		min-height: 360px;
+	}
+
+	.hanukkah-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.hanukkah-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: hanukkah-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.hanukkah-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes hanukkah-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.hanukkah-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.hanukkah-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 64px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hanukkah-hero-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.55);
+		margin: 0 0 28px;
+	}
+
+	.hanukkah-countdown {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+		margin-bottom: 24px;
+	}
+
+	.hanukkah-countdown-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.hanukkah-countdown-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	.hanukkah-countdown-num--days {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	.hanukkah-countdown-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	.hanukkah-countdown-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.hanukkah-target-date {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(18px, 3vw, 22px);
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.9);
+		margin: 0;
+	}
+
+	.hanukkah-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.hanukkah-stats-section {
+		margin-bottom: 16px;
+	}
+
+	.hanukkah-stats-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.hanukkah-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.hanukkah-stats-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.hanukkah-stat-card {
+		background: #1a1420;
+		border: 1px solid rgba(232, 147, 122, 0.2);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.hanukkah-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 10px;
+	}
+
+	.hanukkah-stat-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.4;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hanukkah-share-btn {
+		display: block;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		color: #1a1420;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		max-width: 320px;
+		width: 100%;
+		margin: 0 auto 48px;
+		transition: opacity 0.2s ease;
+	}
+
+	.hanukkah-share-btn:hover {
+		opacity: 0.9;
+	}
+
+	.hanukkah-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.hanukkah-about {
+		margin-bottom: 48px;
+	}
+
+	.hanukkah-about-card,
+	.hanukkah-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.hanukkah-about-card p,
+	.hanukkah-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.hanukkah-about-card p:last-child,
+	.hanukkah-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.hanukkah-how {
+		margin-bottom: 48px;
+	}
+
+	.hanukkah-faq {
+		margin-bottom: 48px;
+	}
+
+	.hanukkah-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.hanukkah-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.hanukkah-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hanukkah-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.hanukkah-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.hanukkah-faq-item[open] .hanukkah-faq-question::after {
+		content: '−';
+	}
+
+	.hanukkah-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.hanukkah-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.hanukkah-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.hanukkah-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.hanukkah-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.hanukkah-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.hanukkah-related-card:hover {
+		border-color: rgba(232, 147, 122, 0.4);
+	}
+
+	.hanukkah-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
+
+<script define:vars={{ hanukkahDates }}>
+	function pad(n) {
+		return String(n).padStart(2, '0');
+	}
+
+	function getHanukkahDate(entry) {
+		return new Date(entry.year, entry.month, entry.day, 0, 0, 0, 0);
+	}
+
+	function getTargetHanukkah() {
+		const now = new Date();
+		const sorted = [...hanukkahDates].sort(
+			(a, b) => getHanukkahDate(a).getTime() - getHanukkahDate(b).getTime(),
+		);
+
+		for (const entry of sorted) {
+			const date = getHanukkahDate(entry);
+			if (now.getTime() < date.getTime()) {
+				return { ...entry, date };
+			}
+		}
+
+		const last = sorted[sorted.length - 1];
+		return { ...last, date: getHanukkahDate(last) };
+	}
+
+	function formatHanukkahDate(date) {
+		return date.toLocaleDateString('en-GB', {
+			weekday: 'long',
+			day: 'numeric',
+			month: 'long',
+			year: 'numeric',
+		});
+	}
+
+	function updateCountdown() {
+		const now = new Date();
+		const hanukkah = getTargetHanukkah();
+		const diff = hanukkah.date.getTime() - now.getTime();
+
+		if (diff <= 0) return;
+
+		const totalSeconds = Math.floor(diff / 1000);
+		const days = Math.floor(totalSeconds / 86400);
+		const hours = Math.floor((totalSeconds % 86400) / 3600);
+		const mins = Math.floor((totalSeconds % 3600) / 60);
+		const secs = totalSeconds % 60;
+		const weeks = Math.floor(days / 7);
+
+		const heroDays = document.getElementById('hero-days');
+		const heroHours = document.getElementById('hero-hours');
+		const heroMins = document.getElementById('hero-mins');
+		const heroSecs = document.getElementById('hero-secs');
+		const heroTargetDate = document.getElementById('hero-target-date');
+		const statDate = document.getElementById('stat-date');
+		const statWeekday = document.getElementById('stat-weekday');
+		const statWeeks = document.getElementById('stat-weeks');
+		const statExact = document.getElementById('stat-exact');
+
+		if (heroDays) heroDays.textContent = String(days);
+		if (heroHours) heroHours.textContent = pad(hours);
+		if (heroMins) heroMins.textContent = pad(mins);
+		if (heroSecs) heroSecs.textContent = pad(secs);
+
+		const dateLabel = formatHanukkahDate(hanukkah.date);
+		const weekday = hanukkah.date.toLocaleDateString('en-GB', { weekday: 'long' });
+
+		if (heroTargetDate) heroTargetDate.textContent = dateLabel;
+		if (statDate) statDate.textContent = dateLabel;
+		if (statWeekday) statWeekday.textContent = weekday;
+		if (statWeeks)
+			statWeeks.textContent = `${weeks} week${weeks === 1 ? '' : 's'}`;
+		if (statExact)
+			statExact.textContent = `${days} days, ${hours} hours, ${mins} minutes, ${secs} seconds`;
+	}
+
+	const shareBtn = document.getElementById('hanukkah-share-btn');
+	shareBtn?.addEventListener('click', () => {
+		const days = document.getElementById('hero-days')?.textContent ?? '0';
+		const hanukkah = getTargetHanukkah();
+		const dateLabel = formatHanukkahDate(hanukkah.date);
+		navigator.clipboard.writeText(
+			`🕎 Hanukkah is ${days} days away — ${dateLabel}. Count down at clockr.co/days-until-hanukkah`,
+		);
+		shareBtn.textContent = '✓ Copied!';
+		setTimeout(() => {
+			shareBtn.textContent = '📋 Copy & Share';
+		}, 2000);
+	});
+
+	updateCountdown();
+	setInterval(updateCountdown, 1000);
+</script>
