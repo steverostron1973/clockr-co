@@ -1,0 +1,867 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {
+	formatEidDate,
+	getEidDatesForClient,
+	getEidHeading,
+	getEidLabel,
+	getNextEid,
+} from '../data/eidDates';
+
+const nextEid = getNextEid(new Date());
+const targetYear = nextEid.year;
+const targetDateLabel = formatEidDate(nextEid.date);
+const targetEidLabel = getEidLabel(nextEid.type);
+const targetHeading = getEidHeading(nextEid.type);
+const eidDates = getEidDatesForClient();
+const defaultTab = nextEid.type;
+
+const leftEmojis = [
+	{ emoji: '🌙', size: 48, rotation: -15, top: '10%', side: '2%', delay: 0 },
+	{ emoji: '🕌', size: 32, rotation: 12, top: '25%', side: '8%', delay: 0.5 },
+	{ emoji: '✨', size: 40, rotation: -8, top: '45%', side: '4%', delay: 1 },
+	{ emoji: '🎉', size: 28, rotation: 15, top: '65%', side: '10%', delay: 1.5 },
+	{ emoji: '☪️', size: 44, rotation: -12, top: '80%', side: '6%', delay: 2 },
+	{ emoji: '🌙', size: 36, rotation: 8, top: '35%', side: '2%', delay: 2.5 },
+];
+
+const rightEmojis = [
+	{ emoji: '🕌', size: 36, rotation: -5, top: '15%', side: '3%', delay: 3 },
+	{ emoji: '🌙', size: 48, rotation: 14, top: '30%', side: '9%', delay: 3.5 },
+	{ emoji: '✨', size: 30, rotation: -10, top: '50%', side: '5%', delay: 4 },
+	{ emoji: '🎉', size: 42, rotation: 6, top: '70%', side: '8%', delay: 4.5 },
+	{ emoji: '☪️', size: 28, rotation: -15, top: '85%', side: '4%', delay: 5 },
+	{ emoji: '🌙', size: 46, rotation: 10, top: '40%', side: '2%', delay: 5.5 },
+];
+---
+
+<Layout
+	title={`${targetHeading} ${targetYear} — Eid Countdown | Clockr`}
+	description={`How many days until ${targetEidLabel} ${targetYear}? Live countdown to the next Eid celebration — ${targetDateLabel}.`}
+	category="religious"
+>
+	<div class="eid-page">
+		<section class="eid-hero" aria-label="Eid countdown">
+			<div class="eid-hero-decor" aria-hidden="true">
+				{
+					leftEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="eid-float-emoji eid-float-emoji--left"
+							style={`font-size:${size}px;top:${top};left:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+				{
+					rightEmojis.map(({ emoji, size, rotation, top, side, delay }) => (
+						<span
+							class="eid-float-emoji eid-float-emoji--right"
+							style={`font-size:${size}px;top:${top};right:${side};--rotation:${rotation}deg;animation-delay:${delay}s`}
+						>
+							{emoji}
+						</span>
+					))
+				}
+			</div>
+
+			<div class="eid-hero-centre">
+				<h1 class="eid-hero-title" id="hero-title">{targetHeading}</h1>
+				<p class="eid-hero-subtitle">Countdown to the next Eid celebration</p>
+
+				<div class="eid-tabs" role="tablist" aria-label="Choose which Eid to count down to">
+					<button
+						type="button"
+						class:list={['eid-tab', { 'eid-tab--active': defaultTab === 'fitr' }]}
+						id="tab-fitr"
+						role="tab"
+						aria-selected={defaultTab === 'fitr'}
+						aria-controls="eid-countdown-panel"
+						data-eid-type="fitr"
+					>
+						Eid al-Fitr
+					</button>
+					<button
+						type="button"
+						class:list={['eid-tab', { 'eid-tab--active': defaultTab === 'adha' }]}
+						id="tab-adha"
+						role="tab"
+						aria-selected={defaultTab === 'adha'}
+						aria-controls="eid-countdown-panel"
+						data-eid-type="adha"
+					>
+						Eid al-Adha
+					</button>
+				</div>
+
+				<div
+					class="eid-countdown"
+					id="eid-countdown-panel"
+					role="tabpanel"
+					aria-labelledby={defaultTab === 'fitr' ? 'tab-fitr' : 'tab-adha'}
+				>
+					<div class="eid-countdown-block">
+						<span class="eid-countdown-num eid-countdown-num--days" id="hero-days"
+							>0</span
+						>
+						<span class="eid-countdown-unit">Days</span>
+					</div>
+					<span class="eid-countdown-sep">:</span>
+					<div class="eid-countdown-block">
+						<span class="eid-countdown-num" id="hero-hours">00</span>
+						<span class="eid-countdown-unit">Hours</span>
+					</div>
+					<span class="eid-countdown-sep">:</span>
+					<div class="eid-countdown-block">
+						<span class="eid-countdown-num" id="hero-mins">00</span>
+						<span class="eid-countdown-unit">Minutes</span>
+					</div>
+					<span class="eid-countdown-sep">:</span>
+					<div class="eid-countdown-block">
+						<span class="eid-countdown-num" id="hero-secs">00</span>
+						<span class="eid-countdown-unit">Seconds</span>
+					</div>
+				</div>
+
+				<p class="eid-target-label" id="hero-eid-label">{targetEidLabel}</p>
+				<p class="eid-target-date" id="hero-target-date">{targetDateLabel}</p>
+				<p class="eid-disclaimer">
+					Eid dates are based on moon sighting and may vary by a day depending on
+					your location.
+				</p>
+			</div>
+		</section>
+
+		<div class="eid-body">
+			<section class="eid-stats-section">
+				<h2 class="eid-stats-heading">Eid by the numbers</h2>
+				<div class="eid-stats-grid">
+					<div class="eid-stat-card">
+						<div class="eid-stat-label">Which Eid</div>
+						<div class="eid-stat-value" id="stat-eid">—</div>
+					</div>
+					<div class="eid-stat-card">
+						<div class="eid-stat-label">Date</div>
+						<div class="eid-stat-value" id="stat-date">—</div>
+					</div>
+					<div class="eid-stat-card">
+						<div class="eid-stat-label">Day of the week</div>
+						<div class="eid-stat-value" id="stat-weekday">—</div>
+					</div>
+					<div class="eid-stat-card">
+						<div class="eid-stat-label">Exact time remaining</div>
+						<div class="eid-stat-value" id="stat-exact">—</div>
+					</div>
+				</div>
+			</section>
+
+			<button class="eid-share-btn" id="eid-share-btn">📋 Copy &amp; Share</button>
+
+			<section class="eid-about">
+				<h2 class="eid-section-title">About Eid</h2>
+				<div class="eid-about-card">
+					<p>
+						Eid al-Fitr marks the end of Ramadan, the holy month of fasting,
+						with prayers, feasting, and giving to charity (Zakat al-Fitr). It is
+						a day of gratitude and community after a month of spiritual
+						reflection.
+					</p>
+					<p>
+						Eid al-Adha, the Festival of Sacrifice, commemorates the Prophet
+						Ibrahim's willingness to sacrifice his son in obedience to God. It
+						coincides with the Hajj pilgrimage and is observed with prayer,
+						animal sacrifice (Qurbani), and sharing meat with family and those
+						in need.
+					</p>
+					<p>
+						Both Eids are among the most important celebrations in the Islamic
+						calendar, bringing families and communities together in worship and
+						joy.
+					</p>
+				</div>
+			</section>
+
+			<section class="eid-how">
+				<h2 class="eid-section-title">How is the Eid countdown calculated?</h2>
+				<div class="eid-how-card">
+					<p>
+						This countdown targets midnight on the listed Eid date in your local
+						time zone. By default, it shows whichever of Eid al-Fitr or Eid
+						al-Adha comes next on the calendar. Use the tabs above to count down
+						to a specific Eid instead.
+					</p>
+					<p>
+						Dates follow the Umm al-Qura calendar used in Saudi Arabia and much
+						of the Muslim world. Because Islamic months begin with the sighting
+						of the new crescent moon, confirmed dates can shift by a day in some
+						countries and communities.
+					</p>
+				</div>
+			</section>
+
+			<section class="eid-faq">
+				<h2 class="eid-section-title">Frequently asked questions</h2>
+				<div class="eid-faq-list">
+					<details class="eid-faq-item">
+						<summary class="eid-faq-question"
+							>What's the difference between Eid al-Fitr and Eid al-Adha?</summary
+						>
+						<div class="eid-faq-answer">
+							<p>
+								Eid al-Fitr ("Festival of Breaking the Fast") celebrates the end
+								of Ramadan and falls on 1 Shawwal. Eid al-Adha ("Festival of
+								Sacrifice") honours Ibrahim's devotion and falls on 10 Dhu
+								al-Hijjah, during the Hajj season. Both are public holidays in
+								many Muslim-majority countries, but they mark different events
+								and occur at different times of the Islamic year.
+							</p>
+						</div>
+					</details>
+					<details class="eid-faq-item">
+						<summary class="eid-faq-question"
+							>Why do the dates change every year?</summary
+						>
+						<div class="eid-faq-answer">
+							<p>
+								The Islamic calendar is lunar, with each month lasting about 29
+								or 30 days. Without a leap-month system like the Hebrew
+								calendar, Islamic dates drift earlier in the Gregorian calendar
+								by roughly 10–12 days each year. Eid al-Fitr and Eid al-Adha
+								therefore move through the seasons over a 33-year cycle.
+							</p>
+						</div>
+					</details>
+					<details class="eid-faq-item">
+						<summary class="eid-faq-question"
+							>Why might my local Eid date differ by a day?</summary
+						>
+						<div class="eid-faq-answer">
+							<p>
+								Many communities determine Eid by actual moon sighting rather
+								than astronomical calculation alone. If the crescent is not
+								sighted on the expected evening, Ramadan or Dhu al-Hijjah may
+								be extended by one day, shifting Eid accordingly. Saudi Arabia
+								and some countries use the Umm al-Qura calendar; others follow
+								local sighting committees.
+							</p>
+						</div>
+					</details>
+					<details class="eid-faq-item">
+						<summary class="eid-faq-question"
+							>How long do Eid celebrations last?</summary
+						>
+						<div class="eid-faq-answer">
+							<p>
+								Eid al-Fitr is typically celebrated for one to three days,
+								depending on country and tradition. Eid al-Adha lasts three to
+								four days in many places, aligning with the days of Tashriq
+								after the sacrifice. This countdown targets the first day of
+								each Eid.
+							</p>
+						</div>
+					</details>
+				</div>
+			</section>
+
+			<div class="eid-related">
+				<h3 class="eid-related-title">Related tools</h3>
+				<div class="eid-related-grid">
+					<a href="/days-until-ramadan" class="eid-related-card"
+						><span class="eid-related-name">Days Until Ramadan</span></a
+					>
+					<a href="/days-until-hanukkah" class="eid-related-card"
+						><span class="eid-related-name">Days Until Hanukkah</span></a
+					>
+					<a href="/religious-calendars" class="eid-related-card"
+						><span class="eid-related-name">Religious Calendars</span></a
+					>
+					<a href="/days-until-diwali" class="eid-related-card"
+						><span class="eid-related-name">Days Until Diwali</span></a
+					>
+				</div>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.eid-page {
+		width: 100%;
+	}
+
+	.eid-hero {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		padding: 72px 24px;
+		background: linear-gradient(135deg, #0f1428, #1a2040);
+		border-bottom: 1px solid rgba(232, 147, 122, 0.25);
+		overflow: hidden;
+		position: relative;
+		min-height: 360px;
+	}
+
+	.eid-hero-decor {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	.eid-float-emoji {
+		position: absolute;
+		display: inline-block;
+		line-height: 1;
+		transform: rotate(var(--rotation, 0deg));
+		animation: eid-float 4s ease-in-out infinite;
+		opacity: 0.9;
+	}
+
+	@media (max-width: 600px) {
+		.eid-float-emoji {
+			opacity: 0.35;
+		}
+	}
+
+	@keyframes eid-float {
+		0%,
+		100% {
+			transform: translateY(0) rotate(var(--rotation, 0deg));
+		}
+		33% {
+			transform: translateY(-10px) rotate(calc(var(--rotation, 0deg) - 3deg));
+		}
+		66% {
+			transform: translateY(-5px) rotate(calc(var(--rotation, 0deg) + 3deg));
+		}
+	}
+
+	.eid-hero-centre {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		max-width: 720px;
+	}
+
+	.eid-hero-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5.5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 12px;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.eid-hero-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.55);
+		margin: 0 0 20px;
+	}
+
+	.eid-tabs {
+		display: flex;
+		gap: 8px;
+		margin-bottom: 28px;
+		padding: 4px;
+		background: rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+	}
+
+	.eid-tab {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		padding: 10px 18px;
+		border: none;
+		border-radius: 8px;
+		background: transparent;
+		color: rgba(255, 255, 255, 0.5);
+		cursor: pointer;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease;
+	}
+
+	.eid-tab:hover {
+		color: rgba(255, 255, 255, 0.8);
+	}
+
+	.eid-tab--active {
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		color: #1a1420;
+	}
+
+	.eid-countdown {
+		display: flex;
+		align-items: flex-end;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 8px 12px;
+		margin-bottom: 16px;
+	}
+
+	.eid-countdown-block {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.eid-countdown-num {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		min-width: 64px;
+		text-align: center;
+	}
+
+	.eid-countdown-num--days {
+		font-size: clamp(80px, 13vw, 120px);
+		letter-spacing: -4px;
+		min-width: 100px;
+	}
+
+	.eid-countdown-sep {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(32px, 5vw, 56px);
+		font-weight: 900;
+		color: rgba(255, 255, 255, 0.3);
+		line-height: 1;
+		margin-bottom: 26px;
+		padding: 0 2px;
+	}
+
+	.eid-countdown-unit {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	.eid-target-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(16px, 2.5vw, 20px);
+		font-weight: 700;
+		color: rgba(232, 147, 122, 0.9);
+		margin: 0 0 6px;
+	}
+
+	.eid-target-date {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(18px, 3vw, 22px);
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.9);
+		margin: 0 0 16px;
+	}
+
+	.eid-disclaimer {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.4);
+		line-height: 1.5;
+		margin: 0;
+		max-width: 480px;
+	}
+
+	.eid-body {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 48px 24px 60px;
+	}
+
+	.eid-stats-section {
+		margin-bottom: 16px;
+	}
+
+	.eid-stats-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 24px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.eid-stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.eid-stats-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.eid-stat-card {
+		background: #1a1420;
+		border: 1px solid rgba(232, 147, 122, 0.2);
+		border-radius: 14px;
+		padding: 24px 20px;
+	}
+
+	.eid-stat-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		margin-bottom: 10px;
+	}
+
+	.eid-stat-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.4;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.eid-share-btn {
+		display: block;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		color: #1a1420;
+		border: none;
+		border-radius: 12px;
+		padding: 16px 32px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		cursor: pointer;
+		max-width: 320px;
+		width: 100%;
+		margin: 0 auto 48px;
+		transition: opacity 0.2s ease;
+	}
+
+	.eid-share-btn:hover {
+		opacity: 0.9;
+	}
+
+	.eid-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.eid-about {
+		margin-bottom: 48px;
+	}
+
+	.eid-about-card,
+	.eid-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.eid-about-card p,
+	.eid-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0 0 16px;
+	}
+
+	.eid-about-card p:last-child,
+	.eid-how-card p:last-child {
+		margin-bottom: 0;
+	}
+
+	.eid-how {
+		margin-bottom: 48px;
+	}
+
+	.eid-faq {
+		margin-bottom: 48px;
+	}
+
+	.eid-faq-list {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.eid-faq-item {
+		background: #0c0c0c;
+		border: 1px solid rgba(232, 147, 122, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.eid-faq-question {
+		font-family: 'Outfit', sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+		padding: 18px 24px;
+		cursor: pointer;
+		list-style: none;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.eid-faq-question::-webkit-details-marker {
+		display: none;
+	}
+
+	.eid-faq-question::after {
+		content: '+';
+		float: right;
+		font-size: 18px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.eid-faq-item[open] .eid-faq-question::after {
+		content: '−';
+	}
+
+	.eid-faq-answer {
+		padding: 0 24px 18px;
+	}
+
+	.eid-faq-answer p {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.eid-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.eid-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.eid-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.eid-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.eid-related-card:hover {
+		border-color: rgba(232, 147, 122, 0.4);
+	}
+
+	.eid-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #e8937a, #c9956c);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
+
+<script define:vars={{ eidDates, defaultTab }}>
+	const EID_LABELS = { fitr: 'Eid al-Fitr', adha: 'Eid al-Adha' };
+	const EID_HEADINGS = {
+		fitr: 'Days Until Eid al-Fitr',
+		adha: 'Days Until Eid al-Adha',
+	};
+
+	let viewMode = defaultTab;
+
+	function pad(n) {
+		return String(n).padStart(2, '0');
+	}
+
+	function getEidDate(entry) {
+		return new Date(entry.year, entry.month, entry.day, 0, 0, 0, 0);
+	}
+
+	function getNextEidChronological() {
+		const now = new Date();
+		const sorted = [...eidDates].sort(
+			(a, b) => getEidDate(a).getTime() - getEidDate(b).getTime(),
+		);
+
+		for (const entry of sorted) {
+			const date = getEidDate(entry);
+			if (now.getTime() < date.getTime()) {
+				return { ...entry, date };
+			}
+		}
+
+		const last = sorted[sorted.length - 1];
+		return { ...last, date: getEidDate(last) };
+	}
+
+	function getNextEidByType(type) {
+		const now = new Date();
+		const filtered = eidDates
+			.filter((entry) => entry.type === type)
+			.sort((a, b) => getEidDate(a).getTime() - getEidDate(b).getTime());
+
+		for (const entry of filtered) {
+			const date = getEidDate(entry);
+			if (now.getTime() < date.getTime()) {
+				return { ...entry, date };
+			}
+		}
+
+		const last = filtered[filtered.length - 1];
+		return { ...last, date: getEidDate(last) };
+	}
+
+	function getTargetEid() {
+		if (viewMode === 'auto') {
+			return getNextEidChronological();
+		}
+		return getNextEidByType(viewMode);
+	}
+
+	function formatEidDate(date) {
+		return date.toLocaleDateString('en-GB', {
+			weekday: 'long',
+			day: 'numeric',
+			month: 'long',
+			year: 'numeric',
+		});
+	}
+
+	function setActiveTab(type) {
+		viewMode = type;
+		const tabFitr = document.getElementById('tab-fitr');
+		const tabAdha = document.getElementById('tab-adha');
+		const panel = document.getElementById('eid-countdown-panel');
+
+		if (tabFitr) {
+			tabFitr.classList.toggle('eid-tab--active', type === 'fitr');
+			tabFitr.setAttribute('aria-selected', String(type === 'fitr'));
+		}
+		if (tabAdha) {
+			tabAdha.classList.toggle('eid-tab--active', type === 'adha');
+			tabAdha.setAttribute('aria-selected', String(type === 'adha'));
+		}
+		if (panel) {
+			panel.setAttribute(
+				'aria-labelledby',
+				type === 'fitr' ? 'tab-fitr' : 'tab-adha',
+			);
+		}
+	}
+
+	function updateCountdown() {
+		const eid = getTargetEid();
+		const now = new Date();
+		const diff = eid.date.getTime() - now.getTime();
+
+		if (diff <= 0) return;
+
+		const totalSeconds = Math.floor(diff / 1000);
+		const days = Math.floor(totalSeconds / 86400);
+		const hours = Math.floor((totalSeconds % 86400) / 3600);
+		const mins = Math.floor((totalSeconds % 3600) / 60);
+		const secs = totalSeconds % 60;
+
+		const heroTitle = document.getElementById('hero-title');
+		const heroDays = document.getElementById('hero-days');
+		const heroHours = document.getElementById('hero-hours');
+		const heroMins = document.getElementById('hero-mins');
+		const heroSecs = document.getElementById('hero-secs');
+		const heroEidLabel = document.getElementById('hero-eid-label');
+		const heroTargetDate = document.getElementById('hero-target-date');
+		const statEid = document.getElementById('stat-eid');
+		const statDate = document.getElementById('stat-date');
+		const statWeekday = document.getElementById('stat-weekday');
+		const statExact = document.getElementById('stat-exact');
+
+		if (heroTitle) heroTitle.textContent = EID_HEADINGS[eid.type];
+		if (heroDays) heroDays.textContent = String(days);
+		if (heroHours) heroHours.textContent = pad(hours);
+		if (heroMins) heroMins.textContent = pad(mins);
+		if (heroSecs) heroSecs.textContent = pad(secs);
+
+		const dateLabel = formatEidDate(eid.date);
+		const eidLabel = EID_LABELS[eid.type];
+		const weekday = eid.date.toLocaleDateString('en-GB', { weekday: 'long' });
+
+		if (heroEidLabel) heroEidLabel.textContent = eidLabel;
+		if (heroTargetDate) heroTargetDate.textContent = dateLabel;
+		if (statEid) statEid.textContent = eidLabel;
+		if (statDate) statDate.textContent = dateLabel;
+		if (statWeekday) statWeekday.textContent = weekday;
+		if (statExact)
+			statExact.textContent = `${days} days, ${hours} hours, ${mins} minutes, ${secs} seconds`;
+	}
+
+	document.getElementById('tab-fitr')?.addEventListener('click', () => {
+		setActiveTab('fitr');
+		updateCountdown();
+	});
+
+	document.getElementById('tab-adha')?.addEventListener('click', () => {
+		setActiveTab('adha');
+		updateCountdown();
+	});
+
+	const shareBtn = document.getElementById('eid-share-btn');
+	shareBtn?.addEventListener('click', () => {
+		const days = document.getElementById('hero-days')?.textContent ?? '0';
+		const eid = getTargetEid();
+		const dateLabel = formatEidDate(eid.date);
+		const eidLabel = EID_LABELS[eid.type];
+		navigator.clipboard.writeText(
+			`🌙 ${eidLabel} is ${days} days away — ${dateLabel}. Count down at clockr.co/days-until-eid`,
+		);
+		shareBtn.textContent = '✓ Copied!';
+		setTimeout(() => {
+			shareBtn.textContent = '📋 Copy & Share';
+		}, 2000);
+	});
+
+	updateCountdown();
+	setInterval(updateCountdown, 1000);
+</script>
