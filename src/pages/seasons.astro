@@ -1,0 +1,302 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const tools = [
+	{
+		name: 'Season Countdown',
+		description: 'How long until the next season starts?',
+		href: '/season-countdown',
+		emoji: '🍂',
+	},
+	{
+		name: 'Clock Change Countdown',
+		description: 'Days until the next clocks go forward or back',
+		href: '/clock-change-countdown',
+		emoji: '⏰',
+	},
+	{
+		name: 'Moon Phase Calculator',
+		description: 'Find the moon phase for any date',
+		href: '/moon-phase-calculator',
+		emoji: '🌙',
+	},
+	{
+		name: 'Sun Calculator',
+		description: 'Sunrise, sunset and daylight hours for any city',
+		href: '/sun-calculator',
+		emoji: '☀️',
+	},
+	{
+		name: 'Daylight Hours Calculator',
+		description: 'How much daylight you get on any date',
+		href: '/daylight-hours-calculator',
+		emoji: '🌅',
+	},
+	{
+		name: 'Year Progress',
+		description: 'How much of the year is left?',
+		href: '/year-progress',
+		emoji: '📊',
+	},
+];
+---
+
+<Layout
+	title="Seasons — Solstices, Equinoxes, Moon & Daylight | Clockr"
+	description="Solstices, equinoxes and season countdowns — plus clock changes, moon phases, sunrise/sunset, daylight hours and year progress."
+	category="seasons"
+>
+	<div class="sn-page">
+		<div class="sn-header">
+			<div class="sn-eyebrow">
+				<span class="sn-eyebrow-square" aria-hidden="true"></span>
+				SEASONS
+			</div>
+			<h1 class="sn-title">
+				<span class="sn-gradient">Seasons</span>
+			</h1>
+			<p class="sn-subtitle">Solstices, equinoxes and season countdowns</p>
+		</div>
+
+		<div class="sn-grid">
+			{
+				tools.map((item) => (
+					<a href={item.href} class="sn-card">
+						<span class="sn-card-emoji" aria-hidden="true">
+							{item.emoji}
+						</span>
+						<span class="sn-card-name">{item.name}</span>
+						<span class="sn-card-desc">{item.description}</span>
+					</a>
+				))
+			}
+		</div>
+
+		<section class="sn-how">
+			<h2 class="sn-section-title">About seasons tools</h2>
+			<div class="sn-how-card">
+				<p>
+					Track the turning of the year — from the next solstice or equinox to
+					daylight saving changes, lunar phases, sunrise and sunset, and how much
+					of the calendar year has already passed. Pick a card above to get
+					started.
+				</p>
+			</div>
+		</section>
+
+		<div class="sn-related">
+			<h3 class="sn-related-title">You might also like</h3>
+			<div class="sn-related-grid">
+				<a href="/holiday-countdowns" class="sn-related-card"
+					><span class="sn-related-name">Holiday Countdowns</span></a
+				>
+				<a href="/time-zones" class="sn-related-card"
+					><span class="sn-related-name">Time Zone Tools</span></a
+				>
+				<a href="/fun-holidays" class="sn-related-card"
+					><span class="sn-related-name">Fun & Unofficial Holidays</span></a
+				>
+				<a href="/create-countdown" class="sn-related-card"
+					><span class="sn-related-name">Create Your Own Countdown</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.sn-page {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 60px 24px 80px;
+	}
+
+	.sn-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.sn-eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.sn-eyebrow-square {
+		width: 8px;
+		height: 8px;
+		border-radius: 2px;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		flex-shrink: 0;
+		-webkit-text-fill-color: initial;
+	}
+
+	.sn-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: clamp(36px, 6vw, 56px);
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.sn-gradient {
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sn-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0;
+		max-width: 540px;
+		margin-inline: auto;
+	}
+
+	.sn-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 14px;
+		margin-bottom: 56px;
+	}
+
+	@media (max-width: 640px) {
+		.sn-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.sn-card {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		padding: 22px 20px;
+		text-decoration: none;
+		transition:
+			border-color 0.2s ease,
+			transform 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	.sn-card:hover {
+		border-color: rgba(116, 180, 155, 0.45);
+		transform: translateY(-3px);
+		box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+	}
+
+	.sn-card-emoji {
+		font-size: 28px;
+		line-height: 1;
+		margin-bottom: 4px;
+	}
+
+	.sn-card-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 17px;
+		font-weight: 700;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.sn-card-desc {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+		line-height: 1.5;
+	}
+
+	.sn-section-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sn-how {
+		margin-bottom: 48px;
+	}
+
+	.sn-how-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(45, 106, 79, 0.15);
+		border-radius: 14px;
+		padding: 24px;
+	}
+
+	.sn-how-card p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.7;
+		margin: 0;
+	}
+
+	.sn-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.sn-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.sn-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	@media (max-width: 600px) {
+		.sn-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.sn-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.sn-related-card:hover {
+		border-color: rgba(45, 106, 79, 0.4);
+	}
+
+	.sn-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #2d6a4f, #74b49b);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+</style>
