@@ -33,6 +33,41 @@ export const anchorCitySlugs = new Set([
 	'beijing',
 ]);
 
+/** Curated ~45 major cities for static /timezone/[pair] pages (not the full dropdown list). */
+const timezonePairCitySlugs = new Set([
+	...anchorCitySlugs,
+	'anchorage',
+	'amsterdam',
+	'auckland',
+	'bangkok',
+	'brisbane',
+	'buenos-aires',
+	'cairo',
+	'delhi',
+	'denver',
+	'dublin',
+	'honolulu',
+	'istanbul',
+	'jakarta',
+	'johannesburg',
+	'lagos',
+	'madrid',
+	'manila',
+	'melbourne',
+	'mexico-city',
+	'miami',
+	'nairobi',
+	'reykjavik',
+	'riyadh',
+	'rome',
+	'sao-paulo',
+	'seoul',
+	'shanghai',
+	'taipei',
+	'vancouver',
+	'washington-dc',
+]);
+
 const cityFactTemplates = [
 	(name, country) => `${name} is a major city in ${country}.`,
 	(name, country) =>
@@ -73,16 +108,18 @@ function getCityFact(name: string, country: string, slug: string): string {
 }
 
 function buildTimezoneCities(): TimezoneCity[] {
-	return allWorldClockCities.map((city) => {
-		const slug = slugifyCityName(city.city);
-		return {
-			slug,
-			name: city.city,
-			country: city.country,
-			timezone: city.timezone,
-			fact: getCityFact(city.city, city.country, slug),
-		};
-	});
+	return allWorldClockCities
+		.filter((city) => timezonePairCitySlugs.has(slugifyCityName(city.city)))
+		.map((city) => {
+			const slug = slugifyCityName(city.city);
+			return {
+				slug,
+				name: city.city,
+				country: city.country,
+				timezone: city.timezone,
+				fact: getCityFact(city.city, city.country, slug),
+			};
+		});
 }
 
 export const timezoneCities: TimezoneCity[] = buildTimezoneCities();
