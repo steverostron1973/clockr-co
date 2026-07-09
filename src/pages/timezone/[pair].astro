@@ -1,0 +1,521 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CityPairTimezone from '../../components/CityPairTimezone.jsx';
+import {
+	getRelatedTimezonePairs,
+	timezonePairs,
+} from '../../utils/timezoneCityPairs';
+
+export function getStaticPaths() {
+	return timezonePairs.map((pair) => ({
+		params: { pair: pair.slug },
+		props: {
+			fromCity: pair.from,
+			toCity: pair.to,
+			relatedPairs: getRelatedTimezonePairs(
+				pair.slug,
+				pair.from.slug,
+				pair.to.slug,
+			),
+		},
+	}));
+}
+
+const { fromCity, toCity, relatedPairs } = Astro.props;
+const pageTitle = `${fromCity.name} to ${toCity.name} Time Converter — Current Time & Time Difference | Clockr`;
+const pageDescription = `Convert time between ${fromCity.name} and ${toCity.name}. See live local times, the current time difference, working-hour overlap, and convert any date and time instantly.`;
+---
+
+<Layout title={pageTitle} description={pageDescription} category="timezones">
+	<div class="tp-page">
+		<div class="tp-header">
+			<div class="tp-eyebrow">🌍 Time Zones</div>
+			<h1 class="tp-title">
+				<span class="tp-gradient">{fromCity.name} to {toCity.name}</span><br />
+				<span class="tp-gradient">Time Converter</span>
+			</h1>
+			<p class="tp-subtitle">
+				Live local time, time difference, and conversions between {fromCity.name} and{' '}
+				{toCity.name}
+			</p>
+		</div>
+
+		<CityPairTimezone
+			client:load
+			fromCity={fromCity.name}
+			toCity={toCity.name}
+			fromTimezone={fromCity.timezone}
+			toTimezone={toCity.timezone}
+		/>
+
+		<section class="tp-facts">
+			<h2 class="tp-section-heading">About these cities</h2>
+			<div class="tp-facts-grid">
+				<div class="tp-fact-card">
+					<h3 class="tp-fact-city">{fromCity.name}</h3>
+					<p class="tp-fact-country">{fromCity.country}</p>
+					<p class="tp-fact-text">{fromCity.fact}</p>
+				</div>
+				<div class="tp-fact-card">
+					<h3 class="tp-fact-city">{toCity.name}</h3>
+					<p class="tp-fact-country">{toCity.country}</p>
+					<p class="tp-fact-text">{toCity.fact}</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="tp-explore">
+			<h2 class="tp-section-heading">Explore more timezone pages</h2>
+			<div class="tp-explore-grid">
+				{
+					relatedPairs.map((pair) => (
+						<a href={`/timezone/${pair.slug}`} class="tp-explore-card">
+							<span class="tp-explore-name">
+								{pair.from.name} to {pair.to.name}
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</section>
+
+		<div class="tp-related">
+			<h3 class="tp-related-title">You might also like</h3>
+			<div class="tp-related-grid">
+				<a href="/timezone-converter" class="tp-related-card"
+					><span class="tp-related-name">Time Zone Converter</span></a
+				>
+				<a href="/time-zone-meeting-planner" class="tp-related-card"
+					><span class="tp-related-name">Time Zone Meeting Planner</span></a
+				>
+				<a href="/world-clock" class="tp-related-card"
+					><span class="tp-related-name">World Clock</span></a
+				>
+				<a href="/time-difference" class="tp-related-card"
+					><span class="tp-related-name">Time Difference Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style is:global>
+	.tp-page {
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.tp-header {
+		text-align: center;
+		margin-bottom: 40px;
+	}
+
+	.tp-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.tp-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 52px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.tp-gradient {
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tp-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.tp-tool {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		margin-bottom: 40px;
+	}
+
+	.tp-live-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.tp-live-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.2);
+		border-radius: 16px;
+		padding: 24px 20px;
+		text-align: center;
+		box-shadow: 0 0 30px rgba(0, 229, 196, 0.05);
+	}
+
+	.tp-live-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255, 255, 255, 0.55);
+		margin-bottom: 10px;
+	}
+
+	.tp-live-time {
+		font-family: 'Outfit', sans-serif;
+		font-size: 40px;
+		font-weight: 900;
+		letter-spacing: -1px;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		margin-bottom: 8px;
+	}
+
+	.tp-live-date,
+	.tp-live-offset {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+		line-height: 1.5;
+	}
+
+	.tp-diff-banner {
+		background: rgba(0, 229, 196, 0.08);
+		border: 1px solid rgba(0, 229, 196, 0.2);
+		border-radius: 12px;
+		padding: 16px 20px;
+		text-align: center;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		color: #fff;
+	}
+
+	.tp-form-card,
+	.tp-meeting-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.2);
+		border-radius: 16px;
+		padding: 24px;
+	}
+
+	.tp-section-title,
+	.tp-section-heading {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		color: #fff;
+		margin: 0 0 8px;
+	}
+
+	.tp-section-heading {
+		font-size: 20px;
+		margin-bottom: 16px;
+	}
+
+	.tp-section-lead {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+		margin: 0 0 16px;
+	}
+
+	.tp-inputs {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 16px;
+	}
+
+	.tp-input-wrap {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.tp-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.55);
+	}
+
+	.tp-input {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.3);
+		border-radius: 12px;
+		padding: 14px 16px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 600;
+		color: #fff;
+		width: 100%;
+		color-scheme: dark;
+	}
+
+	.tp-now-btn {
+		margin-top: 16px;
+		background: transparent;
+		border: 1px solid rgba(0, 229, 196, 0.35);
+		border-radius: 10px;
+		padding: 10px 14px;
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: #00e5c4;
+		cursor: pointer;
+	}
+
+	.tp-now-btn:hover {
+		background: rgba(0, 229, 196, 0.08);
+	}
+
+	.tp-result-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.2);
+		border-radius: 16px;
+		padding: 32px 24px;
+		text-align: center;
+	}
+
+	.tp-result-label {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.5);
+		margin-bottom: 8px;
+	}
+
+	.tp-result-time {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -2px;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		font-variant-numeric: tabular-nums;
+		margin-bottom: 8px;
+	}
+
+	.tp-result-date {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.tp-meta {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		overflow: hidden;
+	}
+
+	.tp-meta-row {
+		display: flex;
+		justify-content: space-between;
+		gap: 16px;
+		padding: 14px 18px;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	}
+
+	.tp-meta-row:last-child {
+		border-bottom: none;
+	}
+
+	.tp-meta-highlight {
+		background: rgba(0, 229, 196, 0.06);
+	}
+
+	.tp-meta-label {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.tp-meta-value {
+		font-family: 'Outfit', sans-serif;
+		font-size: 13px;
+		font-weight: 600;
+		color: #fff;
+		text-align: right;
+	}
+
+	.tp-meeting-overlap p {
+		font-family: 'Inter', sans-serif;
+		font-size: 15px;
+		color: rgba(255, 255, 255, 0.75);
+		line-height: 1.6;
+		margin: 0 0 8px;
+	}
+
+	.tp-meeting-none {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.55);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.tp-meeting-none a {
+		color: #00e5c4;
+	}
+
+	.tp-facts {
+		margin-bottom: 40px;
+	}
+
+	.tp-facts-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.tp-fact-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 14px;
+		padding: 20px;
+	}
+
+	.tp-fact-city {
+		font-family: 'Outfit', sans-serif;
+		font-size: 18px;
+		font-weight: 700;
+		color: #fff;
+		margin: 0 0 4px;
+	}
+
+	.tp-fact-country {
+		font-family: 'Inter', sans-serif;
+		font-size: 12px;
+		color: rgba(255, 255, 255, 0.4);
+		margin: 0 0 12px;
+	}
+
+	.tp-fact-text {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		color: rgba(255, 255, 255, 0.6);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.tp-explore {
+		margin-bottom: 40px;
+	}
+
+	.tp-explore-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.tp-explore-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(0, 229, 196, 0.15);
+		border-radius: 12px;
+		padding: 16px;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.tp-explore-card:hover {
+		border-color: rgba(0, 229, 196, 0.4);
+	}
+
+	.tp-explore-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.tp-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.tp-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.tp-related-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+	}
+
+	.tp-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.tp-related-card:hover {
+		border-color: rgba(0, 229, 196, 0.4);
+	}
+
+	.tp-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 640px) {
+		.tp-title {
+			font-size: 36px;
+		}
+
+		.tp-live-grid,
+		.tp-inputs,
+		.tp-facts-grid,
+		.tp-explore-grid,
+		.tp-related-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.tp-live-time {
+			font-size: 32px;
+		}
+
+		.tp-result-time {
+			font-size: 48px;
+		}
+	}
+</style>
