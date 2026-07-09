@@ -107,6 +107,14 @@ function getCityFact(name: string, country: string, slug: string): string {
 	return template(name, country);
 }
 
+export function getTimezoneCityFact(
+	name: string,
+	country: string,
+	slug: string,
+): string {
+	return getCityFact(name, country, slug);
+}
+
 function buildTimezoneCities(): TimezoneCity[] {
 	return allWorldClockCities
 		.filter((city) => timezonePairCitySlugs.has(slugifyCityName(city.city)))
@@ -180,6 +188,28 @@ export function getRelatedTimezonePairs(
 			pair.from.slug === toSlug ||
 			pair.to.slug === toSlug
 		);
+	});
+
+	related.sort((left, right) => {
+		const leftScore =
+			(anchorCitySlugs.has(left.from.slug) ? 1 : 0) +
+			(anchorCitySlugs.has(left.to.slug) ? 1 : 0);
+		const rightScore =
+			(anchorCitySlugs.has(right.from.slug) ? 1 : 0) +
+			(anchorCitySlugs.has(right.to.slug) ? 1 : 0);
+		if (rightScore !== leftScore) return rightScore - leftScore;
+		return left.slug.localeCompare(right.slug);
+	});
+
+	return related.slice(0, limit);
+}
+
+export function getTimezonePairsForCity(
+	citySlug: string,
+	limit = 6,
+): TimezoneCityPair[] {
+	const related = timezonePairs.filter((pair) => {
+		return pair.from.slug === citySlug || pair.to.slug === citySlug;
 	});
 
 	related.sort((left, right) => {

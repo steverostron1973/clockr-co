@@ -16,6 +16,9 @@ import { gridCities, searchOnlyCities } from '../data/worldClockSearchCities';
 			<p class="wc-subtitle">
 				Current local time in cities around the world
 			</p>
+			<p class="wc-browse">
+				<a href="/current-time/">Browse current time for every city →</a>
+			</p>
 		</div>
 
 		<div class="wc-search-wrap">
@@ -309,6 +312,22 @@ import { gridCities, searchOnlyCities } from '../data/worldClockSearchCities';
 		font-size: 16px;
 		color: rgba(255, 255, 255, 0.5);
 		line-height: 1.6;
+	}
+
+	.wc-browse {
+		margin-top: 16px;
+	}
+
+	.wc-browse a {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+		font-weight: 500;
+		color: #00e5c4;
+		text-decoration: none;
+	}
+
+	.wc-browse a:hover {
+		text-decoration: underline;
 	}
 
 	.wc-search-wrap {

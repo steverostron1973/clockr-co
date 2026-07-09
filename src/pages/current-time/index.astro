@@ -1,0 +1,198 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { currentTimeCities } from '../../utils/currentTimeCities';
+
+const cities = [...currentTimeCities].sort((a, b) =>
+	a.name.localeCompare(b.name),
+);
+---
+
+<Layout
+	title="Current Time by City — What Time Is It Anywhere? | Clockr"
+	description="Browse current local time for 200+ cities worldwide. Live clocks showing the time, date, UTC offset, and sunrise/sunset for every city."
+	category="timezones"
+>
+	<div class="cti-page">
+		<div class="cti-header">
+			<div class="cti-eyebrow">🌍 Time Zones</div>
+			<h1 class="cti-title">
+				<span class="cti-gradient">Current Time</span><br />
+				<span class="cti-gradient">by City</span>
+			</h1>
+			<p class="cti-subtitle">
+				What time is it right now in cities around the world?
+			</p>
+		</div>
+
+		<div class="cti-grid">
+			{
+				cities.map((city) => (
+					<a href={`/current-time/${city.slug}`} class="cti-card">
+						<span class="cti-flag" aria-hidden="true">{city.flag}</span>
+						<span class="cti-name">{city.name}</span>
+						<span class="cti-country">{city.country}</span>
+					</a>
+				))
+			}
+		</div>
+
+		<div class="cti-related">
+			<h3 class="cti-related-title">You might also like</h3>
+			<div class="cti-related-grid">
+				<a href="/world-clock" class="cti-related-card"
+					><span class="cti-related-name">World Clock</span></a
+				>
+				<a href="/timezone-converter" class="cti-related-card"
+					><span class="cti-related-name">Time Zone Converter</span></a
+				>
+				<a href="/time-difference" class="cti-related-card"
+					><span class="cti-related-name">Time Difference Calculator</span></a
+				>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.cti-page {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 60px 24px;
+	}
+
+	.cti-header {
+		text-align: center;
+		margin-bottom: 48px;
+	}
+
+	.cti-eyebrow {
+		font-family: 'Outfit', sans-serif;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		margin-bottom: 16px;
+	}
+
+	.cti-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 64px;
+		font-weight: 900;
+		letter-spacing: -3px;
+		line-height: 1.05;
+		margin-bottom: 16px;
+	}
+
+	.cti-gradient {
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	.cti-subtitle {
+		font-family: 'Inter', sans-serif;
+		font-size: 16px;
+		color: rgba(255, 255, 255, 0.5);
+		line-height: 1.6;
+	}
+
+	.cti-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		gap: 12px;
+		margin-bottom: 48px;
+	}
+
+	.cti-card {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 16px;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.cti-card:hover {
+		border-color: rgba(0, 229, 196, 0.4);
+	}
+
+	.cti-flag {
+		font-size: 20px;
+		line-height: 1;
+	}
+
+	.cti-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 16px;
+		font-weight: 700;
+		color: #fff;
+	}
+
+	.cti-country {
+		font-family: 'Inter', sans-serif;
+		font-size: 13px;
+		color: rgba(255, 255, 255, 0.45);
+	}
+
+	.cti-related {
+		border-top: 1px solid rgba(255, 255, 255, 0.06);
+		padding-top: 40px;
+	}
+
+	.cti-related-title {
+		font-family: 'Outfit', sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		color: #fff;
+		margin-bottom: 16px;
+	}
+
+	.cti-related-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 12px;
+	}
+
+	.cti-related-card {
+		background: #0c0c0c;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		border-radius: 12px;
+		padding: 20px 16px;
+		text-align: center;
+		text-decoration: none;
+		transition: border-color 0.2s ease;
+	}
+
+	.cti-related-card:hover {
+		border-color: rgba(0, 229, 196, 0.4);
+	}
+
+	.cti-related-name {
+		font-family: 'Outfit', sans-serif;
+		font-size: 14px;
+		font-weight: 600;
+		background: linear-gradient(135deg, #00e5c4, #0099ff);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+	}
+
+	@media (max-width: 639px) {
+		.cti-title {
+			font-size: 48px;
+			letter-spacing: -2px;
+		}
+
+		.cti-related-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
