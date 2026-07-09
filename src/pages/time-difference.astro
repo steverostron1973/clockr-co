@@ -112,7 +112,16 @@ const presets = [
 			<div class="td-timeline-wrap">
 				<div class="td-timeline-row">
 					<span class="td-timeline-label" id="timeline-label-a">London</span>
-					<div class="td-timeline-bar" id="timeline-bar-a"></div>
+					<div class="td-timeline-track">
+						<div class="td-timeline-bar" id="timeline-bar-a"></div>
+						<div class="td-timeline-axis-labels" aria-hidden="true">
+							<span>12am</span>
+							<span>6am</span>
+							<span>12pm</span>
+							<span>6pm</span>
+							<span>12am</span>
+						</div>
+					</div>
 				</div>
 
 				<div class="td-overlap-band" id="overlap-band">
@@ -121,15 +130,16 @@ const presets = [
 
 				<div class="td-timeline-row">
 					<span class="td-timeline-label" id="timeline-label-b">New York</span>
-					<div class="td-timeline-bar" id="timeline-bar-b"></div>
-				</div>
-
-				<div class="td-timeline-axis">
-					<span>12am</span>
-					<span>6am</span>
-					<span>12pm</span>
-					<span>6pm</span>
-					<span>12am</span>
+					<div class="td-timeline-track">
+						<div class="td-timeline-bar" id="timeline-bar-b"></div>
+						<div class="td-timeline-axis-labels" aria-hidden="true">
+							<span>12am</span>
+							<span>6am</span>
+							<span>12pm</span>
+							<span>6pm</span>
+							<span>12am</span>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -563,7 +573,7 @@ const presets = [
 		display: grid;
 		grid-template-columns: 80px 1fr;
 		gap: 12px;
-		align-items: center;
+		align-items: start;
 	}
 
 	.td-timeline-label {
@@ -575,6 +585,14 @@ const presets = [
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		padding-top: 6px;
+	}
+
+	.td-timeline-track {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		min-width: 0;
 	}
 
 	.td-timeline-bar {
@@ -634,20 +652,21 @@ const presets = [
 		opacity: 1;
 	}
 
-	.td-timeline-axis {
-		display: grid;
-		grid-template-columns: 80px 1fr;
-		gap: 12px;
-		margin-top: 4px;
-	}
-
-	.td-timeline-axis span {
-		grid-column: 2;
+	.td-timeline-axis-labels {
 		display: flex;
 		justify-content: space-between;
+		gap: 4px;
 		font-family: 'Inter', sans-serif;
 		font-size: 10px;
+		font-weight: 500;
+		line-height: 1.2;
 		color: rgba(255, 255, 255, 0.25);
+	}
+
+	.td-timeline-axis-labels span {
+		flex: 0 0 auto;
+		font: inherit;
+		color: inherit;
 	}
 
 	.td-timeline-note {
@@ -868,13 +887,17 @@ const presets = [
 		}
 
 		.td-timeline-row,
-		.td-overlap-band,
-		.td-timeline-axis {
+		.td-overlap-band {
 			grid-template-columns: 56px 1fr;
 		}
 
 		.td-timeline-label {
 			font-size: 11px;
+		}
+
+		.td-timeline-axis-labels {
+			font-size: 10px;
+			font-weight: 500;
 		}
 
 		.td-presets-grid,
