@@ -31,6 +31,7 @@ export const CITY_COORDINATES: Record<string, CityCoordinates> = {
 	'Bangalore|India': { lat: 12.9716, lng: 77.5946 },
 	'Bangkok|Thailand': { lat: 13.7563, lng: 100.5018 },
 	'Beirut|Lebanon': { lat: 33.8938, lng: 35.5018 },
+	'Beijing|China': { lat: 39.9042, lng: 116.4074 },
 	'Belfast|United Kingdom': { lat: 54.5973, lng: -5.9301 },
 	'Belgrade|Serbia': { lat: 44.7866, lng: 20.4489 },
 	'Berlin|Germany': { lat: 52.52, lng: 13.405 },

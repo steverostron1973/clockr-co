@@ -1,4 +1,5 @@
-import timezoneCitiesData from '../data/timezoneCities.json';
+import { allWorldClockCities } from '../data/worldClockSearchCities';
+import timezoneCityFacts from '../data/timezoneCityFacts.json';
 
 export interface TimezoneCity {
 	slug: string;
@@ -13,8 +14,6 @@ export interface TimezoneCityPair {
 	from: TimezoneCity;
 	to: TimezoneCity;
 }
-
-export const timezoneCities: TimezoneCity[] = timezoneCitiesData;
 
 export const anchorCitySlugs = new Set([
 	'new-york',
@@ -33,6 +32,60 @@ export const anchorCitySlugs = new Set([
 	'moscow',
 	'beijing',
 ]);
+
+const cityFactTemplates = [
+	(name, country) => `${name} is a major city in ${country}.`,
+	(name, country) =>
+		`A key urban centre in ${country}, ${name} is widely used for international time coordination.`,
+	(name, country) =>
+		`${name} serves as an important hub in ${country} for business, travel, and regional connections.`,
+	(name, country) =>
+		`Located in ${country}, ${name} is a well-known destination for global travellers and remote teams.`,
+	(name, country) => `${name} is one of the principal cities in ${country}.`,
+] as const;
+
+export function slugifyCityName(name: string): string {
+	return name
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '');
+}
+
+function hashSlug(slug: string): number {
+	let hash = 0;
+	for (let i = 0; i < slug.length; i++) {
+		hash = (hash * 31 + slug.charCodeAt(i)) >>> 0;
+	}
+	return hash;
+}
+
+function getCityFact(name: string, country: string, slug: string): string {
+	const curatedFact = timezoneCityFacts[slug as keyof typeof timezoneCityFacts];
+	if (curatedFact) {
+		return curatedFact;
+	}
+
+	const template =
+		cityFactTemplates[hashSlug(slug) % cityFactTemplates.length];
+	return template(name, country);
+}
+
+function buildTimezoneCities(): TimezoneCity[] {
+	return allWorldClockCities.map((city) => {
+		const slug = slugifyCityName(city.city);
+		return {
+			slug,
+			name: city.city,
+			country: city.country,
+			timezone: city.timezone,
+			fact: getCityFact(city.city, city.country, slug),
+		};
+	});
+}
+
+export const timezoneCities: TimezoneCity[] = buildTimezoneCities();
 
 const cityBySlug = new Map(
 	timezoneCities.map((city) => [city.slug, city] as const),

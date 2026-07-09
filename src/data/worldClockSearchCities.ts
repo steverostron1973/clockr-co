@@ -127,6 +127,7 @@ const searchOnlyCitiesBase: CityEntry[] = [
 	{ city: 'Kuala Lumpur', country: 'Malaysia', timezone: 'Asia/Kuala_Lumpur', flag: '🇲🇾' },
 	{ city: 'Manila', country: 'Philippines', timezone: 'Asia/Manila', flag: '🇵🇭' },
 	{ city: 'Taipei', country: 'Taiwan', timezone: 'Asia/Taipei', flag: '🇹🇼' },
+	{ city: 'Beijing', country: 'China', timezone: 'Asia/Shanghai', flag: '🇨🇳' },
 	{ city: 'Seoul', country: 'South Korea', timezone: 'Asia/Seoul', flag: '🇰🇷' },
 	{ city: 'Osaka', country: 'Japan', timezone: 'Asia/Tokyo', flag: '🇯🇵' },
 	{ city: 'Pyongyang', country: 'North Korea', timezone: 'Asia/Pyongyang', flag: '🇰🇵' },
